@@ -1,0 +1,28 @@
+/public/
+/.zola-lock
+/.DS_Store
+/.venv/
+/.tools/
+__pycache__/
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.tmp
+*.log
+.env
+.env.*
+.idea/
+.vscode/
+
+# Local-only workflow files
+/Makefile
+
+# AI / prompt workflow files
+prompt.*
+*.prompt
+*.prompt.*
+prompts/
+AGENTS.md
+CLAUDE.md
+GEMINI.md

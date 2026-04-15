@@ -1,0 +1,67 @@
+base_url = "https://example.com"
+title = "open-utdr-enemies"
+description = "Open documentation site for Undertale and Deltarune enemy, animation, and battle research."
+theme = "adidoks"
+default_language = "zh"
+compile_sass = true
+generate_feeds = false
+minify_html = false
+build_search_index = false
+
+[markdown]
+
+[markdown.highlighting]
+style = "inline"
+theme = "github-dark"
+
+[extra]
+author = "open-utdr-enemies contributors"
+language_code = "zh-CN"
+theme_color = "#f6efe2"
+title_separator = "|"
+title_addition = "Undertale / Deltarune Enemy Docs"
+timeformat = "%Y-%m-%d"
+timezone = "Asia/Shanghai"
+edit_page = false
+math = false
+library = "katex"
+
+[extra.open]
+enable = true
+image = "doks.png"
+twitter_site = ""
+twitter_creator = ""
+facebook_author = ""
+facebook_publisher = ""
+og_locale = "zh_CN"
+
+[extra.schema]
+type = "Organization"
+logo = "logo-doks.png"
+twitter = ""
+linked_in = ""
+github = ""
+section = "docs"
+site_links_search_box = false
+
+[[extra.menu.main]]
+name = "Docs"
+section = "docs"
+url = "/docs/getting-started/introduction/"
+weight = 10
+
+[[extra.menu.main]]
+name = "Articles"
+section = "docs"
+url = "/docs/articles/"
+weight = 20
+
+[[extra.footer.nav]]
+name = "Getting Started"
+url = "/docs/getting-started/introduction/"
+weight = 10
+
+[[extra.footer.nav]]
+name = "Source Opus"
+url = "https://www.bilibili.com/opus/1190046793906257945"
+weight = 20
