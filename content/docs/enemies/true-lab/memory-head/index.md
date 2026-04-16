@@ -8,9 +8,6 @@ weight = 1
 sort_by = "weight"
 template = "docs/page.html"
 
-[authors]
-  - name = "毫无技术的鸽子"
-
 [extra]
 toc = true
 top = false
