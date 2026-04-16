@@ -45,6 +45,12 @@ section = "docs"
 site_links_search_box = false
 
 [[extra.menu.main]]
+name = "Enemies"
+section = "docs"
+url = "/docs/enemies/"
+weight = 5
+
+[[extra.menu.main]]
 name = "Docs"
 section = "docs"
 url = "/docs/getting-started/introduction/"
