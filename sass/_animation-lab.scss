@@ -190,3 +190,20 @@
     font-size: 0.85rem;
   }
 }
+
+/* Article sidebar */
+.utaf-sidebar {
+  position: sticky;
+  top: 5rem;
+
+  .utaf-lab {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .utaf-sidebar {
+    position: static;
+    margin-bottom: 1.5rem;
+  }
+}

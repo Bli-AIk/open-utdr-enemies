@@ -9,15 +9,13 @@ template = "page.html"
 
 [extra]
   author = "毫无技术的鸽子"
+  utaf_data = "/utaf/core/finalfroggit.json"
+  utaf_lab_url = "/lab/finalfroggit/"
 
   toc = true
   top = false
 +++
 
-
----
-
-{{ animation_lab(id="finalfroggit", data="/utaf/core/finalfroggit.json", lab_url="/lab/finalfroggit/") }}
 
 ---
 
