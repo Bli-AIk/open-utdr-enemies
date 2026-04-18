@@ -101,8 +101,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const scrollSpeed = 0.5;
         const pluckRadius = 80;
         const impulseStrength = 0.12;
-        const pluckSpring = 0.08;
-        const pluckDamping = 0.94;
+        const pluckSpring = 0.04;   // softer spring = slower oscillation
+        const pluckDamping = 0.96;  // less damping = longer decay but slower freq
+        const maxPluckDisplacement = 12; // cap: max px displacement per edge
+        const maxPluckVelocity = 2;      // cap: max velocity per frame
         const mouseXParallax = 8; // max px of global X offset
 
         // Global X parallax: grid shifts slightly toward mouse
@@ -156,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         
                         if (!isBackgroundClick && dist < pluckRadius) {
                             let proximity = (1 - dist / pluckRadius);
-                            proximity *= proximity; // quadratic falloff for natural feel
+                            proximity *= proximity;
                             p.phvx += mouse.vx * proximity * impulseStrength;
                             p.phvy += mouse.vy * proximity * impulseStrength;
                         }
@@ -164,8 +166,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         p.phvy += (0 - p.phy) * pluckSpring;
                         p.phvx *= pluckDamping;
                         p.phvy *= pluckDamping;
+                        // Clamp velocity
+                        p.phvx = Math.max(-maxPluckVelocity, Math.min(maxPluckVelocity, p.phvx));
+                        p.phvy = Math.max(-maxPluckVelocity, Math.min(maxPluckVelocity, p.phvy));
                         p.phx += p.phvx;
                         p.phy += p.phvy;
+                        // Clamp displacement
+                        p.phx = Math.max(-maxPluckDisplacement, Math.min(maxPluckDisplacement, p.phx));
+                        p.phy = Math.max(-maxPluckDisplacement, Math.min(maxPluckDisplacement, p.phy));
                     } else {
                         p.phx = p.phy = p.phvx = p.phvy = 0;
                     }
@@ -191,8 +199,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         p.pvvy += (0 - p.pvy) * pluckSpring;
                         p.pvvx *= pluckDamping;
                         p.pvvy *= pluckDamping;
+                        // Clamp velocity
+                        p.pvvx = Math.max(-maxPluckVelocity, Math.min(maxPluckVelocity, p.pvvx));
+                        p.pvvy = Math.max(-maxPluckVelocity, Math.min(maxPluckVelocity, p.pvvy));
                         p.pvx += p.pvvx;
                         p.pvy += p.pvvy;
+                        // Clamp displacement
+                        p.pvx = Math.max(-maxPluckDisplacement, Math.min(maxPluckDisplacement, p.pvx));
+                        p.pvy = Math.max(-maxPluckDisplacement, Math.min(maxPluckDisplacement, p.pvy));
                     } else {
                         p.pvx = p.pvy = p.pvvx = p.pvvy = 0;
                     }
