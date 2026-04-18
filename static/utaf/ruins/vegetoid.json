@@ -4,9 +4,19 @@
   "scale": 2,
   "canvasWidth": 184,
   "canvasHeight": 248,
-  "variables": {},
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
   "sprites": {
-    "vegetoid_body": "/sprites/vegetoid/body.png"
+    "vegetoid_body": [
+      "/sprites/vegetoid/body_0.png",
+      "/sprites/vegetoid/body_1.png",
+      "/sprites/vegetoid/body_2.png",
+      "/sprites/vegetoid/body_3.png"
+    ]
   },
   "parts": [
     {
@@ -16,7 +26,10 @@
         "x": 0,
         "y": 0
       },
-      "drawOrder": 0
+      "drawOrder": 0,
+      "expressions": {
+        "frame_index": "floor(siner * 0.1) % 4"
+      }
     }
   ]
 }

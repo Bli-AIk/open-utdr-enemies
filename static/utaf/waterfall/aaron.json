@@ -4,9 +4,17 @@
   "scale": 2,
   "canvasWidth": 268,
   "canvasHeight": 440,
-  "variables": {},
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
   "sprites": {
-    "aaron_body": "/sprites/aaron/body.png"
+    "aaron_body": [
+      "/sprites/aaron/body_0.png",
+      "/sprites/aaron/body_1.png"
+    ]
   },
   "parts": [
     {
@@ -16,7 +24,11 @@
         "x": 0,
         "y": 0
       },
-      "drawOrder": 0
+      "drawOrder": 0,
+      "expressions": {
+        "frame_index": "floor(siner * 0.1) % 2",
+        "offset_y": "sin(siner / 30) * 9"
+      }
     }
   ]
 }

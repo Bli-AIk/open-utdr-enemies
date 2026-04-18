@@ -4,9 +4,25 @@
   "scale": 2,
   "canvasWidth": 416,
   "canvasHeight": 220,
-  "variables": {},
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
   "sprites": {
-    "jerry_body": "/sprites/jerry/body.png"
+    "jerry_body": [
+      "/sprites/jerry/body_0.png",
+      "/sprites/jerry/body_1.png",
+      "/sprites/jerry/body_2.png",
+      "/sprites/jerry/body_3.png",
+      "/sprites/jerry/body_4.png",
+      "/sprites/jerry/body_5.png",
+      "/sprites/jerry/body_6.png",
+      "/sprites/jerry/body_7.png",
+      "/sprites/jerry/body_8.png",
+      "/sprites/jerry/body_9.png"
+    ]
   },
   "parts": [
     {
@@ -16,7 +32,10 @@
         "x": 0,
         "y": 0
       },
-      "drawOrder": 0
+      "drawOrder": 0,
+      "expressions": {
+        "frame_index": "floor(siner * 0.1) % 10"
+      }
     }
   ]
 }
