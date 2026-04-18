@@ -171,3 +171,44 @@ body.dark pre:not(.hljs) { background: #000000 !important; border: 2px solid #FF
 /* Animations disabled */
 html { scroll-behavior: auto !important; }
 *, *::before, *::after { transition: none !important; }
+/* Hover Dropdown Menu UT Style */
+.dropdown-hover {
+  position: relative;
+}
+
+.dropdown-menu-ut {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 240px;
+  background-color: #000000 !important;
+  border: 4px solid #FFFFFF !important;
+  list-style: none;
+  padding: 1rem 0 !important;
+  margin: 0;
+  z-index: 1000;
+}
+
+.dropdown-hover:hover .dropdown-menu-ut {
+  display: block;
+}
+
+.dropdown-menu-ut li a {
+  display: block;
+  padding: 0.5rem 1.5rem !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  font-family: 'DTM-Sans', sans-serif;
+}
+
+.dropdown-menu-ut li a:hover {
+  color: #FFFF00 !important;
+  background-color: #222 !important;
+}
+
+/* Ensure navbar doesn't clip the dropdown */
+.navbar {
+  overflow: visible !important;
+}

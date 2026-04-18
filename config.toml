@@ -1,7 +1,6 @@
 base_url = "https://example.com"
 title = "open-utdr-enemies"
 description = "Open documentation site for Undertale and Deltarune enemy, animation, and battle research."
-theme = "adidoks"
 default_language = "zh"
 compile_sass = true
 generate_feeds = false
@@ -9,7 +8,6 @@ minify_html = false
 build_search_index = false
 
 [markdown]
-
 [markdown.highlighting]
 style = "inline"
 theme = "github-dark"
@@ -17,57 +15,79 @@ theme = "github-dark"
 [extra]
 author = "open-utdr-enemies contributors"
 language_code = "zh-CN"
-theme_color = "#f6efe2"
+theme_color = "#000000"
 title_separator = "|"
 title_addition = "Undertale / Deltarune Enemy Docs"
-timeformat = "%Y-%m-%d"
-timezone = "Asia/Shanghai"
-edit_page = false
-math = false
-library = "katex"
-
-[extra.open]
-enable = true
-image = "doks.png"
-twitter_site = ""
-twitter_creator = ""
-facebook_author = ""
-facebook_publisher = ""
-og_locale = "zh_CN"
-
-[extra.schema]
-type = "Organization"
-logo = "logo-doks.png"
-twitter = ""
-linked_in = ""
-github = ""
-section = "docs"
-site_links_search_box = false
 
 [[extra.menu.main]]
-name = "Enemies"
-section = "docs"
-url = "/docs/enemies/"
+name = "Undertale"
+url = "/ut/"
+weight = 10
+
+[[extra.menu.ut]]
+name = "废墟 (Ruins)"
+url = "/ut/ruins/"
+weight = 1
+[[extra.menu.ut]]
+name = "雪镇 (Snowdin)"
+url = "/ut/snowdin/"
+weight = 2
+[[extra.menu.ut]]
+name = "瀑布 (Waterfall)"
+url = "/ut/waterfall/"
+weight = 3
+[[extra.menu.ut]]
+name = "热岭 (Hotland)"
+url = "/ut/hotland/"
+weight = 4
+[[extra.menu.ut]]
+name = "核心 (Core)"
+url = "/ut/core/"
 weight = 5
+[[extra.menu.ut]]
+name = "真实验室 (True Lab)"
+url = "/ut/true-lab/"
+weight = 6
+[[extra.menu.ut]]
+name = "Boss 研究"
+url = "/ut/boss/"
+weight = 7
+[[extra.menu.ut]]
+name = "战斗与动画机制"
+url = "/ut/mechanics/"
+weight = 8
 
 [[extra.menu.main]]
-name = "Docs"
-section = "docs"
-url = "/docs/getting-started/introduction/"
-weight = 10
+name = "Deltarune Ch 1"
+url = "/dr-ch1/"
+weight = 20
 
 [[extra.menu.main]]
-name = "Articles"
-section = "docs"
-url = "/docs/articles/"
-weight = 20
+name = "Deltarune Ch 2"
+url = "/dr-ch2/"
+weight = 30
 
-[[extra.footer.nav]]
-name = "Getting Started"
-url = "/docs/getting-started/introduction/"
-weight = 10
+[[extra.menu.main]]
+name = "Deltarune Ch 3"
+url = "/dr-ch3/"
+weight = 40
 
-[[extra.footer.nav]]
-name = "Source Opus"
-url = "https://www.bilibili.com/opus/1190046793906257945"
-weight = 20
+[[extra.menu.main]]
+name = "Deltarune Ch 4"
+url = "/dr-ch4/"
+weight = 50
+
+[[extra.menu.main]]
+name = "Archive"
+url = "/archive/"
+weight = 60
+
+[[extra.menu.archive]]
+name = "Bilibili 归档"
+url = "/archive/bilibili/"
+weight = 1
+
+[[extra.menu.main]]
+name = "About"
+url = "/about/"
+weight = 70
