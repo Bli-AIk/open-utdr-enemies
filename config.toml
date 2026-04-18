@@ -25,7 +25,7 @@ url = "/ut/"
 weight = 10
 
 [[extra.menu.ut]]
-name = "废墟 (Ruins)"
+name = "遗迹 (Ruins)"
 url = "/ut/ruins/"
 weight = 1
 [[extra.menu.ut]]
@@ -37,7 +37,7 @@ name = "瀑布 (Waterfall)"
 url = "/ut/waterfall/"
 weight = 3
 [[extra.menu.ut]]
-name = "热岭 (Hotland)"
+name = "热域 (Hotland)"
 url = "/ut/hotland/"
 weight = 4
 [[extra.menu.ut]]
