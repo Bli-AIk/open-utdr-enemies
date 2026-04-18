@@ -57,62 +57,62 @@ a:hover, .btn-link:hover, .docs-link:hover, .nav-link:hover {
   color: #FFFF00 !important;
 }
 
-/* Base UI Resets */
-.card, .navbar, .footer, .sidebar, .docs-sidebar {
-  background-color: #000000 !important;
-  border-radius: 0 !important;
+/* Clear all default borders and backgrounds from Adidoks UI */
+.card, .navbar, .footer, .sidebar, .docs-sidebar, .docs-toc, hr {
+  background-color: transparent !important;
+  border: none !important;
   box-shadow: none !important;
 }
 
-/* Navbar */
-.navbar {
-  border-bottom: 4px solid #FFFFFF !important;
-  padding: 1rem 2rem !important;
+/* Remove default separator lines */
+.docs-navigation, .border-top, .border-bottom {
+  border: none !important;
+}
+hr {
+  border-top: 2px dashed #333 !important;
 }
 
-/* Layout Containers - The Battle Boxes */
+/* Layout Containers */
 .wrap.container {
   max-width: 1400px !important;
-  padding: 0 !important;
 }
 
 .content {
-  background-color: #000000 !important;
-  border: 4px solid #FFFFFF !important;
+  background-color: transparent !important;
+  border: none !important;
   padding: 0 !important;
   margin-top: 2rem !important;
   margin-bottom: 2rem !important;
 }
 
 .row.flex-xl-nowrap {
-  margin: 0 !important; /* Remove negative margins from row */
+  margin: 0 !important;
+  gap: 2rem !important;
 }
 
-/* Left Sidebar Menu Box */
+/* Sidebar and TOC - just clean text on black, no borders */
 .docs-sidebar {
-  border-right: 4px solid #FFFFFF !important;
-  padding: 1.5rem !important;
-  height: 100% !important; /* Stretch to fill container */
+  padding: 1rem 0 !important;
 }
-
-/* Main Content Box */
-.docs-content {
-  padding: 2rem 3rem !important;
-  min-height: 60vh;
-}
-
-/* Right TOC (Optional) - internal divider */
 .docs-toc {
-  border-left: 4px solid #FFFFFF !important;
-  padding: 1.5rem !important;
-  height: 100% !important;
+  padding: 1rem 0 !important;
+}
+
+/* Main Content Box - THE BATTLE BOX */
+/* This isolates the border strictly to the main text/article area */
+.docs-content {
+  background-color: #000000 !important;
+  border: 4px solid #FFFFFF !important;
+  padding: 3rem !important;
+  min-height: 60vh;
+  margin-bottom: 2rem !important;
 }
 
 /* Buttons */
 .btn, button, input[type="submit"], input[type="button"] {
   background-color: #000000 !important;
   color: #FFFFFF !important;
-  border: 4px solid #FFFFFF !important;
+  border: 2px solid #555 !important;
   border-radius: 0 !important;
   transition: none !important;
   font-family: 'DTM-Sans', sans-serif !important;
@@ -126,14 +126,7 @@ a:hover, .btn-link:hover, .docs-link:hover, .nav-link:hover {
 }
 
 .btn-primary {
-  border-color: #FFFFFF !important;
-}
-
-/* Borders overrides */
-.docs-navigation, .border-top, .border-bottom, hr {
-  border-color: #FFFFFF !important;
-  border-width: 4px !important;
-  border-style: solid !important;
+  border-color: #A1A1A1 !important;
 }
 
 /* Code blocks */
@@ -158,10 +151,10 @@ pre, code {
 
 /* Undertale styling elements */
 .text-danger, .alert-danger { color: #FF0000 !important; }
-.alert-danger { border: 4px solid #FF0000 !important; background: #000 !important; }
+.alert-danger { border: 2px solid #FF0000 !important; background: #000 !important; }
 
 .text-warning, .alert-warning { color: #FFFF00 !important; }
-.alert-warning { border: 4px solid #FFFF00 !important; background: #000 !important; }
+.alert-warning { border: 2px solid #FFFF00 !important; background: #000 !important; }
 
 /* Force dark mode styles to not override our UT styles */
 body.dark { background: #000000 !important; color: #FFFFFF !important; }
