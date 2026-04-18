@@ -12,12 +12,42 @@
   },
   "sprites": {
     "parsnik_headwrap": "/sprites/parsnik/headwrap.png",
-    "parsnik_snake1": "/sprites/parsnik/snake1.png",
-    "parsnik_snake2": "/sprites/parsnik/snake2.png",
-    "parsnik_snake3": "/sprites/parsnik/snake3.png",
-    "parsnik_snake4": "/sprites/parsnik/snake4.png",
-    "parsnik_snake5": "/sprites/parsnik/snake5.png",
-    "parsnik_head": "/sprites/parsnik/head.png"
+    "parsnik_snake1": [
+      "/sprites/parsnik/snake1_0.png",
+      "/sprites/parsnik/snake1_1.png",
+      "/sprites/parsnik/snake1_2.png",
+      "/sprites/parsnik/snake1_3.png"
+    ],
+    "parsnik_snake2": [
+      "/sprites/parsnik/snake2_0.png",
+      "/sprites/parsnik/snake2_1.png",
+      "/sprites/parsnik/snake2_2.png",
+      "/sprites/parsnik/snake2_3.png"
+    ],
+    "parsnik_snake3": [
+      "/sprites/parsnik/snake3_0.png",
+      "/sprites/parsnik/snake3_1.png",
+      "/sprites/parsnik/snake3_2.png",
+      "/sprites/parsnik/snake3_3.png"
+    ],
+    "parsnik_snake4": [
+      "/sprites/parsnik/snake4_0.png",
+      "/sprites/parsnik/snake4_1.png",
+      "/sprites/parsnik/snake4_2.png",
+      "/sprites/parsnik/snake4_3.png"
+    ],
+    "parsnik_snake5": [
+      "/sprites/parsnik/snake5_0.png",
+      "/sprites/parsnik/snake5_1.png",
+      "/sprites/parsnik/snake5_2.png",
+      "/sprites/parsnik/snake5_3.png"
+    ],
+    "parsnik_head": [
+      "/sprites/parsnik/head_0.png",
+      "/sprites/parsnik/head_1.png",
+      "/sprites/parsnik/head_2.png",
+      "/sprites/parsnik/head_3.png"
+    ]
   },
   "parts": [
     {
@@ -27,7 +57,10 @@
         "x": 9,
         "y": -29
       },
-      "drawOrder": 0
+      "drawOrder": 0,
+      "expressions": {
+        "offset_y": "sin(1.5 + siner / 5) * 2"
+      }
     },
     {
       "id": "snake1",
@@ -38,8 +71,23 @@
       },
       "drawOrder": 1,
       "expressions": {
-        "offset_y": "sin(siner / 5) * 3",
-        "rotation": "sin(siner / 5) * 10"
+        "offset_y": "sin(siner / 5) * 1.5",
+        "rotation": "sin(siner / 5) * 6",
+        "frame_index": "floor(siner / 6) % 4"
+      }
+    },
+    {
+      "id": "snake5",
+      "sprite": "parsnik_snake5",
+      "origin": {
+        "x": 5,
+        "y": -48
+      },
+      "drawOrder": 2,
+      "expressions": {
+        "offset_y": "sin(2 + siner / 5) * 1.5",
+        "rotation": "-sin(2 + siner / 5) * 6",
+        "frame_index": "floor((siner + 8) / 6) % 4"
       }
     },
     {
@@ -49,23 +97,11 @@
         "x": 46,
         "y": -19
       },
-      "drawOrder": 2,
-      "expressions": {
-        "offset_y": "sin(siner / 4) * 3",
-        "rotation": "sin(siner / 4) * -12"
-      }
-    },
-    {
-      "id": "snake3",
-      "sprite": "parsnik_snake3",
-      "origin": {
-        "x": -48,
-        "y": 21
-      },
       "drawOrder": 3,
       "expressions": {
-        "offset_y": "sin(siner / 6) * 4",
-        "rotation": "sin(siner / 6) * 8"
+        "offset_y": "sin(0.5 + siner / 5) * 1.5",
+        "rotation": "sin(siner / 5) * 2",
+        "frame_index": "floor((siner + 2) / 5.5) % 4"
       }
     },
     {
@@ -77,21 +113,22 @@
       },
       "drawOrder": 4,
       "expressions": {
-        "offset_y": "sin(siner / 7) * 3",
-        "rotation": "sin(siner / 7) * -10"
+        "offset_y": "sin(1.5 + siner / 5) * 1.5",
+        "rotation": "-sin(siner / 5) * 2",
+        "frame_index": "floor((siner + 6) / 5.5) % 4"
       }
     },
     {
-      "id": "snake5",
-      "sprite": "parsnik_snake5",
+      "id": "snake3",
+      "sprite": "parsnik_snake3",
       "origin": {
-        "x": 5,
-        "y": -48
+        "x": -48,
+        "y": 21
       },
       "drawOrder": 5,
       "expressions": {
-        "offset_y": "sin(siner / 4.5) * 2",
-        "rotation": "sin(siner / 4.5) * 6"
+        "offset_y": "sin(1 + siner / 5) * 1.5",
+        "frame_index": "floor((siner + 4) / 5) % 4"
       }
     },
     {
@@ -101,7 +138,10 @@
         "x": 8,
         "y": 28
       },
-      "drawOrder": 6
+      "drawOrder": 6,
+      "expressions": {
+        "frame_index": "floor(siner / 12) % 4"
+      }
     }
   ]
 }

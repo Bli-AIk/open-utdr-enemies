@@ -12,14 +12,87 @@
   },
   "sprites": {
     "migospel_wingA": "/sprites/migospel/wingA.png",
-    "migospel_wingA_r": "/sprites/migospel/wingA_r.png",
     "migospel_wingB": "/sprites/migospel/wingB.png",
-    "migospel_wingB_r": "/sprites/migospel/wingB_r.png",
     "migospel_leg": "/sprites/migospel/leg.png",
-    "migospel_leg_r": "/sprites/migospel/leg_r.png",
     "migospel_body": "/sprites/migospel/body.png",
-    "migospel_eye": "/sprites/migospel/eye.png",
-    "migospel_mouth": "/sprites/migospel/mouth.png"
+    "migospel_eye": [
+      "/sprites/migospel/eye_0.png",
+      "/sprites/migospel/eye_1.png",
+      "/sprites/migospel/eye_2.png",
+      "/sprites/migospel/eye_3.png",
+      "/sprites/migospel/eye_4.png"
+    ],
+    "migospel_mouthA": [
+      "/sprites/migospel/mouthA_0.png",
+      "/sprites/migospel/mouthA_1.png"
+    ],
+    "migospel_eyeB": "/sprites/migospel/eyeB.png",
+    "migospel_mouthB": "/sprites/migospel/mouthB.png",
+    "migospel_mouthC": "/sprites/migospel/mouthC.png"
+  },
+  "states": {
+    "normal": {
+      "label": "普通",
+      "default": true
+    },
+    "sad": {
+      "label": "悲伤（独处）",
+      "sprites": {
+        "migospel_eye": [
+          "/sprites/migospel/eye_0.png",
+          "/sprites/migospel/eye_1.png",
+          "/sprites/migospel/eye_2.png",
+          "/sprites/migospel/eye_3.png",
+          "/sprites/migospel/eye_4.png"
+        ],
+        "migospel_mouthA": "/sprites/migospel/mouthB.png"
+      },
+      "parts": {
+        "body": {
+          "expressions": {
+            "offset_y": "0"
+          }
+        },
+        "eyes": {
+          "expressions": {
+            "offset_y": "-20",
+            "frame_index": "siner * 0.25"
+          }
+        },
+        "mouth": {
+          "expressions": {
+            "offset_y": "0",
+            "frame_index": "0"
+          }
+        }
+      }
+    },
+    "pause": {
+      "label": "受击",
+      "sprites": {
+        "migospel_eye": "/sprites/migospel/eyeB.png",
+        "migospel_mouthA": "/sprites/migospel/mouthC.png"
+      },
+      "parts": {
+        "body": {
+          "expressions": {
+            "offset_y": "0"
+          }
+        },
+        "eyes": {
+          "expressions": {
+            "offset_y": "0",
+            "frame_index": "0"
+          }
+        },
+        "mouth": {
+          "expressions": {
+            "offset_y": "0",
+            "frame_index": "0"
+          }
+        }
+      }
+    }
   },
   "parts": [
     {
@@ -31,20 +104,22 @@
       },
       "drawOrder": 0,
       "expressions": {
-        "rotation": "sin(siner / 4) * 10",
-        "scale_x": "-1"
+        "offset_x": "sin(siner / 4) * 2",
+        "offset_y": "sin(siner / 4) * 2"
       }
     },
     {
       "id": "wing_a_right",
-      "sprite": "migospel_wingA_r",
+      "sprite": "migospel_wingA",
       "origin": {
         "x": 54,
         "y": -16
       },
       "drawOrder": 1,
       "expressions": {
-        "rotation": "sin(siner / 4) * -10"
+        "offset_x": "-sin(siner / 4) * 2",
+        "offset_y": "sin(siner / 4) * 2",
+        "scale_x": "-1"
       }
     },
     {
@@ -56,20 +131,22 @@
       },
       "drawOrder": 2,
       "expressions": {
-        "rotation": "sin(siner / 3) * 8",
-        "scale_x": "-1"
+        "offset_x": "sin(siner / 4) * 2",
+        "offset_y": "-sin(siner / 4) * 2"
       }
     },
     {
       "id": "wing_b_right",
-      "sprite": "migospel_wingB_r",
+      "sprite": "migospel_wingB",
       "origin": {
         "x": 41,
         "y": -24
       },
       "drawOrder": 3,
       "expressions": {
-        "rotation": "sin(siner / 3) * -8"
+        "offset_x": "-sin(siner / 4) * 2",
+        "offset_y": "-sin(siner / 4) * 2",
+        "scale_x": "-1"
       }
     },
     {
@@ -83,7 +160,7 @@
     },
     {
       "id": "leg_right",
-      "sprite": "migospel_leg_r",
+      "sprite": "migospel_leg",
       "origin": {
         "x": 37,
         "y": 70
@@ -114,19 +191,21 @@
       },
       "drawOrder": 7,
       "expressions": {
-        "offset_y": "sin(siner / 6) * 2"
+        "offset_y": "sin(siner / 6) * 2 + (-clamp((siner % 180 - 90) * 0.8, 0, 16) + clamp((siner % 180 - 150) * 0.8, 0, 16))",
+        "frame_index": "0"
       }
     },
     {
       "id": "mouth",
-      "sprite": "migospel_mouth",
+      "sprite": "migospel_mouthA",
       "origin": {
         "x": -12,
         "y": 23
       },
       "drawOrder": 8,
       "expressions": {
-        "offset_y": "sin(siner / 6) * 2"
+        "offset_y": "sin(siner / 6) * 2",
+        "frame_index": "floor(clamp(siner % 51 - 40, 0, 2))"
       }
     }
   ]

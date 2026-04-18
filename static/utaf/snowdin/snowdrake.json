@@ -13,7 +13,28 @@
   "sprites": {
     "snowdrake_legs": "/sprites/snowdrake/legs.png",
     "snowdrake_body": "/sprites/snowdrake/body.png",
-    "snowdrake_head": "/sprites/snowdrake/head.png"
+    "snowdrake_head": [
+      "/sprites/snowdrake/head_0.png",
+      "/sprites/snowdrake/head_1.png",
+      "/sprites/snowdrake/head_2.png",
+      "/sprites/snowdrake/head_3.png",
+      "/sprites/snowdrake/head_4.png",
+      "/sprites/snowdrake/head_5.png",
+      "/sprites/snowdrake/head_6.png",
+      "/sprites/snowdrake/head_7.png",
+      "/sprites/snowdrake/head_8.png",
+      "/sprites/snowdrake/head_9.png",
+      "/sprites/snowdrake/head_10.png",
+      "/sprites/snowdrake/head_11.png",
+      "/sprites/snowdrake/head_12.png",
+      "/sprites/snowdrake/head_13.png",
+      "/sprites/snowdrake/head_14.png",
+      "/sprites/snowdrake/head_15.png",
+      "/sprites/snowdrake/head_16.png",
+      "/sprites/snowdrake/head_17.png",
+      "/sprites/snowdrake/head_18.png",
+      "/sprites/snowdrake/head_19.png"
+    ]
   },
   "parts": [
     {
@@ -32,7 +53,10 @@
         "x": -32,
         "y": -55
       },
-      "drawOrder": 1
+      "drawOrder": 1,
+      "expressions": {
+        "offset_y": "sin(siner / 13) * 3.3"
+      }
     },
     {
       "id": "head",
@@ -41,7 +65,11 @@
         "x": 0,
         "y": 0
       },
-      "drawOrder": 2
+      "drawOrder": 2,
+      "expressions": {
+        "offset_y": "sin(siner / 13) * 10",
+        "frame_index": "floor(siner * 0.1) % 20"
+      }
     }
   ]
 }
