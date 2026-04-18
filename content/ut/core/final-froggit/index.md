@@ -17,6 +17,10 @@ template = "page.html"
 
 ---
 
+{{ animation_lab(id="finalfroggit", data="/utaf/core/finalfroggit.json", lab_url="/lab/finalfroggit/") }}
+
+---
+
 ## 组成拆解
 
 Final Froggit 由 **头部（head）+ 身体（body）** 组成。

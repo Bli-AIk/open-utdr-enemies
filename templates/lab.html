@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block seo %}
+  {{ super() }}
+  {% set title = page.title %}
+  {% set title_addition = title_separator ~ config.title %}
+  {% set description = page.description | default(value=config.description) %}
+  {{ macros_head::seo(title=title, title_addition=title_addition, description=description) }}
+{% endblock seo %}
+
+{% block body %}{% set page_class = "page lab" %}{% endblock body %}
+
+{% block content %}
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div id="utaf-lab-full" class="utaf-lab-page"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/animation-lab/core.js"></script>
+<script src="/js/animation-lab/ui.js"></script>
+<script>
+(function() {
+  var container = document.getElementById('utaf-lab-full');
+  initAnimationLab(container, {{ page.extra.utaf_data | safe | json_encode() | safe }}, {
+    mini: false,
+    labUrl: ''
+  });
+})();
+</script>
+{% endblock content %}

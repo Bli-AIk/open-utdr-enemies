@@ -1,0 +1,192 @@
+/* ===========================================
+   UTAF Animation Lab Styles
+   =========================================== */
+
+.utaf-lab {
+  border: 4px solid #fff;
+  background: #000;
+  font-family: "determination_monoregular", "Courier New", monospace;
+  color: #fff;
+  max-width: 600px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #333;
+  }
+
+  &__title {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__open {
+    color: #ff0;
+    font-size: 0.85rem;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__canvas-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: #000;
+
+    canvas {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      border: 1px solid #222;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-top: 2px solid #333;
+    flex-wrap: wrap;
+
+    button {
+      background: #000;
+      color: #fff;
+      border: 2px solid #555;
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.85rem;
+      min-width: 2rem;
+      text-align: center;
+
+      &:hover {
+        border-color: #fff;
+      }
+
+      &.active {
+        border-color: #ff0;
+        color: #ff0;
+      }
+    }
+  }
+
+  &__speed {
+    display: flex;
+    gap: 0.25rem;
+    margin-left: auto;
+  }
+
+  &__frame {
+    font-size: 0.75rem;
+    color: #666;
+    min-width: 4rem;
+    text-align: right;
+  }
+
+  &__params {
+    border-top: 2px solid #333;
+    padding: 0.75rem 1rem;
+  }
+
+  &__params-title {
+    font-size: 0.9rem;
+    color: #ff0;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  &__param-group {
+    margin-bottom: 0.75rem;
+  }
+
+  &__param-label {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.25rem;
+  }
+
+  &__param-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+  }
+
+  &__param-name {
+    color: #aaa;
+    min-width: 10rem;
+    white-space: nowrap;
+  }
+
+  &__slider {
+    flex: 1;
+    appearance: none;
+    height: 4px;
+    background: #333;
+    outline: none;
+    cursor: pointer;
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  &__param-value {
+    color: #ff0;
+    min-width: 3rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__error {
+    padding: 2rem;
+    text-align: center;
+    color: #f55;
+  }
+}
+
+/* Mini mode overrides */
+.utaf-lab--mini {
+  max-width: 300px;
+
+  .utaf-lab__canvas-wrap {
+    padding: 0.5rem;
+  }
+
+  .utaf-lab__controls {
+    padding: 0.25rem 0.5rem;
+
+    button {
+      padding: 0.15rem 0.35rem;
+      font-size: 0.75rem;
+      min-width: 1.5rem;
+    }
+  }
+
+  .utaf-lab__header {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .utaf-lab__title {
+    font-size: 0.85rem;
+  }
+}

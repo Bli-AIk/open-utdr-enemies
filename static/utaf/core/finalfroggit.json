@@ -1,0 +1,61 @@
+{
+  "name": "Final Froggit",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 200,
+  "canvasHeight": 200,
+
+  "variables": {
+    "siner": { "type": "counter", "step": 1 }
+  },
+
+  "sprites": {
+    "finalfroggit_body": "/sprites/finalfroggit/body.png",
+    "finalfroggit_head": "/sprites/finalfroggit/head.png",
+    "finalfroggit_head_hurt": "/sprites/finalfroggit/head_hurt.png"
+  },
+
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "finalfroggit_body",
+      "origin": { "x": 0, "y": 90 },
+      "drawOrder": 0,
+      "animation": {
+        "scale_y": {
+          "type": "sine",
+          "base": 1.0,
+          "amplitude": -0.075,
+          "variable": "siner",
+          "period": 3
+        }
+      }
+    },
+    {
+      "id": "head",
+      "sprite": "finalfroggit_head",
+      "origin": { "x": 0, "y": 0 },
+      "drawOrder": 1,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 10,
+          "variable": "siner",
+          "period": 6
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 4,
+          "variable": "siner",
+          "period": 3
+        },
+        "rotation": {
+          "type": "sine",
+          "amplitude": -2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    }
+  ]
+}
