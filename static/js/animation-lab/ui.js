@@ -13,6 +13,7 @@ class UTAFLabUI {
   }
 
   _build() {
+    this.container.innerHTML = '';
     this.container.classList.add('utaf-lab');
     if (this.mini) this.container.classList.add('utaf-lab--mini');
 
@@ -195,12 +196,19 @@ async function initAnimationLab(container, dataUrl, options = {}) {
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
 
-    const w = options.mini ? 160 : (data.canvasWidth || 200);
-    const h = options.mini ? 160 : (data.canvasHeight || 200);
+    const w = data.canvasWidth || 220;
+    const h = data.canvasHeight || 280;
 
     const canvas = document.createElement('canvas');
     canvas.width = w;
     canvas.height = h;
+
+    if (options.mini) {
+      var maxW = 180;
+      var ratio = Math.min(maxW / w, 1);
+      canvas.style.width = Math.round(w * ratio) + 'px';
+      canvas.style.height = Math.round(h * ratio) + 'px';
+    }
 
     const engine = new UTAFEngine(canvas, data, options);
     await engine.loadSprites();

@@ -22,6 +22,10 @@ class UTAFEngine {
     this.frame = 0;
     this.paramOverrides = {};
 
+    this.fps = utafData.fps || 30;
+    this.frameInterval = 1000 / this.fps;
+    this._lastFrameTime = 0;
+
     this.centerX = canvas.width / 2;
     this.centerY = canvas.height / 2;
 
@@ -126,14 +130,18 @@ class UTAFEngine {
   }
 
   start() {
-    const loop = () => {
+    const loop = (timestamp) => {
+      this._raf = requestAnimationFrame(loop);
       if (this.playing) {
-        this.tick();
+        var elapsed = timestamp - this._lastFrameTime;
+        if (elapsed >= this.frameInterval / this.speed) {
+          this._lastFrameTime = timestamp - (elapsed % (this.frameInterval / this.speed));
+          this.tick();
+        }
       }
       this.render();
-      this._raf = requestAnimationFrame(loop);
     };
-    loop();
+    this._raf = requestAnimationFrame(loop);
   }
 
   stop() {
