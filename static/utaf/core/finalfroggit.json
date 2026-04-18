@@ -3,7 +3,7 @@
   "fps": 30,
   "scale": 2,
   "canvasWidth": 180,
-  "canvasHeight": 220,
+  "canvasHeight": 170,
 
   "variables": {
     "siner": { "type": "counter", "step": 1 }
@@ -19,7 +19,7 @@
     {
       "id": "body",
       "sprite": "finalfroggit_body",
-      "origin": { "x": 0, "y": 45 },
+      "origin": { "x": 0, "y": 40 },
       "drawOrder": 0,
       "animation": {
         "scale_y": {
@@ -34,7 +34,7 @@
     {
       "id": "head",
       "sprite": "finalfroggit_head",
-      "origin": { "x": 0, "y": -45 },
+      "origin": { "x": 0, "y": -27 },
       "drawOrder": 1,
       "animation": {
         "offset_x": {
