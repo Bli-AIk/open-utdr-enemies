@@ -99,10 +99,15 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.clearRect(0, 0, width, height);
 
         const scrollSpeed = 0.5;
-        const pluckRadius = 40;
-        const pluckStrength = 0.2;
-        const pluckSpring = 0.15;
-        const pluckDamping = 0.85;
+        const pluckRadius = 80;
+        const impulseStrength = 0.12;
+        const pluckSpring = 0.08;
+        const pluckDamping = 0.94;
+        const mouseXParallax = 8; // max px of global X offset
+
+        // Global X parallax: grid shifts slightly toward mouse
+        const centerX = width / 2;
+        const globalXOffset = mouse.x > -500 ? ((mouse.x - centerX) / centerX) * mouseXParallax : 0;
 
         // Physics update
         for (let i = 0; i < cols; i++) {
@@ -131,14 +136,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
 
-                p.vx += (p.ox - p.x) * 0.08;
+                // Spring toward rest position + global X parallax offset
+                p.vx += (p.ox + globalXOffset - p.x) * 0.08;
                 p.vy += (p.oy - p.y) * 0.08;
                 p.vx *= 0.82;
                 p.vy *= 0.82;
                 p.x += p.vx;
                 p.y += p.vy;
 
-                // 2. Edge Pluck Physics (Horizontal)
+                // 2. Edge Pluck Physics (Horizontal) — velocity-impulse based
                 if (i < cols - 1) {
                     let p2 = points[i+1][j];
                     if (Math.abs(p.oy - p2.oy) < gridSize * 2) {
@@ -149,8 +155,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         let dist = Math.sqrt(dx*dx + dy*dy);
                         
                         if (!isBackgroundClick && dist < pluckRadius) {
-                            p.phvx += (dx - p.phx) * pluckStrength;
-                            p.phvy += (dy - p.phy) * pluckStrength;
+                            let proximity = (1 - dist / pluckRadius);
+                            proximity *= proximity; // quadratic falloff for natural feel
+                            p.phvx += mouse.vx * proximity * impulseStrength;
+                            p.phvy += mouse.vy * proximity * impulseStrength;
                         }
                         p.phvx += (0 - p.phx) * pluckSpring;
                         p.phvy += (0 - p.phy) * pluckSpring;
@@ -163,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
 
-                // 3. Edge Pluck Physics (Vertical)
+                // 3. Edge Pluck Physics (Vertical) — velocity-impulse based
                 if (j < rows - 1) {
                     let p2 = points[i][j+1];
                     if (Math.abs(p.oy - p2.oy) < gridSize * 2) {
@@ -174,8 +182,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         let dist = Math.sqrt(dx*dx + dy*dy);
                         
                         if (!isBackgroundClick && dist < pluckRadius) {
-                            p.pvvx += (dx - p.pvx) * pluckStrength;
-                            p.pvvy += (dy - p.pvy) * pluckStrength;
+                            let proximity = (1 - dist / pluckRadius);
+                            proximity *= proximity;
+                            p.pvvx += mouse.vx * proximity * impulseStrength;
+                            p.pvvy += mouse.vy * proximity * impulseStrength;
                         }
                         p.pvvx += (0 - p.pvx) * pluckSpring;
                         p.pvvy += (0 - p.pvy) * pluckSpring;
