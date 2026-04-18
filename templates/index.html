@@ -1,52 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="wrap container" role="document">
-  <div class="content">
+<div class="wrap container" role="document" style="display: flex; flex-direction: column; justify-content: center; min-height: calc(100vh - 7rem); padding: 0;">
+  <div class="content" style="flex: 1; display: flex; align-items: center; justify-content: center;">
     {# Main Hero Battle Box #}
-    <section class="section container-fluid mt-4">
+    <section class="container-fluid" style="padding: 0;">
       <div class="row justify-content-center">
         <div class="col-lg-10">
-          <div class="docs-content text-center" style="min-height: auto; padding: 4rem 2rem;">
-            <h1 class="display-3 mb-4" style="letter-spacing: 2px;">{{ section.title | upper }}</h1>
-            <p class="lead mb-5" style="font-size: 1.5rem; color: #eee;">{{ section.extra.lead | safe }}</p>
+          <div class="docs-content text-center" style="min-height: auto; padding: 3rem 2rem;">
+            <h1 class="display-3 mb-3" style="letter-spacing: 2px;">{{ section.title | upper }}</h1>
+            <p class="lead mb-4" style="font-size: 1.5rem; color: #eee;">{{ section.extra.lead | safe }}</p>
             
-            <div class="mb-5">
-              <a class="btn btn-primary btn-lg" href="{{ get_url(path=section.extra.url | default(value="/")) | safe }}" role="button" style="font-size: 1.8rem; padding: 1rem 3rem;">
-                [ {{ section.extra.url_button | default(value="START") }} ]
+            <div class="mb-4">
+              <a class="btn btn-primary btn-lg" href="{{ get_url(path=section.extra.url | default(value="/")) | safe }}" role="button" style="font-size: 1.8rem; padding: 1rem 3rem; color: #FFFFFF !important; border-color: #FFFFFF !important;">
+                {{ section.extra.url_button | default(value="START") }}
               </a>
             </div>
 
             <p class="meta" style="color: #666; font-size: 0.9rem;">
-              {{ section.extra.repo_license }} | 
               <a href="{{ section.extra.repo_url | safe }}" style="color: #888;">{{ section.extra.repo_version }}</a>
             </p>
           </div>
         </div>
       </div>
     </section>
-
-    {# Feature Grid #}
-    <section class="section container-fluid mt-5">
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
-          <div class="row g-4 text-start">
-            {% if section.extra.list %}
-              {% for val in section.extra.list %}
-              <div class="col-md-6">
-                <div class="docs-content" style="min-height: 100%; padding: 2rem;">
-                  <h2 class="h3 mb-3" style="color: #FFFF00;">* {{ val.title }}</h2>
-                  <p style="font-size: 1.1rem; line-height: 1.8; color: #ccc;">{{ val.content | safe }}</p>
-                </div>
-              </div>
-              {% endfor %}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </div>
-
-<div style="height: 10rem;"></div>
 {% endblock content %}
