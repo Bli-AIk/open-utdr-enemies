@@ -18,6 +18,11 @@
   src: url('/fonts/ut/papyrus.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'UT-HUD';
+  src: url('/fonts/ut/hud.ttf') format('truetype');
+}
+
 :root {
   --primary: #FFFFFF;
   --secondary: #A1A1A1;
