@@ -155,3 +155,7 @@ Bilibili opus，优先使用结构化 API 返回，在必要时退回到页面 H
 
 当前仓库内的文章内容已经获得原作者正式授权使用。导入来源材料的权利仍归原作者所有。
 具体说明见 [NOTICE.md](./NOTICE.md)。
+
+## 鸣谢
+
+- 本站 Undertale 风格主题所使用的字体来源于 [UTCLC/DTTVL-Fonts](https://github.com/UTCLC/DTTVL-Fonts) 仓库。

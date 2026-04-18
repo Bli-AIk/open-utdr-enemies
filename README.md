@@ -154,3 +154,7 @@ This repository has two different layers of rights:
 
 The article content in this repository has been officially authorized for use by the original authors. The rights to imported source materials remain with the original authors.
 See [NOTICE.md](./NOTICE.md) for details.
+
+## Acknowledgements
+
+- Fonts used in the Undertale theme are sourced from the [UTCLC/DTTVL-Fonts](https://github.com/UTCLC/DTTVL-Fonts) repository.
