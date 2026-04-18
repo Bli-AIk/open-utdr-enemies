@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.style.height = "100vh";
     canvas.style.zIndex = "-1";
     canvas.style.pointerEvents = "none";
-    canvas.style.backgroundColor = "transparent"; // Canvas should be transparent
+    canvas.style.backgroundColor = "#000000"; // Black background prevents browser default white
     document.body.prepend(canvas);
 
     const ctx = canvas.getContext("2d");
@@ -33,9 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addEventListener("mousedown", (e) => {
-        // Check if the click is on the background (body, html, or main container)
         const tag = e.target.tagName.toLowerCase();
-        if (tag === 'html' || tag === 'body' || e.target.classList.contains('wrap') || e.target.classList.contains('container')) {
+        if (tag === 'html' || tag === 'body' || e.target.classList.contains('wrap') || e.target.classList.contains('container') || e.target.id === 'battle-grid') {
             isBackgroundClick = true;
         }
     });
@@ -44,10 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         isBackgroundClick = false;
     });
 
-    // Touch support for mobile
     window.addEventListener("touchstart", (e) => {
         const tag = e.target.tagName.toLowerCase();
-        if (tag === 'html' || tag === 'body' || e.target.classList.contains('wrap') || e.target.classList.contains('container')) {
+        if (tag === 'html' || tag === 'body' || e.target.classList.contains('wrap') || e.target.classList.contains('container') || e.target.id === 'battle-grid') {
             isBackgroundClick = true;
             mouse.x = e.touches[0].clientX;
             mouse.y = e.touches[0].clientY;
@@ -67,21 +65,10 @@ document.addEventListener("DOMContentLoaded", () => {
         mouse.vy = mouse.y - lastMouse.y;
     }, {passive: true});
 
-    let scrollY = window.scrollY;
-    window.addEventListener("scroll", () => {
-        let deltaY = window.scrollY - scrollY;
-        scrollY = window.scrollY;
-        // Simulate mouse movement interaction when scrolling
-        if (mouse.x > 0 && mouse.y > 0) {
-            mouse.vy += deltaY * 1.5; 
-        }
-    });
-
     function init() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
 
-        // Add padding to ensure grid covers the whole screen even when warped or scrolling
         cols = Math.ceil(width / gridSize) + 2;
         rows = Math.ceil(height / gridSize) + 3;
 
@@ -89,16 +76,17 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < cols; i++) {
             points[i] = [];
             for (let j = 0; j < rows; j++) {
-                // Initial positions slightly offset to center the grid
                 const x = (i - 1) * gridSize + (width % gridSize) / 2;
                 const y = (j - 2) * gridSize + (height % gridSize) / 2;
                 points[i][j] = {
-                    x: x,
-                    y: y,
-                    ox: x, // Original X
-                    oy: y, // Original Y
-                    vx: 0,
-                    vy: 0
+                    x: x, y: y,
+                    ox: x, oy: y, // Original coords
+                    vx: 0, vy: 0, // Vertex velocities
+                    
+                    // Pluck physics for horizontal edge from this point to i+1
+                    phx: 0, phy: 0, phvx: 0, phvy: 0,
+                    // Pluck physics for vertical edge from this point to j+1
+                    pvx: 0, pvy: 0, pvvx: 0, pvvy: 0
                 };
             }
         }
@@ -110,96 +98,140 @@ document.addEventListener("DOMContentLoaded", () => {
     function update() {
         ctx.clearRect(0, 0, width, height);
 
-        // Grid scroll speed
         const scrollSpeed = 0.5;
+        const pluckRadius = 40;
+        const pluckStrength = 0.2;
+        const pluckSpring = 0.15;
+        const pluckDamping = 0.85;
 
         // Physics update
         for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows; j++) {
                 let p = points[i][j];
 
-                // Continuous downward scroll
+                // 1. Vertex Physics (Scrolling & Stretching)
                 p.oy += scrollSpeed;
                 p.y += scrollSpeed;
 
-                // Wrap around when it goes off screen at the bottom
                 if (p.oy > height + gridSize) {
                     p.oy -= rows * gridSize;
                     p.y -= rows * gridSize;
-                    p.vx = 0;
-                    p.vy = 0;
+                    p.vx = 0; p.vy = 0;
                 }
 
-                // Mouse interaction distance
-                let dx = mouse.x - p.x;
-                let dy = mouse.y - p.y;
-                let dist = Math.sqrt(dx * dx + dy * dy);
-
-                // Repel effect radius based on interaction type
-                const effectRadius = isBackgroundClick ? 350 : 60;
-                
-                if (dist < effectRadius) {
-                    let force = (effectRadius - dist) / effectRadius;
-                    
-                    if (isBackgroundClick) {
-                        // "Stretching" - Pull strongly towards mouse when clicking background
-                        p.vx += (dx / dist) * force * 2.5;
-                        p.vy += (dy / dist) * force * 2.5;
-                    } else {
-                        // "Plucking" - Sharp repel when just moving over lines
-                        p.vx -= (dx / dist) * force * 5.0;
-                        p.vy -= (dy / dist) * force * 5.0;
+                if (isBackgroundClick) {
+                    let dx = mouse.x - p.x;
+                    let dy = mouse.y - p.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    const stretchRadius = 400;
+                    if (dist < stretchRadius) {
+                        let force = (stretchRadius - dist) / stretchRadius;
+                        p.vx += (dx / dist) * force * 3.5;
+                        p.vy += (dy / dist) * force * 3.5;
                     }
                 }
 
-                // Spring force back to original position
                 p.vx += (p.ox - p.x) * 0.08;
                 p.vy += (p.oy - p.y) * 0.08;
-
-                // Friction/Damping (high damping for string-like snap back)
                 p.vx *= 0.82;
                 p.vy *= 0.82;
-
-                // Apply velocity
                 p.x += p.vx;
                 p.y += p.vy;
+
+                // 2. Edge Pluck Physics (Horizontal)
+                if (i < cols - 1) {
+                    let p2 = points[i+1][j];
+                    if (Math.abs(p.oy - p2.oy) < gridSize * 2) {
+                        let mx = (p.x + p2.x) / 2;
+                        let my = (p.y + p2.y) / 2;
+                        let dx = mouse.x - mx;
+                        let dy = mouse.y - my;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        
+                        if (!isBackgroundClick && dist < pluckRadius) {
+                            p.phvx += (dx - p.phx) * pluckStrength;
+                            p.phvy += (dy - p.phy) * pluckStrength;
+                        }
+                        p.phvx += (0 - p.phx) * pluckSpring;
+                        p.phvy += (0 - p.phy) * pluckSpring;
+                        p.phvx *= pluckDamping;
+                        p.phvy *= pluckDamping;
+                        p.phx += p.phvx;
+                        p.phy += p.phvy;
+                    } else {
+                        p.phx = p.phy = p.phvx = p.phvy = 0;
+                    }
+                }
+
+                // 3. Edge Pluck Physics (Vertical)
+                if (j < rows - 1) {
+                    let p2 = points[i][j+1];
+                    if (Math.abs(p.oy - p2.oy) < gridSize * 2) {
+                        let mx = (p.x + p2.x) / 2;
+                        let my = (p.y + p2.y) / 2;
+                        let dx = mouse.x - mx;
+                        let dy = mouse.y - my;
+                        let dist = Math.sqrt(dx*dx + dy*dy);
+                        
+                        if (!isBackgroundClick && dist < pluckRadius) {
+                            p.pvvx += (dx - p.pvx) * pluckStrength;
+                            p.pvvy += (dy - p.pvy) * pluckStrength;
+                        }
+                        p.pvvx += (0 - p.pvx) * pluckSpring;
+                        p.pvvy += (0 - p.pvy) * pluckSpring;
+                        p.pvvx *= pluckDamping;
+                        p.pvvy *= pluckDamping;
+                        p.pvx += p.pvvx;
+                        p.pvy += p.pvvy;
+                    } else {
+                        p.pvx = p.pvy = p.pvvx = p.pvvy = 0;
+                    }
+                }
             }
         }
 
-        // Decay mouse velocity
         mouse.vx *= 0.8;
         mouse.vy *= 0.8;
 
         // Draw grid
         ctx.lineJoin = "round";
         ctx.lineCap = "round";
-
-        // Undertale Green, lowered opacity
         ctx.strokeStyle = "rgba(0, 192, 0, 0.25)";
         ctx.lineWidth = 1.5;
         
         ctx.beginPath();
-        // Horizontal lines
+        // Draw Horizontal Edges
         for (let j = 0; j < rows; j++) {
             for (let i = 0; i < cols - 1; i++) {
                 let p1 = points[i][j];
                 let p2 = points[i+1][j];
-                // Don't draw line if points have wrapped around to opposite ends
                 if (Math.abs(p1.oy - p2.oy) < gridSize * 2) {
                     ctx.moveTo(p1.x, p1.y);
-                    ctx.lineTo(p2.x, p2.y);
+                    if (Math.abs(p1.phx) > 0.5 || Math.abs(p1.phy) > 0.5) {
+                        // Control point displacement needs to be 2x for quadraticCurve to pass through midpoint
+                        let cx = (p1.x + p2.x)/2 + p1.phx * 2;
+                        let cy = (p1.y + p2.y)/2 + p1.phy * 2;
+                        ctx.quadraticCurveTo(cx, cy, p2.x, p2.y);
+                    } else {
+                        ctx.lineTo(p2.x, p2.y);
+                    }
                 }
             }
         }
-        // Vertical lines
+        // Draw Vertical Edges
         for (let i = 0; i < cols; i++) {
             for (let j = 0; j < rows - 1; j++) {
                 let p1 = points[i][j];
                 let p2 = points[i][j+1];
-                // Don't draw line if points have wrapped around to opposite ends
                 if (Math.abs(p1.oy - p2.oy) < gridSize * 2) {
                     ctx.moveTo(p1.x, p1.y);
-                    ctx.lineTo(p2.x, p2.y);
+                    if (Math.abs(p1.pvx) > 0.5 || Math.abs(p1.pvy) > 0.5) {
+                        let cx = (p1.x + p2.x)/2 + p1.pvx * 2;
+                        let cy = (p1.y + p2.y)/2 + p1.pvy * 2;
+                        ctx.quadraticCurveTo(cx, cy, p2.x, p2.y);
+                    } else {
+                        ctx.lineTo(p2.x, p2.y);
+                    }
                 }
             }
         }
