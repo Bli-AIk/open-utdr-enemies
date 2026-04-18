@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let mouse = { x: -1000, y: -1000, vx: 0, vy: 0 };
     let lastMouse = { x: -1000, y: -1000 };
     let isBackgroundClick = false;
+    let smoothXOffset = 0; // smoothed X parallax value
 
     window.addEventListener("mousemove", (e) => {
         lastMouse.x = mouse.x;
@@ -100,16 +101,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const scrollSpeed = 0.5;
         const pluckRadius = 80;
-        const impulseStrength = 0.12;
-        const pluckSpring = 0.04;   // softer spring = slower oscillation
-        const pluckDamping = 0.96;  // less damping = longer decay but slower freq
-        const maxPluckDisplacement = 12; // cap: max px displacement per edge
-        const maxPluckVelocity = 2;      // cap: max velocity per frame
-        const mouseXParallax = 8; // max px of global X offset
+        const impulseStrength = 0.05;   // very subtle impulse
+        const pluckSpring = 0.03;       // gentle spring
+        const pluckDamping = 0.96;
+        const maxPluckDisplacement = 6; // very small max displacement
+        const maxPluckVelocity = 1;     // tight velocity cap
+        const mouseXParallax = 8;       // max px of global X offset
+        const xEaseFactor = 0.03;       // ease-in-out interpolation speed
 
-        // Global X parallax: grid shifts slightly toward mouse
+        // Smooth X parallax with ease-in-out interpolation
         const centerX = width / 2;
-        const globalXOffset = mouse.x > -500 ? ((mouse.x - centerX) / centerX) * mouseXParallax : 0;
+        const targetXOffset = mouse.x > -500 ? ((mouse.x - centerX) / centerX) * mouseXParallax : 0;
+        smoothXOffset += (targetXOffset - smoothXOffset) * xEaseFactor;
+        const globalXOffset = smoothXOffset;
 
         // Physics update
         for (let i = 0; i < cols; i++) {
