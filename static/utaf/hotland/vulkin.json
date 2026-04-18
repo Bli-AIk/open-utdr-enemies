@@ -1,0 +1,103 @@
+{
+  "name": "Vulkin",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 182,
+  "canvasHeight": 262,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "vulkin_feetback": "/sprites/vulkin/feetback.png",
+    "vulkin_body": "/sprites/vulkin/body.png",
+    "vulkin_lava": "/sprites/vulkin/lava.png",
+    "vulkin_face": "/sprites/vulkin/face.png",
+    "vulkin_feetfront": "/sprites/vulkin/feetfront.png"
+  },
+  "parts": [
+    {
+      "id": "feet_back",
+      "sprite": "vulkin_feetback",
+      "origin": {
+        "x": -37,
+        "y": 101
+      },
+      "drawOrder": 0,
+      "animation": {
+        "offset_x": {
+          "type": "cosine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "body",
+      "sprite": "vulkin_body",
+      "origin": {
+        "x": -21,
+        "y": -57
+      },
+      "drawOrder": 1
+    },
+    {
+      "id": "lava",
+      "sprite": "vulkin_lava",
+      "origin": {
+        "x": 26,
+        "y": -71
+      },
+      "drawOrder": 2
+    },
+    {
+      "id": "face",
+      "sprite": "vulkin_face",
+      "origin": {
+        "x": 44,
+        "y": 7
+      },
+      "drawOrder": 3,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 7,
+          "variable": "siner",
+          "period": 12
+        }
+      }
+    },
+    {
+      "id": "feet_front",
+      "sprite": "vulkin_feetfront",
+      "origin": {
+        "x": -37,
+        "y": 102
+      },
+      "drawOrder": 4,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        },
+        "offset_y": {
+          "type": "cosine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    }
+  ]
+}

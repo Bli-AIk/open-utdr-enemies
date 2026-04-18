@@ -12,6 +12,8 @@ template = "page.html"
 
   toc = true
   top = false
+  utaf_data = "/utaf/waterfall/moldbygg.json"
+  utaf_lab_url = "/lab/moldbygg/"
 +++
 
 

@@ -1,0 +1,22 @@
+{
+  "name": "Aaron",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 268,
+  "canvasHeight": 440,
+  "variables": {},
+  "sprites": {
+    "aaron_body": "/sprites/aaron/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "aaron_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

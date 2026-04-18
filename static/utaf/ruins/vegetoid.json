@@ -1,0 +1,22 @@
+{
+  "name": "Vegetoid",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 184,
+  "canvasHeight": 248,
+  "variables": {},
+  "sprites": {
+    "vegetoid_body": "/sprites/vegetoid/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "vegetoid_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

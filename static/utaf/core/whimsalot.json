@@ -1,0 +1,107 @@
+{
+  "name": "Whimsalot",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 188,
+  "canvasHeight": 196,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "whimsalot_wing_r": "/sprites/whimsalot/wing_r.png",
+    "whimsalot_wing_l": "/sprites/whimsalot/wing_l.png",
+    "whimsalot_body": "/sprites/whimsalot/body.png",
+    "whimsalot_head": "/sprites/whimsalot/head.png"
+  },
+  "parts": [
+    {
+      "id": "wing_right",
+      "sprite": "whimsalot_wing_r",
+      "origin": {
+        "x": 60,
+        "y": 16
+      },
+      "drawOrder": 0,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": -2,
+          "variable": "siner",
+          "period": 5
+        },
+        "rotation": {
+          "type": "sine",
+          "base": -15,
+          "amplitude": 30,
+          "variable": "siner",
+          "period": 2.5
+        }
+      }
+    },
+    {
+      "id": "wing_left",
+      "sprite": "whimsalot_wing_l",
+      "origin": {
+        "x": -32,
+        "y": 16
+      },
+      "drawOrder": 1,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": -2,
+          "variable": "siner",
+          "period": 5
+        },
+        "rotation": {
+          "type": "sine",
+          "base": 15,
+          "amplitude": -30,
+          "variable": "siner",
+          "period": 2.5
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "body",
+      "sprite": "whimsalot_body",
+      "origin": {
+        "x": -27,
+        "y": 50
+      },
+      "drawOrder": 2,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 6,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    },
+    {
+      "id": "head",
+      "sprite": "whimsalot_head",
+      "origin": {
+        "x": -32,
+        "y": -53
+      },
+      "drawOrder": 3,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 8,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    }
+  ]
+}

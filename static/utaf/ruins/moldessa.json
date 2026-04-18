@@ -1,0 +1,149 @@
+{
+  "name": "Moldessa",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 210,
+  "canvasHeight": 198,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "moldessa_arm": "/sprites/moldessa/arm.png",
+    "moldessa_arm_r": "/sprites/moldessa/arm_r.png",
+    "moldessa_stem": "/sprites/moldessa/stem.png",
+    "moldessa_headthing": "/sprites/moldessa/headthing.png",
+    "moldessa_face": "/sprites/moldessa/face.png",
+    "moldessa_face2": "/sprites/moldessa/face2.png",
+    "moldessa_face3": "/sprites/moldessa/face3.png"
+  },
+  "parts": [
+    {
+      "id": "arm_left",
+      "sprite": "moldessa_arm",
+      "origin": {
+        "x": -68,
+        "y": 28
+      },
+      "drawOrder": 0,
+      "animation": {
+        "rotation": {
+          "type": "sine",
+          "amplitude": 5,
+          "variable": "siner",
+          "period": 8
+        }
+      }
+    },
+    {
+      "id": "arm_right",
+      "sprite": "moldessa_arm_r",
+      "origin": {
+        "x": 68,
+        "y": 28
+      },
+      "drawOrder": 1,
+      "animation": {
+        "rotation": {
+          "type": "sine",
+          "amplitude": -5,
+          "variable": "siner",
+          "period": 8
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "stem",
+      "sprite": "moldessa_stem",
+      "origin": {
+        "x": 22,
+        "y": -18
+      },
+      "drawOrder": 2
+    },
+    {
+      "id": "headthing",
+      "sprite": "moldessa_headthing",
+      "origin": {
+        "x": -28,
+        "y": -59
+      },
+      "drawOrder": 3
+    },
+    {
+      "id": "face1",
+      "sprite": "moldessa_face",
+      "origin": {
+        "x": 42,
+        "y": -16
+      },
+      "drawOrder": 4,
+      "animation": {
+        "offset_x": {
+          "type": "cosine",
+          "amplitude": 40,
+          "variable": "siner",
+          "period": 6
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 40,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "face2",
+      "sprite": "moldessa_face2",
+      "origin": {
+        "x": -78,
+        "y": 24
+      },
+      "drawOrder": 5,
+      "animation": {
+        "offset_x": {
+          "type": "cosine",
+          "amplitude": 40,
+          "variable": "siner",
+          "period": 4
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 40,
+          "variable": "siner",
+          "period": 4
+        }
+      }
+    },
+    {
+      "id": "face3",
+      "sprite": "moldessa_face3",
+      "origin": {
+        "x": -26,
+        "y": 52
+      },
+      "drawOrder": 6,
+      "animation": {
+        "offset_x": {
+          "type": "cosine",
+          "amplitude": 40,
+          "variable": "siner",
+          "period": 9
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 40,
+          "variable": "siner",
+          "period": 9
+        }
+      }
+    }
+  ]
+}

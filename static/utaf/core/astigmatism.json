@@ -1,0 +1,115 @@
+{
+  "name": "Astigmatism",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 222,
+  "canvasHeight": 268,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "astigmatism_handl": "/sprites/astigmatism/handl.png",
+    "astigmatism_handr": "/sprites/astigmatism/handr.png",
+    "astigmatism_legl": "/sprites/astigmatism/legl.png",
+    "astigmatism_legr": "/sprites/astigmatism/legr.png",
+    "astigmatism_body": "/sprites/astigmatism/body.png"
+  },
+  "parts": [
+    {
+      "id": "hand_left",
+      "sprite": "astigmatism_handl",
+      "origin": {
+        "x": -82,
+        "y": 48
+      },
+      "drawOrder": 0,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 4,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "hand_right",
+      "sprite": "astigmatism_handr",
+      "origin": {
+        "x": 82,
+        "y": 48
+      },
+      "drawOrder": 1,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": -4,
+          "variable": "siner",
+          "period": 6
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "leg_left",
+      "sprite": "astigmatism_legl",
+      "origin": {
+        "x": -38,
+        "y": 96
+      },
+      "drawOrder": 2,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 3,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "leg_right",
+      "sprite": "astigmatism_legr",
+      "origin": {
+        "x": 34,
+        "y": 96
+      },
+      "drawOrder": 3,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": -3,
+          "variable": "siner",
+          "period": 6
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "body",
+      "sprite": "astigmatism_body",
+      "origin": {
+        "x": -41,
+        "y": -70
+      },
+      "drawOrder": 4,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    }
+  ]
+}

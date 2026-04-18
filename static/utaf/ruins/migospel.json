@@ -1,0 +1,177 @@
+{
+  "name": "Migospel",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 172,
+  "canvasHeight": 196,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "migospel_wingA": "/sprites/migospel/wingA.png",
+    "migospel_wingA_r": "/sprites/migospel/wingA_r.png",
+    "migospel_wingB": "/sprites/migospel/wingB.png",
+    "migospel_wingB_r": "/sprites/migospel/wingB_r.png",
+    "migospel_leg": "/sprites/migospel/leg.png",
+    "migospel_leg_r": "/sprites/migospel/leg_r.png",
+    "migospel_body": "/sprites/migospel/body.png",
+    "migospel_eye": "/sprites/migospel/eye.png",
+    "migospel_mouth": "/sprites/migospel/mouth.png"
+  },
+  "parts": [
+    {
+      "id": "wing_a_left",
+      "sprite": "migospel_wingA",
+      "origin": {
+        "x": -54,
+        "y": -16
+      },
+      "drawOrder": 0,
+      "animation": {
+        "rotation": {
+          "type": "sine",
+          "amplitude": 10,
+          "variable": "siner",
+          "period": 4
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "wing_a_right",
+      "sprite": "migospel_wingA_r",
+      "origin": {
+        "x": 54,
+        "y": -16
+      },
+      "drawOrder": 1,
+      "animation": {
+        "rotation": {
+          "type": "sine",
+          "amplitude": -10,
+          "variable": "siner",
+          "period": 4
+        }
+      }
+    },
+    {
+      "id": "wing_b_left",
+      "sprite": "migospel_wingB",
+      "origin": {
+        "x": -43,
+        "y": -24
+      },
+      "drawOrder": 2,
+      "animation": {
+        "rotation": {
+          "type": "sine",
+          "amplitude": 8,
+          "variable": "siner",
+          "period": 3
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "wing_b_right",
+      "sprite": "migospel_wingB_r",
+      "origin": {
+        "x": 41,
+        "y": -24
+      },
+      "drawOrder": 3,
+      "animation": {
+        "rotation": {
+          "type": "sine",
+          "amplitude": -8,
+          "variable": "siner",
+          "period": 3
+        }
+      }
+    },
+    {
+      "id": "leg_left",
+      "sprite": "migospel_leg",
+      "origin": {
+        "x": -15,
+        "y": 70
+      },
+      "drawOrder": 4
+    },
+    {
+      "id": "leg_right",
+      "sprite": "migospel_leg_r",
+      "origin": {
+        "x": 37,
+        "y": 70
+      },
+      "drawOrder": 5,
+      "animation": {
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "body",
+      "sprite": "migospel_body",
+      "origin": {
+        "x": -12,
+        "y": -28
+      },
+      "drawOrder": 6,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "eyes",
+      "sprite": "migospel_eye",
+      "origin": {
+        "x": -18,
+        "y": -7
+      },
+      "drawOrder": 7,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "mouth",
+      "sprite": "migospel_mouth",
+      "origin": {
+        "x": -12,
+        "y": 23
+      },
+      "drawOrder": 8,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    }
+  ]
+}

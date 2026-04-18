@@ -1,0 +1,47 @@
+{
+  "name": "Woshua",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 108,
+  "canvasHeight": 154,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "woshua_body": "/sprites/woshua/body.png",
+    "woshua_head": "/sprites/woshua/head.png",
+    "woshua_face": "/sprites/woshua/face.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "woshua_body",
+      "origin": {
+        "x": 0,
+        "y": 20
+      },
+      "drawOrder": 0
+    },
+    {
+      "id": "head",
+      "sprite": "woshua_head",
+      "origin": {
+        "x": -12,
+        "y": -35
+      },
+      "drawOrder": 1
+    },
+    {
+      "id": "face",
+      "sprite": "woshua_face",
+      "origin": {
+        "x": -2,
+        "y": -28
+      },
+      "drawOrder": 2
+    }
+  ]
+}

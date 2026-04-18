@@ -1,0 +1,175 @@
+{
+  "name": "Madjick",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 184,
+  "canvasHeight": 238,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "madjick_boot": "/sprites/madjick/boot.png",
+    "madjick_boot_r": "/sprites/madjick/boot_r.png",
+    "madjick_dress": "/sprites/madjick/dress.png",
+    "madjick_lapel": "/sprites/madjick/lapel.png",
+    "madjick_lapel_r": "/sprites/madjick/lapel_r.png",
+    "madjick_head": "/sprites/madjick/head.png",
+    "madjick_hat": "/sprites/madjick/hat.png"
+  },
+  "parts": [
+    {
+      "id": "boot_left",
+      "sprite": "madjick_boot",
+      "origin": {
+        "x": 6,
+        "y": 84
+      },
+      "drawOrder": 0,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 2.5
+        }
+      }
+    },
+    {
+      "id": "boot_right",
+      "sprite": "madjick_boot_r",
+      "origin": {
+        "x": 54,
+        "y": 84
+      },
+      "drawOrder": 1,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": -2,
+          "variable": "siner",
+          "period": 2.5
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "dress",
+      "sprite": "madjick_dress",
+      "origin": {
+        "x": -14,
+        "y": 42
+      },
+      "drawOrder": 2,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    },
+    {
+      "id": "lapel_left",
+      "sprite": "madjick_lapel",
+      "origin": {
+        "x": -38,
+        "y": -2
+      },
+      "drawOrder": 3,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 5
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    },
+    {
+      "id": "lapel_right",
+      "sprite": "madjick_lapel_r",
+      "origin": {
+        "x": 50,
+        "y": -2
+      },
+      "drawOrder": 4,
+      "animation": {
+        "offset_x": {
+          "type": "cosine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 5
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 5
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "head",
+      "sprite": "madjick_head",
+      "origin": {
+        "x": -27,
+        "y": -51
+      },
+      "drawOrder": 5,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 5
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    },
+    {
+      "id": "hat",
+      "sprite": "madjick_hat",
+      "origin": {
+        "x": -39,
+        "y": -70
+      },
+      "drawOrder": 6,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 4,
+          "variable": "siner",
+          "period": 5
+        },
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 4,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    }
+  ]
+}

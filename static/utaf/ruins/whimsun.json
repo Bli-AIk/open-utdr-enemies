@@ -1,0 +1,22 @@
+{
+  "name": "Whimsun",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 232,
+  "canvasHeight": 224,
+  "variables": {},
+  "sprites": {
+    "whimsun_body": "/sprites/whimsun/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "whimsun_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

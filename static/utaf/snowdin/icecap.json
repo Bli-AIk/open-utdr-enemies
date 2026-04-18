@@ -1,0 +1,22 @@
+{
+  "name": "Icecap",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 252,
+  "canvasHeight": 382,
+  "variables": {},
+  "sprites": {
+    "icecap_body": "/sprites/icecap/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "icecap_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

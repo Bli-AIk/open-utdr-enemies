@@ -1,0 +1,22 @@
+{
+  "name": "Dummy",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 236,
+  "canvasHeight": 252,
+  "variables": {},
+  "sprites": {
+    "dummy_body": "/sprites/dummy/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "dummy_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

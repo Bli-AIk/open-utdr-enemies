@@ -1,0 +1,22 @@
+{
+  "name": "Migosp",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 184,
+  "canvasHeight": 236,
+  "variables": {},
+  "sprites": {
+    "migosp_body": "/sprites/migosp/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "migosp_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

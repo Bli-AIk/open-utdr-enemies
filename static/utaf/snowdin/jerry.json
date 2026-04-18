@@ -1,0 +1,22 @@
+{
+  "name": "Jerry",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 416,
+  "canvasHeight": 220,
+  "variables": {},
+  "sprites": {
+    "jerry_body": "/sprites/jerry/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "jerry_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

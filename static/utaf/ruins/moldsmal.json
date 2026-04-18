@@ -1,0 +1,22 @@
+{
+  "name": "Moldsmal",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 244,
+  "canvasHeight": 208,
+  "variables": {},
+  "sprites": {
+    "moldsmal_body": "/sprites/moldsmal/body.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "moldsmal_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 0
+    }
+  ]
+}

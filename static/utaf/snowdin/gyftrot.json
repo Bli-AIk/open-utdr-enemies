@@ -1,0 +1,47 @@
+{
+  "name": "Gyftrot",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 242,
+  "canvasHeight": 326,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "gyftrot_body": "/sprites/gyftrot/body.png",
+    "gyftrot_head": "/sprites/gyftrot/head.png",
+    "gyftrot_mouth": "/sprites/gyftrot/mouth.png"
+  },
+  "parts": [
+    {
+      "id": "body",
+      "sprite": "gyftrot_body",
+      "origin": {
+        "x": 0,
+        "y": 40
+      },
+      "drawOrder": 0
+    },
+    {
+      "id": "head",
+      "sprite": "gyftrot_head",
+      "origin": {
+        "x": -16,
+        "y": -86
+      },
+      "drawOrder": 1
+    },
+    {
+      "id": "mouth",
+      "sprite": "gyftrot_mouth",
+      "origin": {
+        "x": 39,
+        "y": 81
+      },
+      "drawOrder": 2
+    }
+  ]
+}

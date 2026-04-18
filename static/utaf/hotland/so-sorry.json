@@ -1,0 +1,227 @@
+{
+  "name": "So Sorry",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 290,
+  "canvasHeight": 400,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "sosorry_tail": "/sprites/so-sorry/sosorry_tail.png",
+    "sosorry_leg": "/sprites/so-sorry/sosorry_leg.png",
+    "sosorry_leg_r": "/sprites/so-sorry/sosorry_leg_r.png",
+    "sosorry_body": "/sprites/so-sorry/sosorry_body.png",
+    "sosorry_arm": "/sprites/so-sorry/sosorry_arm.png",
+    "sosorry_arm_r": "/sprites/so-sorry/sosorry_arm_r.png",
+    "sosorry_head": "/sprites/so-sorry/sosorry_head.png",
+    "sosorry_face": "/sprites/so-sorry/sosorry_face.png",
+    "sosorry_ear": "/sprites/so-sorry/sosorry_ear.png",
+    "sosorry_ear_r": "/sprites/so-sorry/sosorry_ear_r.png",
+    "sosorry_hat": "/sprites/so-sorry/sosorry_hat.png"
+  },
+  "parts": [
+    {
+      "id": "tail",
+      "sprite": "sosorry_tail",
+      "origin": {
+        "x": 1,
+        "y": 68
+      },
+      "drawOrder": 0,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 46,
+          "variable": "siner",
+          "period": 12
+        }
+      }
+    },
+    {
+      "id": "leg_left",
+      "sprite": "sosorry_leg",
+      "origin": {
+        "x": -12,
+        "y": 150
+      },
+      "drawOrder": 1,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": -2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "leg_right",
+      "sprite": "sosorry_leg_r",
+      "origin": {
+        "x": -4,
+        "y": 150
+      },
+      "drawOrder": 2,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "body",
+      "sprite": "sosorry_body",
+      "origin": {
+        "x": 15,
+        "y": 36
+      },
+      "drawOrder": 3,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "arm_left",
+      "sprite": "sosorry_arm",
+      "origin": {
+        "x": -90,
+        "y": -18
+      },
+      "drawOrder": 4,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 3
+        }
+      }
+    },
+    {
+      "id": "arm_right",
+      "sprite": "sosorry_arm_r",
+      "origin": {
+        "x": 90,
+        "y": -18
+      },
+      "drawOrder": 5,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": -2,
+          "variable": "siner",
+          "period": 3
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "head",
+      "sprite": "sosorry_head",
+      "origin": {
+        "x": 10,
+        "y": -100
+      },
+      "drawOrder": 6,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 3,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "face",
+      "sprite": "sosorry_face",
+      "origin": {
+        "x": -16,
+        "y": -90
+      },
+      "drawOrder": 7,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 4,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "ear_left",
+      "sprite": "sosorry_ear",
+      "origin": {
+        "x": -75,
+        "y": -168
+      },
+      "drawOrder": 8,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 1,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "ear_right",
+      "sprite": "sosorry_ear_r",
+      "origin": {
+        "x": 53,
+        "y": -168
+      },
+      "drawOrder": 9,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 1,
+          "variable": "siner",
+          "period": 6
+        },
+        "scale_x": {
+          "type": "static",
+          "value": -1
+        }
+      }
+    },
+    {
+      "id": "hat",
+      "sprite": "sosorry_hat",
+      "origin": {
+        "x": -19,
+        "y": -149
+      },
+      "drawOrder": 10,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 5,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    }
+  ]
+}

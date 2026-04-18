@@ -1,0 +1,157 @@
+{
+  "name": "Parsnik",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 164,
+  "canvasHeight": 174,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "parsnik_headwrap": "/sprites/parsnik/headwrap.png",
+    "parsnik_snake1": "/sprites/parsnik/snake1.png",
+    "parsnik_snake2": "/sprites/parsnik/snake2.png",
+    "parsnik_snake3": "/sprites/parsnik/snake3.png",
+    "parsnik_snake4": "/sprites/parsnik/snake4.png",
+    "parsnik_snake5": "/sprites/parsnik/snake5.png",
+    "parsnik_head": "/sprites/parsnik/head.png"
+  },
+  "parts": [
+    {
+      "id": "headwrap",
+      "sprite": "parsnik_headwrap",
+      "origin": {
+        "x": 9,
+        "y": -29
+      },
+      "drawOrder": 0
+    },
+    {
+      "id": "snake1",
+      "sprite": "parsnik_snake1",
+      "origin": {
+        "x": -37,
+        "y": -17
+      },
+      "drawOrder": 1,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 3,
+          "variable": "siner",
+          "period": 5
+        },
+        "rotation": {
+          "type": "sine",
+          "amplitude": 10,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    },
+    {
+      "id": "snake2",
+      "sprite": "parsnik_snake2",
+      "origin": {
+        "x": 46,
+        "y": -19
+      },
+      "drawOrder": 2,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 3,
+          "variable": "siner",
+          "period": 4
+        },
+        "rotation": {
+          "type": "sine",
+          "amplitude": -12,
+          "variable": "siner",
+          "period": 4
+        }
+      }
+    },
+    {
+      "id": "snake3",
+      "sprite": "parsnik_snake3",
+      "origin": {
+        "x": -48,
+        "y": 21
+      },
+      "drawOrder": 3,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 4,
+          "variable": "siner",
+          "period": 6
+        },
+        "rotation": {
+          "type": "sine",
+          "amplitude": 8,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "snake4",
+      "sprite": "parsnik_snake4",
+      "origin": {
+        "x": 50,
+        "y": 10
+      },
+      "drawOrder": 4,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 3,
+          "variable": "siner",
+          "period": 7
+        },
+        "rotation": {
+          "type": "sine",
+          "amplitude": -10,
+          "variable": "siner",
+          "period": 7
+        }
+      }
+    },
+    {
+      "id": "snake5",
+      "sprite": "parsnik_snake5",
+      "origin": {
+        "x": 5,
+        "y": -48
+      },
+      "drawOrder": 5,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 4.5
+        },
+        "rotation": {
+          "type": "sine",
+          "amplitude": 6,
+          "variable": "siner",
+          "period": 4.5
+        }
+      }
+    },
+    {
+      "id": "head",
+      "sprite": "parsnik_head",
+      "origin": {
+        "x": 8,
+        "y": 28
+      },
+      "drawOrder": 6
+    }
+  ]
+}

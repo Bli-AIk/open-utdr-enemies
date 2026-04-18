@@ -1,0 +1,45 @@
+{
+  "name": "Shyren",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 240,
+  "canvasHeight": 328,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "shyren_agent": "/sprites/shyren/agent.png",
+    "shyren_body": "/sprites/shyren/body.png"
+  },
+  "parts": [
+    {
+      "id": "agent",
+      "sprite": "shyren_agent",
+      "origin": {
+        "x": -15,
+        "y": -90
+      },
+      "drawOrder": 0,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 3,
+          "variable": "siner",
+          "period": 5
+        }
+      }
+    },
+    {
+      "id": "body",
+      "sprite": "shyren_body",
+      "origin": {
+        "x": 0,
+        "y": 30
+      },
+      "drawOrder": 1
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "name": "Glyde",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 358,
+  "canvasHeight": 552,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "glyde_wing_r": "/sprites/glyde/wing_r.png",
+    "glyde_body": "/sprites/glyde/body.png",
+    "glyde_wing_l": "/sprites/glyde/wing_l.png",
+    "glyde_antenna": "/sprites/glyde/antenna.png"
+  },
+  "parts": [
+    {
+      "id": "wing_right",
+      "sprite": "glyde_wing_r",
+      "origin": {
+        "x": -28,
+        "y": -2
+      },
+      "drawOrder": 0,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 6
+        },
+        "scale_y": {
+          "type": "sine",
+          "base": 0.85,
+          "amplitude": -0.15,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "body",
+      "sprite": "glyde_body",
+      "origin": {
+        "x": -79,
+        "y": -168
+      },
+      "drawOrder": 1,
+      "animation": {
+        "offset_y": {
+          "type": "sine",
+          "amplitude": 8,
+          "variable": "siner",
+          "period": 12
+        }
+      }
+    },
+    {
+      "id": "wing_left",
+      "sprite": "glyde_wing_l",
+      "origin": {
+        "x": 82,
+        "y": 174
+      },
+      "drawOrder": 2,
+      "animation": {
+        "scale_x": {
+          "type": "sine",
+          "base": 0.975,
+          "amplitude": -0.025,
+          "variable": "siner",
+          "period": 6
+        },
+        "scale_y": {
+          "type": "sine",
+          "base": 0.9,
+          "amplitude": -0.1,
+          "variable": "siner",
+          "period": 6
+        }
+      }
+    },
+    {
+      "id": "antenna",
+      "sprite": "glyde_antenna",
+      "origin": {
+        "x": -23,
+        "y": -227
+      },
+      "drawOrder": 3,
+      "animation": {
+        "offset_x": {
+          "type": "sine",
+          "amplitude": 2,
+          "variable": "siner",
+          "period": 12
+        },
+        "rotation": {
+          "type": "sine",
+          "base": 20,
+          "amplitude": -20,
+          "variable": "siner",
+          "period": 12
+        }
+      }
+    }
+  ]
+}

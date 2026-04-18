@@ -1,0 +1,47 @@
+{
+  "name": "Snowdrake",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 168,
+  "canvasHeight": 186,
+  "variables": {
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
+  },
+  "sprites": {
+    "snowdrake_legs": "/sprites/snowdrake/legs.png",
+    "snowdrake_body": "/sprites/snowdrake/body.png",
+    "snowdrake_head": "/sprites/snowdrake/head.png"
+  },
+  "parts": [
+    {
+      "id": "legs",
+      "sprite": "snowdrake_legs",
+      "origin": {
+        "x": -20,
+        "y": -60
+      },
+      "drawOrder": 0
+    },
+    {
+      "id": "body",
+      "sprite": "snowdrake_body",
+      "origin": {
+        "x": -32,
+        "y": -55
+      },
+      "drawOrder": 1
+    },
+    {
+      "id": "head",
+      "sprite": "snowdrake_head",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "drawOrder": 2
+    }
+  ]
+}
