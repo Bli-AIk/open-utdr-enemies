@@ -28,13 +28,8 @@
         "y": 28
       },
       "drawOrder": 0,
-      "animation": {
-        "rotation": {
-          "type": "sine",
-          "amplitude": 5,
-          "variable": "siner",
-          "period": 8
-        }
+      "expressions": {
+        "rotation": "sin(siner / 8) * 5"
       }
     },
     {
@@ -45,17 +40,9 @@
         "y": 28
       },
       "drawOrder": 1,
-      "animation": {
-        "rotation": {
-          "type": "sine",
-          "amplitude": -5,
-          "variable": "siner",
-          "period": 8
-        },
-        "scale_x": {
-          "type": "static",
-          "value": -1
-        }
+      "expressions": {
+        "rotation": "sin(siner / 8) * -5",
+        "scale_x": "-1"
       }
     },
     {
@@ -84,19 +71,9 @@
         "y": -16
       },
       "drawOrder": 4,
-      "animation": {
-        "offset_x": {
-          "type": "cosine",
-          "amplitude": 40,
-          "variable": "siner",
-          "period": 6
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 40,
-          "variable": "siner",
-          "period": 6
-        }
+      "expressions": {
+        "offset_x": "cos(siner / 6) * 40",
+        "offset_y": "sin(siner / 6) * 40"
       }
     },
     {
@@ -107,19 +84,9 @@
         "y": 24
       },
       "drawOrder": 5,
-      "animation": {
-        "offset_x": {
-          "type": "cosine",
-          "amplitude": 40,
-          "variable": "siner",
-          "period": 4
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 40,
-          "variable": "siner",
-          "period": 4
-        }
+      "expressions": {
+        "offset_x": "cos(siner / 4) * 40",
+        "offset_y": "sin(siner / 4) * 40"
       }
     },
     {
@@ -130,19 +97,9 @@
         "y": 52
       },
       "drawOrder": 6,
-      "animation": {
-        "offset_x": {
-          "type": "cosine",
-          "amplitude": 40,
-          "variable": "siner",
-          "period": 9
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 40,
-          "variable": "siner",
-          "period": 9
-        }
+      "expressions": {
+        "offset_x": "cos(siner / 9) * 40",
+        "offset_y": "sin(siner / 9) * 40"
       }
     }
   ]

@@ -23,13 +23,8 @@
         "y": 0
       },
       "drawOrder": 0,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 3,
-          "variable": "siner",
-          "period": 7
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 7) * 3"
       }
     },
     {
@@ -40,13 +35,8 @@
         "y": -15
       },
       "drawOrder": 1,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 3,
-          "variable": "siner",
-          "period": 7
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 7) * 3"
       }
     }
   ]

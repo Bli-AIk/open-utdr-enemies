@@ -25,20 +25,9 @@
         "y": -2
       },
       "drawOrder": 0,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 6
-        },
-        "scale_y": {
-          "type": "sine",
-          "base": 0.85,
-          "amplitude": -0.15,
-          "variable": "siner",
-          "period": 6
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 6) * 2",
+        "scale_y": "0.85 + sin(siner / 6) * -0.15"
       }
     },
     {
@@ -49,13 +38,8 @@
         "y": -168
       },
       "drawOrder": 1,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 8,
-          "variable": "siner",
-          "period": 12
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 12) * 8"
       }
     },
     {
@@ -66,21 +50,9 @@
         "y": 174
       },
       "drawOrder": 2,
-      "animation": {
-        "scale_x": {
-          "type": "sine",
-          "base": 0.975,
-          "amplitude": -0.025,
-          "variable": "siner",
-          "period": 6
-        },
-        "scale_y": {
-          "type": "sine",
-          "base": 0.9,
-          "amplitude": -0.1,
-          "variable": "siner",
-          "period": 6
-        }
+      "expressions": {
+        "scale_x": "0.975 + sin(siner / 6) * -0.025",
+        "scale_y": "0.9 + sin(siner / 6) * -0.1"
       }
     },
     {
@@ -91,20 +63,9 @@
         "y": -227
       },
       "drawOrder": 3,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 12
-        },
-        "rotation": {
-          "type": "sine",
-          "base": 20,
-          "amplitude": -20,
-          "variable": "siner",
-          "period": 12
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 12) * 2",
+        "rotation": "20 + sin(siner / 12) * -20"
       }
     }
   ]

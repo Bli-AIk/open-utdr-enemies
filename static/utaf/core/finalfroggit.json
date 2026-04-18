@@ -4,57 +4,42 @@
   "scale": 2,
   "canvasWidth": 180,
   "canvasHeight": 170,
-
   "variables": {
-    "siner": { "type": "counter", "step": 1 }
+    "siner": {
+      "type": "counter",
+      "step": 1
+    }
   },
-
   "sprites": {
     "finalfroggit_body": "/sprites/finalfroggit/body.png",
     "finalfroggit_head": "/sprites/finalfroggit/head.png",
     "finalfroggit_head_hurt": "/sprites/finalfroggit/head_hurt.png"
   },
-
   "parts": [
     {
       "id": "body",
       "sprite": "finalfroggit_body",
-      "origin": { "x": 0, "y": 40 },
+      "origin": {
+        "x": 0,
+        "y": 40
+      },
       "drawOrder": 0,
-      "animation": {
-        "scale_y": {
-          "type": "sine",
-          "base": 1.0,
-          "amplitude": -0.075,
-          "variable": "siner",
-          "period": 3
-        }
+      "expressions": {
+        "scale_y": "1.0 + sin(siner / 3) * -0.075"
       }
     },
     {
       "id": "head",
       "sprite": "finalfroggit_head",
-      "origin": { "x": 0, "y": -27 },
+      "origin": {
+        "x": 0,
+        "y": -27
+      },
       "drawOrder": 1,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 10,
-          "variable": "siner",
-          "period": 6
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 4,
-          "variable": "siner",
-          "period": 3
-        },
-        "rotation": {
-          "type": "sine",
-          "amplitude": -2,
-          "variable": "siner",
-          "period": 6
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 6) * 10",
+        "offset_y": "sin(siner / 3) * 4",
+        "rotation": "sin(siner / 6) * -2"
       }
     }
   ]

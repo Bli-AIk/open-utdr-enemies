@@ -1,6 +1,6 @@
 /**
  * UTAF Animation Lab UI
- * Builds the parameter panel, playback controls, and speed selector.
+ * Expression-based parameter editor, playback controls, and speed selector.
  */
 
 class UTAFLabUI {
@@ -93,9 +93,9 @@ class UTAFLabUI {
 
     this.container.appendChild(controls);
 
-    // Parameter panel (full mode only)
+    // Expression panel (full mode only)
     if (!this.mini) {
-      this._buildParamPanel();
+      this._buildExprPanel();
     }
 
     // Update frame counter
@@ -104,22 +104,22 @@ class UTAFLabUI {
     }, 100);
   }
 
-  _buildParamPanel() {
+  _buildExprPanel() {
     const panel = document.createElement('div');
     panel.className = 'utaf-lab__params';
 
     const title = document.createElement('div');
     title.className = 'utaf-lab__params-title';
-    title.textContent = '* 参数调整';
+    title.textContent = '* 表达式编辑';
     panel.appendChild(title);
 
-    const params = this.engine.getAnimParams();
+    const exprs = this.engine.getExpressions();
 
     // Group by part
     const groups = {};
-    for (const p of params) {
-      if (!groups[p.partId]) groups[p.partId] = [];
-      groups[p.partId].push(p);
+    for (const e of exprs) {
+      if (!groups[e.partId]) groups[e.partId] = [];
+      groups[e.partId].push(e);
     }
 
     for (const [partId, items] of Object.entries(groups)) {
@@ -133,34 +133,38 @@ class UTAFLabUI {
 
       for (const item of items) {
         const row = document.createElement('div');
-        row.className = 'utaf-lab__param-row';
+        row.className = 'utaf-lab__expr-row';
 
         const nameSpan = document.createElement('span');
         nameSpan.className = 'utaf-lab__param-name';
-        nameSpan.textContent = `${item.prop}.${item.param}`;
+        nameSpan.textContent = item.prop;
         row.appendChild(nameSpan);
 
-        const range = this._getRange(item.param, item.value);
-        const slider = document.createElement('input');
-        slider.type = 'range';
-        slider.min = range.min;
-        slider.max = range.max;
-        slider.step = range.step;
-        slider.value = item.value;
-        slider.className = 'utaf-lab__slider';
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = item.expr;
+        input.className = 'utaf-lab__expr-input';
+        input.spellcheck = false;
 
-        const valSpan = document.createElement('span');
-        valSpan.className = 'utaf-lab__param-value';
-        valSpan.textContent = item.value;
+        const statusDot = document.createElement('span');
+        statusDot.className = 'utaf-lab__expr-status';
+        statusDot.textContent = '●';
+        statusDot.style.color = '#0f0';
 
-        slider.oninput = () => {
-          const v = parseFloat(slider.value);
-          valSpan.textContent = v.toFixed(2);
-          this.engine.setOverride(item.key, v);
-        };
+        input.addEventListener('input', () => {
+          try {
+            UTAFExpr.compile(input.value);
+            this.engine.setExpression(item.partId, item.prop, input.value);
+            statusDot.style.color = '#0f0';
+            statusDot.title = 'OK';
+          } catch (e) {
+            statusDot.style.color = '#f00';
+            statusDot.title = e.message;
+          }
+        });
 
-        row.appendChild(slider);
-        row.appendChild(valSpan);
+        row.appendChild(input);
+        row.appendChild(statusDot);
         group.appendChild(row);
       }
 
@@ -168,19 +172,6 @@ class UTAFLabUI {
     }
 
     this.container.appendChild(panel);
-  }
-
-  _getRange(param, value) {
-    switch (param) {
-      case 'amplitude':
-        return { min: -Math.abs(value) * 4, max: Math.abs(value) * 4, step: 0.1 };
-      case 'period':
-        return { min: 0.5, max: Math.max(value * 4, 20), step: 0.5 };
-      case 'base':
-        return { min: value - 2, max: value + 2, step: 0.01 };
-      default:
-        return { min: -100, max: 100, step: 0.1 };
-    }
   }
 }
 

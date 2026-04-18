@@ -37,19 +37,9 @@
         "y": -17
       },
       "drawOrder": 1,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 3,
-          "variable": "siner",
-          "period": 5
-        },
-        "rotation": {
-          "type": "sine",
-          "amplitude": 10,
-          "variable": "siner",
-          "period": 5
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 5) * 3",
+        "rotation": "sin(siner / 5) * 10"
       }
     },
     {
@@ -60,19 +50,9 @@
         "y": -19
       },
       "drawOrder": 2,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 3,
-          "variable": "siner",
-          "period": 4
-        },
-        "rotation": {
-          "type": "sine",
-          "amplitude": -12,
-          "variable": "siner",
-          "period": 4
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 4) * 3",
+        "rotation": "sin(siner / 4) * -12"
       }
     },
     {
@@ -83,19 +63,9 @@
         "y": 21
       },
       "drawOrder": 3,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 4,
-          "variable": "siner",
-          "period": 6
-        },
-        "rotation": {
-          "type": "sine",
-          "amplitude": 8,
-          "variable": "siner",
-          "period": 6
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 6) * 4",
+        "rotation": "sin(siner / 6) * 8"
       }
     },
     {
@@ -106,19 +76,9 @@
         "y": 10
       },
       "drawOrder": 4,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 3,
-          "variable": "siner",
-          "period": 7
-        },
-        "rotation": {
-          "type": "sine",
-          "amplitude": -10,
-          "variable": "siner",
-          "period": 7
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 7) * 3",
+        "rotation": "sin(siner / 7) * -10"
       }
     },
     {
@@ -129,19 +89,9 @@
         "y": -48
       },
       "drawOrder": 5,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 4.5
-        },
-        "rotation": {
-          "type": "sine",
-          "amplitude": 6,
-          "variable": "siner",
-          "period": 4.5
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 4.5) * 2",
+        "rotation": "sin(siner / 4.5) * 6"
       }
     },
     {

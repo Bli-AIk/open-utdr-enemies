@@ -1,12 +1,168 @@
 /**
  * UTAF Animation Engine
  * Core animation loop and rendering for UT Animation Format data.
+ * Uses expression-based declarative animation (similar to AE expressions).
  *
  * Copyright notice: All monster sprites are property of Toby Fox / UNDERTALE.
  * Used for non-commercial research and educational purposes only.
  * If you believe this infringes your rights, please contact us for removal.
  */
 
+// ============================================================
+// Expression Compiler — parse math expressions into JS functions
+// ============================================================
+const UTAFExpr = (() => {
+  // Tokeniser
+  const TOKEN = { NUM: 1, ID: 2, OP: 3, LPAREN: 4, RPAREN: 5, COMMA: 6 };
+  function tokenize(src) {
+    const tokens = [];
+    let i = 0;
+    while (i < src.length) {
+      const ch = src[i];
+      if (ch === ' ' || ch === '\t') { i++; continue; }
+      if (ch === '(') { tokens.push({ t: TOKEN.LPAREN }); i++; continue; }
+      if (ch === ')') { tokens.push({ t: TOKEN.RPAREN }); i++; continue; }
+      if (ch === ',') { tokens.push({ t: TOKEN.COMMA }); i++; continue; }
+      if ('+-*/%'.includes(ch)) { tokens.push({ t: TOKEN.OP, v: ch }); i++; continue; }
+      if (ch >= '0' && ch <= '9' || ch === '.') {
+        let num = '';
+        while (i < src.length && ((src[i] >= '0' && src[i] <= '9') || src[i] === '.')) num += src[i++];
+        tokens.push({ t: TOKEN.NUM, v: parseFloat(num) });
+        continue;
+      }
+      if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || ch === '_') {
+        let id = '';
+        while (i < src.length && ((src[i] >= 'a' && src[i] <= 'z') || (src[i] >= 'A' && src[i] <= 'Z') || (src[i] >= '0' && src[i] <= '9') || src[i] === '_')) id += src[i++];
+        tokens.push({ t: TOKEN.ID, v: id });
+        continue;
+      }
+      throw new Error(`UTAF expr: unexpected character '${ch}' in "${src}"`);
+    }
+    return tokens;
+  }
+
+  // Recursive descent parser → returns an evaluator function (vars) => number
+  function parse(src) {
+    if (typeof src === 'number') return () => src;
+    if (typeof src !== 'string') return () => 0;
+    const trimmed = src.trim();
+    if (trimmed === '') return () => 0;
+    // Fast path: pure number
+    const asNum = Number(trimmed);
+    if (!isNaN(asNum)) return () => asNum;
+
+    const tokens = tokenize(trimmed);
+    let pos = 0;
+    const peek = () => tokens[pos] || null;
+    const eat = () => tokens[pos++];
+
+    // Built-in functions
+    const FUNCS = {
+      sin: Math.sin, cos: Math.cos, tan: Math.tan,
+      abs: Math.abs, floor: Math.floor, ceil: Math.ceil, round: Math.round,
+      sqrt: Math.sqrt, min: Math.min, max: Math.max, pow: Math.pow,
+      sign: Math.sign, clamp: (v, lo, hi) => Math.min(Math.max(v, lo), hi)
+    };
+
+    function parseExpr() {
+      let left = parseTerm();
+      while (peek() && peek().t === TOKEN.OP && (peek().v === '+' || peek().v === '-')) {
+        const op = eat().v;
+        const right = parseTerm();
+        const l = left, r = right;
+        left = op === '+' ? (v => l(v) + r(v)) : (v => l(v) - r(v));
+      }
+      return left;
+    }
+
+    function parseTerm() {
+      let left = parseFactor();
+      while (peek() && peek().t === TOKEN.OP && (peek().v === '*' || peek().v === '/' || peek().v === '%')) {
+        const op = eat().v;
+        const right = parseFactor();
+        const l = left, r = right;
+        if (op === '*') left = (v => l(v) * r(v));
+        else if (op === '/') left = (v => l(v) / r(v));
+        else left = (v => l(v) % r(v));
+      }
+      return left;
+    }
+
+    function parseFactor() {
+      // Unary minus
+      if (peek() && peek().t === TOKEN.OP && peek().v === '-') {
+        eat();
+        const inner = parseFactor();
+        return (v) => -inner(v);
+      }
+      // Unary plus
+      if (peek() && peek().t === TOKEN.OP && peek().v === '+') {
+        eat();
+        return parseFactor();
+      }
+      return parseAtom();
+    }
+
+    function parseAtom() {
+      const tok = peek();
+      if (!tok) throw new Error(`UTAF expr: unexpected end of expression in "${src}"`);
+
+      // Number literal
+      if (tok.t === TOKEN.NUM) {
+        eat();
+        const val = tok.v;
+        return () => val;
+      }
+
+      // Identifier: variable or function call
+      if (tok.t === TOKEN.ID) {
+        eat();
+        const name = tok.v;
+        // Function call?
+        if (peek() && peek().t === TOKEN.LPAREN) {
+          eat(); // consume '('
+          const args = [];
+          if (peek() && peek().t !== TOKEN.RPAREN) {
+            args.push(parseExpr());
+            while (peek() && peek().t === TOKEN.COMMA) {
+              eat();
+              args.push(parseExpr());
+            }
+          }
+          if (!peek() || peek().t !== TOKEN.RPAREN) throw new Error(`UTAF expr: missing ')' for ${name}()`);
+          eat(); // consume ')'
+          const fn = FUNCS[name];
+          if (!fn) throw new Error(`UTAF expr: unknown function '${name}'`);
+          return (v) => fn(...args.map(a => a(v)));
+        }
+        // Variable
+        return (v) => (v[name] !== undefined ? v[name] : 0);
+      }
+
+      // Parenthesised expression
+      if (tok.t === TOKEN.LPAREN) {
+        eat();
+        const inner = parseExpr();
+        if (!peek() || peek().t !== TOKEN.RPAREN) throw new Error(`UTAF expr: missing ')' in "${src}"`);
+        eat();
+        return inner;
+      }
+
+      throw new Error(`UTAF expr: unexpected token in "${src}"`);
+    }
+
+    const result = parseExpr();
+    if (pos < tokens.length) throw new Error(`UTAF expr: unexpected tokens after expression in "${src}"`);
+    return result;
+  }
+
+  return { compile: parse };
+})();
+
+
+// ============================================================
+// UTAF Engine
+// ============================================================
 class UTAFEngine {
   constructor(canvas, utafData, options = {}) {
     this.canvas = canvas;
@@ -20,7 +176,6 @@ class UTAFEngine {
     this.playing = true;
     this.speed = 1;
     this.frame = 0;
-    this.paramOverrides = {};
 
     this.fps = utafData.fps || 30;
     this.frameInterval = 1000 / this.fps;
@@ -29,22 +184,69 @@ class UTAFEngine {
     this.centerX = canvas.width / 2;
     this.centerY = canvas.height / 2;
 
-    // Per-part frame animation state
-    this._partFrameIndex = {};
+    // Per-part compiled expression cache { "partId.prop": fn }
+    this._compiledExprs = {};
 
     // Path movement state
-    this._pathPosition = 0; // 0..totalLength progress
+    this._pathPosition = 0;
     this._pathSegments = null;
     this._pathTotalLength = 0;
     if (utafData.path) this._buildPath(utafData.path);
 
     this._initVariables();
+    this._compileExpressions();
     this._raf = null;
   }
 
   _initVariables() {
-    for (const [name, def] of Object.entries(this.data.variables || {})) {
+    for (const [name] of Object.entries(this.data.variables || {})) {
       this.variables[name] = 0;
+    }
+  }
+
+  // Pre-compile all part expressions for performance
+  _compileExpressions() {
+    this._compiledExprs = {};
+    for (const part of this.data.parts) {
+      const exprs = part.expressions || {};
+      for (const [prop, exprStr] of Object.entries(exprs)) {
+        const key = `${part.id}.${prop}`;
+        try {
+          this._compiledExprs[key] = UTAFExpr.compile(exprStr);
+        } catch (e) {
+          console.warn(`Expression compile error [${key}]: ${e.message}`);
+          this._compiledExprs[key] = () => 0;
+        }
+      }
+    }
+  }
+
+  // Evaluate a compiled expression with current variables
+  _eval(partId, prop, defaultVal) {
+    const fn = this._compiledExprs[`${partId}.${prop}`];
+    if (!fn) return defaultVal;
+    try {
+      return fn(this.variables);
+    } catch {
+      return defaultVal;
+    }
+  }
+
+  // Update a part's expression at runtime (for lab editing)
+  setExpression(partId, prop, exprStr) {
+    // Update the data
+    const part = this.data.parts.find(p => p.id === partId);
+    if (part) {
+      if (!part.expressions) part.expressions = {};
+      part.expressions[prop] = exprStr;
+    }
+    // Recompile
+    const key = `${partId}.${prop}`;
+    try {
+      this._compiledExprs[key] = UTAFExpr.compile(exprStr);
+    } catch (e) {
+      console.warn(`Expression compile error [${key}]: ${e.message}`);
+      this._compiledExprs[key] = () => 0;
     }
   }
 
@@ -55,7 +257,6 @@ class UTAFEngine {
     const closed = pathDef.closed !== false;
     const smooth = pathDef.smooth || false;
 
-    // Build interpolation points (optionally with Catmull-Rom)
     let interpPts;
     if (smooth && pts.length >= 3) {
       interpPts = this._catmullRomPoints(pts, closed, 16);
@@ -64,7 +265,6 @@ class UTAFEngine {
       if (closed) interpPts.push({ x: pts[0][0], y: pts[0][1] });
     }
 
-    // Compute segment lengths
     const segs = [];
     let total = 0;
     for (let i = 0; i < interpPts.length - 1; i++) {
@@ -78,7 +278,6 @@ class UTAFEngine {
     this._pathTotalLength = total;
   }
 
-  // Generate smooth curve via Catmull-Rom spline
   _catmullRomPoints(pts, closed, subdivisions) {
     const result = [];
     const n = pts.length;
@@ -102,7 +301,6 @@ class UTAFEngine {
     return result;
   }
 
-  // Get (x,y) offset at current path position
   _getPathOffset() {
     if (!this._pathSegments || this._pathTotalLength === 0) return { x: 0, y: 0 };
     const pos = this._pathPosition % this._pathTotalLength;
@@ -123,7 +321,6 @@ class UTAFEngine {
     const promises = [];
     for (const [id, pathOrArr] of Object.entries(this.data.sprites || {})) {
       if (Array.isArray(pathOrArr)) {
-        // Multi-frame sprite: load all frames
         const frames = [];
         pathOrArr.forEach((path, idx) => {
           promises.push(new Promise((resolve, reject) => {
@@ -135,7 +332,6 @@ class UTAFEngine {
         });
         this.sprites[id] = frames;
       } else {
-        // Single-frame sprite
         promises.push(new Promise((resolve, reject) => {
           const img = new Image();
           img.onload = () => { this.sprites[id] = img; resolve(); };
@@ -148,54 +344,17 @@ class UTAFEngine {
     this.spritesLoaded = true;
   }
 
-  evaluate(animNode) {
-    if (!animNode) return 0;
-    const varName = animNode.variable || 'siner';
-    const v = this.variables[varName] || 0;
-
-    // Check for parameter overrides
-    const overrideKey = `${animNode._partId}.${animNode._propName}`;
-    const ampOverride = this.paramOverrides[`${overrideKey}.amplitude`];
-    const periodOverride = this.paramOverrides[`${overrideKey}.period`];
-    const amplitude = ampOverride !== undefined ? ampOverride : (animNode.amplitude || 0);
-    const period = periodOverride !== undefined ? periodOverride : (animNode.period || 1);
-    const base = animNode.base || 0;
-
-    switch (animNode.type) {
-      case 'sine':
-        return base + amplitude * Math.sin(v / period);
-      case 'cosine':
-        return base + amplitude * Math.cos(v / period);
-      case 'static':
-        return animNode.value || 0;
-      default:
-        return base;
-    }
-  }
-
   tick() {
-    // Update variables
     for (const [name, def] of Object.entries(this.data.variables || {})) {
       if (def.type === 'counter') {
         this.variables[name] = (this.variables[name] || 0) + def.step * this.speed;
       }
     }
 
-    // Advance path position
     if (this._pathSegments && this.data.path) {
-      const pathSpeed = this.data.path.speed || 1;
-      this._pathPosition += pathSpeed * this.speed;
+      this._pathPosition += (this.data.path.speed || 1) * this.speed;
       if (this._pathPosition >= this._pathTotalLength) {
         this._pathPosition %= this._pathTotalLength;
-      }
-    }
-
-    // Advance per-part frame animation
-    for (const part of this.data.parts) {
-      if (part.image_speed && Array.isArray(this.sprites[part.sprite])) {
-        const idx = this._partFrameIndex[part.id] || 0;
-        const frameCount = this.sprites[part.sprite].length;
-        this._partFrameIndex[part.id] = (idx + part.image_speed * this.speed) % frameCount;
       }
     }
 
@@ -209,40 +368,28 @@ class UTAFEngine {
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     ctx.imageSmoothingEnabled = false;
 
-    // Get path offset (applies to all parts)
     const pathOff = this._getPathOffset();
-
-    // Sort parts by draw order
     const parts = [...this.data.parts].sort((a, b) => (a.drawOrder || 0) - (b.drawOrder || 0));
 
     for (const part of parts) {
-      // Resolve sprite (single image or frame from array)
+      // Resolve sprite frame
       let sprite;
       const spriteData = this.sprites[part.sprite];
       if (Array.isArray(spriteData)) {
-        const frameIdx = Math.floor(this._partFrameIndex[part.id] || 0);
-        sprite = spriteData[frameIdx % spriteData.length];
+        const fi = this._eval(part.id, 'frame_index', 0);
+        const frameIdx = Math.floor(fi) % spriteData.length;
+        sprite = spriteData[frameIdx < 0 ? frameIdx + spriteData.length : frameIdx];
       } else {
         sprite = spriteData;
       }
       if (!sprite) continue;
 
-      const anim = part.animation || {};
-
-      // Tag animation nodes with part info for override lookup
-      for (const [prop, node] of Object.entries(anim)) {
-        if (node && typeof node === 'object') {
-          node._partId = part.id;
-          node._propName = prop;
-        }
-      }
-
-      const ox = (part.origin.x || 0) + this.evaluate(anim.offset_x);
-      const oy = (part.origin.y || 0) + this.evaluate(anim.offset_y);
-      const sx = anim.scale_x ? this.evaluate(anim.scale_x) : 1;
-      const sy = anim.scale_y ? this.evaluate(anim.scale_y) : 1;
-      const rot = this.evaluate(anim.rotation);
-      const alpha = anim.alpha ? this.evaluate(anim.alpha) : 1;
+      const ox = (part.origin.x || 0) + this._eval(part.id, 'offset_x', 0);
+      const oy = (part.origin.y || 0) + this._eval(part.id, 'offset_y', 0);
+      const sx = this._eval(part.id, 'scale_x', 1);
+      const sy = this._eval(part.id, 'scale_y', 1);
+      const rot = this._eval(part.id, 'rotation', 0);
+      const alpha = this._eval(part.id, 'alpha', 1);
 
       ctx.save();
       ctx.globalAlpha = alpha;
@@ -280,7 +427,6 @@ class UTAFEngine {
     this._initVariables();
     this.frame = 0;
     this._pathPosition = 0;
-    this._partFrameIndex = {};
   }
 
   stepForward() {
@@ -288,45 +434,15 @@ class UTAFEngine {
     this.render();
   }
 
-  setOverride(key, value) {
-    this.paramOverrides[key] = value;
-  }
-
-  getAnimParams() {
-    const params = [];
+  // Get all expression entries for the param panel
+  getExpressions() {
+    const result = [];
     for (const part of this.data.parts) {
-      for (const [prop, node] of Object.entries(part.animation || {})) {
-        if (node && typeof node === 'object' && node.type) {
-          if (node.amplitude !== undefined) {
-            params.push({
-              partId: part.id,
-              prop: prop,
-              param: 'amplitude',
-              value: node.amplitude,
-              key: `${part.id}.${prop}.amplitude`
-            });
-          }
-          if (node.period !== undefined) {
-            params.push({
-              partId: part.id,
-              prop: prop,
-              param: 'period',
-              value: node.period,
-              key: `${part.id}.${prop}.period`
-            });
-          }
-          if (node.base !== undefined && node.base !== 0) {
-            params.push({
-              partId: part.id,
-              prop: prop,
-              param: 'base',
-              value: node.base,
-              key: `${part.id}.${prop}.base`
-            });
-          }
-        }
+      const exprs = part.expressions || {};
+      for (const [prop, exprStr] of Object.entries(exprs)) {
+        result.push({ partId: part.id, prop, expr: exprStr });
       }
     }
-    return params;
+    return result;
   }
 }

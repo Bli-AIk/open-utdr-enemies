@@ -26,19 +26,9 @@
         "y": 101
       },
       "drawOrder": 0,
-      "animation": {
-        "offset_x": {
-          "type": "cosine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 6
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 6
-        }
+      "expressions": {
+        "offset_x": "cos(siner / 6) * 2",
+        "offset_y": "sin(siner / 6) * 2"
       }
     },
     {
@@ -67,13 +57,8 @@
         "y": 7
       },
       "drawOrder": 3,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 7,
-          "variable": "siner",
-          "period": 12
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 12) * 7"
       }
     },
     {
@@ -84,19 +69,9 @@
         "y": 102
       },
       "drawOrder": 4,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 6
-        },
-        "offset_y": {
-          "type": "cosine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 6
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 6) * 2",
+        "offset_y": "cos(siner / 6) * 2"
       }
     }
   ]

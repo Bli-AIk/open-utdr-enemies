@@ -121,8 +121,36 @@
 
   &__param-name {
     color: #aaa;
-    min-width: 10rem;
+    min-width: 7rem;
     white-space: nowrap;
+  }
+
+  &__expr-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.35rem;
+    font-size: 0.75rem;
+  }
+
+  &__expr-input {
+    flex: 1;
+    font-family: 'UT-HUD', "Courier New", monospace;
+    font-size: 0.75rem;
+    background: #111;
+    color: #ff0;
+    border: 1px solid #444;
+    padding: 0.25rem 0.4rem;
+    outline: none;
+
+    &:focus {
+      border-color: #ff0;
+    }
+  }
+
+  &__expr-status {
+    font-size: 0.6rem;
+    min-width: 0.8rem;
   }
 
   &__slider {

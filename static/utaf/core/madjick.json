@@ -28,13 +28,8 @@
         "y": 84
       },
       "drawOrder": 0,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 2.5
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 2.5) * 2"
       }
     },
     {
@@ -45,17 +40,9 @@
         "y": 84
       },
       "drawOrder": 1,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": -2,
-          "variable": "siner",
-          "period": 2.5
-        },
-        "scale_x": {
-          "type": "static",
-          "value": -1
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 2.5) * -2",
+        "scale_x": "-1"
       }
     },
     {
@@ -66,13 +53,8 @@
         "y": 42
       },
       "drawOrder": 2,
-      "animation": {
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 5
-        }
+      "expressions": {
+        "offset_y": "sin(siner / 5) * 2"
       }
     },
     {
@@ -83,19 +65,9 @@
         "y": -2
       },
       "drawOrder": 3,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 5
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 5
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 5) * 2",
+        "offset_y": "sin(siner / 5) * 2"
       }
     },
     {
@@ -106,23 +78,10 @@
         "y": -2
       },
       "drawOrder": 4,
-      "animation": {
-        "offset_x": {
-          "type": "cosine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 5
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 5
-        },
-        "scale_x": {
-          "type": "static",
-          "value": -1
-        }
+      "expressions": {
+        "offset_x": "cos(siner / 5) * 2",
+        "offset_y": "sin(siner / 5) * 2",
+        "scale_x": "-1"
       }
     },
     {
@@ -133,19 +92,9 @@
         "y": -51
       },
       "drawOrder": 5,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 5
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 2,
-          "variable": "siner",
-          "period": 5
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 5) * 2",
+        "offset_y": "sin(siner / 5) * 2"
       }
     },
     {
@@ -156,19 +105,9 @@
         "y": -70
       },
       "drawOrder": 6,
-      "animation": {
-        "offset_x": {
-          "type": "sine",
-          "amplitude": 4,
-          "variable": "siner",
-          "period": 5
-        },
-        "offset_y": {
-          "type": "sine",
-          "amplitude": 4,
-          "variable": "siner",
-          "period": 5
-        }
+      "expressions": {
+        "offset_x": "sin(siner / 5) * 4",
+        "offset_y": "sin(siner / 5) * 4"
       }
     }
   ]
