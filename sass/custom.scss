@@ -32,7 +32,7 @@
 }
 
 body, html {
-  background-color: #000000 !important;
+  background-color: transparent !important;
   color: #FFFFFF !important;
   font-family: 'DTM-Sans', sans-serif !important;
   letter-spacing: 0.5px;
@@ -157,7 +157,7 @@ pre, code {
 .alert-warning { border: 2px solid #FFFF00 !important; background: #000 !important; }
 
 /* Force dark mode styles to not override our UT styles */
-body.dark { background: #000000 !important; color: #FFFFFF !important; }
+body.dark { background: transparent !important; color: #FFFFFF !important; }
 body.dark .navbar, body.dark .card, body.dark .footer { background: #000000 !important; }
 body.dark a { color: #A1A1A1 !important; }
 body.dark a:hover { color: #FFFF00 !important; }
