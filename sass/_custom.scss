@@ -1,0 +1,186 @@
+@font-face {
+  font-family: 'DTM-Sans';
+  src: url('/fonts/ut/DTM-Sans.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'DTM-Mono';
+  src: url('/fonts/ut/DTM-Mono.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'UT-Sans';
+  src: url('/fonts/ut/sans.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Papyrus';
+  src: url('/fonts/ut/papyrus.ttf') format('truetype');
+}
+
+:root {
+  --primary: #FFFFFF;
+  --secondary: #A1A1A1;
+  --success: #FFFF00;
+  --info: #0000FF;
+  --warning: #FFFF00;
+  --danger: #FF0000;
+  --light: #FFFFFF;
+  --dark: #000000;
+  --body-bg: #000000;
+  --body-color: #FFFFFF;
+}
+
+body, html {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  font-family: 'DTM-Sans', sans-serif !important;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'DTM-Sans', sans-serif !important;
+  color: #FFFFFF !important;
+  font-weight: normal !important;
+  text-transform: uppercase;
+}
+
+a, .btn-link, .nav-link {
+  color: #A1A1A1 !important;
+  text-decoration: none !important;
+  transition: none !important;
+}
+
+a:hover, .btn-link:hover, .docs-link:hover, .nav-link:hover {
+  color: #FFFF00 !important;
+}
+
+/* UI Components & Containers */
+.card, .navbar, .footer, .sidebar, .docs-sidebar {
+  background-color: #000000 !important;
+  border: 2px solid #FFFFFF !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.navbar {
+  border-bottom: 2px solid #FFFFFF !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.docs-sidebar {
+  border-right: 2px solid #FFFFFF !important;
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+}
+
+/* Battle box structure for content */
+.content {
+  background-color: #000000 !important;
+  border: 2px solid #FFFFFF !important;
+  padding: 20px !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Buttons */
+.btn, button, input[type="submit"], input[type="button"] {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #FFFFFF !important;
+  border-radius: 0 !important;
+  transition: none !important;
+  font-family: 'DTM-Sans', sans-serif !important;
+  text-transform: uppercase;
+}
+
+.btn:hover, button:hover, .btn-primary:hover {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+  border-color: #FFFF00 !important;
+}
+
+.btn-primary {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+/* Borders */
+.docs-navigation, .border-top, .border-bottom, .border-left, .border-right, hr {
+  border-color: #FFFFFF !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+}
+
+/* Code blocks */
+pre, code {
+  font-family: 'DTM-Mono', monospace !important;
+  background-color: #000000 !important;
+  border: 1px solid #FFFFFF !important;
+  color: #FFFFFF !important;
+  border-radius: 0 !important;
+}
+
+.hljs {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+/* Hide gradients, shadows, and smooth background elements */
+.bg-dots, .bg-light, .bg-dark {
+  background-image: none !important;
+  background-color: #000000 !important;
+}
+
+/* Undertale styling elements */
+.text-danger, .alert-danger {
+  color: #FF0000 !important;
+}
+.alert-danger {
+  border-color: #FF0000 !important;
+}
+
+.text-warning, .alert-warning {
+  color: #FFFF00 !important;
+}
+.alert-warning {
+  border-color: #FFFF00 !important;
+}
+
+/* Force dark mode styles */
+body.dark {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+body.dark .navbar, body.dark .card, body.dark .footer {
+  background: #000000 !important;
+  border-color: #FFFFFF !important;
+}
+
+body.dark a {
+  color: #A1A1A1 !important;
+}
+
+body.dark a:hover {
+  color: #FFFF00 !important;
+}
+
+body.dark pre:not(.hljs) {
+  background: #000000 !important;
+  border: 1px solid #FFFFFF !important;
+}
+
+/* Animations */
+html {
+  scroll-behavior: auto !important;
+}
+*, *::before, *::after {
+  transition: none !important;
+}
