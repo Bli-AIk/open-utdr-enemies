@@ -2,8 +2,8 @@
   "name": "Final Froggit",
   "fps": 30,
   "scale": 2,
-  "canvasWidth": 220,
-  "canvasHeight": 280,
+  "canvasWidth": 180,
+  "canvasHeight": 220,
 
   "variables": {
     "siner": { "type": "counter", "step": 1 }

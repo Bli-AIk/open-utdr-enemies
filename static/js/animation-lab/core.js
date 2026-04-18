@@ -121,7 +121,7 @@ class UTAFEngine {
 
       ctx.save();
       ctx.globalAlpha = alpha;
-      ctx.translate(this.centerX + ox * scale, this.centerY + oy * scale);
+      ctx.translate(this.centerX + ox, this.centerY + oy);
       ctx.rotate(rot * Math.PI / 180);
       ctx.scale(scale * sx, scale * sy);
       ctx.drawImage(sprite, -sprite.width / 2, -sprite.height / 2);
