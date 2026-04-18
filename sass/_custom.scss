@@ -124,10 +124,14 @@ hr {
   padding-bottom: 0.75rem;
   border-bottom: 1px solid #333;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
   font-size: 0.9rem;
   color: #888;
+}
+.page-meta .meta-dates {
+  display: flex;
+  gap: 1.5rem;
 }
 .page-meta .meta-item {
   white-space: nowrap;
