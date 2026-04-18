@@ -110,6 +110,12 @@ hr {
   gap: 2rem !important;
 }
 
+/* Article content border */
+.page.single article {
+  border: 2px solid #000;
+  padding: 2rem;
+}
+
 /* Sidebar and TOC - just clean text on black, no borders */
 .docs-sidebar {
   padding: 1rem 0 !important;
