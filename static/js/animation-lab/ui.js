@@ -30,6 +30,12 @@ class UTAFLabUI {
     }
     this.container.appendChild(header);
 
+    // State selector (if states defined)
+    const states = this.engine.getStates();
+    if (states.length > 0) {
+      this._buildStateSelector(states);
+    }
+
     // Canvas area
     const canvasWrap = document.createElement('div');
     canvasWrap.className = 'utaf-lab__canvas-wrap';
@@ -104,9 +110,50 @@ class UTAFLabUI {
     }, 100);
   }
 
+  _buildStateSelector(states) {
+    const bar = document.createElement('div');
+    bar.className = 'utaf-lab__states';
+
+    const label = document.createElement('span');
+    label.className = 'utaf-lab__states-label';
+    label.textContent = '状态:';
+    bar.appendChild(label);
+
+    const btnWrap = document.createElement('div');
+    btnWrap.className = 'utaf-lab__states-btns';
+
+    // Find default state
+    const defaultState = states.find(s => s.isDefault) || states[0];
+
+    states.forEach(state => {
+      const btn = document.createElement('button');
+      btn.className = 'utaf-lab__state-btn';
+      btn.textContent = state.label;
+      if (state.name === defaultState.name) btn.classList.add('active');
+      btn.onclick = () => {
+        this.engine.setState(state.name);
+        btnWrap.querySelectorAll('.utaf-lab__state-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        // Rebuild expression panel if in full mode
+        if (!this.mini && this._exprPanel) {
+          this._exprPanel.remove();
+          this._buildExprPanel();
+        }
+      };
+      btnWrap.appendChild(btn);
+    });
+
+    bar.appendChild(btnWrap);
+    this.container.appendChild(bar);
+
+    // Apply default state
+    this.engine.setState(defaultState.name);
+  }
+
   _buildExprPanel() {
     const panel = document.createElement('div');
     panel.className = 'utaf-lab__params';
+    this._exprPanel = panel;
 
     const title = document.createElement('div');
     title.className = 'utaf-lab__params-title';

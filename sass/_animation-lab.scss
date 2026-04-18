@@ -32,6 +32,45 @@
     }
   }
 
+  &__states {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid #333;
+    flex-wrap: wrap;
+  }
+
+  &__states-label {
+    font-size: 0.8rem;
+    color: #888;
+  }
+
+  &__states-btns {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  &__state-btn {
+    background: #000;
+    color: #fff;
+    border: 2px solid #555;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+
+    &:hover {
+      border-color: #fff;
+    }
+
+    &.active {
+      border-color: #0ff;
+      color: #0ff;
+    }
+  }
+
   &__canvas-wrap {
     display: flex;
     justify-content: center;

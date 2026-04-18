@@ -29,5 +29,34 @@
         "frame_index": "floor(siner / 15) % 2"
       }
     }
-  ]
+  ],
+  "states": {
+    "normal": {
+      "label": "\u666e\u901a",
+      "default": true,
+      "parts": {
+        "body": {
+          "expressions": {
+            "frame_index": "floor(clamp(siner % 40 - 30, 0, 10) * 0.5)"
+          }
+        }
+      }
+    },
+    "happy": {
+      "label": "\u5f00\u5fc3\uff08\u72ec\u5904\uff09",
+      "sprites": {
+        "migosp_body": [
+          "/sprites/migosp/happy_0.png",
+          "/sprites/migosp/happy_1.png"
+        ]
+      },
+      "parts": {
+        "body": {
+          "expressions": {
+            "frame_index": "floor(siner * 0.1) % 2"
+          }
+        }
+      }
+    }
+  }
 }

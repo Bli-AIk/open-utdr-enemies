@@ -170,8 +170,13 @@ class UTAFEngine {
     this.data = utafData;
     this.mini = options.mini || false;
 
+    // Deep clone base data for state switching
+    this._baseData = JSON.parse(JSON.stringify(utafData));
+    this._currentState = null;
+
     this.variables = {};
-    this.sprites = {};
+    this.sprites = {};         // All loaded images (keyed by path)
+    this._activeSprites = {};  // Current sprite mapping (sprite id -> Image or Image[])
     this.spritesLoaded = false;
     this.playing = true;
     this.speed = 1;
@@ -317,30 +322,47 @@ class UTAFEngine {
     return { x: last.to.x, y: last.to.y };
   }
 
-  async loadSprites() {
-    const promises = [];
-    for (const [id, pathOrArr] of Object.entries(this.data.sprites || {})) {
+  // Collect all unique sprite paths from base data + all states
+  _collectAllSpritePaths() {
+    const allPaths = new Set();
+    const addPaths = (sprites) => {
+      for (const pathOrArr of Object.values(sprites || {})) {
+        if (Array.isArray(pathOrArr)) pathOrArr.forEach(p => allPaths.add(p));
+        else allPaths.add(pathOrArr);
+      }
+    };
+    addPaths(this.data.sprites);
+    for (const state of Object.values(this.data.states || {})) {
+      addPaths(state.sprites);
+    }
+    return allPaths;
+  }
+
+  // Build _activeSprites from a sprites definition (base or state-merged)
+  _buildActiveSprites(spritesDef) {
+    this._activeSprites = {};
+    for (const [id, pathOrArr] of Object.entries(spritesDef || {})) {
       if (Array.isArray(pathOrArr)) {
-        const frames = [];
-        pathOrArr.forEach((path, idx) => {
-          promises.push(new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => { frames[idx] = img; resolve(); };
-            img.onerror = () => reject(new Error(`Failed to load sprite: ${path}`));
-            img.src = path;
-          }));
-        });
-        this.sprites[id] = frames;
+        this._activeSprites[id] = pathOrArr.map(p => this.sprites[p]);
       } else {
-        promises.push(new Promise((resolve, reject) => {
-          const img = new Image();
-          img.onload = () => { this.sprites[id] = img; resolve(); };
-          img.onerror = () => reject(new Error(`Failed to load sprite: ${pathOrArr}`));
-          img.src = pathOrArr;
-        }));
+        this._activeSprites[id] = this.sprites[pathOrArr];
       }
     }
+  }
+
+  async loadSprites() {
+    const allPaths = this._collectAllSpritePaths();
+    const promises = [];
+    for (const path of allPaths) {
+      promises.push(new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => { this.sprites[path] = img; resolve(); };
+        img.onerror = () => reject(new Error(`Failed to load sprite: ${path}`));
+        img.src = path;
+      }));
+    }
     await Promise.all(promises);
+    this._buildActiveSprites(this.data.sprites);
     this.spritesLoaded = true;
   }
 
@@ -374,7 +396,7 @@ class UTAFEngine {
     for (const part of parts) {
       // Resolve sprite frame
       let sprite;
-      const spriteData = this.sprites[part.sprite];
+      const spriteData = this._activeSprites[part.sprite];
       if (Array.isArray(spriteData)) {
         const fi = this._eval(part.id, 'frame_index', 0);
         const frameIdx = Math.floor(fi) % spriteData.length;
@@ -399,6 +421,50 @@ class UTAFEngine {
       ctx.drawImage(sprite, -sprite.width / 2, -sprite.height / 2);
       ctx.restore();
     }
+  }
+
+  // --- State Management ---
+
+  // Return available states: [{ name, label, isDefault }]
+  getStates() {
+    const states = this.data.states;
+    if (!states) return [];
+    return Object.entries(states).map(([name, def]) => ({
+      name,
+      label: def.label || name,
+      isDefault: !!def.default
+    }));
+  }
+
+  getCurrentState() { return this._currentState; }
+
+  // Switch to a named state — merges state overrides onto base data
+  setState(name) {
+    const states = this.data.states;
+    if (!states || !states[name]) return;
+    const stateDef = states[name];
+    this._currentState = name;
+
+    // Merge sprites: start from base, overlay state sprites
+    const mergedSprites = { ...this._baseData.sprites };
+    if (stateDef.sprites) {
+      Object.assign(mergedSprites, stateDef.sprites);
+    }
+    this._buildActiveSprites(mergedSprites);
+
+    // Merge part expressions: start from base, overlay state part overrides
+    for (const part of this.data.parts) {
+      const basePart = this._baseData.parts.find(p => p.id === part.id);
+      part.expressions = { ...(basePart ? basePart.expressions : {}) };
+      if (stateDef.parts && stateDef.parts[part.id] && stateDef.parts[part.id].expressions) {
+        Object.assign(part.expressions, stateDef.parts[part.id].expressions);
+      }
+    }
+
+    this._compileExpressions();
+    this._initVariables();
+    this.frame = 0;
+    this._pathPosition = 0;
   }
 
   start() {
