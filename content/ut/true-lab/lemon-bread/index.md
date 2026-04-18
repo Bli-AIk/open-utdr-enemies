@@ -1,0 +1,30 @@
++++
+title = "Lemon Bread (柠檬面包)"
+description = "Undertale enemy animation analysis - Lemon Bread"
+date = 2026-04-11T22:29:21+08:00
+updated = 2026-04-11T22:29:21+08:00
+draft = false
+weight = 4
+template = "page.html"
+
+[extra]
+  author = "毫无技术的鸽子"
+
+  toc = true
+  top = false
++++
+
+
+---
+
+## 组成拆解
+
+Lemon Bread 由 **头部（head）+ 身体（body）** 组成。
+
+![lemonbread](./a366bf706b82d2534a62274ff0983f7d630502172.webp)
+
+## 说明
+
+公式整理：无言了全是图片切换，不管，哼
+
+![lemonbread_anim](./3caeccb17fd1420701b5220853bc6a28630502172.png)

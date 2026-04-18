@@ -229,3 +229,74 @@ html { scroll-behavior: auto !important; }
   color: #FFFF00 !important;
   background-color: #111 !important;
 }
+
+/* Section Grid Layout */
+.section-grid-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #333;
+}
+
+.section-grid-header h1 {
+  letter-spacing: 2px;
+  margin-bottom: 0.5rem;
+}
+
+.section-grid-desc {
+  color: #999;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.ut-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.ut-card {
+  display: block;
+  background-color: #000;
+  border: 4px solid #FFFFFF;
+  padding: 1.5rem;
+  text-decoration: none !important;
+  color: #FFFFFF !important;
+  min-height: 120px;
+}
+
+.ut-card:hover {
+  border-color: #FFFF00 !important;
+}
+
+.ut-card:hover .ut-card-title {
+  color: #FFFF00 !important;
+}
+
+.ut-card-title {
+  font-family: 'DTM-Sans', sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: #FFFFFF;
+}
+
+.ut-card-desc {
+  font-size: 0.85rem;
+  color: #999;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.ut-card-count {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: auto;
+}
+
+.section-grid-body {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 2px solid #333;
+  color: #ccc;
+}

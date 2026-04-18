@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block seo %}
+  {{ super() }}
+  {% if section.title and config.title %}
+    {% set title = section.title %}
+    {% set title_addition = title_separator ~ config.title %}
+  {% else %}
+    {% set title = config.title %}
+    {% set title_addition = "" %}
+  {% endif %}
+  {% set description = section.extra.description | default(value=config.description) %}
+  {{ macros_head::seo(title=title, title_addition=title_addition, description=description) }}
+{% endblock seo %}
+
+{% block body %}{% set page_class = "page list" %}{% endblock body %}
+
+{% block content %}
+<div class="wrap container" role="document">
+  <div class="content">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+
+        <div class="section-grid-header">
+          <h1>{{ section.title | upper }}</h1>
+          {% if section.extra.description %}
+            <p class="section-grid-desc">{{ section.extra.description }}</p>
+          {% endif %}
+        </div>
+
+        {# Render subsection cards if they exist #}
+        {% if section.subsections | length > 0 %}
+        <div class="ut-card-grid">
+          {% for sub_path in section.subsections %}
+            {% set sub = get_section(path=sub_path) %}
+            <a href="{{ sub.permalink | safe }}" class="ut-card">
+              <div class="ut-card-title">* {{ sub.title | upper }}</div>
+              {% if sub.extra.description %}
+                <div class="ut-card-desc">{{ sub.extra.description }}</div>
+              {% endif %}
+              {% if sub.pages | length > 0 %}
+                <div class="ut-card-count">{{ sub.pages | length }} 篇文章</div>
+              {% else %}
+                <div class="ut-card-count" style="color: #555;">即将到来</div>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {# Render page cards if section has pages #}
+        {% if section.pages | length > 0 %}
+        <div class="ut-card-grid" style="margin-top: 2rem;">
+          {% for page in section.pages %}
+            <a href="{{ page.permalink | safe }}" class="ut-card">
+              <div class="ut-card-title">* {{ page.title | upper }}</div>
+              {% if page.description %}
+                <div class="ut-card-desc">{{ page.description }}</div>
+              {% endif %}
+              {% if page.date %}
+                <div class="ut-card-count">{{ page.date | date(format="%Y-%m-%d") }}</div>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {# Placeholder if nothing #}
+        {% if section.subsections | length == 0 and section.pages | length == 0 %}
+        <div class="ut-card-grid">
+          <div class="ut-card" style="border-color: #333; cursor: default;">
+            <div class="ut-card-title" style="color: #555;">* 即将到来</div>
+            <div class="ut-card-desc">该分区的内容正在整理中。</div>
+          </div>
+        </div>
+        {% endif %}
+
+        {# Section body content #}
+        {% if section.content %}
+          <div class="section-grid-body">
+            {{ section.content | safe }}
+          </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
