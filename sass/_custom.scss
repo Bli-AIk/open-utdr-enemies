@@ -57,11 +57,31 @@ a:hover, .btn-link:hover, .docs-link:hover, .nav-link:hover {
   color: #FFFF00 !important;
 }
 
-/* Clear all default borders and backgrounds from Adidoks UI */
-.card, .navbar, .footer, .sidebar, .docs-sidebar, .docs-toc, hr {
+/* Clear default Adidoks clutter */
+.card, .footer, .sidebar, .docs-sidebar, .docs-toc, hr {
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
+}
+
+.navbar {
+  background-color: #000000 !important;
+  border-bottom: 4px solid #FFFFFF !important;
+  box-shadow: none !important;
+  padding: 0.5rem 1rem !important;
+  overflow: visible !important;
+}
+
+.main-nav .nav-item {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
+.navbar-brand {
+  font-family: 'DTM-Sans', sans-serif !important;
+  font-size: 1.4rem !important;
+  text-transform: uppercase;
+  margin-right: 1.5rem !important;
 }
 
 /* Remove default separator lines */
@@ -99,7 +119,6 @@ hr {
 }
 
 /* Main Content Box - THE BATTLE BOX */
-/* This isolates the border strictly to the main text/article area */
 .docs-content {
   background-color: #000000 !important;
   border: 4px solid #FFFFFF !important;
@@ -151,10 +170,10 @@ pre, code {
 
 /* Undertale styling elements */
 .text-danger, .alert-danger { color: #FF0000 !important; }
-.alert-danger { border: 2px solid #FF0000 !important; background: #000 !important; }
+.alert-danger { border: 4px solid #FF0000 !important; background: #000 !important; }
 
 .text-warning, .alert-warning { color: #FFFF00 !important; }
-.alert-warning { border: 2px solid #FFFF00 !important; background: #000 !important; }
+.alert-warning { border: 4px solid #FFFF00 !important; background: #000 !important; }
 
 /* Force dark mode styles to not override our UT styles */
 body.dark { background: transparent !important; color: #FFFFFF !important; }
@@ -171,6 +190,7 @@ body.dark pre:not(.hljs) { background: #000000 !important; border: 2px solid #FF
 /* Animations disabled */
 html { scroll-behavior: auto !important; }
 *, *::before, *::after { transition: none !important; }
+
 /* Hover Dropdown Menu UT Style */
 .dropdown-hover {
   position: relative;
@@ -180,8 +200,9 @@ html { scroll-behavior: auto !important; }
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
-  min-width: 240px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 260px;
   background-color: #000000 !important;
   border: 4px solid #FFFFFF !important;
   list-style: none;
@@ -196,19 +217,15 @@ html { scroll-behavior: auto !important; }
 
 .dropdown-menu-ut li a {
   display: block;
-  padding: 0.5rem 1.5rem !important;
+  padding: 0.75rem 1.5rem !important;
   color: #FFFFFF !important;
   text-decoration: none !important;
   text-transform: uppercase;
   font-family: 'DTM-Sans', sans-serif;
+  text-align: center;
 }
 
 .dropdown-menu-ut li a:hover {
   color: #FFFF00 !important;
-  background-color: #222 !important;
-}
-
-/* Ensure navbar doesn't clip the dropdown */
-.navbar {
-  overflow: visible !important;
+  background-color: #111 !important;
 }
