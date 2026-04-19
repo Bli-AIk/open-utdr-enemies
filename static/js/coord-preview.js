@@ -41,10 +41,10 @@
 
   const CLR = {
     same:  '#44FF44',
-    diff:  '#FF6644',
+    diff:  '#CC66FF',
     axis:  '#FFFFFF',
     rot:   '#FFFF44',
-    rotD:  '#FF66FF',
+    rotD:  '#CC66FF',
     bg:    '#111111',
     dim:   '#666666',
     text:  '#FFFFFF',
