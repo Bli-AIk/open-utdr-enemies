@@ -86,6 +86,24 @@
           })();
           </script>
         </aside>
+        {% if page.extra.toc and page.toc %}
+        <nav class="page-toc" style="position:sticky; top:1rem; margin-top:1.5rem;">
+          <h3 style="color:#44FF44; font-family:'UT-HUD',monospace; font-size:0.85rem; margin-bottom:0.5rem;">On this page</h3>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.8;">
+            {% for h1 in page.toc %}
+            <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
+              {% if h1.children %}
+              <ul style="list-style:none; padding-left:1rem; margin:0;">
+                {% for h2 in h1.children %}
+                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+        {% endif %}
       </div>
       {% elif page.extra.coord_preview %}
       {# Two-column layout: article + coordinate preview sidebar #}
@@ -116,10 +134,32 @@
           <div id="coord-preview" style="background:#000; border:1px solid #333; border-radius:4px; padding:8px;"></div>
         </aside>
         <script src="/js/coord-preview.js"></script>
+        {% if page.extra.toc and page.toc %}
+        <nav class="page-toc" style="margin-top:1.5rem;">
+          <h3 style="color:#44FF44; font-family:'UT-HUD',monospace; font-size:0.85rem; margin-bottom:0.5rem;">On this page</h3>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.8;">
+            {% for h1 in page.toc %}
+            <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
+              {% if h1.children %}
+              <ul style="list-style:none; padding-left:1rem; margin:0;">
+                {% for h2 in h1.children %}
+                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+        {% endif %}
       </div>
       {% else %}
-      {# Normal single-column layout #}
+      {# Normal layout with optional TOC sidebar #}
+      {% if page.extra.toc and page.toc %}
+      <div class="col-12 col-lg-9">
+      {% else %}
       <div class="col-12">
+      {% endif %}
         <article>
           <div class="page-header">
             <h1>{{ page.title }}</h1>
@@ -141,6 +181,26 @@
           {{ page.content | safe }}
         </article>
       </div>
+      {% if page.extra.toc and page.toc %}
+      <div class="col-12 col-lg-3">
+        <nav class="page-toc" style="position:sticky; top:1rem;">
+          <h3 style="color:#44FF44; font-family:'UT-HUD',monospace; font-size:0.85rem; margin-bottom:0.5rem;">On this page</h3>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.8;">
+            {% for h1 in page.toc %}
+            <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
+              {% if h1.children %}
+              <ul style="list-style:none; padding-left:1rem; margin:0;">
+                {% for h2 in h1.children %}
+                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+      {% endif %}
       {% endif %}
     </div>
   </div>
