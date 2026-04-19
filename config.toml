@@ -82,11 +82,6 @@ name = "Archive"
 url = "/archive/"
 weight = 60
 
-[[extra.menu.archive]]
-name = "Bilibili 归档"
-url = "/archive/bilibili/"
-weight = 1
-
 [[extra.menu.main]]
 name = "About"
 url = "/about/"
