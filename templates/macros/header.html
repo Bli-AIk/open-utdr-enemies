@@ -10,7 +10,7 @@
 			<ul class="navbar-nav main-nav me-auto order-5 order-md-2">
 				{% for val in config.extra.menu.main %}
 					<li class="nav-item dropdown-hover">
-						<a class="nav-link" href="{{ get_url(path=val.url, trailing_slash=true) | safe }}">{{ val.name }}</a>
+						<a class="nav-link{% if current_path is starting_with(val.url) %} active{% endif %}" href="{{ get_url(path=val.url, trailing_slash=true) | safe }}">{{ val.name }}</a>
 						
 						{# Check if there's a sub-menu for this item #}
 						{% set menu_key = val.name | lower | replace(from=" ", to="-") %}
