@@ -12,7 +12,6 @@ template = "page.html"
 
   toc = true
   top = false
-  preview = "a0c4a2cb793926154d4fca294ac20255630502172.webp"
 +++
 
 

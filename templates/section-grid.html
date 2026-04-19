@@ -34,7 +34,7 @@
           {% for sub_path in section.subsections %}
             {% set sub = get_section(path=sub_path) %}
             <a href="{{ sub.permalink | safe }}" class="ut-card">
-              <div class="ut-card-title">* {{ sub.title | upper }}</div>
+              <div class="ut-card-title">{{ sub.title | upper }}</div>
               {% if sub.extra.description %}
                 <div class="ut-card-desc">{{ sub.extra.description }}</div>
               {% endif %}
@@ -52,16 +52,14 @@
         {% if section.pages | length > 0 %}
         <div class="ut-card-grid" style="margin-top: 2rem;">
           {% for page in section.pages %}
-            <a href="{{ page.permalink | safe }}" class="ut-card"
+            <a href="{{ page.permalink | safe }}" class="ut-card{% if page.extra.utaf_data %} ut-card--has-utaf{% endif %}"
                {% if page.extra.utaf_data %} data-utaf="{{ page.extra.utaf_data }}"{% endif %}>
+              {% if page.extra.utaf_data %}
               <div class="ut-card-preview">
-                {% if page.extra.utaf_data %}
-                  <div class="utaf-card-loading">加载中...</div>
-                {% elif page.extra.preview %}
-                  <img src="{{ page.path }}{{ page.extra.preview }}" alt="{{ page.title }}" loading="lazy">
-                {% endif %}
+                <div class="utaf-card-loading">加载中...</div>
               </div>
-              <div class="ut-card-title">* {{ page.title | upper }}</div>
+              {% endif %}
+              <div class="ut-card-title">{{ page.title | upper }}</div>
             </a>
           {% endfor %}
         </div>
