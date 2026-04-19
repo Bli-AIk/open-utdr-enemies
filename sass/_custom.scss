@@ -58,6 +58,10 @@ a, .btn-link, .nav-link {
   transition: none !important;
 }
 
+.navbar-nav .nav-link {
+  color: #FFFFFF !important;
+}
+
 a:hover, .btn-link:hover, .docs-link:hover, .nav-link:hover {
   color: #FFFF00 !important;
 }
