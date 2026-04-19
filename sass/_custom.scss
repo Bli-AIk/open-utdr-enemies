@@ -312,7 +312,7 @@ html { scroll-behavior: auto !important; }
   justify-content: center;
   align-items: center;
   margin-bottom: 0.6rem;
-  min-height: 100px;
+  min-height: 120px;
 }
 
 .ut-card-preview img {
@@ -320,6 +320,18 @@ html { scroll-behavior: auto !important; }
   max-height: 140px;
   image-rendering: pixelated;
   object-fit: contain;
+}
+
+.utaf-card-canvas {
+  max-width: 100%;
+  max-height: 160px;
+  image-rendering: pixelated;
+}
+
+.utaf-card-loading {
+  color: #555;
+  font-size: 0.7rem;
+  font-family: monospace;
 }
 
 .ut-card-title {
