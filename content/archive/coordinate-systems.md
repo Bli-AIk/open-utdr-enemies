@@ -141,7 +141,7 @@ cocosPosition.y = screenHeight - gmsPosition.y;
 
 #### Unity 2D
 
-> **社区适用框架**：[Create Your Frisk](https://github.com/RhenaudTheLukark/CreateYourFrisk)、[Create Your Kris](https://github.com/RhenaudTheLukark/CreateYourKris)
+> **社区适用框架**：[Create Your Frisk](https://github.com/RhenaudTheLukark/CreateYourFrisk)
 
 | 属性 | GMS | Unity 2D |
 |------|-----|----------|
