@@ -87,6 +87,36 @@
           </script>
         </aside>
       </div>
+      {% elif page.extra.coord_preview %}
+      {# Two-column layout: article + coordinate preview sidebar #}
+      <div class="col-12 col-lg-8">
+        <article>
+          <div class="page-header">
+            <h1>{{ page.title }}</h1>
+            <div class="page-meta">
+              {% if page.extra.author %}
+                <span class="meta-author">作者: {{ page.extra.author }}</span>
+              {% endif %}
+              <span class="meta-dates">
+                {% if page.date %}
+                  <span class="meta-item">发布: {{ page.date | date(format="%Y-%m-%d") }}</span>
+                {% endif %}
+                {% if page.updated and page.updated != page.date %}
+                  <span class="meta-item">更新: {{ page.updated | date(format="%Y-%m-%d") }}</span>
+                {% endif %}
+              </span>
+            </div>
+          </div>
+          {% if page.extra.lead %}<p class="lead">{{ page.extra.lead }}</p>{% endif %}
+          {{ page.content | safe }}
+        </article>
+      </div>
+      <div class="col-12 col-lg-4">
+        <aside class="coord-preview-sidebar" style="position:sticky; top:1rem;">
+          <div id="coord-preview" style="background:#000; border:1px solid #333; border-radius:4px; padding:8px;"></div>
+        </aside>
+        <script src="/js/coord-preview.js"></script>
+      </div>
       {% else %}
       {# Normal single-column layout #}
       <div class="col-12">
