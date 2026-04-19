@@ -67,43 +67,45 @@
         </article>
       </div>
       <div class="col-12 col-lg-4">
-        <aside class="utaf-sidebar">
-          <div id="utaf-sidebar-preview" class="utaf-lab-embed">
-            <div class="utaf-lab__loading" style="color:#666; padding:2rem; text-align:center; font-family:monospace;">加载中...</div>
-          </div>
-          <div class="utaf-sidebar__copyright" style="margin-top:0.5rem; font-size:0.65rem; color:#555; font-family:'UT-HUD', monospace; text-align:center;">
-            Sprites © Toby Fox / UNDERTALE.<br>非商业研究用途。
-          </div>
-          <script src="/js/animation-lab/core.js"></script>
-          <script src="/js/animation-lab/ui.js"></script>
-          <script>
-          (function() {
-            var container = document.getElementById('utaf-sidebar-preview');
-            initAnimationLab(container, '{{ page.extra.utaf_data | safe }}', {
-              mini: true,
-              labUrl: '{{ page.extra.utaf_lab_url | default(value="") | safe }}'
-            });
-          })();
-          </script>
-        </aside>
-        {% if page.extra.toc and page.toc %}
-        <nav class="page-toc" style="position:sticky; top:5rem; margin-top:1.5rem; background:#000; border:4px solid #fff; padding:10px;">
-          <h3 style="color:#fff; font-family:'UT-HUD',monospace; font-size:0.9rem; margin:0 0 0.5rem 0; padding:0;">ON THIS PAGE</h3>
-          <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.7;">
-            {% for h1 in page.toc %}
-            <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
-              {% if h1.children %}
-              <ul style="list-style:none; padding-left:0.8rem; margin:0;">
-                {% for h2 in h1.children %}
-                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
-                {% endfor %}
-              </ul>
-              {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-        </nav>
-        {% endif %}
+        <div style="position:sticky; top:5rem;">
+          {% if page.extra.toc and page.toc %}
+          <nav class="page-toc" style="background:#000; border:4px solid #fff; padding:10px; margin-bottom:1rem; overflow-y:auto; max-height:35vh;">
+            <h3 style="color:#fff; font-family:'UT-HUD',monospace; font-size:0.9rem; margin:0 0 0.5rem 0; padding:0;">ON THIS PAGE</h3>
+            <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.7;">
+              {% for h1 in page.toc %}
+              <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
+                {% if h1.children %}
+                <ul style="list-style:none; padding-left:0.8rem; margin:0;">
+                  {% for h2 in h1.children %}
+                  <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </nav>
+          {% endif %}
+          <aside class="utaf-sidebar">
+            <div id="utaf-sidebar-preview" class="utaf-lab-embed">
+              <div class="utaf-lab__loading" style="color:#666; padding:2rem; text-align:center; font-family:monospace;">加载中...</div>
+            </div>
+            <div class="utaf-sidebar__copyright" style="margin-top:0.5rem; font-size:0.65rem; color:#555; font-family:'UT-HUD', monospace; text-align:center;">
+              Sprites © Toby Fox / UNDERTALE.<br>非商业研究用途。
+            </div>
+            <script src="/js/animation-lab/core.js"></script>
+            <script src="/js/animation-lab/ui.js"></script>
+            <script>
+            (function() {
+              var container = document.getElementById('utaf-sidebar-preview');
+              initAnimationLab(container, '{{ page.extra.utaf_data | safe }}', {
+                mini: true,
+                labUrl: '{{ page.extra.utaf_lab_url | default(value="") | safe }}'
+              });
+            })();
+            </script>
+          </aside>
+        </div>
       </div>
       {% elif page.extra.coord_preview %}
       {# Two-column layout: article + coordinate preview sidebar #}
