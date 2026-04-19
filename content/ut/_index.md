@@ -1,5 +1,5 @@
 +++
-title = "传说之下 (Undertale)"
+title = "传说之下 (UNDERTALE)"
 sort_by = "weight"
 insert_anchor_links = "right"
 template = "section-grid.html"

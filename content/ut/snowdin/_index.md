@@ -1,5 +1,5 @@
 +++
-title = "雪镇 (Snowdin)"
+title = "雪镇 (SNOWDIN)"
 sort_by = "weight"
 template = "section-grid.html"
 weight = 2

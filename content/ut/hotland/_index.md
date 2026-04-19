@@ -1,5 +1,5 @@
 +++
-title = "热域 (Hotland)"
+title = "热域 (HOTLAND)"
 sort_by = "weight"
 template = "section-grid.html"
 weight = 4

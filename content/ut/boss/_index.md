@@ -1,5 +1,5 @@
 +++
-title = "Boss 研究"
+title = "BOSS 研究"
 sort_by = "weight"
 template = "section-grid.html"
 weight = 7

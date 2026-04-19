@@ -1,5 +1,5 @@
 +++
-title = "真实验室 (True Lab)"
+title = "真实验室 (TRUE LAB)"
 sort_by = "weight"
 template = "section-grid.html"
 weight = 6

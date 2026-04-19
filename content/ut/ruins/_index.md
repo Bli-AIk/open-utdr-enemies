@@ -1,5 +1,5 @@
 +++
-title = "遗迹 (Ruins)"
+title = "遗迹 (RUINS)"
 sort_by = "weight"
 template = "section-grid.html"
 weight = 1

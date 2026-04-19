@@ -1,5 +1,6 @@
 +++
-title = "Deltarune Ch 3"
+title = "Chapter 3: Late Night (深夜)"
+weight = 3
 template = "section-grid.html"
 [extra]
 description = "Deltarune 第三章敌人与战斗研究。"

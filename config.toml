@@ -58,24 +58,9 @@ url = "/ut/mechanics/"
 weight = 8
 
 [[extra.menu.main]]
-name = "Deltarune Ch 1"
-url = "/dr-ch1/"
+name = "Deltarune"
+url = "/dr/"
 weight = 20
-
-[[extra.menu.main]]
-name = "Deltarune Ch 2"
-url = "/dr-ch2/"
-weight = 30
-
-[[extra.menu.main]]
-name = "Deltarune Ch 3"
-url = "/dr-ch3/"
-weight = 40
-
-[[extra.menu.main]]
-name = "Deltarune Ch 4"
-url = "/dr-ch4/"
-weight = 50
 
 [[extra.menu.main]]
 name = "Archive"

@@ -1,5 +1,5 @@
 +++
-title = "核心 (Core)"
+title = "核心 (CORE)"
 sort_by = "weight"
 template = "section-grid.html"
 weight = 5

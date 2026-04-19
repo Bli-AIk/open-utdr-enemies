@@ -1,5 +1,5 @@
 +++
-title = "瀑布 (Waterfall)"
+title = "瀑布 (WATERFALL)"
 sort_by = "weight"
 template = "section-grid.html"
 weight = 3
