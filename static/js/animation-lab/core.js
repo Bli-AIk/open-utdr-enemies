@@ -418,7 +418,9 @@ class UTAFEngine {
       ctx.translate(this.centerX + pathOff.x * scale + ox, this.centerY + pathOff.y * scale + oy);
       ctx.rotate(rot * Math.PI / 180);
       ctx.scale(scale * sx, scale * sy);
-      ctx.drawImage(sprite, -sprite.width / 2, -sprite.height / 2);
+      const pivotX = part.pivot ? part.pivot.x : sprite.width / 2;
+      const pivotY = part.pivot ? part.pivot.y : sprite.height / 2;
+      ctx.drawImage(sprite, -pivotX, -pivotY);
       ctx.restore();
     }
   }

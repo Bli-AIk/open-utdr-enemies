@@ -98,10 +98,8 @@
     {
       "id": "wing_a_left",
       "sprite": "migospel_wingA",
-      "origin": {
-        "x": -54,
-        "y": -16
-      },
+      "origin": { "x": -26, "y": 0 },
+      "pivot": { "x": 11, "y": 14 },
       "drawOrder": 0,
       "expressions": {
         "offset_x": "sin(siner / 4) * 2",
@@ -111,10 +109,8 @@
     {
       "id": "wing_a_right",
       "sprite": "migospel_wingA",
-      "origin": {
-        "x": 54,
-        "y": -16
-      },
+      "origin": { "x": 26, "y": 0 },
+      "pivot": { "x": 11, "y": 14 },
       "drawOrder": 1,
       "expressions": {
         "offset_x": "-sin(siner / 4) * 2",
@@ -125,10 +121,8 @@
     {
       "id": "wing_b_left",
       "sprite": "migospel_wingB",
-      "origin": {
-        "x": -43,
-        "y": -24
-      },
+      "origin": { "x": -26, "y": 14 },
+      "pivot": { "x": 10, "y": 0 },
       "drawOrder": 2,
       "expressions": {
         "offset_x": "sin(siner / 4) * 2",
@@ -138,10 +132,8 @@
     {
       "id": "wing_b_right",
       "sprite": "migospel_wingB",
-      "origin": {
-        "x": 41,
-        "y": -24
-      },
+      "origin": { "x": 26, "y": 14 },
+      "pivot": { "x": 10, "y": 0 },
       "drawOrder": 3,
       "expressions": {
         "offset_x": "-sin(siner / 4) * 2",
@@ -152,19 +144,15 @@
     {
       "id": "leg_left",
       "sprite": "migospel_leg",
-      "origin": {
-        "x": -15,
-        "y": 70
-      },
+      "origin": { "x": -26, "y": 42 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 4
     },
     {
       "id": "leg_right",
       "sprite": "migospel_leg",
-      "origin": {
-        "x": 37,
-        "y": 70
-      },
+      "origin": { "x": 24, "y": 42 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 5,
       "expressions": {
         "scale_x": "-1"
@@ -173,10 +161,8 @@
     {
       "id": "body",
       "sprite": "migospel_body",
-      "origin": {
-        "x": -12,
-        "y": -28
-      },
+      "origin": { "x": -26, "y": -58 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 6,
       "expressions": {
         "offset_y": "sin(siner / 6) * 2"
@@ -185,10 +171,8 @@
     {
       "id": "eyes",
       "sprite": "migospel_eye",
-      "origin": {
-        "x": -18,
-        "y": -7
-      },
+      "origin": { "x": -20, "y": -8 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 7,
       "expressions": {
         "offset_y": "sin(siner / 6) * 2 + (-clamp((siner % 180 - 90) * 0.8, 0, 16) + clamp((siner % 180 - 150) * 0.8, 0, 16))",
@@ -198,10 +182,8 @@
     {
       "id": "mouth",
       "sprite": "migospel_mouthA",
-      "origin": {
-        "x": -12,
-        "y": 23
-      },
+      "origin": { "x": -18, "y": 8 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 8,
       "expressions": {
         "offset_y": "sin(siner / 6) * 2",

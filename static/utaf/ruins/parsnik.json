@@ -53,10 +53,8 @@
     {
       "id": "headwrap",
       "sprite": "parsnik_headwrap",
-      "origin": {
-        "x": 9,
-        "y": -29
-      },
+      "origin": { "x": -38, "y": -38 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 0,
       "expressions": {
         "offset_y": "sin(1.5 + siner / 5) * 2"
@@ -65,10 +63,8 @@
     {
       "id": "snake1",
       "sprite": "parsnik_snake1",
-      "origin": {
-        "x": -37,
-        "y": -17
-      },
+      "origin": { "x": -20, "y": -10 },
+      "pivot": { "x": 16, "y": 19 },
       "drawOrder": 1,
       "expressions": {
         "offset_y": "sin(siner / 5) * 1.5",
@@ -79,10 +75,8 @@
     {
       "id": "snake5",
       "sprite": "parsnik_snake5",
-      "origin": {
-        "x": 5,
-        "y": -48
-      },
+      "origin": { "x": 22, "y": -10 },
+      "pivot": { "x": 0, "y": 18 },
       "drawOrder": 2,
       "expressions": {
         "offset_y": "sin(2 + siner / 5) * 1.5",
@@ -93,10 +87,8 @@
     {
       "id": "snake2",
       "sprite": "parsnik_snake2",
-      "origin": {
-        "x": 46,
-        "y": -19
-      },
+      "origin": { "x": -14, "y": -16 },
+      "pivot": { "x": 8, "y": 18 },
       "drawOrder": 3,
       "expressions": {
         "offset_y": "sin(0.5 + siner / 5) * 1.5",
@@ -107,10 +99,8 @@
     {
       "id": "snake4",
       "sprite": "parsnik_snake4",
-      "origin": {
-        "x": 50,
-        "y": 10
-      },
+      "origin": { "x": 8, "y": -16 },
+      "pivot": { "x": 0, "y": 19 },
       "drawOrder": 4,
       "expressions": {
         "offset_y": "sin(1.5 + siner / 5) * 1.5",
@@ -121,10 +111,8 @@
     {
       "id": "snake3",
       "sprite": "parsnik_snake3",
-      "origin": {
-        "x": -48,
-        "y": 21
-      },
+      "origin": { "x": 0, "y": -12 },
+      "pivot": { "x": 8, "y": 34 },
       "drawOrder": 5,
       "expressions": {
         "offset_y": "sin(1 + siner / 5) * 1.5",
@@ -134,10 +122,8 @@
     {
       "id": "head",
       "sprite": "parsnik_head",
-      "origin": {
-        "x": 8,
-        "y": 28
-      },
+      "origin": { "x": -28, "y": -16 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 6,
       "expressions": {
         "frame_index": "floor(siner / 12) % 4"

@@ -30,10 +30,8 @@
     {
       "id": "stem",
       "sprite": "moldessa_stem",
-      "origin": {
-        "x": 22,
-        "y": -18
-      },
+      "origin": { "x": 0, "y": 57 },
+      "pivot": { "x": 20, "y": 58 },
       "drawOrder": 0,
       "expressions": {
         "scale_x": "1 + sin(siner / 7) * 0.05",
@@ -43,10 +41,8 @@
     {
       "id": "face1",
       "sprite": "moldessa_face",
-      "origin": {
-        "x": 0,
-        "y": -20
-      },
+      "origin": { "x": 0, "y": -1 },
+      "pivot": { "x": 7, "y": 7 },
       "drawOrder": 1,
       "expressions": {
         "offset_x": "sin(siner / 16) * 13 + sin(siner / 6)",
@@ -58,10 +54,8 @@
     {
       "id": "face2",
       "sprite": "moldessa_face",
-      "origin": {
-        "x": 0,
-        "y": -20
-      },
+      "origin": { "x": 0, "y": -1 },
+      "pivot": { "x": 7, "y": 7 },
       "drawOrder": 2,
       "expressions": {
         "offset_x": "sin((siner + 36) / 16) * 13 + sin(siner / 6)",
@@ -73,10 +67,8 @@
     {
       "id": "face3",
       "sprite": "moldessa_face",
-      "origin": {
-        "x": 0,
-        "y": -20
-      },
+      "origin": { "x": 0, "y": -1 },
+      "pivot": { "x": 7, "y": 7 },
       "drawOrder": 3,
       "expressions": {
         "offset_x": "sin((siner + 65) / 16) * 13 + sin(siner / 6)",
@@ -88,10 +80,8 @@
     {
       "id": "headthing",
       "sprite": "moldessa_headthing",
-      "origin": {
-        "x": -28,
-        "y": -59
-      },
+      "origin": { "x": 0, "y": -61 },
+      "pivot": { "x": 10, "y": 0 },
       "drawOrder": 4,
       "expressions": {
         "offset_y": "sin(siner / 7) * 2"
@@ -100,10 +90,8 @@
     {
       "id": "arm_left",
       "sprite": "moldessa_arm",
-      "origin": {
-        "x": -68,
-        "y": 28
-      },
+      "origin": { "x": -12, "y": -57 },
+      "pivot": { "x": 18, "y": 2 },
       "drawOrder": 5,
       "expressions": {
         "rotation": "-5 + sin(siner / 7) * 5"
@@ -112,10 +100,8 @@
     {
       "id": "arm_right",
       "sprite": "moldessa_arm",
-      "origin": {
-        "x": 68,
-        "y": 28
-      },
+      "origin": { "x": 14, "y": -57 },
+      "pivot": { "x": 18, "y": 2 },
       "drawOrder": 6,
       "expressions": {
         "rotation": "5 - sin(siner / 7) * 5",
