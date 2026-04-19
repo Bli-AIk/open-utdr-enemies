@@ -20,7 +20,7 @@ title_separator = "|"
 title_addition = "Undertale / Deltarune Enemy Docs"
 
 [[extra.menu.main]]
-name = "Undertale"
+name = "UNDERTALE"
 url = "/ut/"
 weight = 10
 
@@ -58,7 +58,7 @@ url = "/ut/mechanics/"
 weight = 8
 
 [[extra.menu.main]]
-name = "Deltarune"
+name = "deltarune"
 url = "/dr/"
 weight = 20
 

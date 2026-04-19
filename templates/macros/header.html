@@ -15,8 +15,8 @@
 						{# Check if there's a sub-menu for this item #}
 						{% set menu_key = val.name | lower | replace(from=" ", to="-") %}
 						{# Map specific names to keys used in config.toml if they differ #}
-						{% if val.name == "Undertale" %}{% set menu_key = "ut" %}{% endif %}
-						{% if val.name == "Deltarune" %}{% set menu_key = "dr" %}{% endif %}
+						{% if val.name == "UNDERTALE" %}{% set menu_key = "ut" %}{% endif %}
+						{% if val.name == "deltarune" %}{% set menu_key = "dr" %}{% endif %}
 						{% if val.name == "Archive" %}{% set menu_key = "archive" %}{% endif %}
 
 						{% if config.extra.menu[menu_key] %}
