@@ -282,7 +282,7 @@ html { scroll-behavior: auto !important; }
 
 .ut-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
 }
@@ -294,7 +294,7 @@ html { scroll-behavior: auto !important; }
   justify-content: center;
   background-color: #000;
   border: 4px solid #FFFFFF;
-  padding: 0.8rem;
+  padding: 1rem;
   text-decoration: none !important;
   color: #FFFFFF !important;
   aspect-ratio: 4 / 3;
@@ -331,24 +331,61 @@ html { scroll-behavior: auto !important; }
 
 .ut-card-title {
   font-family: 'DTM-Sans', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   color: #FFFFFF;
   text-align: center;
-  padding-top: 0.4rem;
+  padding-top: 0.5rem;
 }
 
-.ut-card-desc {
+// Horizontal navigation list for subsections (main menu)
+.ut-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.ut-nav-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  background-color: #000;
+  border: 4px solid #FFFFFF;
+  padding: 1rem 1.5rem;
+  text-decoration: none !important;
+  color: #FFFFFF !important;
+}
+
+.ut-nav-item:hover {
+  border-color: #FFFF00 !important;
+}
+
+.ut-nav-item:hover .ut-nav-item__title {
+  color: #FFFF00 !important;
+}
+
+.ut-nav-item__title {
+  font-family: 'DTM-Sans', sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ut-nav-item__desc {
   font-size: 0.85rem;
   color: #999;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  flex: 1;
 }
 
-.ut-card-count {
+.ut-nav-item__count {
   font-size: 0.75rem;
   color: #666;
-  margin-top: auto;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .section-grid-body {
