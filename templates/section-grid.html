@@ -34,12 +34,14 @@
           {% for sub_path in section.subsections %}
             {% set sub = get_section(path=sub_path) %}
             <a href="{{ sub.permalink | safe }}" class="ut-nav-item">
-              <div class="ut-nav-item__title">{{ sub.title | upper }}</div>
+              <div class="ut-nav-item__top">
+                <div class="ut-nav-item__title">{{ sub.title | upper }}</div>
+                {% if sub.pages | length > 0 %}
+                  <div class="ut-nav-item__count">{{ sub.pages | length }} 篇文章</div>
+                {% endif %}
+              </div>
               {% if sub.extra.description %}
                 <div class="ut-nav-item__desc">{{ sub.extra.description }}</div>
-              {% endif %}
-              {% if sub.pages | length > 0 %}
-                <div class="ut-nav-item__count">{{ sub.pages | length }} 篇文章</div>
               {% endif %}
             </a>
           {% endfor %}
