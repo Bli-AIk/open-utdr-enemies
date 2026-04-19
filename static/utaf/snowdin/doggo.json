@@ -1,0 +1,66 @@
+{
+  "name": "Doggo",
+  "fps": 30,
+  "scale": 2,
+  "canvasWidth": 150,
+  "canvasHeight": 270,
+  "variables": {
+    "siner": { "type": "counter", "step": 1 }
+  },
+  "sprites": {
+    "doggo_tail": "/sprites/doggo/tail.png",
+    "doggo_body": "/sprites/doggo/body.png",
+    "doggo_arms": "/sprites/doggo/arms.png",
+    "doggo_head": [
+      "/sprites/doggo/head_0.png",
+      "/sprites/doggo/head_1.png",
+      "/sprites/doggo/head_2.png",
+      "/sprites/doggo/head_3.png",
+      "/sprites/doggo/head_4.png",
+      "/sprites/doggo/head_5.png",
+      "/sprites/doggo/head_6.png",
+      "/sprites/doggo/head_7.png",
+      "/sprites/doggo/head_8.png",
+      "/sprites/doggo/head_9.png",
+      "/sprites/doggo/head_10.png",
+      "/sprites/doggo/head_11.png",
+      "/sprites/doggo/head_12.png"
+    ]
+  },
+  "parts": [
+    {
+      "id": "tail",
+      "sprite": "doggo_tail",
+      "origin": { "x": -66, "y": -125 },
+      "pivot": { "x": 1, "y": 0 },
+      "drawOrder": 0
+    },
+    {
+      "id": "body",
+      "sprite": "doggo_body",
+      "origin": { "x": -66, "y": -125 },
+      "pivot": { "x": 1, "y": 0 },
+      "drawOrder": 1
+    },
+    {
+      "id": "arms",
+      "sprite": "doggo_arms",
+      "origin": { "x": -66, "y": -133 },
+      "pivot": { "x": 1, "y": 0 },
+      "drawOrder": 2,
+      "expressions": {
+        "offset_y": "sin(siner / 4.5) * 8"
+      }
+    },
+    {
+      "id": "head",
+      "sprite": "doggo_head",
+      "origin": { "x": -66, "y": -125 },
+      "pivot": { "x": 1, "y": 0 },
+      "drawOrder": 3,
+      "expressions": {
+        "frame_index": "floor(siner * 0.33334) % 13"
+      }
+    }
+  ]
+}

@@ -2,13 +2,10 @@
   "name": "Glyde",
   "fps": 30,
   "scale": 2,
-  "canvasWidth": 358,
-  "canvasHeight": 552,
+  "canvasWidth": 260,
+  "canvasHeight": 220,
   "variables": {
-    "siner": {
-      "type": "counter",
-      "step": 1
-    }
+    "siner": { "type": "counter", "step": 1 }
   },
   "sprites": {
     "glyde_wing_r": "/sprites/glyde/wing_r.png",
@@ -20,23 +17,19 @@
     {
       "id": "wing_right",
       "sprite": "glyde_wing_r",
-      "origin": {
-        "x": -28,
-        "y": -2
-      },
+      "origin": { "x": -72, "y": 22 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 0,
       "expressions": {
-        "offset_y": "sin(siner / 6) * 2",
-        "scale_y": "0.85 + sin(siner / 6) * -0.15"
+        "offset_y": "sin(siner / 12) * 8 + sin(siner / 6) * 2",
+        "scale_y": "0.85 - sin(siner / 6) * 0.15"
       }
     },
     {
       "id": "body",
       "sprite": "glyde_body",
-      "origin": {
-        "x": -79,
-        "y": -168
-      },
+      "origin": { "x": -118, "y": -84 },
+      "pivot": { "x": 0, "y": 0 },
       "drawOrder": 1,
       "expressions": {
         "offset_y": "sin(siner / 12) * 8"
@@ -45,27 +38,25 @@
     {
       "id": "wing_left",
       "sprite": "glyde_wing_l",
-      "origin": {
-        "x": 82,
-        "y": 174
-      },
+      "origin": { "x": -36, "y": 90 },
+      "pivot": { "x": 0, "y": 79 },
       "drawOrder": 2,
       "expressions": {
-        "scale_x": "0.975 + sin(siner / 6) * -0.025",
-        "scale_y": "0.9 + sin(siner / 6) * -0.1"
+        "offset_y": "sin(siner / 12) * 8",
+        "scale_x": "0.975 - sin(siner / 6) * 0.025",
+        "scale_y": "0.9 - sin(siner / 6) * 0.1"
       }
     },
     {
       "id": "antenna",
       "sprite": "glyde_antenna",
-      "origin": {
-        "x": -23,
-        "y": -227
-      },
+      "origin": { "x": -64, "y": -80 },
+      "pivot": { "x": 0, "y": 7 },
       "drawOrder": 3,
       "expressions": {
         "offset_x": "sin(siner / 12) * 2",
-        "rotation": "20 + sin(siner / 12) * -20"
+        "offset_y": "sin(siner / 12) * 8",
+        "rotation": "20 - sin(siner / 12) * 20"
       }
     }
   ]
