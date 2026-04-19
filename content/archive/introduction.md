@@ -9,6 +9,7 @@ sort_by = "weight"
 template = "page.html"
 
 [extra]
+author = "Bli-AIk"
 lead = "使用 Zola + AdiDoks 初始化站点，并通过 Python 脚本抓取指定 Bilibili opus。"
 toc = true
 top = false
