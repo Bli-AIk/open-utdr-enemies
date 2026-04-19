@@ -50,6 +50,14 @@
 
         {# Render page cards if section has pages #}
         {% if section.pages | length > 0 %}
+
+        {# Check if any page has UTAF data #}
+        {% set_global has_utaf = false %}
+        {% for page in section.pages %}
+          {% if page.extra.utaf_data %}{% set_global has_utaf = true %}{% endif %}
+        {% endfor %}
+
+        {% if has_utaf %}
         <div class="ut-card-grid" style="margin-top: 2rem;">
           {% for page in section.pages %}
             <a href="{{ page.permalink | safe }}" class="ut-card{% if page.extra.utaf_data %} ut-card--has-utaf{% endif %}"
@@ -98,6 +106,21 @@
           cards.forEach(function(c) { observer.observe(c); });
         })();
         </script>
+        {% else %}
+        <div class="ut-nav-list" style="margin-top: 2rem;">
+          {% for page in section.pages %}
+            <a href="{{ page.permalink | safe }}" class="ut-nav-item">
+              <div class="ut-nav-item__top">
+                <div class="ut-nav-item__title">{{ page.title }}</div>
+              </div>
+              {% if page.description %}
+                <div class="ut-nav-item__desc">{{ page.description }}</div>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+
         {% endif %}
 
         {# Placeholder if nothing #}
