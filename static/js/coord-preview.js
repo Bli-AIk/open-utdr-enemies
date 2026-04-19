@@ -284,14 +284,14 @@
     title.textContent = '◆ 坐标系对照';
     container.appendChild(title);
 
-    var row = document.createElement('div');
-    row.style.cssText = 'display:flex; gap:4px; justify-content:center;';
-    container.appendChild(row);
+    var col = document.createElement('div');
+    col.style.cssText = 'display:flex; flex-direction:column; align-items:center; gap:6px;';
+    container.appendChild(col);
 
     var ref = createHiDPICanvas(W, H);
     var cur = createHiDPICanvas(W, H);
-    row.appendChild(ref.canvas);
-    row.appendChild(cur.canvas);
+    col.appendChild(ref.canvas);
+    col.appendChild(cur.canvas);
 
     var diffBox = document.createElement('div');
     diffBox.style.cssText = 'color:#AAAAAA; font-family:monospace; font-size:11px; text-align:center; margin-top:6px; line-height:1.6;';
