@@ -1,6 +1,6 @@
 +++
 title = "Mad Mew Mew (愤怒喵喵)"
-description = "Undertale enemy animation analysis - Mad Mew Mew"
+description = "UNDERTALE enemy animation analysis - Mad Mew Mew"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

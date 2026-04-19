@@ -1,6 +1,6 @@
 +++
 title = "Papyrus (帕派瑞斯)"
-description = "Undertale boss animation analysis - Papyrus"
+description = "UNDERTALE boss animation analysis - Papyrus"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

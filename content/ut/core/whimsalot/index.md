@@ -1,6 +1,6 @@
 +++
 title = "Whimsalot (忧伤虫爵士)"
-description = "Undertale enemy animation analysis - Whimsalot"
+description = "UNDERTALE enemy animation analysis - Whimsalot"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

@@ -1,6 +1,6 @@
 +++
 title = "Snowdrake's Mother (雪铁龙的母亲)"
-description = "Undertale enemy animation analysis - Snowdrake's Mother"
+description = "UNDERTALE enemy animation analysis - Snowdrake's Mother"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

@@ -1,6 +1,6 @@
 +++
 title = "Mettaton NEO (镁塔顿) - NEO形态"
-description = "Undertale boss animation analysis - Mettaton NEO"
+description = "UNDERTALE boss animation analysis - Mettaton NEO"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

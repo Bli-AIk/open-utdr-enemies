@@ -1,6 +1,6 @@
 +++
 title = "Whimsun (忧郁虫虫)"
-description = "Undertale enemy animation analysis - Whimsun"
+description = "UNDERTALE enemy animation analysis - Whimsun"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

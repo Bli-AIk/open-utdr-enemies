@@ -10,7 +10,7 @@ template = "page.html"
 
 [extra]
 author = "Bli-AIk"
-lead = "GMS 坐标系是所有 Undertale 原作坐标数据的基础。本文梳理 GMS 坐标定义，对比主流引擎差异，并说明 UTAF 格式的坐标约定。"
+lead = "GMS 坐标系是所有 UNDERTALE 原作坐标数据的基础。本文梳理 GMS 坐标定义，对比主流引擎差异，并说明 UTAF 格式的坐标约定。"
 toc = true
 top = false
 coord_preview = true
@@ -20,7 +20,7 @@ coord_preview = true
 
 > **社区适用框架**：[UndertaleEngine](https://github.com/TML233/UndertaleEngine)
 
-Undertale / Deltarune 使用 GameMaker Studio（GMS）开发。理解 GMS 的坐标系定义，是正确使用所有原作坐标数据的前提。
+UNDERTALE / deltarune 使用 GameMaker Studio（GMS）开发。理解 GMS 的坐标系定义，是正确使用所有原作坐标数据的前提。
 
 ### 基本定义
 

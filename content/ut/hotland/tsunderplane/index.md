@@ -1,6 +1,6 @@
 +++
 title = "Tsunderplane (傲娇飞机)"
-description = "Undertale enemy animation analysis - Tsunderplane"
+description = "UNDERTALE enemy animation analysis - Tsunderplane"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

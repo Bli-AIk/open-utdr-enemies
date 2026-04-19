@@ -1,6 +1,6 @@
 +++
 title = "Napstablook (纳普斯特幽灵)"
-description = "Undertale enemy animation analysis - Napstablook"
+description = "UNDERTALE enemy animation analysis - Napstablook"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

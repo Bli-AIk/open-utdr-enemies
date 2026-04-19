@@ -1,6 +1,6 @@
 +++
 title = "Froggit (蛙吉特)"
-description = "Undertale enemy animation analysis - Froggit"
+description = "UNDERTALE enemy animation analysis - Froggit"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

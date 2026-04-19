@@ -1,6 +1,6 @@
 +++
 title = "Aaron (亚伦)"
-description = "Undertale enemy animation analysis - Aaron"
+description = "UNDERTALE enemy animation analysis - Aaron"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

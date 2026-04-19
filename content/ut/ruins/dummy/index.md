@@ -1,6 +1,6 @@
 +++
 title = "Dummy (训练人偶/假人)"
-description = "Undertale enemy animation analysis - Dummy"
+description = "UNDERTALE enemy animation analysis - Dummy"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

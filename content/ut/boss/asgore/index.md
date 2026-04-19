@@ -1,6 +1,6 @@
 +++
 title = "Asgore (艾斯戈尔/羊爸)"
-description = "Undertale boss animation analysis - Asgore"
+description = "UNDERTALE boss animation analysis - Asgore"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

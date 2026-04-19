@@ -1,6 +1,6 @@
 +++
 title = "Mettaton EX (镁塔顿) - EX形态"
-description = "Undertale boss animation analysis - Mettaton EX"
+description = "UNDERTALE boss animation analysis - Mettaton EX"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

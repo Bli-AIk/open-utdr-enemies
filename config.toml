@@ -1,6 +1,6 @@
 base_url = "https://example.com"
-title = "open-utdr-enemies"
-description = "Open documentation site for Undertale and Deltarune enemy, animation, and battle research."
+title = "OPEN-UTDR-ENEMIES"
+description = "Open documentation site for UNDERTALE and deltarune enemy, animation, and battle research."
 default_language = "zh"
 compile_sass = true
 generate_feeds = false
@@ -13,11 +13,11 @@ style = "inline"
 theme = "github-dark"
 
 [extra]
-author = "open-utdr-enemies contributors"
+author = "OPEN-UTDR-ENEMIES contributors"
 language_code = "zh-CN"
 theme_color = "#000000"
 title_separator = "|"
-title_addition = "Undertale / Deltarune Enemy Docs"
+title_addition = "UNDERTALE / deltarune Enemy Docs"
 
 [[extra.menu.main]]
 name = "UNDERTALE"

@@ -1,6 +1,6 @@
 +++
 title = "Undyne (安黛因) - 中立路线"
-description = "Undertale boss animation analysis - Undyne (Neutral Route)"
+description = "UNDERTALE boss animation analysis - Undyne (Neutral Route)"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

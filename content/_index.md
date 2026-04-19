@@ -1,8 +1,8 @@
 +++
-title = "open-utdr-enemies"
+title = "OPEN-UTDR-ENEMIES"
 
 [extra]
-lead = "Undertale / Deltarune 敌人研究文档站，整理敌人构成、动画摆动参数、行为逻辑与可复用资料。"
+lead = "UNDERTALE / deltarune 敌人研究文档站，整理敌人构成、动画摆动参数、行为逻辑与可复用资料。"
 url = "/ut/"
 url_button = "开始研究"
 repo_version = "Dual Licensed: MIT / Apache-2.0"

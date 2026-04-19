@@ -1,6 +1,6 @@
 +++
 title = "Introduction"
-description = "open-utdr-enemies 的初始化方式与内容抓取流程。"
+description = "OPEN-UTDR-ENEMIES 的初始化方式与内容抓取流程。"
 date = 2026-04-15T00:00:00+08:00
 updated = 2026-04-15T00:00:00+08:00
 draft = false
@@ -33,7 +33,7 @@ top = false
 
 站点主配置位于 `config.toml`，当前已完成以下定制：
 
-- 站点名称设置为 `open-utdr-enemies`
+- 站点名称设置为 `OPEN-UTDR-ENEMIES`
 - 主题设置为 `adidoks`
 - 默认语言设置为 `zh`
 - 站点主导航包含 `Docs` 与 `Articles`

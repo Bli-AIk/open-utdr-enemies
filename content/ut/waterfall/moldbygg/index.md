@@ -1,6 +1,6 @@
 +++
 title = "Moldbygg (大模怪)"
-description = "Undertale enemy animation analysis - Moldbygg"
+description = "UNDERTALE enemy animation analysis - Moldbygg"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

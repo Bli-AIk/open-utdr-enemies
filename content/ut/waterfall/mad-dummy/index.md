@@ -1,6 +1,6 @@
 +++
 title = "Mad Dummy (愤怒人偶)"
-description = "Undertale enemy animation analysis - Mad Dummy"
+description = "UNDERTALE enemy animation analysis - Mad Dummy"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

@@ -1,6 +1,6 @@
 +++
 title = "Gyftrot (礼物鹿)"
-description = "Undertale enemy animation analysis - Gyftrot"
+description = "UNDERTALE enemy animation analysis - Gyftrot"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

@@ -1,6 +1,6 @@
 +++
 title = "Greater Dog (大犬汪)"
-description = "Undertale enemy animation analysis - Greater Dog"
+description = "UNDERTALE enemy animation analysis - Greater Dog"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false

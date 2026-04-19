@@ -1,6 +1,6 @@
 +++
 title = "Reaper Bird (死神鸟)"
-description = "Undertale enemy animation analysis - Reaper Bird"
+description = "UNDERTALE enemy animation analysis - Reaper Bird"
 date = 2026-04-11T22:29:21+08:00
 updated = 2026-04-11T22:29:21+08:00
 draft = false
