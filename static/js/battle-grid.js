@@ -224,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Draw grid
         ctx.lineJoin = "round";
         ctx.lineCap = "round";
-        ctx.strokeStyle = "rgba(0, 192, 0, 0.25)";
+        ctx.strokeStyle = "rgba(0, 255, 0, 0.15)";
         ctx.lineWidth = 1.5;
         
         ctx.beginPath();
