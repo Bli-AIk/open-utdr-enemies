@@ -21,7 +21,11 @@
       "sprite": "finalfroggit_body",
       "origin": {
         "x": 0,
-        "y": 40
+        "y": 63
+      },
+      "pivot": {
+        "x": 25,
+        "y": 25
       },
       "drawOrder": 0,
       "expressions": {

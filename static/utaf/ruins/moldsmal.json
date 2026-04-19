@@ -22,12 +22,15 @@
       "sprite": "moldsmal_body",
       "origin": {
         "x": 0,
-        "y": 0
+        "y": 84
+      },
+      "pivot": {
+        "x": 51,
+        "y": 84
       },
       "drawOrder": 0,
       "expressions": {
         "frame_index": "floor(siner / 6) % 2",
-        "offset_y": "sin(siner / 4) * 10",
         "scale_y": "1.0 - sin(siner / 4) * 0.05"
       }
     }
