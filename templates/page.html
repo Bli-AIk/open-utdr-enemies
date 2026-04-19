@@ -87,15 +87,15 @@
           </script>
         </aside>
         {% if page.extra.toc and page.toc %}
-        <nav class="page-toc" style="position:sticky; top:1rem; margin-top:1.5rem; background:#000; border:1px solid #333; border-radius:4px; padding:12px;">
-          <h3 style="color:#44FF44; font-family:'UT-HUD',monospace; font-size:0.85rem; margin-bottom:0.5rem;">On this page</h3>
-          <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.8;">
+        <nav class="page-toc" style="position:sticky; top:1rem; margin-top:1.5rem; background:#000; border:4px solid #fff; padding:10px;">
+          <h3 style="color:#fff; font-family:'UT-HUD',monospace; font-size:0.75rem; margin-bottom:0.4rem;">ON THIS PAGE</h3>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.7rem; line-height:1.6;">
             {% for h1 in page.toc %}
             <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
               {% if h1.children %}
-              <ul style="list-style:none; padding-left:1rem; margin:0;">
+              <ul style="list-style:none; padding-left:0.8rem; margin:0;">
                 {% for h2 in h1.children %}
-                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
+                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.65rem;">{{ h2.title }}</a></li>
                 {% endfor %}
               </ul>
               {% endif %}
@@ -132,15 +132,15 @@
       <div class="col-12 col-lg-4">
         <div style="position:sticky; top:1rem; height:calc(100vh - 2rem); display:flex; flex-direction:column; justify-content:space-between;">
           {% if page.extra.toc and page.toc %}
-          <nav class="page-toc" style="background:#000; border:1px solid #333; border-radius:4px; padding:12px; overflow-y:auto; max-height:45vh;">
-            <h3 style="color:#44FF44; font-family:'UT-HUD',monospace; font-size:0.85rem; margin-bottom:0.5rem;">On this page</h3>
-            <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.8;">
+          <nav class="page-toc" style="background:#000; border:4px solid #fff; padding:10px; overflow-y:auto; max-height:45vh;">
+            <h3 style="color:#fff; font-family:'UT-HUD',monospace; font-size:0.75rem; margin-bottom:0.4rem;">ON THIS PAGE</h3>
+            <ul style="list-style:none; padding:0; margin:0; font-size:0.7rem; line-height:1.6;">
               {% for h1 in page.toc %}
               <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
                 {% if h1.children %}
-                <ul style="list-style:none; padding-left:1rem; margin:0;">
+                <ul style="list-style:none; padding-left:0.8rem; margin:0;">
                   {% for h2 in h1.children %}
-                  <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
+                  <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.65rem;">{{ h2.title }}</a></li>
                   {% endfor %}
                 </ul>
                 {% endif %}
@@ -152,7 +152,7 @@
           <div></div>
           {% endif %}
           <aside class="coord-preview-sidebar">
-            <div id="coord-preview" style="background:#000; border:1px solid #333; border-radius:4px; padding:8px;"></div>
+            <div id="coord-preview" style="background:#000; border:4px solid #fff; padding:8px;"></div>
           </aside>
         </div>
         <script src="/js/coord-preview.js"></script>
@@ -187,15 +187,15 @@
       </div>
       {% if page.extra.toc and page.toc %}
       <div class="col-12 col-lg-3">
-        <nav class="page-toc" style="position:sticky; top:1rem; background:#000; border:1px solid #333; border-radius:4px; padding:12px;">
-          <h3 style="color:#44FF44; font-family:'UT-HUD',monospace; font-size:0.85rem; margin-bottom:0.5rem;">On this page</h3>
-          <ul style="list-style:none; padding:0; margin:0; font-size:0.8rem; line-height:1.8;">
+        <nav class="page-toc" style="position:sticky; top:1rem; background:#000; border:4px solid #fff; padding:10px;">
+          <h3 style="color:#fff; font-family:'UT-HUD',monospace; font-size:0.75rem; margin-bottom:0.4rem;">ON THIS PAGE</h3>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.7rem; line-height:1.6;">
             {% for h1 in page.toc %}
             <li><a href="{{ h1.permalink | safe }}" style="color:#aaa; text-decoration:none;">{{ h1.title }}</a>
               {% if h1.children %}
-              <ul style="list-style:none; padding-left:1rem; margin:0;">
+              <ul style="list-style:none; padding-left:0.8rem; margin:0;">
                 {% for h2 in h1.children %}
-                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.75rem;">{{ h2.title }}</a></li>
+                <li><a href="{{ h2.permalink | safe }}" style="color:#777; text-decoration:none; font-size:0.65rem;">{{ h2.title }}</a></li>
                 {% endfor %}
               </ul>
               {% endif %}
