@@ -12,6 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
+  preview = "cacf5ca8d51cfb9e9a525d30960d6314630502172.png"
 +++
 
 ---

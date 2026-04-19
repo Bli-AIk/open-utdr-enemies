@@ -53,13 +53,12 @@
         <div class="ut-card-grid" style="margin-top: 2rem;">
           {% for page in section.pages %}
             <a href="{{ page.permalink | safe }}" class="ut-card">
+              {% if page.extra.preview %}
+                <div class="ut-card-preview">
+                  <img src="{{ page.path }}{{ page.extra.preview }}" alt="{{ page.title }}" loading="lazy">
+                </div>
+              {% endif %}
               <div class="ut-card-title">* {{ page.title | upper }}</div>
-              {% if page.description %}
-                <div class="ut-card-desc">{{ page.description }}</div>
-              {% endif %}
-              {% if page.date %}
-                <div class="ut-card-count">{{ page.date | date(format="%Y-%m-%d") }}</div>
-              {% endif %}
             </a>
           {% endfor %}
         </div>
