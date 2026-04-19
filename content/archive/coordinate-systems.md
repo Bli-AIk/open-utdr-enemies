@@ -9,6 +9,7 @@ sort_by = "weight"
 template = "page.html"
 
 [extra]
+author = "Bli-AIk"
 lead = "GMS 坐标系是所有 Undertale 原作坐标数据的基础。本文梳理 GMS 坐标定义，对比主流引擎差异，并说明 UTAF 格式的坐标约定。"
 toc = true
 top = false
