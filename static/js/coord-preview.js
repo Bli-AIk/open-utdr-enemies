@@ -16,22 +16,23 @@
     unreal3d:  { name: 'Unreal',    type: '3d', handed: 'L', up: 'Z', fwd: 'X',  right: 'Y' },
   };
 
-  // Map heading text (lowercase) → engine key
+  // Map heading text (lowercase) → engine key(s)
+  // Arrays mean show multiple engines simultaneously
   const HEADING_PATTERNS = [
-    ['clickteam fusion', 'clickteam'],
-    ['godot 2d', 'godot2d'],
-    ['web canvas 2d', 'canvas2d'],
-    ['canvas 2d', 'canvas2d'],
-    ['love2d', 'love2d'],
-    ['cocos2d', 'cocos'],
-    ['unity 2d', 'unity2d'],
-    ['bevy（2d', 'bevy2d'],
-    ['bevy (2d', 'bevy2d'],
-    ['bevy 2d', 'bevy2d'],
-    ['unity 3d', 'unity3d'],
-    ['godot 3d', 'godot3d'],
-    ['bevy 3d', 'bevy3d'],
-    ['unreal', 'unreal3d'],
+    ['clickteam fusion', ['clickteam']],
+    ['godot 2d', ['godot2d', 'godot3d']],
+    ['web canvas 2d', ['canvas2d']],
+    ['canvas 2d', ['canvas2d']],
+    ['love2d', ['love2d']],
+    ['cocos2d', ['cocos']],
+    ['unity 2d', ['unity2d', 'unity3d']],
+    ['bevy（2d', ['bevy2d', 'bevy3d']],
+    ['bevy (2d', ['bevy2d', 'bevy3d']],
+    ['bevy 2d', ['bevy2d', 'bevy3d']],
+    ['unity 3d', ['unity3d', 'unity2d']],
+    ['godot 3d', ['godot3d', 'godot2d']],
+    ['bevy 3d', ['bevy3d', 'bevy2d']],
+    ['unreal', ['unreal3d']],
   ];
 
   const DPR = window.devicePixelRatio || 1;
@@ -288,47 +289,78 @@
     col.style.cssText = 'display:flex; flex-direction:column; align-items:center; gap:6px;';
     container.appendChild(col);
 
-    var ref = createHiDPICanvas(W, H);
-    var cur = createHiDPICanvas(W, H);
-    col.appendChild(ref.canvas);
-    col.appendChild(cur.canvas);
-
     var diffBox = document.createElement('div');
     diffBox.style.cssText = 'color:#AAAAAA; font-family:monospace; font-size:11px; text-align:center; margin-top:6px; line-height:1.6;';
     container.appendChild(diffBox);
 
-    // Draw initial state
+    // Draw initial state — just GMS
+    var ref = createHiDPICanvas(W, H);
+    col.appendChild(ref.canvas);
     drawEngine(ref.ctx, 'gms', true);
-    drawEngine(cur.ctx, 'gms', false);
     diffBox.textContent = '滚动文章查看对比';
 
-    var currentKey = 'gms';
+    var currentKeys = null; // array of engine keys currently shown
+    var canvases = [ref]; // track all canvases in col
 
-    function updateEngine(key) {
-      if (key === currentKey) return;
-      currentKey = key;
-      var eng = ENGINES[key];
-      drawEngine(cur.ctx, key, false);
+    function updateEngines(keys) {
+      // keys is an array of engine key strings
+      var keysStr = keys.join(',');
+      var curStr = currentKeys ? currentKeys.join(',') : '';
+      if (keysStr === curStr) return;
+      currentKeys = keys;
 
-      if (key === 'gms') {
+      // Clear all canvases
+      while (col.firstChild) col.removeChild(col.firstChild);
+      canvases = [];
+
+      // Always draw GMS reference first
+      var gmsCanvas = createHiDPICanvas(W, H);
+      col.appendChild(gmsCanvas.canvas);
+      drawEngine(gmsCanvas.ctx, 'gms', true);
+      canvases.push(gmsCanvas);
+
+      if (keys.length === 0 || (keys.length === 1 && keys[0] === 'gms')) {
         diffBox.innerHTML = '滚动文章查看对比';
         return;
       }
 
-      var diffs = [];
-      var gms = ENGINES.gms;
-      if (eng.type === '2d') {
-        if (eng.yDown !== gms.yDown) diffs.push('<span style="color:' + CLR.diff + '">● Y轴方向不同</span>');
-        else diffs.push('<span style="color:' + CLR.same + '">● Y轴方向相同</span>');
-        if (eng.rotCCW !== gms.rotCCW) diffs.push('<span style="color:' + CLR.diff + '">● 旋转方向不同</span>');
-        else diffs.push('<span style="color:' + CLR.same + '">● 旋转方向相同</span>');
-        if (eng.deg !== gms.deg) diffs.push('<span style="color:' + CLR.diff + '">● 角度单位不同</span>');
-        else diffs.push('<span style="color:' + CLR.same + '">● 角度单位相同</span>');
-      } else {
-        diffs.push('<span style="color:' + CLR.label + '">3D 坐标系</span>');
-        diffs.push('<span style="color:' + CLR.label + '">' + (eng.handed === 'L' ? '左手系' : '右手系') + '</span>');
+      // Draw each engine
+      var allDiffs = [];
+      for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var eng = ENGINES[key];
+        if (!eng) continue;
+
+        var c = createHiDPICanvas(W, H);
+        col.appendChild(c.canvas);
+        drawEngine(c.ctx, key, false);
+        canvases.push(c);
+
+        // Build diff info
+        var gms = ENGINES.gms;
+        if (eng.type === '2d') {
+          var diffs = [];
+          if (eng.yDown !== gms.yDown) diffs.push('<span style="color:' + CLR.diff + '">● Y轴不同</span>');
+          else diffs.push('<span style="color:' + CLR.same + '">● Y轴相同</span>');
+          if (eng.rotCCW !== gms.rotCCW) diffs.push('<span style="color:' + CLR.diff + '">● 旋转不同</span>');
+          else diffs.push('<span style="color:' + CLR.same + '">● 旋转相同</span>');
+          if (eng.deg !== gms.deg) diffs.push('<span style="color:' + CLR.diff + '">● 单位不同</span>');
+          else diffs.push('<span style="color:' + CLR.same + '">● 单位相同</span>');
+          if (keys.length > 1) {
+            allDiffs.push('<b style="color:' + CLR.text + '">' + eng.name + '</b>: ' + diffs.join(' '));
+          } else {
+            allDiffs.push(diffs.join('<br>'));
+          }
+        } else {
+          var info = (eng.handed === 'L' ? '左手系' : '右手系');
+          if (keys.length > 1) {
+            allDiffs.push('<b style="color:' + CLR.text + '">' + eng.name + '</b>: <span style="color:' + CLR.label + '">' + info + '</span>');
+          } else {
+            allDiffs.push('<span style="color:' + CLR.label + '">3D ' + info + '</span>');
+          }
+        }
       }
-      diffBox.innerHTML = diffs.join('<br>');
+      diffBox.innerHTML = allDiffs.join('<br>');
     }
 
     // IntersectionObserver for heading tracking
@@ -339,7 +371,7 @@
       var text = h.textContent.toLowerCase().trim();
       for (var i = 0; i < HEADING_PATTERNS.length; i++) {
         if (text.indexOf(HEADING_PATTERNS[i][0]) !== -1) {
-          headingEngineMap.push({ el: h, key: HEADING_PATTERNS[i][1] });
+          headingEngineMap.push({ el: h, keys: HEADING_PATTERNS[i][1] });
           break;
         }
       }
@@ -369,7 +401,7 @@
               topItem = item;
             }
           });
-          if (topItem) updateEngine(topItem.key);
+          if (topItem) updateEngines(topItem.keys);
         }
       }, { rootMargin: '-10% 0px -60% 0px' });
 
@@ -378,10 +410,8 @@
       });
 
       // Also track scroll to detect when user scrolls past a heading
-      var lastScrollY = 0;
       window.addEventListener('scroll', function() {
         if (visibleSet.size > 0) return;
-        // Find the last heading scrolled past
         var best = null;
         for (var i = headingEngineMap.length - 1; i >= 0; i--) {
           var rect = headingEngineMap[i].el.getBoundingClientRect();
@@ -391,11 +421,10 @@
           }
         }
         if (best) {
-          updateEngine(best.key);
+          updateEngines(best.keys);
         } else {
-          updateEngine('gms');
+          updateEngines(['gms']);
         }
-        lastScrollY = window.scrollY;
       });
     }
   }
