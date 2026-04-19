@@ -416,7 +416,7 @@ class UTAFEngine {
       ctx.save();
       ctx.globalAlpha = alpha;
       ctx.translate(this.centerX + pathOff.x * scale + ox, this.centerY + pathOff.y * scale + oy);
-      ctx.rotate(rot * Math.PI / 180);
+      ctx.rotate(-rot * Math.PI / 180); // GM uses CCW-positive; Canvas uses CW-positive
       ctx.scale(scale * sx, scale * sy);
       const pivotX = part.pivot ? part.pivot.x : sprite.width / 2;
       const pivotY = part.pivot ? part.pivot.y : sprite.height / 2;
