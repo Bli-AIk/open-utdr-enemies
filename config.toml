@@ -62,6 +62,23 @@ name = "Deltarune"
 url = "/dr/"
 weight = 20
 
+[[extra.menu.dr]]
+name = "Chapter 1: The Beginning"
+url = "/dr/ch1/"
+weight = 1
+[[extra.menu.dr]]
+name = "Chapter 2: A Cyber's World"
+url = "/dr/ch2/"
+weight = 2
+[[extra.menu.dr]]
+name = "Chapter 3: Late Night"
+url = "/dr/ch3/"
+weight = 3
+[[extra.menu.dr]]
+name = "Chapter 4: Prophecy"
+url = "/dr/ch4/"
+weight = 4
+
 [[extra.menu.main]]
 name = "Archive"
 url = "/archive/"
