@@ -213,39 +213,52 @@
     var ox = CX, oy = 75;
     var len = 35;
 
-    // Axis directions in screen space (isometric)
-    var axes = {
-      'X':  { dx:  0.87, dy:  0.35, color: CLR.red   },
-      '-X': { dx: -0.87, dy: -0.35, color: CLR.red   },
-      'Y':  { dx:  0,    dy: -1,    color: CLR.green  },
-      '-Y': { dx:  0,    dy:  1,    color: CLR.green  },
-      'Z':  { dx: -0.87, dy:  0.35, color: CLR.blue   },
-      '-Z': { dx:  0.87, dy: -0.35, color: CLR.blue   },
+    // Screen-space directions for roles (up/right/forward)
+    var screenDir = {
+      up:    { dx:  0,    dy: -1    },
+      right: { dx:  0.87, dy:  0.35 },
+      fwd:   { dx: -0.87, dy:  0.35 },
     };
 
-    // Draw right axis
-    var ra = axes[eng.right] || axes['X'];
-    drawArrow(ctx, ox, oy, ox + ra.dx * len, oy + ra.dy * len, ra.color);
-    ctx.fillStyle = ra.color;
-    ctx.font = '10px monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText(eng.right + '+', ox + ra.dx * (len + 12), oy + ra.dy * (len + 12));
+    // Color based on axis letter
+    function axisColor(a) {
+      var letter = a.replace('-', '');
+      if (letter === 'X') return CLR.red;
+      if (letter === 'Y') return CLR.green;
+      return CLR.blue;
+    }
 
     // Draw up axis
-    var ua = axes[eng.up] || axes['Y'];
-    drawArrow(ctx, ox, oy, ox + ua.dx * len, oy + ua.dy * len, ua.color);
-    ctx.fillStyle = ua.color;
-    ctx.fillText(eng.up + '+', ox + ua.dx * (len + 12), oy + ua.dy * (len + 12));
+    var ud = screenDir.up;
+    var uc = axisColor(eng.up);
+    drawArrow(ctx, ox, oy, ox + ud.dx * len, oy + ud.dy * len, uc);
+    ctx.fillStyle = uc;
+    ctx.font = '10px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(eng.up + '+', ox + ud.dx * (len + 12), oy + ud.dy * (len + 12));
+
+    // Draw right axis
+    var rd = screenDir.right;
+    var rc = axisColor(eng.right);
+    drawArrow(ctx, ox, oy, ox + rd.dx * len, oy + rd.dy * len, rc);
+    ctx.fillStyle = rc;
+    ctx.fillText(eng.right + '+', ox + rd.dx * (len + 12), oy + rd.dy * (len + 12));
 
     // Draw forward axis
-    var fa = axes[eng.fwd] || axes['Z'];
-    drawArrow(ctx, ox, oy, ox + fa.dx * len, oy + fa.dy * len, fa.color);
-    ctx.fillStyle = fa.color;
-    ctx.fillText(eng.fwd.replace('-','') + '+', ox + fa.dx * (len + 12), oy + fa.dy * (len + 12));
-    if (eng.fwd.startsWith('-')) {
+    var fwd = eng.fwd;
+    var isNeg = fwd.startsWith('-');
+    var fd = screenDir.fwd;
+    // Negative forward means the axis actually goes outward; flip arrow direction
+    if (isNeg) { fd = { dx: -fd.dx, dy: -fd.dy }; }
+    var fc = axisColor(fwd);
+    drawArrow(ctx, ox, oy, ox + fd.dx * len, oy + fd.dy * len, fc);
+    ctx.fillStyle = fc;
+    var fwdLabel = fwd.replace('-', '') + '+';
+    ctx.fillText(fwdLabel, ox + fd.dx * (len + 12), oy + fd.dy * (len + 12));
+    if (isNeg) {
       ctx.fillStyle = CLR.dim;
       ctx.font = '8px monospace';
-      ctx.fillText('(朝屏幕外)', ox + fa.dx * (len + 12), oy + fa.dy * (len + 12) + 10);
+      ctx.fillText('(朝屏幕外)', ox + fd.dx * (len + 12), oy + fd.dy * (len + 12) + 10);
     }
 
     // Origin
