@@ -36,8 +36,13 @@
   --body-color: #FFFFFF;
 }
 
-body, html {
+html {
   background-color: #000000 !important;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: transparent !important;
   color: #FFFFFF !important;
   font-family: 'DTM-Sans', sans-serif !important;
   letter-spacing: 0.5px;
@@ -419,10 +424,14 @@ html { scroll-behavior: auto !important; }
   color: #FFFFFF;
 }
 
-/* 首页 hero 移动端间距 */
+/* 移动端间距 */
 @media (max-width: 768px) {
   .home .docs-content {
     margin-left: 0.75rem !important;
     margin-right: 0.75rem !important;
+  }
+  .page.list .content {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
   }
 }

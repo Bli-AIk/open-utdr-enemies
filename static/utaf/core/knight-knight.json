@@ -2,7 +2,7 @@
   "name": "Knight Knight",
   "fps": 30,
   "scale": 2,
-  "canvasWidth": 204,
+  "canvasWidth": 224,
   "canvasHeight": 332,
   "variables": {
     "siner": {
@@ -20,57 +20,48 @@
   },
   "parts": [
     {
-      "id": "leftarm",
-      "sprite": "knightknight_leftarm",
-      "origin": {
-        "x": -45,
-        "y": 48
-      },
-      "drawOrder": 0
-    },
-    {
-      "id": "fur",
-      "sprite": "knightknight_fur",
-      "origin": {
-        "x": -15,
-        "y": -32
-      },
-      "drawOrder": 1
+      "id": "eyes",
+      "sprite": "knightknight_eyes",
+      "origin": { "x": -11, "y": -31 },
+      "pivot": { "x": 1, "y": 0 },
+      "drawOrder": 0,
+      "expressions": {
+        "offset_x": "sin(siner / 10) * 6"
+      }
     },
     {
       "id": "body",
       "sprite": "knightknight_body",
-      "origin": {
-        "x": 0,
-        "y": -3
-      },
-      "drawOrder": 2
-    },
-    {
-      "id": "eyes",
-      "sprite": "knightknight_eyes",
-      "origin": {
-        "x": -11,
-        "y": -135
-      },
-      "drawOrder": 3
+      "origin": { "x": -105, "y": -101 },
+      "pivot": { "x": -24, "y": -17 },
+      "drawOrder": 1
     },
     {
       "id": "helmet",
       "sprite": "knightknight_helmet",
-      "origin": {
-        "x": -38,
-        "y": -121
-      },
-      "drawOrder": 4
+      "origin": { "x": -35, "y": -99 },
+      "pivot": { "x": -1, "y": -2 },
+      "drawOrder": 2
     },
     {
       "id": "mouth",
       "sprite": "knightknight_mouth",
-      "origin": {
-        "x": -17,
-        "y": 40
-      },
+      "origin": { "x": -7, "y": -17 },
+      "pivot": { "x": 0, "y": -3 },
+      "drawOrder": 3
+    },
+    {
+      "id": "fur",
+      "sprite": "knightknight_fur",
+      "origin": { "x": -41, "y": -5 },
+      "pivot": { "x": 1, "y": 0 },
+      "drawOrder": 4
+    },
+    {
+      "id": "leftarm",
+      "sprite": "knightknight_leftarm",
+      "origin": { "x": -105, "y": -101 },
+      "pivot": { "x": 1, "y": -1 },
       "drawOrder": 5
     }
   ]
