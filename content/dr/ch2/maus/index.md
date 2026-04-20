@@ -1,0 +1,45 @@
++++
+title = "Maus (鼠标怪)"
+description = "DELTARUNE enemy animation analysis - Maus"
+date = 2025-07-27T12:00:00+08:00
+updated = 2025-07-27T12:00:00+08:00
+draft = false
+weight = 6
+template = "page.html"
+
+[extra]
+  author = "Bli-AIk"
+
+  toc = true
+  top = false
++++
+
+
+---
+
+## 组成拆解
+
+Maus 使用 `obj_maus_enemy` 对象，由**单个精灵**构成：
+
+- **待机精灵：** `spr_maus_idle`
+- **受伤精灵：** `spr_maus_hurt`
+- **饶恕精灵：** `spr_maus_spared`
+
+## 公式
+
+### 待机动画
+
+```javascript
+// 标准通用绘制
+scr_enemy_drawidle_generic(5);
+
+siner += 1;
+draw_sprite_ext(spr_maus_idle, siner / 5, x, y, 2, 2, 0, image_blend, 1);
+```
+
+### 闪烁与受伤
+
+```javascript
+// 标准白色闪烁 + 通用抖动
+// HP ≤ 最大HP的 1/3 时进入疲劳状态
+```
