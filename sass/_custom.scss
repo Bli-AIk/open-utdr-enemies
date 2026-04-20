@@ -407,3 +407,21 @@ html { scroll-behavior: auto !important; }
   border-top: 2px solid #333;
   color: #ccc;
 }
+
+/* 文本选中颜色 - 暗绿色（与背景网格一致） */
+::selection {
+  background-color: rgba(0, 192, 0, 0.35);
+  color: #FFFFFF;
+}
+::-moz-selection {
+  background-color: rgba(0, 192, 0, 0.35);
+  color: #FFFFFF;
+}
+
+/* 首页 hero 移动端间距 */
+@media (max-width: 768px) {
+  .home .docs-content {
+    margin-left: 0.75rem !important;
+    margin-right: 0.75rem !important;
+  }
+}
