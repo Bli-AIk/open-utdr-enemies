@@ -37,11 +37,12 @@
 }
 
 body, html {
-  background-color: transparent !important;
+  background-color: #000000 !important;
   color: #FFFFFF !important;
   font-family: 'DTM-Sans', sans-serif !important;
   letter-spacing: 0.5px;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 /* Typography */
