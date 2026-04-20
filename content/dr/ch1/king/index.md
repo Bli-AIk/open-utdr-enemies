@@ -1,6 +1,6 @@
 +++
-title = "King (暗之王)"
-description = "DELTARUNE enemy animation analysis - King"
+title = "国王 (King)"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

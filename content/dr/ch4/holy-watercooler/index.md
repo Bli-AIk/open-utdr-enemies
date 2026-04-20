@@ -1,6 +1,6 @@
 +++
-title = "Holy Watercooler / Miss Mizzle (圣水饮水机 / 米泽尔小姐)"
-description = "DELTARUNE enemy animation analysis - Holy Watercooler / Miss Mizzle"
+title = "Miss Mizzle"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

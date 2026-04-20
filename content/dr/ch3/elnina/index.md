@@ -1,6 +1,6 @@
 +++
-title = "Elnina (厄尔尼娜)"
-description = "DELTARUNE enemy animation analysis - Elnina"
+title = "Elnina"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

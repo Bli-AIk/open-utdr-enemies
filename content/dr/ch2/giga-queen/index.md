@@ -1,6 +1,6 @@
 +++
-title = "GIGA Queen (巨型女王)"
-description = "DELTARUNE enemy animation analysis - Giga Queen"
+title = "GIGA 女王 (GIGA Queen)"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

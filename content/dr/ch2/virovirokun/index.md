@@ -1,6 +1,6 @@
 +++
-title = "Virovirokun (病毒小子)"
-description = "DELTARUNE enemy animation analysis - Virovirokun"
+title = "Virovirokun"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

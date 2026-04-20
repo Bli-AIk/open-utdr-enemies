@@ -1,6 +1,6 @@
 +++
-title = "Hammer of Justice (正义之锤 / 格尔森)"
-description = "DELTARUNE enemy animation analysis - Hammer of Justice"
+title = "正义之锤 (Hammer of Justice)"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

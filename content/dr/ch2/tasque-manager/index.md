@@ -1,6 +1,6 @@
 +++
-title = "Tasque Manager (塔斯克管理员)"
-description = "DELTARUNE enemy animation analysis - Tasque Manager"
+title = "Tasque Manager"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

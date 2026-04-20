@@ -1,6 +1,6 @@
 +++
-title = "Bibliox (典籍怪)"
-description = "DELTARUNE enemy animation analysis - Bibliox"
+title = "Bibliox"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

@@ -1,6 +1,6 @@
 +++
-title = "Roaring Knight (咆哮骑士)"
-description = "DELTARUNE enemy animation analysis - Roaring Knight"
+title = "呼啸骑士 (Roaring Knight)"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

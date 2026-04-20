@@ -1,6 +1,6 @@
 +++
-title = "Shadowguy (影人)"
-description = "DELTARUNE enemy animation analysis - Shadowguy"
+title = "Shadowguy"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

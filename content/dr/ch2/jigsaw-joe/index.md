@@ -1,6 +1,6 @@
 +++
-title = "Jigsawry / Jigsaw Joe (拼图怪)"
-description = "DELTARUNE enemy animation analysis - Jigsawry / Jigsaw Joe"
+title = "Jigsawry"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false

@@ -1,6 +1,6 @@
 +++
-title = "Watercooler (饮水机)"
-description = "DELTARUNE enemy animation analysis - Watercooler"
+title = "饮水机 (Watercooler)"
+description = "DELTARUNE enemy animation analysis"
 date = 2025-07-27T12:00:00+08:00
 updated = 2025-07-27T12:00:00+08:00
 draft = false
