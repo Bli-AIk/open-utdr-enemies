@@ -29,7 +29,7 @@ Pyrope 由 **左脚（footl）+ 右脚（footr）+ 冒火的头（head/head2）+
 
 ## 公式整理
 
-```plaintext
+```javascript
 首先还是喜闻乐见的特殊计时器声明时间：
 nowy = y + 100 - 20 * abs(-sin(time / 14))
 

@@ -27,7 +27,7 @@ Woshua 由 **身体外壳（body）+ 鸭子（duck）+ 头部（head）+ 脸（f
 
 ## 公式整理
 
-```plaintext
+```javascript
 玻璃罩：保持不动
 鸭子：
 x：x + 46

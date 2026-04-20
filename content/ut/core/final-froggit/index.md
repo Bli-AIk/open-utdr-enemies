@@ -27,7 +27,7 @@ Final Froggit 由 **头部（head）+ 身体（body）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 头部：
 x：x + 60 + 10 * sin(time / 6)
 y：y + 20 + 4 * sin(time / 3)

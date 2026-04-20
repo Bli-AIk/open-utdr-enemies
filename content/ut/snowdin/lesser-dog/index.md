@@ -25,7 +25,7 @@ Lesser Dog 由 **全身（lesserdog）+ 尾巴（tail）+ 头（head）** 组成
 
 ## 公式整理
 
-```plaintext
+```javascript
 以防你不知道：
 脖子的绘制其实是使用矩形完成的
 尾巴会随着饶恕次数增加而加快图片切换速度

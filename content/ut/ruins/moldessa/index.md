@@ -27,7 +27,7 @@ Moldessa 由 **脸（face）+ 底座（stem）+ 头上的尖锐部分（headthin
 
 ## 公式整理
 
-```plaintext
+```javascript
 底座：
 x：x
 y：y + 114

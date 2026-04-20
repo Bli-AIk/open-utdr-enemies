@@ -27,7 +27,7 @@ Knight Knight 由 **拿矛的手（leftarm）+ 最顶上的牛角头盔（helmet
 
 ## 公式整理
 
-```plaintext
+```javascript
 眼睛：
 x：x - 60 + 94 + 6 * sin(time / 10)
 y：y + 70

@@ -27,7 +27,7 @@ Reaper Bird 由 **头部（head+bite）+ 身体（body）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 身体：
 x：x + 14 + 5 * sin(time / 10)
 y：y + 90 + 6 * abs(cos(time / 8)) - 20 * mstretch

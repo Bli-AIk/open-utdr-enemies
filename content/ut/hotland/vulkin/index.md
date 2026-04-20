@@ -27,7 +27,7 @@ Vulkin 由 **火山外壳（body）+ 脸部（face）+ 溢出的岩浆（lava）
 
 ## 公式整理
 
-```plaintext
+```javascript
 后脚：
 x：x + 2 + 2 * cos(time / 6)
 y：y + 102 + 2 * sin(time / 6)

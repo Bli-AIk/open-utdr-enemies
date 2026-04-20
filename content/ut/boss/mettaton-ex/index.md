@@ -25,7 +25,7 @@ Mettaton EX 由 **腿部（leg）+ 身体（body）+ 肚子上的心（heart）+
 
 ## 公式整理
 
-```plaintext
+```javascript
 特殊计时器：
 ds1, ds2 = random(dsf * 2) - dsf
 
@@ -62,7 +62,7 @@ y：y + 40 - legh + 2 * cos(time / 3.5)
 
 由于 Mettaton EX 腿部和手部动作十分丰富，这里进行阐述：
 
-```plaintext
+```javascript
 if (noleg == 0)
 {
     if (legr == 0)
@@ -108,7 +108,7 @@ if (noleg == 0)
 
 ### 手臂详细说明
 
-```plaintext
+```javascript
 if (arml == 0)
     armlsprite = spr_mettarm1
 if (arml == 1)

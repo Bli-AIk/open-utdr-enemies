@@ -27,7 +27,7 @@ Mettaton 由 **双臂（arms）+ 铁盒子外壳（nuts）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 特殊计时器：
 sinvalue = 2 * sin(time / 3)
 

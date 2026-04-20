@@ -27,7 +27,7 @@ MemoryHead 由 **单个图片切换 + 扫描线（scanline）** 组成。
 
 扫描线主要用于构建一种画面挤压、扭曲的感觉，其本质其实是贴图的重新绘制：
 
-```plaintext
+```javascript
 b = argument0
 c = argument1
 d = argument2

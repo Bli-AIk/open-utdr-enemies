@@ -44,7 +44,7 @@ top = false
 
 抓取脚本位于 `scripts/fetch_bilibili_opus.py`，默认针对：
 
-```text
+```javascript
 https://www.bilibili.com/opus/1190046793906257945
 ```
 

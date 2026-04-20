@@ -44,7 +44,7 @@ Muffet 由以下部分组成：
 
 ## 公式整理
 
-```plaintext
+```javascript
 首先一如既往的计时器：
 heady = y + 4 * sin(time / 5)
 
@@ -121,7 +121,7 @@ y：heady + 26, 32, 42
 
 如果你想知道五只眼睛的动画，下面是源代码和解释：
 
-```plaintext
+```javascript
 for (i = 0; i < 5; i += 1)
 {
     if (anim > (0 + i * 5) && anim < (7 + i * 5))

@@ -25,7 +25,7 @@ Endogeny 由 **下半部分身体（body）+ 头部（head）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 没摸的情况下，shaker为1
 摸了一次的情况下，shaker为2
 摸了三 次的情况下，shaker为4

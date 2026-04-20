@@ -25,7 +25,7 @@ Greater Dog 仅图片本身。
 
 ## 公式整理
 
-```plaintext
+```javascript
 无视第一次，图片大小倍数为3倍
 第二次为4倍
 第三次为5倍

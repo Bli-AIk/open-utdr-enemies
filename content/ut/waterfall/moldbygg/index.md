@@ -27,7 +27,7 @@ Moldbygg 由 **果冻花（up）+ 底层（stem）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 底座：
 x：x + 8 * sin(timer / 10)或x + 8 * cos(timer / 10)
 

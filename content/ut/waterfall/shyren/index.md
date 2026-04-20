@@ -27,7 +27,7 @@ Shyren 由 **底座（agent）+ 头部（hide/swim/sing）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 底座保持不动
 头部：
 y：sy + 4 * sin(time / 30)

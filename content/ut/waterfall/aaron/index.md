@@ -27,6 +27,6 @@ Aaron 由单个图片组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 y：ys + 9 * sin(timer / 30)
 ```

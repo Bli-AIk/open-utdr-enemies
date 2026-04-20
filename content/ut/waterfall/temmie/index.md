@@ -29,7 +29,7 @@ Temmie 由 **身体（body）+ 脸部（face）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 身体：
 x：xs + random(r)
 y：ys + random(r)

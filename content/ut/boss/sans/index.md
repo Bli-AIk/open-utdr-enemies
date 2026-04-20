@@ -27,7 +27,7 @@ Sans 由 **头部（head）+ 身子（body）+ 腿部（legs）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 核心摆动控制
 
 // 摆动控制变量

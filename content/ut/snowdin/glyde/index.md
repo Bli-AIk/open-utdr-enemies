@@ -29,7 +29,7 @@ Glyde 由 **身体（body）+ 左翅膀（leftwing）+ 右翅膀（rightwing）+
 
 ## 公式整理
 
-```plaintext
+```javascript
 老滑头的计时器比较特殊，这里特地说明：
 这是一个套了三角函数的特殊计时器
 siner = 2 * cos(time / 24)

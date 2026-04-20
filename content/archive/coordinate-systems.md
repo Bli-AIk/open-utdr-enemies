@@ -45,7 +45,7 @@ UNDERTALE / deltarune 使用 GameMaker Studio（GMS）开发。理解 GMS 的坐
 
 ### draw_sprite_ext 参数
 
-```gml
+```javascript
 draw_sprite_ext(sprite, subimg, x, y, xscale, yscale, rot, colour, alpha)
 ```
 

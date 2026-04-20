@@ -25,7 +25,7 @@ Undyne（屠杀路线）和中立路线一样，唯独多了一个**眼睛放光
 
 ## 公式整理
 
-```plaintext
+```javascript
 头发：
 x：x + 85
 y：y + 3 * sin(time / 6) + heady + 4

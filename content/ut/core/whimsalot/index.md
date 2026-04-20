@@ -27,7 +27,7 @@ Whimsalot 由 **身体（body）+ 头部（head）+ 翅膀（wing）** 组成。
 
 ## 公式整理
 
-```plaintext
+```javascript
 特殊计时器：goof
 goof = sin(time / 5)
 

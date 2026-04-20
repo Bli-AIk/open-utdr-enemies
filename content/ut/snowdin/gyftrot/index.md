@@ -27,7 +27,7 @@ Gyftrot 由 **身体（body）+ 眼睛和眼睛上半部分（head）+ 眼睛和
 
 ## 公式整理
 
-```plaintext
+```javascript
 礼物：
 永远保持跟随头部的x, y
 

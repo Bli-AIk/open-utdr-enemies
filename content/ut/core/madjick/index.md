@@ -27,7 +27,7 @@ Madjick 由 **靴子（boot）+ 裙子（dress）+ 翻领（lapel）+ 头部（h
 
 ## 公式整理
 
-```plaintext
+```javascript
 计时器一览：
 _sin = sin(time / 5)
 _cos = cos(time / 5)
