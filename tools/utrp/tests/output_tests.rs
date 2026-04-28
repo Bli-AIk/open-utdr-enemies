@@ -55,10 +55,80 @@ fn generated_outputs_include_codegen_urls_without_mutating_sources() {
 
     assert!(source_program.codegen.is_empty());
     let generated = std::fs::read_to_string(output.join("core/finalfroggit.json")).unwrap();
-    assert!(generated.contains(r#""GML": "/generated-code/core/finalfroggit.gml.txt""#));
-    assert!(
-        generated.contains(r#""SoupRune": "/generated-code/core/finalfroggit.souprune.rs.txt""#)
+    let generated: RenderProgram = serde_json::from_str(&generated).unwrap();
+
+    assert_eq!(
+        generated.codegen,
+        std::collections::BTreeMap::from([
+            (
+                "GML".to_string(),
+                "/generated-code/core/finalfroggit.gml.txt".to_string(),
+            ),
+            (
+                "SoupRune".to_string(),
+                "/generated-code/core/finalfroggit.souprune.rs.txt".to_string(),
+            ),
+        ])
     );
+}
+
+#[cfg(unix)]
+#[test]
+fn generated_write_refuses_symlinked_output_directory_component() {
+    use std::os::unix::fs::symlink;
+
+    let temp = TempDir::new().unwrap();
+    let output = temp.path().join("output");
+    let outside = temp.path().join("outside");
+    std::fs::create_dir_all(&output).unwrap();
+    std::fs::create_dir_all(&outside).unwrap();
+    symlink(&outside, output.join("core")).unwrap();
+
+    let error =
+        utrp::output::write_program_outputs(&[program("core/new", "New")], &output).unwrap_err();
+
+    assert!(error.to_string().contains("symlink"));
+    assert!(!outside.join("new.json").exists());
+}
+
+#[cfg(unix)]
+#[test]
+fn manifest_read_refuses_symlinked_manifest_file() {
+    use std::os::unix::fs::symlink;
+
+    let temp = TempDir::new().unwrap();
+    let output = temp.path().join("output");
+    let outside = temp.path().join("outside-manifest.json");
+    std::fs::create_dir_all(&output).unwrap();
+    std::fs::write(&outside, r#"{"files":[]}"#).unwrap();
+    symlink(&outside, output.join(utrp::output::OUTPUT_MANIFEST_FILE)).unwrap();
+
+    let error =
+        utrp::output::write_program_outputs(&[program("root", "Root")], &output).unwrap_err();
+
+    assert!(error.to_string().contains("symlink"));
+    assert_eq!(
+        std::fs::read_to_string(&outside).unwrap(),
+        r#"{"files":[]}"#
+    );
+}
+
+#[cfg(unix)]
+#[test]
+fn manifest_write_refuses_symlinked_manifest_file() {
+    use std::os::unix::fs::symlink;
+
+    let temp = TempDir::new().unwrap();
+    let output = temp.path().join("output");
+    let outside = temp.path().join("outside-manifest.json");
+    std::fs::create_dir_all(&output).unwrap();
+    symlink(&outside, output.join(utrp::output::OUTPUT_MANIFEST_FILE)).unwrap();
+
+    let error =
+        utrp::output::write_program_outputs(&[program("root", "Root")], &output).unwrap_err();
+
+    assert!(error.to_string().contains("symlink"));
+    assert!(!outside.exists());
 }
 
 #[cfg(unix)]

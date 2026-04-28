@@ -3,7 +3,7 @@ use crate::source::validate_slug;
 use anyhow::{Context, bail};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
-use std::io::ErrorKind;
+use std::io::{Error, ErrorKind};
 use std::path::{Path, PathBuf};
 
 pub const OUTPUT_MANIFEST_FILE: &str = ".utrp-output-manifest.json";
@@ -16,6 +16,7 @@ struct OutputManifest {
 pub fn write_program_outputs(programs: &[RenderProgram], output: &Path) -> anyhow::Result<()> {
     std::fs::create_dir_all(output)
         .with_context(|| format!("failed to create {}", output.display()))?;
+    ensure_not_symlink(output)?;
 
     let previous = read_manifest(output)?;
     let expected = programs
@@ -29,10 +30,14 @@ pub fn write_program_outputs(programs: &[RenderProgram], output: &Path) -> anyho
         validate_slug(&program.slug)?;
         let relative = output_relative_path(&program.slug)?;
         let path = output.join(&relative);
+        if let Some(parent) = Path::new(&relative).parent() {
+            ensure_no_symlink_components(output, parent)?;
+        }
         if let Some(parent) = path.parent() {
             std::fs::create_dir_all(parent)
                 .with_context(|| format!("failed to create {}", parent.display()))?;
         }
+        ensure_no_symlink_components(output, Path::new(&relative))?;
         let generated = with_codegen_urls(program);
         std::fs::write(
             &path,
@@ -68,8 +73,19 @@ fn with_codegen_urls(program: &RenderProgram) -> RenderProgram {
 
 fn read_manifest(output: &Path) -> anyhow::Result<BTreeSet<String>> {
     let path = output.join(OUTPUT_MANIFEST_FILE);
-    if !path.exists() {
-        return Ok(BTreeSet::new());
+    match std::fs::symlink_metadata(&path) {
+        Ok(metadata) if metadata.file_type().is_symlink() => {
+            bail!(
+                "refusing to read manifest through symlink {}",
+                path.display()
+            );
+        }
+        Ok(_) => {}
+        Err(error) if error.kind() == ErrorKind::NotFound => return Ok(BTreeSet::new()),
+        Err(error) => {
+            return Err(error)
+                .with_context(|| format!("failed to inspect manifest {}", path.display()));
+        }
     }
 
     let raw = std::fs::read_to_string(&path)
@@ -81,6 +97,21 @@ fn read_manifest(output: &Path) -> anyhow::Result<BTreeSet<String>> {
 
 fn write_manifest(output: &Path, files: BTreeSet<String>) -> anyhow::Result<()> {
     let path = output.join(OUTPUT_MANIFEST_FILE);
+    match std::fs::symlink_metadata(&path) {
+        Ok(metadata) if metadata.file_type().is_symlink() => {
+            bail!(
+                "refusing to write manifest through symlink {}",
+                path.display()
+            );
+        }
+        Ok(_) => {}
+        Err(error) if error.kind() == ErrorKind::NotFound => {}
+        Err(error) => {
+            return Err(error)
+                .with_context(|| format!("failed to inspect manifest {}", path.display()));
+        }
+    }
+
     let manifest = OutputManifest {
         files: files.into_iter().collect(),
     };
@@ -154,7 +185,7 @@ fn ensure_no_symlink_components(output: &Path, relative: &Path) -> anyhow::Resul
         match std::fs::symlink_metadata(&current) {
             Ok(metadata) if metadata.file_type().is_symlink() => {
                 bail!(
-                    "refusing to remove stale output through symlink {}",
+                    "refusing to access output through symlink {}",
                     current.display()
                 );
             }
@@ -165,6 +196,22 @@ fn ensure_no_symlink_components(output: &Path, relative: &Path) -> anyhow::Resul
                     .with_context(|| format!("failed to inspect {}", current.display()));
             }
         }
+    }
+    Ok(())
+}
+
+fn ensure_not_symlink(path: &Path) -> anyhow::Result<()> {
+    let metadata = std::fs::symlink_metadata(path)
+        .with_context(|| format!("failed to inspect {}", path.display()))?;
+    if metadata.file_type().is_symlink() {
+        return Err(Error::new(
+            ErrorKind::InvalidInput,
+            format!(
+                "refusing to use output directory symlink {}",
+                path.display()
+            ),
+        )
+        .into());
     }
     Ok(())
 }
