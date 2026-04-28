@@ -4,7 +4,7 @@
 <img src="https://img.shields.io/badge/License%20(Code)-MIT%20or%20Apache--2.0-blue?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Content-Authorized%20Use-green?style=for-the-badge" />
 
-> **Status**: Initial documentation archival phase. The site skeleton is complete, and the first authorized source article has been archived.
+> **Status**: Active UTRP animation lab, source data, and code-generation pipeline. The site publishes browser-previewable enemy animation data alongside starter snippets for reuse.
 
 **open-utdr-enemies** is an open documentation site dedicated to
 **[Undertale](https://undertale.com/) / [Deltarune](https://deltarune.com/)** enemies,
@@ -17,21 +17,22 @@ the [AdiDoks](https://github.com/aaranxu/adidoks) theme.
 
 ## What Is This?
 
-This repository aims to continuously organize and publish reusable Undertale / Deltarune enemy research materials, including:
+This repository organizes and publishes reusable Undertale / Deltarune enemy research materials, including:
 
 - Enemy compositions and organization notes
 - Animation swing parameter research
 - Behavior logic and battle logic references
 - Source article archives
-- Self-written documentation for future expansion
+- Browser-previewable UTRP animation data
 
 The repository currently includes:
 
 - A runnable `Zola + AdiDoks` documentation site
-- `scripts/init_adidoks.sh` for initializing the theme
+- UTRP source files and generator under [`tools/utrp`](./tools/utrp)
+- Generated browser UTRP JSON under [`static/utrp`](./static/utrp)
+- A Canvas2D animation lab embedded in site pages
+- Generated GameMaker and SoupRune starter snippets under [`static/generated-code`](./static/generated-code)
 - `scripts/fetch_bilibili_opus.py` for fetching Bilibili opus and rendering Markdown
-- Archived authorized article: [`content/docs/articles/opus-1190046793906257945.md`](./content/docs/articles/opus-1190046793906257945.md)
-- Corresponding raw JSON snapshot: [`data/bilibili/1190046793906257945.json`](./data/bilibili/1190046793906257945.json)
 
 ### Why Zola + AdiDoks?
 
@@ -45,19 +46,12 @@ This combination is well-suited for a research repository because it keeps the r
 
 ## Current Scope
 
-This project is still in its early stages.
+The current focus is the UTRP animation pipeline:
 
-A more accurate way to understand it now: it is a documentation archive repository with the first batch of content already planted:
-
-- Site skeleton and navigation are in place
-- The first source article has been imported
-- The pipeline for continuing to fetch Bilibili opus is ready
-
-Natural next steps include:
-
-1. Archive more authorized source articles
-2. Organize scattered notes into topic-organized documentation pages
-3. Add reusable enemy, animation, and battle parameter reference tables
+- Maintain source animation programs in `tools/utrp/source`
+- Generate browser JSON and starter code from those sources
+- Preview enemy animations in the Canvas2D lab
+- Keep public documentation and source archives available through the Zola site
 
 ## Quick Start
 
@@ -83,6 +77,26 @@ python3 scripts/fetch_bilibili_opus.py \
   --json-output data/bilibili/1190046793906257945.json
 ```
 
+### Work With UTRP Data
+
+Run the UTRP tests:
+
+```bash
+just test-utrp
+```
+
+Regenerate browser JSON and starter snippets:
+
+```bash
+just generate-utrp
+```
+
+Run the repository checks:
+
+```bash
+just check
+```
+
 ### Run the Site Locally
 
 ```bash
@@ -101,6 +115,8 @@ zola build
 open-utdr-enemies/
 ├── content/
 │   ├── _index.md
+│   ├── lab/
+│   ├── ut/
 │   └── docs/
 │       ├── articles/
 │       └── getting-started/
@@ -109,8 +125,15 @@ open-utdr-enemies/
 ├── scripts/
 │   ├── fetch_bilibili_opus.py
 │   └── init_adidoks.sh
+├── static/
+│   ├── generated-code/
+│   ├── sprites/
+│   └── utrp/
+├── tools/
+│   └── utrp/
 ├── themes/
 │   └── adidoks/            # Populated by init script if missing
+├── justfile
 ├── config.toml
 ├── NOTICE.md
 ├── LICENSE-MIT
