@@ -44,3 +44,46 @@ fn generation_manifest_removes_only_previously_owned_stale_files() {
     assert!(manifest.contains("core/new.json"));
     assert!(!manifest.contains("core/old.json"));
 }
+
+#[cfg(unix)]
+#[test]
+fn stale_cleanup_refuses_symlinked_output_directory_component() {
+    use std::os::unix::fs::symlink;
+
+    let temp = TempDir::new().unwrap();
+    let output = temp.path().join("output");
+    let outside = temp.path().join("outside");
+    std::fs::create_dir_all(&output).unwrap();
+    std::fs::create_dir_all(&outside).unwrap();
+    std::fs::write(outside.join("old.json"), "{}\n").unwrap();
+    std::fs::write(
+        output.join(utrp::output::OUTPUT_MANIFEST_FILE),
+        r#"{"files":["core/old.json"]}"#,
+    )
+    .unwrap();
+    symlink(&outside, output.join("core")).unwrap();
+
+    let error = utrp::output::write_program_outputs(&[], &output).unwrap_err();
+
+    assert!(error.to_string().contains("symlink"));
+    assert!(outside.join("old.json").exists());
+}
+
+#[test]
+fn stale_cleanup_rejects_malformed_manifest_entries_without_deleting_files() {
+    let temp = TempDir::new().unwrap();
+    let output = temp.path().join("output");
+    std::fs::create_dir_all(&output).unwrap();
+    let outside = temp.path().join("outside.json");
+    std::fs::write(&outside, "{}\n").unwrap();
+    std::fs::write(
+        output.join(utrp::output::OUTPUT_MANIFEST_FILE),
+        r#"{"files":["../outside.json"]}"#,
+    )
+    .unwrap();
+
+    let error = utrp::output::write_program_outputs(&[], &output).unwrap_err();
+
+    assert!(error.to_string().contains("unsafe slug"));
+    assert!(outside.exists());
+}

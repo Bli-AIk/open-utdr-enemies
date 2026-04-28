@@ -1,9 +1,10 @@
 use crate::ir::RenderProgram;
 use crate::source::validate_slug;
-use anyhow::Context;
+use anyhow::{Context, bail};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
-use std::path::Path;
+use std::io::ErrorKind;
+use std::path::{Path, PathBuf};
 
 pub const OUTPUT_MANIFEST_FILE: &str = ".utrp-output-manifest.json";
 
@@ -79,10 +80,24 @@ fn remove_stale_outputs(
     for relative in previous.difference(expected) {
         validate_manifest_path(relative)?;
         let path = output.join(relative);
-        if path.exists() {
-            std::fs::remove_file(&path)
-                .with_context(|| format!("failed to remove stale output {}", path.display()))?;
-            remove_empty_parents(output, path.parent())?;
+        ensure_no_symlink_components(output, Path::new(relative))?;
+        match std::fs::symlink_metadata(&path) {
+            Ok(metadata) if metadata.file_type().is_symlink() => {
+                bail!(
+                    "refusing to remove stale output through symlink {}",
+                    path.display()
+                );
+            }
+            Ok(_) => {
+                std::fs::remove_file(&path)
+                    .with_context(|| format!("failed to remove stale output {}", path.display()))?;
+                remove_empty_parents(output, path.parent())?;
+            }
+            Err(error) if error.kind() == ErrorKind::NotFound => {}
+            Err(error) => {
+                return Err(error)
+                    .with_context(|| format!("failed to inspect stale output {}", path.display()));
+            }
         }
     }
     Ok(())
@@ -100,12 +115,40 @@ fn remove_empty_parents(output: &Path, mut current: Option<&Path>) -> anyhow::Re
         if path == output {
             break;
         }
+        if std::fs::symlink_metadata(path)?.file_type().is_symlink() {
+            bail!(
+                "refusing to inspect symlinked output directory {}",
+                path.display()
+            );
+        }
         if path.read_dir()?.next().is_some() {
             break;
         }
         std::fs::remove_dir(path)
             .with_context(|| format!("failed to remove empty directory {}", path.display()))?;
         current = path.parent();
+    }
+    Ok(())
+}
+
+fn ensure_no_symlink_components(output: &Path, relative: &Path) -> anyhow::Result<()> {
+    let mut current = PathBuf::from(output);
+    for component in relative.components() {
+        current.push(component);
+        match std::fs::symlink_metadata(&current) {
+            Ok(metadata) if metadata.file_type().is_symlink() => {
+                bail!(
+                    "refusing to remove stale output through symlink {}",
+                    current.display()
+                );
+            }
+            Ok(_) => {}
+            Err(error) if error.kind() == ErrorKind::NotFound => break,
+            Err(error) => {
+                return Err(error)
+                    .with_context(|| format!("failed to inspect {}", current.display()));
+            }
+        }
     }
     Ok(())
 }
