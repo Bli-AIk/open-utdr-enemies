@@ -54,6 +54,41 @@ fn loads_programs_recursively_sorted_by_path() {
 }
 
 #[test]
+fn accepts_safe_slug_with_directory_segments() {
+    let temp = TempDir::new().unwrap();
+    write_program(
+        &temp.path().join("finalfroggit.json"),
+        &program("core/finalfroggit", "Final Froggit"),
+    );
+
+    let programs = utrp::source::load_programs(temp.path()).unwrap();
+
+    assert_eq!(programs[0].slug, "core/finalfroggit");
+}
+
+#[test]
+fn rejects_unsafe_slugs() {
+    for slug in [
+        "../index",
+        "core/../x",
+        "core//x",
+        "Core/Foo",
+        "core/foo_bar",
+        "/absolute",
+    ] {
+        let temp = TempDir::new().unwrap();
+        write_program(&temp.path().join("bad.json"), &program(slug, "Bad"));
+
+        let error = utrp::source::load_programs(temp.path()).unwrap_err();
+
+        assert!(
+            error.to_string().contains("unsafe slug"),
+            "unexpected error for {slug}: {error}"
+        );
+    }
+}
+
+#[test]
 fn rejects_invalid_format() {
     let temp = TempDir::new().unwrap();
     let mut invalid = program("bad", "Bad");
@@ -63,6 +98,18 @@ fn rejects_invalid_format() {
     let error = utrp::source::load_programs(temp.path()).unwrap_err();
 
     assert!(error.to_string().contains("unsupported format"));
+}
+
+#[test]
+fn rejects_unsupported_version() {
+    let temp = TempDir::new().unwrap();
+    let mut invalid = program("future", "Future");
+    invalid.version = 2;
+    write_program(&temp.path().join("future.json"), &invalid);
+
+    let error = utrp::source::load_programs(temp.path()).unwrap_err();
+
+    assert!(error.to_string().contains("unsupported version"));
 }
 
 #[test]

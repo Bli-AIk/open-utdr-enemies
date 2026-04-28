@@ -35,6 +35,7 @@ impl ReviewInfo {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum ReviewAccuracy {
     NeedsSourceReview,
     Reviewed,
@@ -79,24 +80,28 @@ impl CoordinateSpace {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum CoordinateOrigin {
     TopLeft,
     Center,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum YAxis {
     Up,
     Down,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum RotationDirection {
     Clockwise,
     CounterClockwise,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum AngleUnit {
     Degrees,
     Radians,
@@ -120,6 +125,7 @@ impl VariableDef {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum VariableKind {
     Counter,
 }
@@ -144,6 +150,7 @@ impl SpriteAsset {
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
 #[serde(tag = "op")]
+#[serde(rename_all = "snake_case")]
 pub enum UpdateOp {
     Increment { variable: String, by: Expr },
 }
@@ -159,6 +166,7 @@ impl UpdateOp {
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
 #[serde(tag = "kind")]
+#[serde(rename_all = "snake_case")]
 pub enum DrawOp {
     Sprite(SpriteDraw),
 }

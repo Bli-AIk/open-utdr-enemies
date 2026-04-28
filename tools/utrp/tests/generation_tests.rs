@@ -35,6 +35,8 @@ fn serializes_minimal_render_program() {
 
     let json = serde_json::to_string_pretty(&program).unwrap();
     assert!(json.contains(r#""format": "utrp""#));
-    assert!(json.contains(r#""rotation": "CounterClockwise""#));
+    assert!(json.contains(r#""accuracy": "needs_source_review""#));
+    assert!(json.contains(r#""origin": "top_left""#));
+    assert!(json.contains(r#""rotation": "counter_clockwise""#));
     assert!(json.contains(r#""id": "head""#));
 }

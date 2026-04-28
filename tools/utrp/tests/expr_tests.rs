@@ -27,3 +27,19 @@ fn rejects_invalid_function_arity() {
     assert!(Expr::parse("sin()").is_err());
     assert!(Expr::parse("clamp(a, b)").is_err());
 }
+
+#[test]
+fn preserves_required_binary_parentheses() {
+    assert_eq!(Expr::parse("a * (b % c)").unwrap().to_gml(), "a * (b % c)");
+    assert_eq!(Expr::parse("a - (b - c)").unwrap().to_gml(), "a - (b - c)");
+    assert_eq!(Expr::parse("a / (b / c)").unwrap().to_gml(), "a / (b / c)");
+}
+
+#[test]
+fn renders_nested_unary_expressions() {
+    let nested = Expr::parse("-(-a)").unwrap();
+    assert_eq!(nested.to_gml(), "-(-a)");
+    assert_eq!(nested.to_js(), "-(-vars.a)");
+
+    assert_eq!(Expr::parse("-(a + b)").unwrap().to_gml(), "-(a + b)");
+}

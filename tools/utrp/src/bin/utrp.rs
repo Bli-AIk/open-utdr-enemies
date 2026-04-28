@@ -28,13 +28,7 @@ fn main() -> anyhow::Result<()> {
             output,
         } => {
             let programs = utrp::source::load_programs(&source)?;
-            for program in programs {
-                let path = output.join(format!("{}.json", program.slug));
-                if let Some(parent) = path.parent() {
-                    std::fs::create_dir_all(parent)?;
-                }
-                std::fs::write(path, serde_json::to_string_pretty(&program)? + "\n")?;
-            }
+            utrp::output::write_program_outputs(&programs, &output)?;
         }
         Command::Generate { all: false, .. } => anyhow::bail!("pass --all"),
     }

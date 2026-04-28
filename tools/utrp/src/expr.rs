@@ -45,9 +45,16 @@ impl Expr {
                 Target::Gml => name.clone(),
                 Target::Js => format!("vars.{name}"),
             },
-            Self::Unary { op, value } => format!("{op}{}", value.render(target, precedence)),
+            Self::Unary { op, value } => {
+                let value_parent = if matches!(value.as_ref(), Self::Unary { .. }) {
+                    precedence + 1
+                } else {
+                    precedence
+                };
+                format!("{op}{}", value.render(target, value_parent))
+            }
             Self::Binary { op, left, right } => {
-                let right_parent = if matches!(op.as_str(), "-" | "/" | "%") {
+                let right_parent = if matches!(op.as_str(), "-" | "/" | "%" | "*") {
                     precedence + 1
                 } else {
                     precedence
