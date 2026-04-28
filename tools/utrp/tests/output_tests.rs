@@ -72,6 +72,85 @@ fn generated_outputs_include_codegen_urls_without_mutating_sources() {
     );
 }
 
+#[test]
+fn codegen_outputs_write_framework_snippets() {
+    let temp = TempDir::new().unwrap();
+    let output = temp.path();
+
+    utrp::output::write_codegen_outputs(&[program("core/finalfroggit", "Final Froggit")], output)
+        .unwrap();
+
+    let gml = std::fs::read_to_string(output.join("core/finalfroggit.gml.txt")).unwrap();
+    let souprune =
+        std::fs::read_to_string(output.join("core/finalfroggit.souprune.rs.txt")).unwrap();
+
+    assert!(gml.contains("/// Final Froggit Create Event"));
+    assert!(gml.contains("/// Final Froggit Draw Event"));
+    assert!(souprune.contains("use souprune_schema::view::*;"));
+    assert!(souprune.contains("pub fn asset() -> ViewLayoutAsset"));
+}
+
+#[test]
+fn codegen_outputs_preserve_unowned_snippet_files() {
+    let temp = TempDir::new().unwrap();
+    let output = temp.path();
+    let manual = output.join("notes.gml.txt");
+    std::fs::write(&manual, "manual notes\n").unwrap();
+
+    utrp::output::write_codegen_outputs(&[program("core/finalfroggit", "Final Froggit")], output)
+        .unwrap();
+
+    assert_eq!(std::fs::read_to_string(&manual).unwrap(), "manual notes\n");
+    assert!(output.join("core/finalfroggit.gml.txt").exists());
+    assert!(output.join("core/finalfroggit.souprune.rs.txt").exists());
+}
+
+#[cfg(unix)]
+#[test]
+fn codegen_outputs_refuse_symlinked_output_directory_component() {
+    use std::os::unix::fs::symlink;
+
+    let temp = TempDir::new().unwrap();
+    let output = temp.path().join("output");
+    let outside = temp.path().join("outside");
+    std::fs::create_dir_all(&output).unwrap();
+    std::fs::create_dir_all(&outside).unwrap();
+    symlink(&outside, output.join("core")).unwrap();
+
+    let error = utrp::output::write_codegen_outputs(
+        &[program("core/finalfroggit", "Final Froggit")],
+        &output,
+    )
+    .unwrap_err();
+
+    assert!(error.to_string().contains("symlink"));
+    assert!(!outside.join("finalfroggit.gml.txt").exists());
+    assert!(!outside.join("finalfroggit.souprune.rs.txt").exists());
+}
+
+#[test]
+fn legacy_generation_manifest_migrates_to_new_manifest_filename() {
+    let temp = TempDir::new().unwrap();
+    let output = temp.path().join("output");
+    std::fs::create_dir_all(output.join("core")).unwrap();
+    std::fs::write(output.join("core/old.json"), "{}\n").unwrap();
+    std::fs::write(
+        output.join(".utrp-output-manifest.json"),
+        r#"{"files":["core/old.json"]}"#,
+    )
+    .unwrap();
+
+    utrp::output::write_program_outputs(&[program("core/new", "New")], &output).unwrap();
+
+    assert!(!output.join("core/old.json").exists());
+    assert!(output.join("core/new.json").exists());
+    assert!(!output.join(".utrp-output-manifest.json").exists());
+    let manifest =
+        std::fs::read_to_string(output.join(utrp::output::OUTPUT_MANIFEST_FILE)).unwrap();
+    assert!(manifest.contains("core/new.json"));
+    assert!(!manifest.contains("core/old.json"));
+}
+
 #[cfg(unix)]
 #[test]
 fn generated_write_refuses_symlinked_output_directory_component() {

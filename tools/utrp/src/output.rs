@@ -48,18 +48,6 @@ pub fn write_codegen_outputs(programs: &[RenderProgram], output: &Path) -> anyho
         .with_context(|| format!("failed to create {}", output.display()))?;
     ensure_not_symlink(output)?;
 
-    let expected = programs
-        .iter()
-        .flat_map(|program| {
-            [
-                codegen_relative_path(&program.slug, CodegenKind::Gml),
-                codegen_relative_path(&program.slug, CodegenKind::SoupRune),
-            ]
-        })
-        .collect::<anyhow::Result<BTreeSet<_>>>()?;
-
-    remove_stale_codegen_outputs(output, &expected)?;
-
     for program in programs {
         validate_slug(&program.slug)?;
         write_output_file(
@@ -191,52 +179,6 @@ fn remove_stale_outputs(
         }
     }
     Ok(())
-}
-
-fn remove_stale_codegen_outputs(output: &Path, expected: &BTreeSet<String>) -> anyhow::Result<()> {
-    let mut files = Vec::new();
-    collect_files(output, output, &mut files)?;
-    for relative in files {
-        if !is_codegen_output(&relative) || expected.contains(&relative) {
-            continue;
-        }
-        let path = output.join(&relative);
-        ensure_no_symlink_components(output, Path::new(&relative))?;
-        std::fs::remove_file(&path)
-            .with_context(|| format!("failed to remove stale generated code {}", path.display()))?;
-        remove_empty_parents(output, path.parent())?;
-    }
-    Ok(())
-}
-
-fn collect_files(output: &Path, current: &Path, files: &mut Vec<String>) -> anyhow::Result<()> {
-    for entry in std::fs::read_dir(current)
-        .with_context(|| format!("failed to read {}", current.display()))?
-    {
-        let entry = entry.with_context(|| format!("failed to read {}", current.display()))?;
-        let path = entry.path();
-        let metadata = std::fs::symlink_metadata(&path)
-            .with_context(|| format!("failed to inspect {}", path.display()))?;
-        if metadata.file_type().is_symlink() {
-            bail!(
-                "refusing to access output through symlink {}",
-                path.display()
-            );
-        }
-        if metadata.is_dir() {
-            collect_files(output, &path, files)?;
-        } else if metadata.is_file() {
-            let relative = path
-                .strip_prefix(output)
-                .with_context(|| format!("failed to relativize {}", path.display()))?;
-            files.push(relative.to_string_lossy().replace('\\', "/"));
-        }
-    }
-    Ok(())
-}
-
-fn is_codegen_output(relative: &str) -> bool {
-    relative.ends_with(".gml.txt") || relative.ends_with(".souprune.rs.txt")
 }
 
 fn validate_manifest_path(relative: &str) -> anyhow::Result<()> {
