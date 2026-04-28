@@ -60,4 +60,4 @@ y：y + 4
 角度：20 - gg * 20
 ```
 
-> **维护者注：** Glyde 的各部件在 GameMaker 中设有非默认的 sprite origin，用于控制缩放和旋转的锚点：右翅膀 origin (0, 42) 即左下角，左翅膀 origin (79, 82) 即右下角，天线 origin (7, 15) 近中心偏下。UTAF 实现中各部件的 `pivot` 均按 GM origin 设置以匹配原作缩放/旋转行为。
+> **维护者注：** Glyde 的各部件在 GameMaker 中设有非默认的 sprite origin，用于控制缩放和旋转的锚点：右翅膀 origin (0, 42) 即左下角，左翅膀 origin (79, 82) 即右下角，天线 origin (7, 15) 近中心偏下。UTRP 数据中各部件的 `pivot` 均按 GM origin 设置以匹配原作缩放/旋转行为。

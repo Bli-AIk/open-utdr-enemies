@@ -1,6 +1,6 @@
 +++
 title = "游戏引擎坐标系对照"
-description = "从 GameMaker 出发，对比各引擎的坐标系差异与 UTAF 格式的坐标约定。"
+description = "从 GameMaker 出发，对比各引擎的坐标系差异与 UTRP 数据的坐标约定。"
 date = 2026-04-18T00:00:00+08:00
 updated = 2026-04-18T00:00:00+08:00
 draft = false
@@ -10,7 +10,7 @@ template = "page.html"
 
 [extra]
 author = "Bli-AIk"
-lead = "GMS 坐标系是所有 UNDERTALE 原作坐标数据的基础。本文梳理 GMS 坐标定义，对比主流引擎差异，并说明 UTAF 格式的坐标约定。"
+lead = "GMS 坐标系是所有 UNDERTALE 原作坐标数据的基础。本文梳理 GMS 坐标定义，对比主流引擎差异，并说明 UTRP 数据的坐标约定。"
 toc = true
 top = false
 coord_preview = true
@@ -101,7 +101,7 @@ godot_rotation = -gms_angle * π / 180
 | 旋转正方向 | 逆时针 | **顺时针** |
 | 角度单位 | 度 | **弧度** |
 
-Canvas 2D 的 `ctx.rotate()` 遵循数学上"Y 轴向下时正角度 = 顺时针"的惯例。本站在渲染 UTAF 动画时，通过取反旋转角度来匹配 GMS 约定：
+Canvas 2D 的 `ctx.rotate()` 遵循数学上"Y 轴向下时正角度 = 顺时针"的惯例。本站在渲染 UTRP 动画时，通过取反旋转角度来匹配 GMS 约定：
 
 ```js
 ctx.rotate(-rot * Math.PI / 180);
@@ -163,7 +163,7 @@ Y 轴翻转虽然只有一处差异，但它会影响所有涉及 Y 坐标的数
 
 #### Bevy（2D 模式）
 
-> **社区适用框架**：[SoupRune](https://github.com/SoupRune/SoupRune)
+> **社区适用框架**：[SoupRune](https://github.com/Bli-AIk/souprune)
 
 | 属性 | GMS | Bevy 2D |
 |------|-----|---------|
@@ -260,9 +260,9 @@ Unreal 的 3D 坐标系与其他引擎差异最大：Z 轴朝上而非 Y 轴，X
 
 ---
 
-## UTAF 格式的坐标约定
+## UTRP 数据的坐标约定
 
-**UTAF（UT Animation Format）的所有坐标数据均以 GMS 坐标系为准。**
+**UTRP 动画数据的所有坐标均以 GMS 坐标系为准。**
 
 这意味着：
 
@@ -271,10 +271,10 @@ Unreal 的 3D 坐标系与其他引擎差异最大：Z 轴朝上而非 Y 轴，X
 - **轴点**：`pivot` 中的值直接来自 GMS 精灵的 Origin
 - **缩放**：`scale_x` 为负值时产生水平翻转，与 GMS 一致
 
-各平台在实现 UTAF 渲染器时，需要根据自身引擎的坐标约定做适配。例如本站使用 Canvas 2D 渲染，在应用旋转时取反角度并转换为弧度：
+各平台在实现 UTRP 渲染器时，需要根据自身引擎的坐标约定做适配。例如本站使用 Canvas 2D 渲染，在应用旋转时取反角度并转换为弧度：
 
 ```js
 ctx.rotate(-rot * Math.PI / 180);
 ```
 
-选择 GMS 坐标作为 UTAF 的标准，是因为所有原作数据（精灵轴点、绘制偏移、旋转角度）都直接来自 GameMaker 的 `data.win` 和 GML 源码，保持一致可以避免转换误差。
+选择 GMS 坐标作为 UTRP 数据的标准，是因为所有原作数据（精灵轴点、绘制偏移、旋转角度）都直接来自 GameMaker 的 `data.win` 和 GML 源码，保持一致可以避免转换误差。

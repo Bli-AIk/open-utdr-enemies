@@ -109,7 +109,7 @@ fn rejects_unsafe_slugs() {
 fn rejects_invalid_format() {
     let temp = TempDir::new().unwrap();
     let mut invalid = program("bad", "Bad");
-    invalid.format = "utaf".into();
+    invalid.format = "legacy".into();
     write_program(&temp.path().join("bad.json"), &invalid);
 
     let error = utrp::source::load_programs(temp.path()).unwrap_err();
