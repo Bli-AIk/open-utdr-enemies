@@ -163,7 +163,7 @@ The pre-configured target in this repository is:
 - Site title: `open-utdr-enemies`
 - Theme: `adidoks`
 - Default language: `zh`
-- Main navigation entries: `Docs` and `Articles`
+- Main navigation entries: `UNDERTALE`, `deltarune`, `Archive`, and `About`
 
 For initialization instructions within the repository, see
 [`content/docs/getting-started/introduction.md`](./content/docs/getting-started/introduction.md).

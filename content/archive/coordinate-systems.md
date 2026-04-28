@@ -2,7 +2,7 @@
 title = "游戏引擎坐标系对照"
 description = "从 GameMaker 出发，对比各引擎的坐标系差异与 UTRP 数据的坐标约定。"
 date = 2026-04-18T00:00:00+08:00
-updated = 2026-04-18T00:00:00+08:00
+updated = 2026-04-28T00:00:00+08:00
 draft = false
 weight = 20
 sort_by = "weight"
@@ -268,7 +268,7 @@ Unreal 的 3D 坐标系与其他引擎差异最大：Z 轴朝上而非 Y 轴，X
 
 - **原点与位置**：动画程序的 `origin` 与节点 `position` 都使用 GMS 的 Y-down 坐标语义
 - **旋转**：表达式中的 `rotation` 值遵循 GMS 的逆时针正方向、度数制
-- **轴点**：`pivot` 中的值直接来自 GMS 精灵的 Origin，缩放和旋转都围绕该点进行
+- **轴点**：`pivot` 表达 GMS 精灵 Origin 或从裁剪 PNG 补偿得到的等效轴点，缩放和旋转都围绕该点进行
 - **缩放**：`scale` 沿用 GMS 的倍率语义，负值会产生对应方向的翻转
 
 各平台在实现 UTRP 渲染器时，需要根据自身引擎的坐标约定做适配。例如本站使用 Canvas 2D 渲染，在应用旋转时取反角度并转换为弧度：
@@ -277,4 +277,4 @@ Unreal 的 3D 坐标系与其他引擎差异最大：Z 轴朝上而非 Y 轴，X
 ctx.rotate(-rot * Math.PI / 180);
 ```
 
-选择 GMS 坐标作为 UTRP 数据的标准，是因为所有原作数据（精灵轴点、绘制偏移、旋转角度）都直接来自 GameMaker 的 `data.win` 和 GML 源码，保持一致可以避免转换误差。
+选择 GMS 坐标作为 UTRP 源数据的语义，是为了让来自 GameMaker 的 sprite origin、绘制偏移和旋转表达式能够在各个后端中有统一解释。当前条目的准确性以各自 UTRP JSON 的 `review` 元数据为准；标记为需要源码复核的条目仍是 best-effort 重建。
