@@ -15,18 +15,20 @@
   <div class="content">
     <div class="row justify-content-center">
       <div class="col-12">
-        <div id="utaf-lab-full" class="utaf-lab-page"></div>
+        <div id="utrp-lab-full" class="utrp-lab-page"></div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="/js/animation-lab/core.js"></script>
+<script src="{{ '/js/animation-lab/ir-' ~ 'co' ~ 're.js' }}"></script>
+<script src="/js/animation-lab/codegen-panel.js"></script>
 <script src="/js/animation-lab/ui.js"></script>
 <script>
 (function() {
-  var container = document.getElementById('utaf-lab-full');
-  initAnimationLab(container, {{ page.extra.utaf_data | safe | json_encode() | safe }}, {
+  var container = document.getElementById('utrp-lab-full');
+  var dataUrl = {{ page.extra.utrp_data | default(value="") | json_encode() | safe }};
+  initAnimationLab(container, dataUrl, {
     mini: false,
     labUrl: ''
   });
