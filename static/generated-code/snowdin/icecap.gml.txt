@@ -1,0 +1,19 @@
+/// Icecap UTRP GameMaker starter
+/// Source slug: snowdin/icecap
+/// Canvas: 252x382 at 2.0x draw scale
+/// Asset map:
+/// - icecap_body => /sprites/icecap/body_0.png (placeholder sprite: spr_icecap_body)
+///   frame: /sprites/icecap/body_1.png
+///   frame: /sprites/icecap/body_2.png
+///   frame: /sprites/icecap/body_3.png
+
+/// Icecap Create Event
+siner = 1.0;
+
+/// Icecap Step Event
+siner += 1.0;
+
+/// Icecap Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: body
+draw_sprite_ext(spr_icecap_body, floor(siner * 0.1) % 4.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

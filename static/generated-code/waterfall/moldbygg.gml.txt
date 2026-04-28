@@ -1,0 +1,16 @@
+/// Moldbygg UTRP GameMaker starter
+/// Source slug: waterfall/moldbygg
+/// Canvas: 130x122 at 2.0x draw scale
+/// Asset map:
+/// - moldbygg_body => /sprites/moldbygg/body.png (placeholder sprite: spr_moldbygg_body)
+
+/// Moldbygg Create Event
+// No UTRP variables are defined for this program.
+
+/// Moldbygg Step Event
+// No UTRP update operations are defined for this program.
+
+/// Moldbygg Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: body
+draw_sprite_ext(spr_moldbygg_body, 0.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

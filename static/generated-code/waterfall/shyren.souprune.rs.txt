@@ -1,0 +1,58 @@
+use anyhow::Result;
+use souprune_schema::view::*;
+use souprune_vessel::prelude::*;
+
+// UTRP SoupRune starter for Shyren (waterfall/shyren)
+// TODO: confirm runtime expression variable bindings before marking source-exact.
+pub fn emit(reg: &mut Registry) -> Result<()> {
+    reg.emit_auto(file!(), &asset())
+}
+
+pub fn asset() -> ViewLayoutAsset {
+    ViewLayoutAsset {
+        roots: vec![
+            ViewNodeDef {
+                name: "shyren_agent".into(),
+                tags: vec!["utrp".into(), "waterfall/shyren".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-15.0), expression("-90.0 + (sin(siner / 5.0) * 3.0)"), static_float(0.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/shyren/agent.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "shyren_body".into(),
+                tags: vec!["utrp".into(), "waterfall/shyren".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(0.0), static_float(30.0), static_float(1.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/shyren/body.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ],
+        requires: Vec::new(),
+        facts: None,
+        world_space: false,
+        coordinate_system: CoordinateSystem::YDown,
+        coordinate_space: Some(CoordinateSpaceDef {
+            axis_origin: vector2(static_float(0.0), static_float(0.0)),
+            y_axis: YAxisDirectionDef::Down,
+            rotation: RotationDirectionDef::CounterClockwise,
+            extent: CoordinateExtentDef::Explicit((240.0, 328.0)),
+        }),
+    }
+}

@@ -1,0 +1,74 @@
+use anyhow::Result;
+use souprune_schema::view::*;
+use souprune_vessel::prelude::*;
+
+// UTRP SoupRune starter for Woshua (waterfall/woshua)
+// TODO: confirm runtime expression variable bindings before marking source-exact.
+pub fn emit(reg: &mut Registry) -> Result<()> {
+    reg.emit_auto(file!(), &asset())
+}
+
+pub fn asset() -> ViewLayoutAsset {
+    ViewLayoutAsset {
+        roots: vec![
+            ViewNodeDef {
+                name: "woshua_body".into(),
+                tags: vec!["utrp".into(), "waterfall/woshua".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(0.0), static_float(20.0), static_float(0.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/woshua/body.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "woshua_head".into(),
+                tags: vec!["utrp".into(), "waterfall/woshua".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-12.0), static_float(-35.0), static_float(1.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/woshua/head.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "woshua_face".into(),
+                tags: vec!["utrp".into(), "waterfall/woshua".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-2.0), static_float(-28.0), static_float(2.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/woshua/face.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ],
+        requires: Vec::new(),
+        facts: None,
+        world_space: false,
+        coordinate_system: CoordinateSystem::YDown,
+        coordinate_space: Some(CoordinateSpaceDef {
+            axis_origin: vector2(static_float(0.0), static_float(0.0)),
+            y_axis: YAxisDirectionDef::Down,
+            rotation: RotationDirectionDef::CounterClockwise,
+            extent: CoordinateExtentDef::Explicit((108.0, 154.0)),
+        }),
+    }
+}

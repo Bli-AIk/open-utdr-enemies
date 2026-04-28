@@ -1,0 +1,46 @@
+/// So Sorry UTRP GameMaker starter
+/// Source slug: hotland/so-sorry
+/// Canvas: 290x400 at 2.0x draw scale
+/// Asset map:
+/// - sosorry_tail => /sprites/so-sorry/sosorry_tail.png (placeholder sprite: spr_sosorry_tail)
+/// - sosorry_leg => /sprites/so-sorry/sosorry_leg.png (placeholder sprite: spr_sosorry_leg)
+/// - sosorry_leg_r => /sprites/so-sorry/sosorry_leg_r.png (placeholder sprite: spr_sosorry_leg_r)
+/// - sosorry_body => /sprites/so-sorry/sosorry_body.png (placeholder sprite: spr_sosorry_body)
+/// - sosorry_arm => /sprites/so-sorry/sosorry_arm.png (placeholder sprite: spr_sosorry_arm)
+/// - sosorry_arm_r => /sprites/so-sorry/sosorry_arm_r.png (placeholder sprite: spr_sosorry_arm_r)
+/// - sosorry_head => /sprites/so-sorry/sosorry_head.png (placeholder sprite: spr_sosorry_head)
+/// - sosorry_face => /sprites/so-sorry/sosorry_face.png (placeholder sprite: spr_sosorry_face)
+/// - sosorry_ear => /sprites/so-sorry/sosorry_ear.png (placeholder sprite: spr_sosorry_ear)
+/// - sosorry_ear_r => /sprites/so-sorry/sosorry_ear_r.png (placeholder sprite: spr_sosorry_ear_r)
+/// - sosorry_hat => /sprites/so-sorry/sosorry_hat.png (placeholder sprite: spr_sosorry_hat)
+
+/// So Sorry Create Event
+siner = 1.0;
+
+/// So Sorry Step Event
+siner += 1.0;
+
+/// So Sorry Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: tail
+draw_sprite_ext(spr_sosorry_tail, 0.0, 1.0 + (sin(siner / 12.0) * 46.0), 68.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: leg_left
+draw_sprite_ext(spr_sosorry_leg, 0.0, -12.0 + (sin(siner / 6.0) * -2.0), 150.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: leg_right
+draw_sprite_ext(spr_sosorry_leg_r, 0.0, -4.0 + (sin(siner / 6.0) * 2.0), 150.0, __utrp_scale * (-1.0), __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 3: body
+draw_sprite_ext(spr_sosorry_body, 0.0, 15.0, 36.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 4: arm_left
+draw_sprite_ext(spr_sosorry_arm, 0.0, -90.0 + (sin(siner / 3.0) * 2.0), -18.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 5: arm_right
+draw_sprite_ext(spr_sosorry_arm_r, 0.0, 90.0 + (sin(siner / 3.0) * -2.0), -18.0, __utrp_scale * (-1.0), __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 6: head
+draw_sprite_ext(spr_sosorry_head, 0.0, 10.0, -100.0 + (sin(siner / 6.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 7: face
+draw_sprite_ext(spr_sosorry_face, 0.0, -16.0, -90.0 + (sin(siner / 6.0) * 4.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 8: ear_left
+draw_sprite_ext(spr_sosorry_ear, 0.0, -75.0, -168.0 + (sin(siner / 6.0) * 1.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 9: ear_right
+draw_sprite_ext(spr_sosorry_ear_r, 0.0, 53.0, -168.0 + (sin(siner / 6.0) * 1.0), __utrp_scale * (-1.0), __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 10: hat
+draw_sprite_ext(spr_sosorry_hat, 0.0, -19.0, -149.0 + (sin(siner / 6.0) * 5.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

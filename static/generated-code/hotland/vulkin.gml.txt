@@ -1,0 +1,28 @@
+/// Vulkin UTRP GameMaker starter
+/// Source slug: hotland/vulkin
+/// Canvas: 182x262 at 2.0x draw scale
+/// Asset map:
+/// - vulkin_feetback => /sprites/vulkin/feetback.png (placeholder sprite: spr_vulkin_feetback)
+/// - vulkin_body => /sprites/vulkin/body.png (placeholder sprite: spr_vulkin_body)
+/// - vulkin_lava => /sprites/vulkin/lava.png (placeholder sprite: spr_vulkin_lava)
+/// - vulkin_face => /sprites/vulkin/face.png (placeholder sprite: spr_vulkin_face)
+/// - vulkin_feetfront => /sprites/vulkin/feetfront.png (placeholder sprite: spr_vulkin_feetfront)
+
+/// Vulkin Create Event
+siner = 1.0;
+
+/// Vulkin Step Event
+siner += 1.0;
+
+/// Vulkin Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: feet_back
+draw_sprite_ext(spr_vulkin_feetback, 0.0, -37.0 + (cos(siner / 6.0) * 2.0), 101.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: body
+draw_sprite_ext(spr_vulkin_body, 0.0, -21.0, -57.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: lava
+draw_sprite_ext(spr_vulkin_lava, 0.0, 26.0, -71.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 3: face
+draw_sprite_ext(spr_vulkin_face, 0.0, 44.0 + (sin(siner / 12.0) * 7.0), 7.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 4: feet_front
+draw_sprite_ext(spr_vulkin_feetfront, 0.0, -37.0 + (sin(siner / 6.0) * 2.0), 102.0 + (cos(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

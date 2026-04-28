@@ -1,0 +1,70 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "waterfall/aaron",
+  "name": "Aaron",
+  "fps": 30,
+  "canvas": {
+    "width": 160,
+    "height": 240,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "aaron_body",
+      "path": "/sprites/aaron/aaronbody.png",
+      "frames": [
+        "/sprites/aaron/aaronbody.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "aaron_body",
+      "origin": {
+        "x": -57.0,
+        "y": -100.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 30.0) * 9.0"
+      },
+      "draw_order": 0
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/waterfall/aaron.gml.txt",
+    "SoupRune": "/generated-code/waterfall/aaron.souprune.rs.txt"
+  }
+}

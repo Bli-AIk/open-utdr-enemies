@@ -6,7 +6,8 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::io::{Error, ErrorKind};
 use std::path::{Path, PathBuf};
 
-pub const OUTPUT_MANIFEST_FILE: &str = ".utrp-output-manifest.json";
+pub const OUTPUT_MANIFEST_FILE: &str = ".utrp-output-manifest";
+const LEGACY_OUTPUT_MANIFEST_FILE: &str = ".utrp-output-manifest.json";
 
 #[derive(Debug, Default, Deserialize, Serialize)]
 struct OutputManifest {
@@ -29,31 +30,71 @@ pub fn write_program_outputs(programs: &[RenderProgram], output: &Path) -> anyho
     for program in programs {
         validate_slug(&program.slug)?;
         let relative = output_relative_path(&program.slug)?;
-        let path = output.join(&relative);
-        if let Some(parent) = Path::new(&relative).parent() {
-            ensure_no_symlink_components(output, parent)?;
-        }
-        if let Some(parent) = path.parent() {
-            std::fs::create_dir_all(parent)
-                .with_context(|| format!("failed to create {}", parent.display()))?;
-        }
-        ensure_no_symlink_components(output, Path::new(&relative))?;
         let generated = with_codegen_urls(program);
-        std::fs::write(
-            &path,
-            serde_json::to_string_pretty(&generated)
+        write_output_file(
+            output,
+            &relative,
+            &(serde_json::to_string_pretty(&generated)
                 .with_context(|| format!("failed to serialize {}", program.slug))?
-                + "\n",
-        )
-        .with_context(|| format!("failed to write {}", path.display()))?;
+                + "\n"),
+        )?;
     }
 
     write_manifest(output, expected)
 }
 
+pub fn write_codegen_outputs(programs: &[RenderProgram], output: &Path) -> anyhow::Result<()> {
+    std::fs::create_dir_all(output)
+        .with_context(|| format!("failed to create {}", output.display()))?;
+    ensure_not_symlink(output)?;
+
+    let expected = programs
+        .iter()
+        .flat_map(|program| {
+            [
+                codegen_relative_path(&program.slug, CodegenKind::Gml),
+                codegen_relative_path(&program.slug, CodegenKind::SoupRune),
+            ]
+        })
+        .collect::<anyhow::Result<BTreeSet<_>>>()?;
+
+    remove_stale_codegen_outputs(output, &expected)?;
+
+    for program in programs {
+        validate_slug(&program.slug)?;
+        write_output_file(
+            output,
+            &codegen_relative_path(&program.slug, CodegenKind::Gml)?,
+            &crate::codegen::gml::generate(program),
+        )?;
+        write_output_file(
+            output,
+            &codegen_relative_path(&program.slug, CodegenKind::SoupRune)?,
+            &crate::codegen::souprune::generate(program),
+        )?;
+    }
+
+    Ok(())
+}
+
 fn output_relative_path(slug: &str) -> anyhow::Result<String> {
     validate_slug(slug)?;
     Ok(format!("{slug}.json"))
+}
+
+#[derive(Clone, Copy)]
+enum CodegenKind {
+    Gml,
+    SoupRune,
+}
+
+fn codegen_relative_path(slug: &str, kind: CodegenKind) -> anyhow::Result<String> {
+    validate_slug(slug)?;
+    let extension = match kind {
+        CodegenKind::Gml => "gml.txt",
+        CodegenKind::SoupRune => "souprune.rs.txt",
+    };
+    Ok(format!("{slug}.{extension}"))
 }
 
 fn with_codegen_urls(program: &RenderProgram) -> RenderProgram {
@@ -72,7 +113,7 @@ fn with_codegen_urls(program: &RenderProgram) -> RenderProgram {
 }
 
 fn read_manifest(output: &Path) -> anyhow::Result<BTreeSet<String>> {
-    let path = output.join(OUTPUT_MANIFEST_FILE);
+    let path = manifest_path(output)?;
     match std::fs::symlink_metadata(&path) {
         Ok(metadata) if metadata.file_type().is_symlink() => {
             bail!(
@@ -116,7 +157,9 @@ fn write_manifest(output: &Path, files: BTreeSet<String>) -> anyhow::Result<()> 
         files: files.into_iter().collect(),
     };
     std::fs::write(&path, serde_json::to_string_pretty(&manifest)? + "\n")
-        .with_context(|| format!("failed to write {}", path.display()))
+        .with_context(|| format!("failed to write {}", path.display()))?;
+    remove_legacy_manifest(output)?;
+    Ok(())
 }
 
 fn remove_stale_outputs(
@@ -150,6 +193,52 @@ fn remove_stale_outputs(
     Ok(())
 }
 
+fn remove_stale_codegen_outputs(output: &Path, expected: &BTreeSet<String>) -> anyhow::Result<()> {
+    let mut files = Vec::new();
+    collect_files(output, output, &mut files)?;
+    for relative in files {
+        if !is_codegen_output(&relative) || expected.contains(&relative) {
+            continue;
+        }
+        let path = output.join(&relative);
+        ensure_no_symlink_components(output, Path::new(&relative))?;
+        std::fs::remove_file(&path)
+            .with_context(|| format!("failed to remove stale generated code {}", path.display()))?;
+        remove_empty_parents(output, path.parent())?;
+    }
+    Ok(())
+}
+
+fn collect_files(output: &Path, current: &Path, files: &mut Vec<String>) -> anyhow::Result<()> {
+    for entry in std::fs::read_dir(current)
+        .with_context(|| format!("failed to read {}", current.display()))?
+    {
+        let entry = entry.with_context(|| format!("failed to read {}", current.display()))?;
+        let path = entry.path();
+        let metadata = std::fs::symlink_metadata(&path)
+            .with_context(|| format!("failed to inspect {}", path.display()))?;
+        if metadata.file_type().is_symlink() {
+            bail!(
+                "refusing to access output through symlink {}",
+                path.display()
+            );
+        }
+        if metadata.is_dir() {
+            collect_files(output, &path, files)?;
+        } else if metadata.is_file() {
+            let relative = path
+                .strip_prefix(output)
+                .with_context(|| format!("failed to relativize {}", path.display()))?;
+            files.push(relative.to_string_lossy().replace('\\', "/"));
+        }
+    }
+    Ok(())
+}
+
+fn is_codegen_output(relative: &str) -> bool {
+    relative.ends_with(".gml.txt") || relative.ends_with(".souprune.rs.txt")
+}
+
 fn validate_manifest_path(relative: &str) -> anyhow::Result<()> {
     let slug = relative
         .strip_suffix(".json")
@@ -176,6 +265,60 @@ fn remove_empty_parents(output: &Path, mut current: Option<&Path>) -> anyhow::Re
         current = path.parent();
     }
     Ok(())
+}
+
+fn write_output_file(output: &Path, relative: &str, contents: &str) -> anyhow::Result<()> {
+    let relative_path = Path::new(relative);
+    let path = output.join(relative_path);
+    if let Some(parent) = relative_path.parent() {
+        ensure_no_symlink_components(output, parent)?;
+    }
+    if let Some(parent) = path.parent() {
+        std::fs::create_dir_all(parent)
+            .with_context(|| format!("failed to create {}", parent.display()))?;
+    }
+    ensure_no_symlink_components(output, relative_path)?;
+    std::fs::write(&path, contents).with_context(|| format!("failed to write {}", path.display()))
+}
+
+fn manifest_path(output: &Path) -> anyhow::Result<PathBuf> {
+    let path = output.join(OUTPUT_MANIFEST_FILE);
+    match std::fs::symlink_metadata(&path) {
+        Ok(_) => return Ok(path),
+        Err(error) if error.kind() == ErrorKind::NotFound => {}
+        Err(error) => {
+            return Err(error)
+                .with_context(|| format!("failed to inspect manifest {}", path.display()));
+        }
+    }
+
+    let legacy = output.join(LEGACY_OUTPUT_MANIFEST_FILE);
+    match std::fs::symlink_metadata(&legacy) {
+        Ok(_) => Ok(legacy),
+        Err(error) if error.kind() == ErrorKind::NotFound => Ok(path),
+        Err(error) => {
+            Err(error).with_context(|| format!("failed to inspect manifest {}", legacy.display()))
+        }
+    }
+}
+
+fn remove_legacy_manifest(output: &Path) -> anyhow::Result<()> {
+    let legacy = output.join(LEGACY_OUTPUT_MANIFEST_FILE);
+    match std::fs::symlink_metadata(&legacy) {
+        Ok(metadata) if metadata.file_type().is_symlink() => {
+            bail!(
+                "refusing to remove legacy manifest through symlink {}",
+                legacy.display()
+            );
+        }
+        Ok(metadata) if metadata.is_file() => std::fs::remove_file(&legacy)
+            .with_context(|| format!("failed to remove legacy manifest {}", legacy.display())),
+        Ok(_) => Ok(()),
+        Err(error) if error.kind() == ErrorKind::NotFound => Ok(()),
+        Err(error) => {
+            Err(error).with_context(|| format!("failed to inspect manifest {}", legacy.display()))
+        }
+    }
 }
 
 fn ensure_no_symlink_components(output: &Path, relative: &Path) -> anyhow::Result<()> {

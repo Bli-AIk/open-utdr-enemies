@@ -1,0 +1,25 @@
+/// Mad Dummy UTRP GameMaker starter
+/// Source slug: waterfall/mad-dummy
+/// Canvas: 110x186 at 2.0x draw scale
+/// Asset map:
+/// - maddummy_base => /sprites/mad-dummy/maddummy_base.png (placeholder sprite: spr_maddummy_base)
+/// - maddummy_leg => /sprites/mad-dummy/maddummy_leg.png (placeholder sprite: spr_maddummy_leg)
+/// - maddummy_torso => /sprites/mad-dummy/maddummy_torso.png (placeholder sprite: spr_maddummy_torso)
+/// - maddummy_head => /sprites/mad-dummy/maddummy_head.png (placeholder sprite: spr_maddummy_head)
+
+/// Mad Dummy Create Event
+siner = 1.0;
+
+/// Mad Dummy Step Event
+siner += 1.0;
+
+/// Mad Dummy Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: base
+draw_sprite_ext(spr_maddummy_base, 0.0, -14.0, 60.0, __utrp_scale, __utrp_scale, sin(siner / 7.5) * -3.0, c_white, 1.0);
+// draw_order 1: leg
+draw_sprite_ext(spr_maddummy_leg, 0.0, 10.0, 40.0, __utrp_scale, __utrp_scale, sin(siner / 7.5), c_white, 1.0);
+// draw_order 2: torso
+draw_sprite_ext(spr_maddummy_torso, 0.0, -16.0, -13.0 + (sin(siner / 7.5) * 0.75), __utrp_scale, __utrp_scale, sin(siner / 7.5) * 1.5, c_white, 1.0);
+// draw_order 3: head
+draw_sprite_ext(spr_maddummy_head, 0.0, -4.0 + (sin(siner / 7.5) * -1.0), -56.0 + (sin(siner / 7.5)), __utrp_scale, __utrp_scale, sin(siner / 7.5) * 3.0, c_white, 1.0);

@@ -1,0 +1,42 @@
+use anyhow::Result;
+use souprune_schema::view::*;
+use souprune_vessel::prelude::*;
+
+// UTRP SoupRune starter for Aaron (waterfall/aaron)
+// TODO: confirm runtime expression variable bindings before marking source-exact.
+pub fn emit(reg: &mut Registry) -> Result<()> {
+    reg.emit_auto(file!(), &asset())
+}
+
+pub fn asset() -> ViewLayoutAsset {
+    ViewLayoutAsset {
+        roots: vec![
+            ViewNodeDef {
+                name: "aaron_body".into(),
+                tags: vec!["utrp".into(), "waterfall/aaron".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-57.0), expression("-100.0 + (sin(siner / 30.0) * 9.0)"), static_float(0.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/aaron/aaronbody.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ],
+        requires: Vec::new(),
+        facts: None,
+        world_space: false,
+        coordinate_system: CoordinateSystem::YDown,
+        coordinate_space: Some(CoordinateSpaceDef {
+            axis_origin: vector2(static_float(0.0), static_float(0.0)),
+            y_axis: YAxisDirectionDef::Down,
+            rotation: RotationDirectionDef::CounterClockwise,
+            extent: CoordinateExtentDef::Explicit((160.0, 240.0)),
+        }),
+    }
+}

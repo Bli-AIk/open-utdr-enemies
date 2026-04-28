@@ -1,0 +1,144 @@
+use anyhow::Result;
+use souprune_schema::view::*;
+use souprune_vessel::prelude::*;
+
+// UTRP SoupRune starter for Parsnik (ruins/parsnik)
+// TODO: confirm runtime expression variable bindings before marking source-exact.
+pub fn emit(reg: &mut Registry) -> Result<()> {
+    reg.emit_auto(file!(), &asset())
+}
+
+pub fn asset() -> ViewLayoutAsset {
+    ViewLayoutAsset {
+        roots: vec![
+            ViewNodeDef {
+                name: "parsnik_headwrap".into(),
+                tags: vec!["utrp".into(), "ruins/parsnik".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-38.0), expression("-38.0 + (sin(1.5 + siner / 5.0) * 2.0)"), static_float(0.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/parsnik/headwrap.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner / 6.0) % 4.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "parsnik_snake1".into(),
+                tags: vec!["utrp".into(), "ruins/parsnik".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-20.0), expression("-10.0 + (sin(siner / 5.0) * 1.5)"), static_float(1.0))),
+                    rotation: Some(expression("sin(siner / 5.0) * 6.0")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/parsnik/snake1_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(16.0), static_float(19.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor((siner + 8.0) / 6.0) % 4.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "parsnik_snake5".into(),
+                tags: vec!["utrp".into(), "ruins/parsnik".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(22.0), expression("-10.0 + (sin(2.0 + siner / 5.0) * 1.5)"), static_float(2.0))),
+                    rotation: Some(expression("-sin(2.0 + siner / 5.0) * 6.0")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/parsnik/snake5_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(18.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor((siner + 2.0) / 5.5) % 4.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "parsnik_snake2".into(),
+                tags: vec!["utrp".into(), "ruins/parsnik".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-14.0), expression("-16.0 + (sin(0.5 + siner / 5.0) * 1.5)"), static_float(3.0))),
+                    rotation: Some(expression("sin(siner / 5.0) * 2.0")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/parsnik/snake2_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(8.0), static_float(18.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor((siner + 6.0) / 5.5) % 4.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "parsnik_snake4".into(),
+                tags: vec!["utrp".into(), "ruins/parsnik".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(8.0), expression("-16.0 + (sin(1.5 + siner / 5.0) * 1.5)"), static_float(4.0))),
+                    rotation: Some(expression("-sin(siner / 5.0) * 2.0")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/parsnik/snake4_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(19.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor((siner + 4.0) / 5.0) % 4.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "parsnik_snake3".into(),
+                tags: vec!["utrp".into(), "ruins/parsnik".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(0.0), expression("-12.0 + (sin(1.0 + siner / 5.0) * 1.5)"), static_float(5.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/parsnik/snake3_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(8.0), static_float(34.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner / 12.0) % 4.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "parsnik_head".into(),
+                tags: vec!["utrp".into(), "ruins/parsnik".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-28.0), static_float(-16.0), static_float(6.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/parsnik/head_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ],
+        requires: Vec::new(),
+        facts: None,
+        world_space: false,
+        coordinate_system: CoordinateSystem::YDown,
+        coordinate_space: Some(CoordinateSpaceDef {
+            axis_origin: vector2(static_float(0.0), static_float(0.0)),
+            y_axis: YAxisDirectionDef::Down,
+            rotation: RotationDirectionDef::CounterClockwise,
+            extent: CoordinateExtentDef::Explicit((164.0, 174.0)),
+        }),
+    }
+}

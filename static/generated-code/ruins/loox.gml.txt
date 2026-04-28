@@ -1,0 +1,20 @@
+/// Loox UTRP GameMaker starter
+/// Source slug: ruins/loox
+/// Canvas: 240x272 at 2.0x draw scale
+/// Asset map:
+/// - loox_body => /sprites/loox/body_0.png (placeholder sprite: spr_loox_body)
+///   frame: /sprites/loox/body_1.png
+///   frame: /sprites/loox/body_2.png
+///   frame: /sprites/loox/body_3.png
+///   frame: /sprites/loox/body_4.png
+
+/// Loox Create Event
+siner = 1.0;
+
+/// Loox Step Event
+siner += 1.0;
+
+/// Loox Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: body
+draw_sprite_ext(spr_loox_body, floor(clamp(siner % 30.0 - 20.0, 0.0, 10.0) * 0.5), 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

@@ -1,0 +1,69 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/migosp",
+  "name": "Migosp",
+  "fps": 30,
+  "canvas": {
+    "width": 184,
+    "height": 236,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
+      "Previous animation data included states (happy, normal); state switching awaits the UTRP runtime state model."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "migosp_body",
+      "path": "/sprites/migosp/body_0.png",
+      "frames": [
+        "/sprites/migosp/body_0.png",
+        "/sprites/migosp/body_1.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "migosp_body",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": null,
+      "transform": {
+        "frame_index": "floor(clamp(siner % 40.0 - 30.0, 0.0, 10.0) * 0.5)"
+      },
+      "draw_order": 0
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/ruins/migosp.gml.txt",
+    "SoupRune": "/generated-code/ruins/migosp.souprune.rs.txt"
+  }
+}

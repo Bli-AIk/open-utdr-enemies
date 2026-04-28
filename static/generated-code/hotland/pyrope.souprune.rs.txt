@@ -1,0 +1,170 @@
+use anyhow::Result;
+use souprune_schema::view::*;
+use souprune_vessel::prelude::*;
+
+// UTRP SoupRune starter for Pyrope (hotland/pyrope)
+// TODO: confirm runtime expression variable bindings before marking source-exact.
+pub fn emit(reg: &mut Registry) -> Result<()> {
+    reg.emit_auto(file!(), &asset())
+}
+
+pub fn asset() -> ViewLayoutAsset {
+    ViewLayoutAsset {
+        roots: vec![
+            ViewNodeDef {
+                name: "pyrope_foot_left".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-5.0), expression("156.0 + (sin(siner / 14.0) * -10.0)"), static_float(0.0))),
+                    rotation: Some(expression("sin(siner / 14.0) * 20.0")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/footl.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_foot_right".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(39.0), expression("156.0 + (sin(siner / 14.0) * -10.0)"), static_float(1.0))),
+                    rotation: Some(expression("sin(siner / 14.0) * -20.0")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/footr.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_body5".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-92.0), expression("108.0 + (sin(siner / 14.0) * 3.0)"), static_float(2.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/body5.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_body4".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-89.0), expression("64.0 + (sin(siner / 14.0) * 3.0)"), static_float(3.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/body4.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_body3".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-85.0), expression("22.0 + (sin(siner / 14.0) * 3.0)"), static_float(4.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/body3.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_body2".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-79.0), expression("-20.0 + (sin(siner / 14.0) * 3.0)"), static_float(5.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/body2.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_body1".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-68.0), expression("-60.0 + (sin(siner / 14.0) * 3.0)"), static_float(6.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/body1.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_body0".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-57.0), expression("-100.0 + (sin(siner / 14.0) * 3.0)"), static_float(7.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/body0.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "pyrope_head".into(),
+                tags: vec!["utrp".into(), "hotland/pyrope".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(50.0), static_float(-118.0), static_float(8.0))),
+                    rotation: Some(expression("sin(siner / 6.0) * 4.0")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/pyrope/head.png".into()),
+                    color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ],
+        requires: Vec::new(),
+        facts: None,
+        world_space: false,
+        coordinate_system: CoordinateSystem::YDown,
+        coordinate_space: Some(CoordinateSpaceDef {
+            axis_origin: vector2(static_float(0.0), static_float(0.0)),
+            y_axis: YAxisDirectionDef::Down,
+            rotation: RotationDirectionDef::CounterClockwise,
+            extent: CoordinateExtentDef::Explicit((252.0, 376.0)),
+        }),
+    }
+}

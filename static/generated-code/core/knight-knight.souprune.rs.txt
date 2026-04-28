@@ -1,0 +1,122 @@
+use anyhow::Result;
+use souprune_schema::view::*;
+use souprune_vessel::prelude::*;
+
+// UTRP SoupRune starter for Knight Knight (core/knight-knight)
+// TODO: confirm runtime expression variable bindings before marking source-exact.
+pub fn emit(reg: &mut Registry) -> Result<()> {
+    reg.emit_auto(file!(), &asset())
+}
+
+pub fn asset() -> ViewLayoutAsset {
+    ViewLayoutAsset {
+        roots: vec![
+            ViewNodeDef {
+                name: "knight_knight_eyes".into(),
+                tags: vec!["utrp".into(), "core/knight-knight".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("-11.0 + (sin(siner / 10.0) * 6.0)"), static_float(-31.0), static_float(0.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/knight-knight/knightknight_eyes.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "knight_knight_body".into(),
+                tags: vec!["utrp".into(), "core/knight-knight".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-105.0), static_float(-101.0), static_float(1.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/knight-knight/knightknight_body.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(-24.0), static_float(-17.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "knight_knight_helmet".into(),
+                tags: vec!["utrp".into(), "core/knight-knight".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-35.0), static_float(-99.0), static_float(2.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/knight-knight/knightknight_helmet.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(-1.0), static_float(-2.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "knight_knight_mouth".into(),
+                tags: vec!["utrp".into(), "core/knight-knight".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-7.0), static_float(-17.0), static_float(3.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/knight-knight/knightknight_mouth.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(-3.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "knight_knight_fur".into(),
+                tags: vec!["utrp".into(), "core/knight-knight".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-41.0), static_float(-5.0), static_float(4.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/knight-knight/knightknight_fur.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "knight_knight_leftarm".into(),
+                tags: vec!["utrp".into(), "core/knight-knight".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-105.0), static_float(-101.0), static_float(5.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/knight-knight/knightknight_leftarm.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(-1.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ],
+        requires: Vec::new(),
+        facts: None,
+        world_space: false,
+        coordinate_system: CoordinateSystem::YDown,
+        coordinate_space: Some(CoordinateSpaceDef {
+            axis_origin: vector2(static_float(0.0), static_float(0.0)),
+            y_axis: YAxisDirectionDef::Down,
+            rotation: RotationDirectionDef::CounterClockwise,
+            extent: CoordinateExtentDef::Explicit((224.0, 332.0)),
+        }),
+    }
+}

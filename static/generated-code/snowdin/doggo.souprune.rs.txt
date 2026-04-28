@@ -1,0 +1,91 @@
+use anyhow::Result;
+use souprune_schema::view::*;
+use souprune_vessel::prelude::*;
+
+// UTRP SoupRune starter for Doggo (snowdin/doggo)
+// TODO: confirm runtime expression variable bindings before marking source-exact.
+pub fn emit(reg: &mut Registry) -> Result<()> {
+    reg.emit_auto(file!(), &asset())
+}
+
+pub fn asset() -> ViewLayoutAsset {
+    ViewLayoutAsset {
+        roots: vec![
+            ViewNodeDef {
+                name: "doggo_tail".into(),
+                tags: vec!["utrp".into(), "snowdin/doggo".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-66.0), static_float(-125.0), static_float(0.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/doggo/tail.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "doggo_body".into(),
+                tags: vec!["utrp".into(), "snowdin/doggo".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-66.0), static_float(-125.0), static_float(1.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/doggo/body.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "doggo_arms".into(),
+                tags: vec!["utrp".into(), "snowdin/doggo".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-66.0), expression("-133.0 + (sin(siner / 4.5) * 8.0)"), static_float(2.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/doggo/arms.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner * 0.33334) % 13.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "doggo_head".into(),
+                tags: vec!["utrp".into(), "snowdin/doggo".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-66.0), static_float(-125.0), static_float(3.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/doggo/head_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+        ],
+        requires: Vec::new(),
+        facts: None,
+        world_space: false,
+        coordinate_system: CoordinateSystem::YDown,
+        coordinate_space: Some(CoordinateSpaceDef {
+            axis_origin: vector2(static_float(0.0), static_float(0.0)),
+            y_axis: YAxisDirectionDef::Down,
+            rotation: RotationDirectionDef::CounterClockwise,
+            extent: CoordinateExtentDef::Explicit((150.0, 270.0)),
+        }),
+    }
+}

@@ -1,0 +1,150 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "snowdin/doggo",
+  "name": "Doggo",
+  "fps": 30,
+  "canvas": {
+    "width": 150,
+    "height": 270,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "doggo_tail",
+      "path": "/sprites/doggo/tail.png",
+      "frames": [
+        "/sprites/doggo/tail.png"
+      ]
+    },
+    {
+      "id": "doggo_body",
+      "path": "/sprites/doggo/body.png",
+      "frames": [
+        "/sprites/doggo/body.png"
+      ]
+    },
+    {
+      "id": "doggo_arms",
+      "path": "/sprites/doggo/arms.png",
+      "frames": [
+        "/sprites/doggo/arms.png"
+      ]
+    },
+    {
+      "id": "doggo_head",
+      "path": "/sprites/doggo/head_0.png",
+      "frames": [
+        "/sprites/doggo/head_0.png",
+        "/sprites/doggo/head_1.png",
+        "/sprites/doggo/head_2.png",
+        "/sprites/doggo/head_3.png",
+        "/sprites/doggo/head_4.png",
+        "/sprites/doggo/head_5.png",
+        "/sprites/doggo/head_6.png",
+        "/sprites/doggo/head_7.png",
+        "/sprites/doggo/head_8.png",
+        "/sprites/doggo/head_9.png",
+        "/sprites/doggo/head_10.png",
+        "/sprites/doggo/head_11.png",
+        "/sprites/doggo/head_12.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "tail",
+      "sprite": "doggo_tail",
+      "origin": {
+        "x": -66.0,
+        "y": -125.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {},
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "doggo_body",
+      "origin": {
+        "x": -66.0,
+        "y": -125.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {},
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "arms",
+      "sprite": "doggo_arms",
+      "origin": {
+        "x": -66.0,
+        "y": -133.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 4.5) * 8.0"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "doggo_head",
+      "origin": {
+        "x": -66.0,
+        "y": -125.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {
+        "frame_index": "floor(siner * 0.33334) % 13.0"
+      },
+      "draw_order": 3
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/snowdin/doggo.gml.txt",
+    "SoupRune": "/generated-code/snowdin/doggo.souprune.rs.txt"
+  }
+}

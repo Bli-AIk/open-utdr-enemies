@@ -1,0 +1,53 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/dummy",
+  "name": "Dummy",
+  "fps": 30,
+  "canvas": {
+    "width": 236,
+    "height": 252,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [],
+  "assets": [
+    {
+      "id": "dummy_body",
+      "path": "/sprites/dummy/body.png",
+      "frames": [
+        "/sprites/dummy/body.png"
+      ]
+    }
+  ],
+  "update": [],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "dummy_body",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 0
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/ruins/dummy.gml.txt",
+    "SoupRune": "/generated-code/ruins/dummy.souprune.rs.txt"
+  }
+}

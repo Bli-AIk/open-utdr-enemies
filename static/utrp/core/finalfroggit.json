@@ -1,0 +1,100 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "core/finalfroggit",
+  "name": "Final Froggit",
+  "fps": 30,
+  "canvas": {
+    "width": 180,
+    "height": 170,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "finalfroggit_body",
+      "path": "/sprites/finalfroggit/body.png",
+      "frames": [
+        "/sprites/finalfroggit/body.png"
+      ]
+    },
+    {
+      "id": "finalfroggit_head",
+      "path": "/sprites/finalfroggit/head.png",
+      "frames": [
+        "/sprites/finalfroggit/head.png"
+      ]
+    },
+    {
+      "id": "finalfroggit_head_hurt",
+      "path": "/sprites/finalfroggit/head_hurt.png",
+      "frames": [
+        "/sprites/finalfroggit/head_hurt.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "finalfroggit_body",
+      "origin": {
+        "x": 0.0,
+        "y": 63.0
+      },
+      "pivot": {
+        "x": 25.0,
+        "y": 25.0
+      },
+      "transform": {
+        "scale_y": "1.0 + sin(siner / 3.0) * -0.075"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "finalfroggit_head",
+      "origin": {
+        "x": 0.0,
+        "y": -27.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 6.0) * 10.0",
+        "offset_y": "sin(siner / 3.0) * 4.0",
+        "rotation_deg": "sin(siner / 6.0) * -2.0"
+      },
+      "draw_order": 1
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/core/finalfroggit.gml.txt",
+    "SoupRune": "/generated-code/core/finalfroggit.souprune.rs.txt"
+  }
+}

@@ -1,0 +1,43 @@
+/// Gyftrot UTRP GameMaker starter
+/// Source slug: snowdin/gyftrot
+/// Canvas: 230x220 at 2.0x draw scale
+/// Asset map:
+/// - gyftrot_body => /sprites/gyftrot/body.png (placeholder sprite: spr_gyftrot_body)
+/// - gyftrot_head => /sprites/gyftrot/head_0.png (placeholder sprite: spr_gyftrot_head)
+///   frame: /sprites/gyftrot/head_1.png
+/// - gyftrot_mouth => /sprites/gyftrot/mouth_0.png (placeholder sprite: spr_gyftrot_mouth)
+///   frame: /sprites/gyftrot/mouth_1.png
+///   frame: /sprites/gyftrot/mouth_2.png
+///   frame: /sprites/gyftrot/mouth_3.png
+///   frame: /sprites/gyftrot/mouth_4.png
+///   frame: /sprites/gyftrot/mouth_5.png
+///   frame: /sprites/gyftrot/mouth_6.png
+///   frame: /sprites/gyftrot/mouth_7.png
+///   frame: /sprites/gyftrot/mouth_8.png
+/// - gyftrot_gift => /sprites/gyftrot/gift_0.png (placeholder sprite: spr_gyftrot_gift)
+///   frame: /sprites/gyftrot/gift_1.png
+///   frame: /sprites/gyftrot/gift_2.png
+///   frame: /sprites/gyftrot/gift_3.png
+///   frame: /sprites/gyftrot/gift_4.png
+///   frame: /sprites/gyftrot/gift_5.png
+///   frame: /sprites/gyftrot/gift_6.png
+///   frame: /sprites/gyftrot/gift_7.png
+///   frame: /sprites/gyftrot/gift_8.png
+///   frame: /sprites/gyftrot/gift_9.png
+
+/// Gyftrot Create Event
+siner = 1.0;
+
+/// Gyftrot Step Event
+siner += 1.0;
+
+/// Gyftrot Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: body
+draw_sprite_ext(spr_gyftrot_body, 0.0, -100.0, -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: gift
+draw_sprite_ext(spr_gyftrot_gift, floor(siner * 0.02) % 10.0, -100.0 + (sin(siner / 15.0) * 8.0), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: head
+draw_sprite_ext(spr_gyftrot_head, clamp(sign(sin(siner / 40.0) - 0.9), 0.0, 1.0), -100.0 + (sin(siner / 15.0) * 8.0), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 3: mouth
+draw_sprite_ext(spr_gyftrot_mouth, floor(clamp(5.0 - abs(siner % 100.0 - 15.0) / 3.0, 0.0, 4.0)), -50.0 + (sin(siner / 15.0) * 8.0), -7.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

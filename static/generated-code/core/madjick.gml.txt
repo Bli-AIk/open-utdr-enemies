@@ -1,0 +1,32 @@
+/// Madjick UTRP GameMaker starter
+/// Source slug: core/madjick
+/// Canvas: 184x238 at 2.0x draw scale
+/// Asset map:
+/// - madjick_boot => /sprites/madjick/boot.png (placeholder sprite: spr_madjick_boot)
+/// - madjick_dress => /sprites/madjick/dress.png (placeholder sprite: spr_madjick_dress)
+/// - madjick_lapel => /sprites/madjick/lapel.png (placeholder sprite: spr_madjick_lapel)
+/// - madjick_head => /sprites/madjick/head.png (placeholder sprite: spr_madjick_head)
+/// - madjick_hat => /sprites/madjick/hat.png (placeholder sprite: spr_madjick_hat)
+
+/// Madjick Create Event
+siner = 1.0;
+
+/// Madjick Step Event
+siner += 1.0;
+
+/// Madjick Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: boot_left
+draw_sprite_ext(spr_madjick_boot, 0.0, -43.0 + (-sin(siner / 5.0) * 5.0), 48.0 + (-sin(siner / 5.0) * 6.0), __utrp_scale, __utrp_scale, -40.0 - sin(siner / 5.0) * 10.0, c_white, 1.0);
+// draw_order 1: boot_right
+draw_sprite_ext(spr_madjick_boot, 0.0, -1.0 + (sin(siner / 5.0) * 5.0), 48.0 + (-sin(siner / 5.0) * 6.0), __utrp_scale * (-1.0), __utrp_scale, 40.0 + sin(siner / 5.0) * 10.0, c_white, 1.0);
+// draw_order 2: lapel_left
+draw_sprite_ext(spr_madjick_lapel, 0.0, -22.0, 20.0 + (sin(siner / 5.0)), __utrp_scale, __utrp_scale, -sin(siner / 5.0) * 10.0, c_white, 1.0);
+// draw_order 3: lapel_right
+draw_sprite_ext(spr_madjick_lapel, 0.0, -22.0, 20.0 + (sin(siner / 5.0)), __utrp_scale * (-1.0), __utrp_scale, sin(siner / 5.0) * 10.0, c_white, 1.0);
+// draw_order 4: dress
+draw_sprite_ext(spr_madjick_dress, 0.0, -54.0, 20.0 + (sin(siner / 5.0)), __utrp_scale, __utrp_scale * (0.9 - sin(siner / 5.0) * 0.1), 0.0, c_white, 1.0);
+// draw_order 5: head
+draw_sprite_ext(spr_madjick_head, 0.0, -26.0 + (sin(siner / 5.0)), -30.0 + (sin(siner / 5.0) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 6: hat
+draw_sprite_ext(spr_madjick_hat, 0.0, -18.0 + (cos(siner / 5.0)), -28.0 + (sin(siner / 5.0) * 10.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

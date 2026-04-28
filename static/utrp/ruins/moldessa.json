@@ -1,0 +1,212 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/moldessa",
+  "name": "Moldessa",
+  "fps": 30,
+  "canvas": {
+    "width": 210,
+    "height": 198,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "moldessa_arm",
+      "path": "/sprites/moldessa/arm.png",
+      "frames": [
+        "/sprites/moldessa/arm.png"
+      ]
+    },
+    {
+      "id": "moldessa_stem",
+      "path": "/sprites/moldessa/stem.png",
+      "frames": [
+        "/sprites/moldessa/stem.png"
+      ]
+    },
+    {
+      "id": "moldessa_headthing",
+      "path": "/sprites/moldessa/headthing.png",
+      "frames": [
+        "/sprites/moldessa/headthing.png"
+      ]
+    },
+    {
+      "id": "moldessa_face",
+      "path": "/sprites/moldessa/face_0.png",
+      "frames": [
+        "/sprites/moldessa/face_0.png",
+        "/sprites/moldessa/face_1.png",
+        "/sprites/moldessa/face_2.png",
+        "/sprites/moldessa/face_3.png",
+        "/sprites/moldessa/face_4.png",
+        "/sprites/moldessa/face_5.png",
+        "/sprites/moldessa/face_6.png",
+        "/sprites/moldessa/face_7.png",
+        "/sprites/moldessa/face_8.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "stem",
+      "sprite": "moldessa_stem",
+      "origin": {
+        "x": 0.0,
+        "y": 57.0
+      },
+      "pivot": {
+        "x": 20.0,
+        "y": 58.0
+      },
+      "transform": {
+        "scale_x": "1.0 + sin(siner / 7.0) * 0.05",
+        "scale_y": "1.0 - sin(siner / 7.0) * 0.05"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "face1",
+      "sprite": "moldessa_face",
+      "origin": {
+        "x": 0.0,
+        "y": -1.0
+      },
+      "pivot": {
+        "x": 7.0,
+        "y": 7.0
+      },
+      "transform": {
+        "offset_x": "sin(siner / 16.0) * 13.0 + sin(siner / 6.0)",
+        "offset_y": "cos(siner / 16.0) * 18.0 + cos(siner / 6.0)",
+        "rotation_deg": "siner * 3.0 + sin(siner / 6.0) * 4.0",
+        "frame_index": "0.0"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "face2",
+      "sprite": "moldessa_face",
+      "origin": {
+        "x": 0.0,
+        "y": -1.0
+      },
+      "pivot": {
+        "x": 7.0,
+        "y": 7.0
+      },
+      "transform": {
+        "offset_x": "sin((siner + 36.0) / 16.0) * 13.0 + sin(siner / 6.0)",
+        "offset_y": "cos((siner + 36.0) / 16.0) * 18.0 + cos(siner / 6.0)",
+        "rotation_deg": "siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0",
+        "frame_index": "4.0"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "face3",
+      "sprite": "moldessa_face",
+      "origin": {
+        "x": 0.0,
+        "y": -1.0
+      },
+      "pivot": {
+        "x": 7.0,
+        "y": 7.0
+      },
+      "transform": {
+        "offset_x": "sin((siner + 65.0) / 16.0) * 13.0 + sin(siner / 6.0)",
+        "offset_y": "cos((siner + 65.0) / 16.0) * 18.0 + cos(siner / 6.0)",
+        "rotation_deg": "siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0",
+        "frame_index": "7.0"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "headthing",
+      "sprite": "moldessa_headthing",
+      "origin": {
+        "x": 0.0,
+        "y": -61.0
+      },
+      "pivot": {
+        "x": 10.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 7.0) * 2.0"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "arm_left",
+      "sprite": "moldessa_arm",
+      "origin": {
+        "x": -12.0,
+        "y": -57.0
+      },
+      "pivot": {
+        "x": 18.0,
+        "y": 2.0
+      },
+      "transform": {
+        "rotation_deg": "-5.0 + sin(siner / 7.0) * 5.0"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "arm_right",
+      "sprite": "moldessa_arm",
+      "origin": {
+        "x": 14.0,
+        "y": -57.0
+      },
+      "pivot": {
+        "x": 18.0,
+        "y": 2.0
+      },
+      "transform": {
+        "scale_x": "-1.0",
+        "rotation_deg": "5.0 - sin(siner / 7.0) * 5.0"
+      },
+      "draw_order": 6
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/ruins/moldessa.gml.txt",
+    "SoupRune": "/generated-code/ruins/moldessa.souprune.rs.txt"
+  }
+}

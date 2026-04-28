@@ -1,0 +1,25 @@
+/// Glyde UTRP GameMaker starter
+/// Source slug: snowdin/glyde
+/// Canvas: 260x220 at 2.0x draw scale
+/// Asset map:
+/// - glyde_wing_r => /sprites/glyde/wing_r.png (placeholder sprite: spr_glyde_wing_r)
+/// - glyde_body => /sprites/glyde/body.png (placeholder sprite: spr_glyde_body)
+/// - glyde_wing_l => /sprites/glyde/wing_l.png (placeholder sprite: spr_glyde_wing_l)
+/// - glyde_antenna => /sprites/glyde/antenna.png (placeholder sprite: spr_glyde_antenna)
+
+/// Glyde Create Event
+siner = 1.0;
+
+/// Glyde Step Event
+siner += 1.0;
+
+/// Glyde Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: wing_right
+draw_sprite_ext(spr_glyde_wing_r, 0.0, -72.0, 106.0 + (sin(siner / 12.0) * 8.0 + sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale * (0.85 - sin(siner / 6.0) * 0.15), 0.0, c_white, 1.0);
+// draw_order 1: body
+draw_sprite_ext(spr_glyde_body, 0.0, -118.0, -84.0 + (sin(siner / 12.0) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: wing_left
+draw_sprite_ext(spr_glyde_wing_l, 0.0, 122.0, 96.0 + (sin(siner / 12.0) * 8.0), __utrp_scale * (0.975 - sin(siner / 6.0) * 0.025), __utrp_scale * (0.9 - sin(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+// draw_order 3: antenna
+draw_sprite_ext(spr_glyde_antenna, 0.0, -50.0 + (sin(siner / 12.0) * 2.0), -64.0 + (sin(siner / 12.0) * 8.0), __utrp_scale, __utrp_scale, 20.0 - sin(siner / 12.0) * 20.0, c_white, 1.0);

@@ -1,0 +1,161 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "snowdin/gyftrot",
+  "name": "Gyftrot",
+  "fps": 30,
+  "canvas": {
+    "width": 230,
+    "height": 220,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "gyftrot_body",
+      "path": "/sprites/gyftrot/body.png",
+      "frames": [
+        "/sprites/gyftrot/body.png"
+      ]
+    },
+    {
+      "id": "gyftrot_head",
+      "path": "/sprites/gyftrot/head_0.png",
+      "frames": [
+        "/sprites/gyftrot/head_0.png",
+        "/sprites/gyftrot/head_1.png"
+      ]
+    },
+    {
+      "id": "gyftrot_mouth",
+      "path": "/sprites/gyftrot/mouth_0.png",
+      "frames": [
+        "/sprites/gyftrot/mouth_0.png",
+        "/sprites/gyftrot/mouth_1.png",
+        "/sprites/gyftrot/mouth_2.png",
+        "/sprites/gyftrot/mouth_3.png",
+        "/sprites/gyftrot/mouth_4.png",
+        "/sprites/gyftrot/mouth_5.png",
+        "/sprites/gyftrot/mouth_6.png",
+        "/sprites/gyftrot/mouth_7.png",
+        "/sprites/gyftrot/mouth_8.png"
+      ]
+    },
+    {
+      "id": "gyftrot_gift",
+      "path": "/sprites/gyftrot/gift_0.png",
+      "frames": [
+        "/sprites/gyftrot/gift_0.png",
+        "/sprites/gyftrot/gift_1.png",
+        "/sprites/gyftrot/gift_2.png",
+        "/sprites/gyftrot/gift_3.png",
+        "/sprites/gyftrot/gift_4.png",
+        "/sprites/gyftrot/gift_5.png",
+        "/sprites/gyftrot/gift_6.png",
+        "/sprites/gyftrot/gift_7.png",
+        "/sprites/gyftrot/gift_8.png",
+        "/sprites/gyftrot/gift_9.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "gyftrot_body",
+      "origin": {
+        "x": -100.0,
+        "y": -103.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {},
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "gift",
+      "sprite": "gyftrot_gift",
+      "origin": {
+        "x": -100.0,
+        "y": -103.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "sin(siner / 15.0) * 8.0",
+        "frame_index": "floor(siner * 0.02) % 10.0"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "gyftrot_head",
+      "origin": {
+        "x": -100.0,
+        "y": -103.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "sin(siner / 15.0) * 8.0",
+        "frame_index": "clamp(sign(sin(siner / 40.0) - 0.9), 0.0, 1.0)"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "mouth",
+      "sprite": "gyftrot_mouth",
+      "origin": {
+        "x": -50.0,
+        "y": -7.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "sin(siner / 15.0) * 8.0",
+        "frame_index": "floor(clamp(5.0 - abs(siner % 100.0 - 15.0) / 3.0, 0.0, 4.0))"
+      },
+      "draw_order": 3
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/snowdin/gyftrot.gml.txt",
+    "SoupRune": "/generated-code/snowdin/gyftrot.souprune.rs.txt"
+  }
+}

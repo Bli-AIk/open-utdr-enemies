@@ -1,0 +1,145 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "core/whimsalot",
+  "name": "Whimsalot",
+  "fps": 30,
+  "canvas": {
+    "width": 188,
+    "height": 196,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "whimsalot_wing_r",
+      "path": "/sprites/whimsalot/wing_r.png",
+      "frames": [
+        "/sprites/whimsalot/wing_r.png"
+      ]
+    },
+    {
+      "id": "whimsalot_wing_l",
+      "path": "/sprites/whimsalot/wing_l.png",
+      "frames": [
+        "/sprites/whimsalot/wing_l.png"
+      ]
+    },
+    {
+      "id": "whimsalot_body",
+      "path": "/sprites/whimsalot/body.png",
+      "frames": [
+        "/sprites/whimsalot/body.png"
+      ]
+    },
+    {
+      "id": "whimsalot_head",
+      "path": "/sprites/whimsalot/head.png",
+      "frames": [
+        "/sprites/whimsalot/head.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "wing_right",
+      "sprite": "whimsalot_wing_r",
+      "origin": {
+        "x": 23.0,
+        "y": -13.0
+      },
+      "pivot": {
+        "x": -1.0,
+        "y": 14.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5.0) * -2.0",
+        "rotation_deg": "-15.0 + sin(siner / 2.5) * 30.0"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "wing_left",
+      "sprite": "whimsalot_wing_l",
+      "origin": {
+        "x": -23.0,
+        "y": -13.0
+      },
+      "pivot": {
+        "x": -1.0,
+        "y": 14.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5.0) * -2.0",
+        "scale_x": "-1.0",
+        "rotation_deg": "15.0 + sin(siner / 2.5) * -30.0"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "whimsalot_body",
+      "origin": {
+        "x": -37.0,
+        "y": -3.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5.0) * 6.0"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "whimsalot_head",
+      "origin": {
+        "x": -31.0,
+        "y": -53.0
+      },
+      "pivot": {
+        "x": -1.0,
+        "y": -1.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5.0) * 8.0"
+      },
+      "draw_order": 3
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/core/whimsalot.gml.txt",
+    "SoupRune": "/generated-code/core/whimsalot.souprune.rs.txt"
+  }
+}

@@ -1,0 +1,41 @@
+/// Snowdrake UTRP GameMaker starter
+/// Source slug: snowdin/snowdrake
+/// Canvas: 172x210 at 2.0x draw scale
+/// Asset map:
+/// - snowdrake_legs => /sprites/snowdrake/legs.png (placeholder sprite: spr_snowdrake_legs)
+/// - snowdrake_body => /sprites/snowdrake/body.png (placeholder sprite: spr_snowdrake_body)
+/// - snowdrake_head => /sprites/snowdrake/head_0.png (placeholder sprite: spr_snowdrake_head)
+///   frame: /sprites/snowdrake/head_1.png
+///   frame: /sprites/snowdrake/head_2.png
+///   frame: /sprites/snowdrake/head_3.png
+///   frame: /sprites/snowdrake/head_4.png
+///   frame: /sprites/snowdrake/head_5.png
+///   frame: /sprites/snowdrake/head_6.png
+///   frame: /sprites/snowdrake/head_7.png
+///   frame: /sprites/snowdrake/head_8.png
+///   frame: /sprites/snowdrake/head_9.png
+///   frame: /sprites/snowdrake/head_10.png
+///   frame: /sprites/snowdrake/head_11.png
+///   frame: /sprites/snowdrake/head_12.png
+///   frame: /sprites/snowdrake/head_13.png
+///   frame: /sprites/snowdrake/head_14.png
+///   frame: /sprites/snowdrake/head_15.png
+///   frame: /sprites/snowdrake/head_16.png
+///   frame: /sprites/snowdrake/head_17.png
+///   frame: /sprites/snowdrake/head_18.png
+///   frame: /sprites/snowdrake/head_19.png
+
+/// Snowdrake Create Event
+siner = 1.0;
+
+/// Snowdrake Step Event
+siner += 1.0;
+
+/// Snowdrake Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: legs
+draw_sprite_ext(spr_snowdrake_legs, 0.0, -86.0, -100.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: body
+draw_sprite_ext(spr_snowdrake_body, 0.0, -86.0, -100.0 + (sin(siner / 13.0) * 3.3), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: head
+draw_sprite_ext(spr_snowdrake_head, floor(siner * 0.1) % 20.0, -86.0, -100.0 + (sin(siner / 13.0) * 10.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

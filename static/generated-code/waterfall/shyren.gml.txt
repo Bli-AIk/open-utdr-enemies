@@ -1,0 +1,19 @@
+/// Shyren UTRP GameMaker starter
+/// Source slug: waterfall/shyren
+/// Canvas: 240x328 at 2.0x draw scale
+/// Asset map:
+/// - shyren_agent => /sprites/shyren/agent.png (placeholder sprite: spr_shyren_agent)
+/// - shyren_body => /sprites/shyren/body.png (placeholder sprite: spr_shyren_body)
+
+/// Shyren Create Event
+siner = 1.0;
+
+/// Shyren Step Event
+siner += 1.0;
+
+/// Shyren Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: agent
+draw_sprite_ext(spr_shyren_agent, 0.0, -15.0, -90.0 + (sin(siner / 5.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: body
+draw_sprite_ext(spr_shyren_body, 0.0, 0.0, 30.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

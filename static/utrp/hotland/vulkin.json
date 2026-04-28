@@ -1,0 +1,149 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "hotland/vulkin",
+  "name": "Vulkin",
+  "fps": 30,
+  "canvas": {
+    "width": 182,
+    "height": 262,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "vulkin_feetback",
+      "path": "/sprites/vulkin/feetback.png",
+      "frames": [
+        "/sprites/vulkin/feetback.png"
+      ]
+    },
+    {
+      "id": "vulkin_body",
+      "path": "/sprites/vulkin/body.png",
+      "frames": [
+        "/sprites/vulkin/body.png"
+      ]
+    },
+    {
+      "id": "vulkin_lava",
+      "path": "/sprites/vulkin/lava.png",
+      "frames": [
+        "/sprites/vulkin/lava.png"
+      ]
+    },
+    {
+      "id": "vulkin_face",
+      "path": "/sprites/vulkin/face.png",
+      "frames": [
+        "/sprites/vulkin/face.png"
+      ]
+    },
+    {
+      "id": "vulkin_feetfront",
+      "path": "/sprites/vulkin/feetfront.png",
+      "frames": [
+        "/sprites/vulkin/feetfront.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "feet_back",
+      "sprite": "vulkin_feetback",
+      "origin": {
+        "x": -37.0,
+        "y": 101.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "cos(siner / 6.0) * 2.0",
+        "offset_y": "sin(siner / 6.0) * 2.0"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "vulkin_body",
+      "origin": {
+        "x": -21.0,
+        "y": -57.0
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "lava",
+      "sprite": "vulkin_lava",
+      "origin": {
+        "x": 26.0,
+        "y": -71.0
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "face",
+      "sprite": "vulkin_face",
+      "origin": {
+        "x": 44.0,
+        "y": 7.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 12.0) * 7.0"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "feet_front",
+      "sprite": "vulkin_feetfront",
+      "origin": {
+        "x": -37.0,
+        "y": 102.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 6.0) * 2.0",
+        "offset_y": "cos(siner / 6.0) * 2.0"
+      },
+      "draw_order": 4
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/hotland/vulkin.gml.txt",
+    "SoupRune": "/generated-code/hotland/vulkin.souprune.rs.txt"
+  }
+}

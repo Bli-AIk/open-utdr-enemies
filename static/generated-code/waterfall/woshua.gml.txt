@@ -1,0 +1,22 @@
+/// Woshua UTRP GameMaker starter
+/// Source slug: waterfall/woshua
+/// Canvas: 108x154 at 2.0x draw scale
+/// Asset map:
+/// - woshua_body => /sprites/woshua/body.png (placeholder sprite: spr_woshua_body)
+/// - woshua_head => /sprites/woshua/head.png (placeholder sprite: spr_woshua_head)
+/// - woshua_face => /sprites/woshua/face.png (placeholder sprite: spr_woshua_face)
+
+/// Woshua Create Event
+siner = 1.0;
+
+/// Woshua Step Event
+siner += 1.0;
+
+/// Woshua Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: body
+draw_sprite_ext(spr_woshua_body, 0.0, 0.0, 20.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: head
+draw_sprite_ext(spr_woshua_head, 0.0, -12.0, -35.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: face
+draw_sprite_ext(spr_woshua_face, 0.0, -2.0, -28.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

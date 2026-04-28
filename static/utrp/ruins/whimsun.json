@@ -1,0 +1,69 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/whimsun",
+  "name": "Whimsun",
+  "fps": 30,
+  "canvas": {
+    "width": 232,
+    "height": 224,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
+      "Previous animation data included path motion; path motion awaits source/runtime modeling."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "whimsun_body",
+      "path": "/sprites/whimsun/body_0.png",
+      "frames": [
+        "/sprites/whimsun/body_0.png",
+        "/sprites/whimsun/body_1.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "whimsun_body",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": null,
+      "transform": {
+        "frame_index": "floor(siner * 0.1)"
+      },
+      "draw_order": 0
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/ruins/whimsun.gml.txt",
+    "SoupRune": "/generated-code/ruins/whimsun.souprune.rs.txt"
+  }
+}

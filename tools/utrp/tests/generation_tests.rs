@@ -111,3 +111,21 @@ fn source_enemies_contains_exactly_expected_lab_entry_slugs() {
 
     assert_eq!(actual, EXPECTED_SOURCE_SLUGS);
 }
+
+#[test]
+fn codegen_outputs_gml_and_souprune_starters() {
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("source/enemies");
+    let programs = utrp::source::load_programs(&root).unwrap();
+    let mad_dummy = programs
+        .iter()
+        .find(|program| program.slug == "waterfall/mad-dummy")
+        .unwrap();
+    let gml = utrp::codegen::gml::generate(mad_dummy);
+    let souprune = utrp::codegen::souprune::generate(mad_dummy);
+
+    assert!(gml.contains("/// Mad Dummy Create Event"));
+    assert!(gml.contains("draw_sprite_ext"));
+    assert!(gml.contains("sin(siner / 7.5)"));
+    assert!(souprune.contains("use souprune_schema::view::*;"));
+    assert!(souprune.contains("pub fn asset() -> ViewLayoutAsset"));
+}

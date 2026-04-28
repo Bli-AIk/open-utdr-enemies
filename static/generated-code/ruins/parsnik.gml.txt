@@ -1,0 +1,52 @@
+/// Parsnik UTRP GameMaker starter
+/// Source slug: ruins/parsnik
+/// Canvas: 164x174 at 2.0x draw scale
+/// Asset map:
+/// - parsnik_headwrap => /sprites/parsnik/headwrap.png (placeholder sprite: spr_parsnik_headwrap)
+/// - parsnik_snake1 => /sprites/parsnik/snake1_0.png (placeholder sprite: spr_parsnik_snake1)
+///   frame: /sprites/parsnik/snake1_1.png
+///   frame: /sprites/parsnik/snake1_2.png
+///   frame: /sprites/parsnik/snake1_3.png
+/// - parsnik_snake2 => /sprites/parsnik/snake2_0.png (placeholder sprite: spr_parsnik_snake2)
+///   frame: /sprites/parsnik/snake2_1.png
+///   frame: /sprites/parsnik/snake2_2.png
+///   frame: /sprites/parsnik/snake2_3.png
+/// - parsnik_snake3 => /sprites/parsnik/snake3_0.png (placeholder sprite: spr_parsnik_snake3)
+///   frame: /sprites/parsnik/snake3_1.png
+///   frame: /sprites/parsnik/snake3_2.png
+///   frame: /sprites/parsnik/snake3_3.png
+/// - parsnik_snake4 => /sprites/parsnik/snake4_0.png (placeholder sprite: spr_parsnik_snake4)
+///   frame: /sprites/parsnik/snake4_1.png
+///   frame: /sprites/parsnik/snake4_2.png
+///   frame: /sprites/parsnik/snake4_3.png
+/// - parsnik_snake5 => /sprites/parsnik/snake5_0.png (placeholder sprite: spr_parsnik_snake5)
+///   frame: /sprites/parsnik/snake5_1.png
+///   frame: /sprites/parsnik/snake5_2.png
+///   frame: /sprites/parsnik/snake5_3.png
+/// - parsnik_head => /sprites/parsnik/head_0.png (placeholder sprite: spr_parsnik_head)
+///   frame: /sprites/parsnik/head_1.png
+///   frame: /sprites/parsnik/head_2.png
+///   frame: /sprites/parsnik/head_3.png
+
+/// Parsnik Create Event
+siner = 1.0;
+
+/// Parsnik Step Event
+siner += 1.0;
+
+/// Parsnik Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: headwrap
+draw_sprite_ext(spr_parsnik_headwrap, 0.0, -38.0, -38.0 + (sin(1.5 + siner / 5.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: snake1
+draw_sprite_ext(spr_parsnik_snake1, floor(siner / 6.0) % 4.0, -20.0, -10.0 + (sin(siner / 5.0) * 1.5), __utrp_scale, __utrp_scale, sin(siner / 5.0) * 6.0, c_white, 1.0);
+// draw_order 2: snake5
+draw_sprite_ext(spr_parsnik_snake5, floor((siner + 8.0) / 6.0) % 4.0, 22.0, -10.0 + (sin(2.0 + siner / 5.0) * 1.5), __utrp_scale, __utrp_scale, -sin(2.0 + siner / 5.0) * 6.0, c_white, 1.0);
+// draw_order 3: snake2
+draw_sprite_ext(spr_parsnik_snake2, floor((siner + 2.0) / 5.5) % 4.0, -14.0, -16.0 + (sin(0.5 + siner / 5.0) * 1.5), __utrp_scale, __utrp_scale, sin(siner / 5.0) * 2.0, c_white, 1.0);
+// draw_order 4: snake4
+draw_sprite_ext(spr_parsnik_snake4, floor((siner + 6.0) / 5.5) % 4.0, 8.0, -16.0 + (sin(1.5 + siner / 5.0) * 1.5), __utrp_scale, __utrp_scale, -sin(siner / 5.0) * 2.0, c_white, 1.0);
+// draw_order 5: snake3
+draw_sprite_ext(spr_parsnik_snake3, floor((siner + 4.0) / 5.0) % 4.0, 0.0, -12.0 + (sin(1.0 + siner / 5.0) * 1.5), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 6: head
+draw_sprite_ext(spr_parsnik_head, floor(siner / 12.0) % 4.0, -28.0, -16.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

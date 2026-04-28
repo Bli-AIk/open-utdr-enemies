@@ -1,0 +1,86 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "waterfall/shyren",
+  "name": "Shyren",
+  "fps": 30,
+  "canvas": {
+    "width": 240,
+    "height": 328,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "shyren_agent",
+      "path": "/sprites/shyren/agent.png",
+      "frames": [
+        "/sprites/shyren/agent.png"
+      ]
+    },
+    {
+      "id": "shyren_body",
+      "path": "/sprites/shyren/body.png",
+      "frames": [
+        "/sprites/shyren/body.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "agent",
+      "sprite": "shyren_agent",
+      "origin": {
+        "x": -15.0,
+        "y": -90.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 5.0) * 3.0"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "shyren_body",
+      "origin": {
+        "x": 0.0,
+        "y": 30.0
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 1
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/waterfall/shyren.gml.txt",
+    "SoupRune": "/generated-code/waterfall/shyren.souprune.rs.txt"
+  }
+}

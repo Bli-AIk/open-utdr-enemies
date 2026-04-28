@@ -1,0 +1,180 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "core/knight-knight",
+  "name": "Knight Knight",
+  "fps": 30,
+  "canvas": {
+    "width": 224,
+    "height": 332,
+    "scale": 2.0
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "knightknight_leftarm",
+      "path": "/sprites/knight-knight/knightknight_leftarm.png",
+      "frames": [
+        "/sprites/knight-knight/knightknight_leftarm.png"
+      ]
+    },
+    {
+      "id": "knightknight_fur",
+      "path": "/sprites/knight-knight/knightknight_fur.png",
+      "frames": [
+        "/sprites/knight-knight/knightknight_fur.png"
+      ]
+    },
+    {
+      "id": "knightknight_body",
+      "path": "/sprites/knight-knight/knightknight_body.png",
+      "frames": [
+        "/sprites/knight-knight/knightknight_body.png"
+      ]
+    },
+    {
+      "id": "knightknight_eyes",
+      "path": "/sprites/knight-knight/knightknight_eyes.png",
+      "frames": [
+        "/sprites/knight-knight/knightknight_eyes.png"
+      ]
+    },
+    {
+      "id": "knightknight_helmet",
+      "path": "/sprites/knight-knight/knightknight_helmet.png",
+      "frames": [
+        "/sprites/knight-knight/knightknight_helmet.png"
+      ]
+    },
+    {
+      "id": "knightknight_mouth",
+      "path": "/sprites/knight-knight/knightknight_mouth.png",
+      "frames": [
+        "/sprites/knight-knight/knightknight_mouth.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "eyes",
+      "sprite": "knightknight_eyes",
+      "origin": {
+        "x": -11.0,
+        "y": -31.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "sin(siner / 10.0) * 6.0"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "knightknight_body",
+      "origin": {
+        "x": -105.0,
+        "y": -101.0
+      },
+      "pivot": {
+        "x": -24.0,
+        "y": -17.0
+      },
+      "transform": {},
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "helmet",
+      "sprite": "knightknight_helmet",
+      "origin": {
+        "x": -35.0,
+        "y": -99.0
+      },
+      "pivot": {
+        "x": -1.0,
+        "y": -2.0
+      },
+      "transform": {},
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "mouth",
+      "sprite": "knightknight_mouth",
+      "origin": {
+        "x": -7.0,
+        "y": -17.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": -3.0
+      },
+      "transform": {},
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "fur",
+      "sprite": "knightknight_fur",
+      "origin": {
+        "x": -41.0,
+        "y": -5.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": 0.0
+      },
+      "transform": {},
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "leftarm",
+      "sprite": "knightknight_leftarm",
+      "origin": {
+        "x": -105.0,
+        "y": -101.0
+      },
+      "pivot": {
+        "x": 1.0,
+        "y": -1.0
+      },
+      "transform": {},
+      "draw_order": 5
+    }
+  ],
+  "codegen": {
+    "GML": "/generated-code/core/knight-knight.gml.txt",
+    "SoupRune": "/generated-code/core/knight-knight.souprune.rs.txt"
+  }
+}

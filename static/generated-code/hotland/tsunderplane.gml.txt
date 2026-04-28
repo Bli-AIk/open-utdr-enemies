@@ -1,0 +1,19 @@
+/// Tsunderplane UTRP GameMaker starter
+/// Source slug: hotland/tsunderplane
+/// Canvas: 230x194 at 2.0x draw scale
+/// Asset map:
+/// - tsunderplane_body => /sprites/tsunderplane/body.png (placeholder sprite: spr_tsunderplane_body)
+/// - tsunderplane_hat => /sprites/tsunderplane/hat.png (placeholder sprite: spr_tsunderplane_hat)
+
+/// Tsunderplane Create Event
+siner = 1.0;
+
+/// Tsunderplane Step Event
+siner += 1.0;
+
+/// Tsunderplane Draw Event
+var __utrp_scale = 2.0;
+// draw_order 0: body
+draw_sprite_ext(spr_tsunderplane_body, 0.0, 0.0, 0.0 + (sin(siner / 7.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: hat
+draw_sprite_ext(spr_tsunderplane_hat, 0.0, 57.0, -15.0 + (sin(siner / 7.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
