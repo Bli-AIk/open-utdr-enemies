@@ -45,6 +45,22 @@ fn generation_manifest_removes_only_previously_owned_stale_files() {
     assert!(!manifest.contains("core/old.json"));
 }
 
+#[test]
+fn generated_outputs_include_codegen_urls_without_mutating_sources() {
+    let temp = TempDir::new().unwrap();
+    let output = temp.path();
+    let source_program = program("core/finalfroggit", "Final Froggit");
+
+    utrp::output::write_program_outputs(std::slice::from_ref(&source_program), output).unwrap();
+
+    assert!(source_program.codegen.is_empty());
+    let generated = std::fs::read_to_string(output.join("core/finalfroggit.json")).unwrap();
+    assert!(generated.contains(r#""GML": "/generated-code/core/finalfroggit.gml.txt""#));
+    assert!(
+        generated.contains(r#""SoupRune": "/generated-code/core/finalfroggit.souprune.rs.txt""#)
+    );
+}
+
 #[cfg(unix)]
 #[test]
 fn stale_cleanup_refuses_symlinked_output_directory_component() {

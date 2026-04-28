@@ -1,0 +1,270 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/migospel",
+  "name": "Migospel",
+  "fps": 30,
+  "canvas": {
+    "width": 172,
+    "height": 196,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
+      "Previous animation data included states (normal, pause, sad); state switching awaits the UTRP runtime state model."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "migospel_wingA",
+      "path": "/sprites/migospel/wingA.png",
+      "frames": [
+        "/sprites/migospel/wingA.png"
+      ]
+    },
+    {
+      "id": "migospel_wingB",
+      "path": "/sprites/migospel/wingB.png",
+      "frames": [
+        "/sprites/migospel/wingB.png"
+      ]
+    },
+    {
+      "id": "migospel_leg",
+      "path": "/sprites/migospel/leg.png",
+      "frames": [
+        "/sprites/migospel/leg.png"
+      ]
+    },
+    {
+      "id": "migospel_body",
+      "path": "/sprites/migospel/body.png",
+      "frames": [
+        "/sprites/migospel/body.png"
+      ]
+    },
+    {
+      "id": "migospel_eye",
+      "path": "/sprites/migospel/eye_0.png",
+      "frames": [
+        "/sprites/migospel/eye_0.png",
+        "/sprites/migospel/eye_1.png",
+        "/sprites/migospel/eye_2.png",
+        "/sprites/migospel/eye_3.png",
+        "/sprites/migospel/eye_4.png"
+      ]
+    },
+    {
+      "id": "migospel_mouthA",
+      "path": "/sprites/migospel/mouthA_0.png",
+      "frames": [
+        "/sprites/migospel/mouthA_0.png",
+        "/sprites/migospel/mouthA_1.png"
+      ]
+    },
+    {
+      "id": "migospel_eyeB",
+      "path": "/sprites/migospel/eyeB.png",
+      "frames": [
+        "/sprites/migospel/eyeB.png"
+      ]
+    },
+    {
+      "id": "migospel_mouthB",
+      "path": "/sprites/migospel/mouthB.png",
+      "frames": [
+        "/sprites/migospel/mouthB.png"
+      ]
+    },
+    {
+      "id": "migospel_mouthC",
+      "path": "/sprites/migospel/mouthC.png",
+      "frames": [
+        "/sprites/migospel/mouthC.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "wing_a_left",
+      "sprite": "migospel_wingA",
+      "origin": {
+        "x": -26,
+        "y": 0
+      },
+      "pivot": {
+        "x": 11,
+        "y": 14
+      },
+      "transform": {
+        "offset_x": "sin(siner / 4) * 2",
+        "offset_y": "sin(siner / 4) * 2"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "wing_a_right",
+      "sprite": "migospel_wingA",
+      "origin": {
+        "x": 26,
+        "y": 0
+      },
+      "pivot": {
+        "x": 11,
+        "y": 14
+      },
+      "transform": {
+        "offset_x": "-sin(siner / 4) * 2",
+        "offset_y": "sin(siner / 4) * 2",
+        "scale_x": "-1"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "wing_b_left",
+      "sprite": "migospel_wingB",
+      "origin": {
+        "x": -26,
+        "y": 14
+      },
+      "pivot": {
+        "x": 10,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "sin(siner / 4) * 2",
+        "offset_y": "-sin(siner / 4) * 2"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "wing_b_right",
+      "sprite": "migospel_wingB",
+      "origin": {
+        "x": 26,
+        "y": 14
+      },
+      "pivot": {
+        "x": 10,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "-sin(siner / 4) * 2",
+        "offset_y": "-sin(siner / 4) * 2",
+        "scale_x": "-1"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "leg_left",
+      "sprite": "migospel_leg",
+      "origin": {
+        "x": -26,
+        "y": 42
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {},
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "leg_right",
+      "sprite": "migospel_leg",
+      "origin": {
+        "x": 24,
+        "y": 42
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "scale_x": "-1"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "migospel_body",
+      "origin": {
+        "x": -26,
+        "y": -58
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 6) * 2"
+      },
+      "draw_order": 6
+    },
+    {
+      "kind": "sprite",
+      "id": "eyes",
+      "sprite": "migospel_eye",
+      "origin": {
+        "x": -20,
+        "y": -8
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 6) * 2 + (-clamp((siner % 180 - 90) * 0.8, 0, 16) + clamp((siner % 180 - 150) * 0.8, 0, 16))",
+        "frame_index": "0"
+      },
+      "draw_order": 7
+    },
+    {
+      "kind": "sprite",
+      "id": "mouth",
+      "sprite": "migospel_mouthA",
+      "origin": {
+        "x": -18,
+        "y": 8
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 6) * 2",
+        "frame_index": "floor(clamp(siner % 51 - 40, 0, 2))"
+      },
+      "draw_order": 8
+    }
+  ]
+}

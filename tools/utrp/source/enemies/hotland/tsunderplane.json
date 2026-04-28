@@ -1,0 +1,84 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "hotland/tsunderplane",
+  "name": "Tsunderplane",
+  "fps": 30,
+  "canvas": {
+    "width": 230,
+    "height": 194,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "tsunderplane_body",
+      "path": "/sprites/tsunderplane/body.png",
+      "frames": [
+        "/sprites/tsunderplane/body.png"
+      ]
+    },
+    {
+      "id": "tsunderplane_hat",
+      "path": "/sprites/tsunderplane/hat.png",
+      "frames": [
+        "/sprites/tsunderplane/hat.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "tsunderplane_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 7) * 3"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "hat",
+      "sprite": "tsunderplane_hat",
+      "origin": {
+        "x": 57,
+        "y": -15
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 7) * 3"
+      },
+      "draw_order": 1
+    }
+  ]
+}

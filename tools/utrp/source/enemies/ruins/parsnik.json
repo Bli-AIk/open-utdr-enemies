@@ -1,0 +1,237 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/parsnik",
+  "name": "Parsnik",
+  "fps": 30,
+  "canvas": {
+    "width": 164,
+    "height": 174,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "parsnik_headwrap",
+      "path": "/sprites/parsnik/headwrap.png",
+      "frames": [
+        "/sprites/parsnik/headwrap.png"
+      ]
+    },
+    {
+      "id": "parsnik_snake1",
+      "path": "/sprites/parsnik/snake1_0.png",
+      "frames": [
+        "/sprites/parsnik/snake1_0.png",
+        "/sprites/parsnik/snake1_1.png",
+        "/sprites/parsnik/snake1_2.png",
+        "/sprites/parsnik/snake1_3.png"
+      ]
+    },
+    {
+      "id": "parsnik_snake2",
+      "path": "/sprites/parsnik/snake2_0.png",
+      "frames": [
+        "/sprites/parsnik/snake2_0.png",
+        "/sprites/parsnik/snake2_1.png",
+        "/sprites/parsnik/snake2_2.png",
+        "/sprites/parsnik/snake2_3.png"
+      ]
+    },
+    {
+      "id": "parsnik_snake3",
+      "path": "/sprites/parsnik/snake3_0.png",
+      "frames": [
+        "/sprites/parsnik/snake3_0.png",
+        "/sprites/parsnik/snake3_1.png",
+        "/sprites/parsnik/snake3_2.png",
+        "/sprites/parsnik/snake3_3.png"
+      ]
+    },
+    {
+      "id": "parsnik_snake4",
+      "path": "/sprites/parsnik/snake4_0.png",
+      "frames": [
+        "/sprites/parsnik/snake4_0.png",
+        "/sprites/parsnik/snake4_1.png",
+        "/sprites/parsnik/snake4_2.png",
+        "/sprites/parsnik/snake4_3.png"
+      ]
+    },
+    {
+      "id": "parsnik_snake5",
+      "path": "/sprites/parsnik/snake5_0.png",
+      "frames": [
+        "/sprites/parsnik/snake5_0.png",
+        "/sprites/parsnik/snake5_1.png",
+        "/sprites/parsnik/snake5_2.png",
+        "/sprites/parsnik/snake5_3.png"
+      ]
+    },
+    {
+      "id": "parsnik_head",
+      "path": "/sprites/parsnik/head_0.png",
+      "frames": [
+        "/sprites/parsnik/head_0.png",
+        "/sprites/parsnik/head_1.png",
+        "/sprites/parsnik/head_2.png",
+        "/sprites/parsnik/head_3.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "headwrap",
+      "sprite": "parsnik_headwrap",
+      "origin": {
+        "x": -38,
+        "y": -38
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(1.5 + siner / 5) * 2"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "snake1",
+      "sprite": "parsnik_snake1",
+      "origin": {
+        "x": -20,
+        "y": -10
+      },
+      "pivot": {
+        "x": 16,
+        "y": 19
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5) * 1.5",
+        "rotation_deg": "sin(siner / 5) * 6",
+        "frame_index": "floor(siner / 6) % 4"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "snake5",
+      "sprite": "parsnik_snake5",
+      "origin": {
+        "x": 22,
+        "y": -10
+      },
+      "pivot": {
+        "x": 0,
+        "y": 18
+      },
+      "transform": {
+        "offset_y": "sin(2 + siner / 5) * 1.5",
+        "rotation_deg": "-sin(2 + siner / 5) * 6",
+        "frame_index": "floor((siner + 8) / 6) % 4"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "snake2",
+      "sprite": "parsnik_snake2",
+      "origin": {
+        "x": -14,
+        "y": -16
+      },
+      "pivot": {
+        "x": 8,
+        "y": 18
+      },
+      "transform": {
+        "offset_y": "sin(0.5 + siner / 5) * 1.5",
+        "rotation_deg": "sin(siner / 5) * 2",
+        "frame_index": "floor((siner + 2) / 5.5) % 4"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "snake4",
+      "sprite": "parsnik_snake4",
+      "origin": {
+        "x": 8,
+        "y": -16
+      },
+      "pivot": {
+        "x": 0,
+        "y": 19
+      },
+      "transform": {
+        "offset_y": "sin(1.5 + siner / 5) * 1.5",
+        "rotation_deg": "-sin(siner / 5) * 2",
+        "frame_index": "floor((siner + 6) / 5.5) % 4"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "snake3",
+      "sprite": "parsnik_snake3",
+      "origin": {
+        "x": 0,
+        "y": -12
+      },
+      "pivot": {
+        "x": 8,
+        "y": 34
+      },
+      "transform": {
+        "offset_y": "sin(1 + siner / 5) * 1.5",
+        "frame_index": "floor((siner + 4) / 5) % 4"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "parsnik_head",
+      "origin": {
+        "x": -28,
+        "y": -16
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "frame_index": "floor(siner / 12) % 4"
+      },
+      "draw_order": 6
+    }
+  ]
+}

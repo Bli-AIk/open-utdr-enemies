@@ -1,0 +1,67 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/loox",
+  "name": "Loox",
+  "fps": 30,
+  "canvas": {
+    "width": 240,
+    "height": 272,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "loox_body",
+      "path": "/sprites/loox/body_0.png",
+      "frames": [
+        "/sprites/loox/body_0.png",
+        "/sprites/loox/body_1.png",
+        "/sprites/loox/body_2.png",
+        "/sprites/loox/body_3.png",
+        "/sprites/loox/body_4.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "loox_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": null,
+      "transform": {
+        "frame_index": "floor(clamp(siner % 30 - 20, 0, 10) * 0.5)"
+      },
+      "draw_order": 0
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "waterfall/woshua",
+  "name": "Woshua",
+  "fps": 30,
+  "canvas": {
+    "width": 108,
+    "height": 154,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "woshua_body",
+      "path": "/sprites/woshua/body.png",
+      "frames": [
+        "/sprites/woshua/body.png"
+      ]
+    },
+    {
+      "id": "woshua_head",
+      "path": "/sprites/woshua/head.png",
+      "frames": [
+        "/sprites/woshua/head.png"
+      ]
+    },
+    {
+      "id": "woshua_face",
+      "path": "/sprites/woshua/face.png",
+      "frames": [
+        "/sprites/woshua/face.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "woshua_body",
+      "origin": {
+        "x": 0,
+        "y": 20
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "woshua_head",
+      "origin": {
+        "x": -12,
+        "y": -35
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "face",
+      "sprite": "woshua_face",
+      "origin": {
+        "x": -2,
+        "y": -28
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 2
+    }
+  ]
+}

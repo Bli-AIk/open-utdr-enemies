@@ -1,0 +1,276 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "hotland/so-sorry",
+  "name": "So Sorry",
+  "fps": 30,
+  "canvas": {
+    "width": 290,
+    "height": 400,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "sosorry_tail",
+      "path": "/sprites/so-sorry/sosorry_tail.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_tail.png"
+      ]
+    },
+    {
+      "id": "sosorry_leg",
+      "path": "/sprites/so-sorry/sosorry_leg.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_leg.png"
+      ]
+    },
+    {
+      "id": "sosorry_leg_r",
+      "path": "/sprites/so-sorry/sosorry_leg_r.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_leg_r.png"
+      ]
+    },
+    {
+      "id": "sosorry_body",
+      "path": "/sprites/so-sorry/sosorry_body.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_body.png"
+      ]
+    },
+    {
+      "id": "sosorry_arm",
+      "path": "/sprites/so-sorry/sosorry_arm.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_arm.png"
+      ]
+    },
+    {
+      "id": "sosorry_arm_r",
+      "path": "/sprites/so-sorry/sosorry_arm_r.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_arm_r.png"
+      ]
+    },
+    {
+      "id": "sosorry_head",
+      "path": "/sprites/so-sorry/sosorry_head.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_head.png"
+      ]
+    },
+    {
+      "id": "sosorry_face",
+      "path": "/sprites/so-sorry/sosorry_face.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_face.png"
+      ]
+    },
+    {
+      "id": "sosorry_ear",
+      "path": "/sprites/so-sorry/sosorry_ear.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_ear.png"
+      ]
+    },
+    {
+      "id": "sosorry_ear_r",
+      "path": "/sprites/so-sorry/sosorry_ear_r.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_ear_r.png"
+      ]
+    },
+    {
+      "id": "sosorry_hat",
+      "path": "/sprites/so-sorry/sosorry_hat.png",
+      "frames": [
+        "/sprites/so-sorry/sosorry_hat.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "tail",
+      "sprite": "sosorry_tail",
+      "origin": {
+        "x": 1,
+        "y": 68
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 12) * 46"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "leg_left",
+      "sprite": "sosorry_leg",
+      "origin": {
+        "x": -12,
+        "y": 150
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 6) * -2"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "leg_right",
+      "sprite": "sosorry_leg_r",
+      "origin": {
+        "x": -4,
+        "y": 150
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 6) * 2",
+        "scale_x": "-1"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "sosorry_body",
+      "origin": {
+        "x": 15,
+        "y": 36
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 6) * 2"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "arm_left",
+      "sprite": "sosorry_arm",
+      "origin": {
+        "x": -90,
+        "y": -18
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 3) * 2"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "arm_right",
+      "sprite": "sosorry_arm_r",
+      "origin": {
+        "x": 90,
+        "y": -18
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 3) * -2",
+        "scale_x": "-1"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "sosorry_head",
+      "origin": {
+        "x": 10,
+        "y": -100
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 6) * 3"
+      },
+      "draw_order": 6
+    },
+    {
+      "kind": "sprite",
+      "id": "face",
+      "sprite": "sosorry_face",
+      "origin": {
+        "x": -16,
+        "y": -90
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 6) * 4"
+      },
+      "draw_order": 7
+    },
+    {
+      "kind": "sprite",
+      "id": "ear_left",
+      "sprite": "sosorry_ear",
+      "origin": {
+        "x": -75,
+        "y": -168
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 6) * 1"
+      },
+      "draw_order": 8
+    },
+    {
+      "kind": "sprite",
+      "id": "ear_right",
+      "sprite": "sosorry_ear_r",
+      "origin": {
+        "x": 53,
+        "y": -168
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 6) * 1",
+        "scale_x": "-1"
+      },
+      "draw_order": 9
+    },
+    {
+      "kind": "sprite",
+      "id": "hat",
+      "sprite": "sosorry_hat",
+      "origin": {
+        "x": -19,
+        "y": -149
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 6) * 5"
+      },
+      "draw_order": 10
+    }
+  ]
+}

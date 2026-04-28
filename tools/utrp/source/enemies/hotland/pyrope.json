@@ -1,0 +1,233 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "hotland/pyrope",
+  "name": "Pyrope",
+  "fps": 30,
+  "canvas": {
+    "width": 252,
+    "height": 376,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "pyrope_footl",
+      "path": "/sprites/pyrope/footl.png",
+      "frames": [
+        "/sprites/pyrope/footl.png"
+      ]
+    },
+    {
+      "id": "pyrope_footr",
+      "path": "/sprites/pyrope/footr.png",
+      "frames": [
+        "/sprites/pyrope/footr.png"
+      ]
+    },
+    {
+      "id": "pyrope_body5",
+      "path": "/sprites/pyrope/body5.png",
+      "frames": [
+        "/sprites/pyrope/body5.png"
+      ]
+    },
+    {
+      "id": "pyrope_body4",
+      "path": "/sprites/pyrope/body4.png",
+      "frames": [
+        "/sprites/pyrope/body4.png"
+      ]
+    },
+    {
+      "id": "pyrope_body3",
+      "path": "/sprites/pyrope/body3.png",
+      "frames": [
+        "/sprites/pyrope/body3.png"
+      ]
+    },
+    {
+      "id": "pyrope_body2",
+      "path": "/sprites/pyrope/body2.png",
+      "frames": [
+        "/sprites/pyrope/body2.png"
+      ]
+    },
+    {
+      "id": "pyrope_body1",
+      "path": "/sprites/pyrope/body1.png",
+      "frames": [
+        "/sprites/pyrope/body1.png"
+      ]
+    },
+    {
+      "id": "pyrope_body0",
+      "path": "/sprites/pyrope/body0.png",
+      "frames": [
+        "/sprites/pyrope/body0.png"
+      ]
+    },
+    {
+      "id": "pyrope_head",
+      "path": "/sprites/pyrope/head.png",
+      "frames": [
+        "/sprites/pyrope/head.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "foot_left",
+      "sprite": "pyrope_footl",
+      "origin": {
+        "x": -5,
+        "y": 156
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * -10",
+        "rotation_deg": "sin(siner / 14) * 20"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "foot_right",
+      "sprite": "pyrope_footr",
+      "origin": {
+        "x": 39,
+        "y": 156
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * -10",
+        "rotation_deg": "sin(siner / 14) * -20"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "body5",
+      "sprite": "pyrope_body5",
+      "origin": {
+        "x": -92,
+        "y": 108
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * 3"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "body4",
+      "sprite": "pyrope_body4",
+      "origin": {
+        "x": -89,
+        "y": 64
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * 3"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "body3",
+      "sprite": "pyrope_body3",
+      "origin": {
+        "x": -85,
+        "y": 22
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * 3"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "body2",
+      "sprite": "pyrope_body2",
+      "origin": {
+        "x": -79,
+        "y": -20
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * 3"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "body1",
+      "sprite": "pyrope_body1",
+      "origin": {
+        "x": -68,
+        "y": -60
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * 3"
+      },
+      "draw_order": 6
+    },
+    {
+      "kind": "sprite",
+      "id": "body0",
+      "sprite": "pyrope_body0",
+      "origin": {
+        "x": -57,
+        "y": -100
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 14) * 3"
+      },
+      "draw_order": 7
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "pyrope_head",
+      "origin": {
+        "x": 50,
+        "y": -118
+      },
+      "pivot": null,
+      "transform": {
+        "rotation_deg": "sin(siner / 6) * 4"
+      },
+      "draw_order": 8
+    }
+  ]
+}

@@ -2,7 +2,7 @@ use crate::ir::RenderProgram;
 use crate::source::validate_slug;
 use anyhow::{Context, bail};
 use serde::{Deserialize, Serialize};
-use std::collections::BTreeSet;
+use std::collections::{BTreeMap, BTreeSet};
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
 
@@ -33,9 +33,10 @@ pub fn write_program_outputs(programs: &[RenderProgram], output: &Path) -> anyho
             std::fs::create_dir_all(parent)
                 .with_context(|| format!("failed to create {}", parent.display()))?;
         }
+        let generated = with_codegen_urls(program);
         std::fs::write(
             &path,
-            serde_json::to_string_pretty(program)
+            serde_json::to_string_pretty(&generated)
                 .with_context(|| format!("failed to serialize {}", program.slug))?
                 + "\n",
         )
@@ -48,6 +49,21 @@ pub fn write_program_outputs(programs: &[RenderProgram], output: &Path) -> anyho
 fn output_relative_path(slug: &str) -> anyhow::Result<String> {
     validate_slug(slug)?;
     Ok(format!("{slug}.json"))
+}
+
+fn with_codegen_urls(program: &RenderProgram) -> RenderProgram {
+    let mut generated = program.clone();
+    generated.codegen = BTreeMap::from([
+        (
+            "GML".to_string(),
+            format!("/generated-code/{}.gml.txt", program.slug),
+        ),
+        (
+            "SoupRune".to_string(),
+            format!("/generated-code/{}.souprune.rs.txt", program.slug),
+        ),
+    ]);
+    generated
 }
 
 fn read_manifest(output: &Path) -> anyhow::Result<BTreeSet<String>> {

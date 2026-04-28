@@ -1,0 +1,156 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "core/astigmatism",
+  "name": "Astigmatism",
+  "fps": 30,
+  "canvas": {
+    "width": 222,
+    "height": 268,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "astigmatism_handl",
+      "path": "/sprites/astigmatism/handl.png",
+      "frames": [
+        "/sprites/astigmatism/handl.png"
+      ]
+    },
+    {
+      "id": "astigmatism_legl",
+      "path": "/sprites/astigmatism/legl.png",
+      "frames": [
+        "/sprites/astigmatism/legl.png"
+      ]
+    },
+    {
+      "id": "astigmatism_body",
+      "path": "/sprites/astigmatism/body.png",
+      "frames": [
+        "/sprites/astigmatism/body.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "hand_left",
+      "sprite": "astigmatism_handl",
+      "origin": {
+        "x": -40,
+        "y": 6
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "sin(siner / 6) * 2",
+        "offset_y": "cos(siner / 6) * 2",
+        "scale_y": "0.9 + cos(siner / 6) * 0.1"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "leg_left",
+      "sprite": "astigmatism_legl",
+      "origin": {
+        "x": -18,
+        "y": 26
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "cos(siner / 6) * 2",
+        "offset_y": "sin(siner / 6) * 2",
+        "scale_y": "0.9 + sin(siner / 6) * 0.1"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "hand_right",
+      "sprite": "astigmatism_handl",
+      "origin": {
+        "x": 44,
+        "y": 6
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "-sin(siner / 6) * 2",
+        "offset_y": "-cos(siner / 6) * 2",
+        "scale_x": "-1",
+        "scale_y": "0.95 - cos(siner / 6) * 0.1"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "leg_right",
+      "sprite": "astigmatism_legl",
+      "origin": {
+        "x": 22,
+        "y": 26
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "-cos(siner / 6) * 2",
+        "offset_y": "-sin(siner / 6) * 2",
+        "scale_x": "-1",
+        "scale_y": "0.9 - sin(siner / 6) * 0.1"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "astigmatism_body",
+      "origin": {
+        "x": -48,
+        "y": -58
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {},
+      "draw_order": 4
+    }
+  ]
+}

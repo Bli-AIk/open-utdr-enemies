@@ -1,0 +1,72 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "snowdin/jerry",
+  "name": "Jerry",
+  "fps": 30,
+  "canvas": {
+    "width": 416,
+    "height": 220,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "jerry_body",
+      "path": "/sprites/jerry/body_0.png",
+      "frames": [
+        "/sprites/jerry/body_0.png",
+        "/sprites/jerry/body_1.png",
+        "/sprites/jerry/body_2.png",
+        "/sprites/jerry/body_3.png",
+        "/sprites/jerry/body_4.png",
+        "/sprites/jerry/body_5.png",
+        "/sprites/jerry/body_6.png",
+        "/sprites/jerry/body_7.png",
+        "/sprites/jerry/body_8.png",
+        "/sprites/jerry/body_9.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "jerry_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": null,
+      "transform": {
+        "frame_index": "floor(siner * 0.1) % 10"
+      },
+      "draw_order": 0
+    }
+  ]
+}

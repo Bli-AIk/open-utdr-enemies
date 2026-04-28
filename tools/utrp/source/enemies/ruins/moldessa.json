@@ -1,0 +1,208 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/moldessa",
+  "name": "Moldessa",
+  "fps": 30,
+  "canvas": {
+    "width": 210,
+    "height": 198,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "moldessa_arm",
+      "path": "/sprites/moldessa/arm.png",
+      "frames": [
+        "/sprites/moldessa/arm.png"
+      ]
+    },
+    {
+      "id": "moldessa_stem",
+      "path": "/sprites/moldessa/stem.png",
+      "frames": [
+        "/sprites/moldessa/stem.png"
+      ]
+    },
+    {
+      "id": "moldessa_headthing",
+      "path": "/sprites/moldessa/headthing.png",
+      "frames": [
+        "/sprites/moldessa/headthing.png"
+      ]
+    },
+    {
+      "id": "moldessa_face",
+      "path": "/sprites/moldessa/face_0.png",
+      "frames": [
+        "/sprites/moldessa/face_0.png",
+        "/sprites/moldessa/face_1.png",
+        "/sprites/moldessa/face_2.png",
+        "/sprites/moldessa/face_3.png",
+        "/sprites/moldessa/face_4.png",
+        "/sprites/moldessa/face_5.png",
+        "/sprites/moldessa/face_6.png",
+        "/sprites/moldessa/face_7.png",
+        "/sprites/moldessa/face_8.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "stem",
+      "sprite": "moldessa_stem",
+      "origin": {
+        "x": 0,
+        "y": 57
+      },
+      "pivot": {
+        "x": 20,
+        "y": 58
+      },
+      "transform": {
+        "scale_x": "1 + sin(siner / 7) * 0.05",
+        "scale_y": "1 - sin(siner / 7) * 0.05"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "face1",
+      "sprite": "moldessa_face",
+      "origin": {
+        "x": 0,
+        "y": -1
+      },
+      "pivot": {
+        "x": 7,
+        "y": 7
+      },
+      "transform": {
+        "offset_x": "sin(siner / 16) * 13 + sin(siner / 6)",
+        "offset_y": "cos(siner / 16) * 18 + cos(siner / 6)",
+        "rotation_deg": "siner * 3 + sin(siner / 6) * 4",
+        "frame_index": "0"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "face2",
+      "sprite": "moldessa_face",
+      "origin": {
+        "x": 0,
+        "y": -1
+      },
+      "pivot": {
+        "x": 7,
+        "y": 7
+      },
+      "transform": {
+        "offset_x": "sin((siner + 36) / 16) * 13 + sin(siner / 6)",
+        "offset_y": "cos((siner + 36) / 16) * 18 + cos(siner / 6)",
+        "rotation_deg": "siner * 3 + 180 + sin(siner / 6) * 4",
+        "frame_index": "4"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "face3",
+      "sprite": "moldessa_face",
+      "origin": {
+        "x": 0,
+        "y": -1
+      },
+      "pivot": {
+        "x": 7,
+        "y": 7
+      },
+      "transform": {
+        "offset_x": "sin((siner + 65) / 16) * 13 + sin(siner / 6)",
+        "offset_y": "cos((siner + 65) / 16) * 18 + cos(siner / 6)",
+        "rotation_deg": "siner * 3 + 180 + sin(siner / 6) * 4",
+        "frame_index": "7"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "headthing",
+      "sprite": "moldessa_headthing",
+      "origin": {
+        "x": 0,
+        "y": -61
+      },
+      "pivot": {
+        "x": 10,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 7) * 2"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "arm_left",
+      "sprite": "moldessa_arm",
+      "origin": {
+        "x": -12,
+        "y": -57
+      },
+      "pivot": {
+        "x": 18,
+        "y": 2
+      },
+      "transform": {
+        "rotation_deg": "-5 + sin(siner / 7) * 5"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "arm_right",
+      "sprite": "moldessa_arm",
+      "origin": {
+        "x": 14,
+        "y": -57
+      },
+      "pivot": {
+        "x": 18,
+        "y": 2
+      },
+      "transform": {
+        "scale_x": "-1",
+        "rotation_deg": "5 - sin(siner / 7) * 5"
+      },
+      "draw_order": 6
+    }
+  ]
+}

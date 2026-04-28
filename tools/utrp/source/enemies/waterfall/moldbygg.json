@@ -1,0 +1,49 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "waterfall/moldbygg",
+  "name": "Moldbygg",
+  "fps": 30,
+  "canvas": {
+    "width": 130,
+    "height": 122,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [],
+  "assets": [
+    {
+      "id": "moldbygg_body",
+      "path": "/sprites/moldbygg/body.png",
+      "frames": [
+        "/sprites/moldbygg/body.png"
+      ]
+    }
+  ],
+  "update": [],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "moldbygg_body",
+      "origin": {
+        "x": 0,
+        "y": 0
+      },
+      "pivot": null,
+      "transform": {},
+      "draw_order": 0
+    }
+  ]
+}

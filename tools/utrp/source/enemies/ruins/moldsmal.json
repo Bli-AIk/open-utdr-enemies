@@ -1,0 +1,68 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "ruins/moldsmal",
+  "name": "Moldsmal",
+  "fps": 30,
+  "canvas": {
+    "width": 244,
+    "height": 208,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "moldsmal_body",
+      "path": "/sprites/moldsmal/body_0.png",
+      "frames": [
+        "/sprites/moldsmal/body_0.png",
+        "/sprites/moldsmal/body_1.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "moldsmal_body",
+      "origin": {
+        "x": 0,
+        "y": 84
+      },
+      "pivot": {
+        "x": 51,
+        "y": 84
+      },
+      "transform": {
+        "scale_y": "1.0 - sin(siner / 4) * 0.05",
+        "frame_index": "floor(siner / 6) % 2"
+      },
+      "draw_order": 0
+    }
+  ]
+}

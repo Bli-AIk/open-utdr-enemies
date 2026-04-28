@@ -1,0 +1,156 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "snowdin/chilldrake",
+  "name": "Chilldrake",
+  "fps": 30,
+  "canvas": {
+    "width": 172,
+    "height": 210,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "snowdrake_legs",
+      "path": "/sprites/snowdrake/legs.png",
+      "frames": [
+        "/sprites/snowdrake/legs.png"
+      ]
+    },
+    {
+      "id": "snowdrake_body",
+      "path": "/sprites/snowdrake/body.png",
+      "frames": [
+        "/sprites/snowdrake/body.png"
+      ]
+    },
+    {
+      "id": "snowdrake_head",
+      "path": "/sprites/snowdrake/head_0.png",
+      "frames": [
+        "/sprites/snowdrake/head_0.png",
+        "/sprites/snowdrake/head_1.png",
+        "/sprites/snowdrake/head_2.png",
+        "/sprites/snowdrake/head_3.png",
+        "/sprites/snowdrake/head_4.png",
+        "/sprites/snowdrake/head_5.png",
+        "/sprites/snowdrake/head_6.png",
+        "/sprites/snowdrake/head_7.png",
+        "/sprites/snowdrake/head_8.png",
+        "/sprites/snowdrake/head_9.png",
+        "/sprites/snowdrake/head_10.png",
+        "/sprites/snowdrake/head_11.png",
+        "/sprites/snowdrake/head_12.png",
+        "/sprites/snowdrake/head_13.png",
+        "/sprites/snowdrake/head_14.png",
+        "/sprites/snowdrake/head_15.png",
+        "/sprites/snowdrake/head_16.png",
+        "/sprites/snowdrake/head_17.png",
+        "/sprites/snowdrake/head_18.png",
+        "/sprites/snowdrake/head_19.png"
+      ]
+    },
+    {
+      "id": "chill_glasses",
+      "path": "/sprites/chilldrake/glasses.png",
+      "frames": [
+        "/sprites/chilldrake/glasses.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "legs",
+      "sprite": "snowdrake_legs",
+      "origin": {
+        "x": -86,
+        "y": -100
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {},
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "snowdrake_body",
+      "origin": {
+        "x": -86,
+        "y": -100
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 13) * 3.3"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "snowdrake_head",
+      "origin": {
+        "x": -86,
+        "y": -100
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 13) * 10",
+        "frame_index": "floor(siner * 0.1) % 20"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "glasses",
+      "sprite": "chill_glasses",
+      "origin": {
+        "x": -86,
+        "y": -100
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 13) * 10"
+      },
+      "draw_order": 3
+    }
+  ]
+}

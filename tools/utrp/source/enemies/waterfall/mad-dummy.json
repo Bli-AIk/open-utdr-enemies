@@ -1,0 +1,130 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "waterfall/mad-dummy",
+  "name": "Mad Dummy",
+  "fps": 30,
+  "canvas": {
+    "width": 110,
+    "height": 186,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
+      "Mad Dummy uses source-inspired sway expressions pending source review."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "maddummy_base",
+      "path": "/sprites/mad-dummy/maddummy_base.png",
+      "frames": [
+        "/sprites/mad-dummy/maddummy_base.png"
+      ]
+    },
+    {
+      "id": "maddummy_leg",
+      "path": "/sprites/mad-dummy/maddummy_leg.png",
+      "frames": [
+        "/sprites/mad-dummy/maddummy_leg.png"
+      ]
+    },
+    {
+      "id": "maddummy_torso",
+      "path": "/sprites/mad-dummy/maddummy_torso.png",
+      "frames": [
+        "/sprites/mad-dummy/maddummy_torso.png"
+      ]
+    },
+    {
+      "id": "maddummy_head",
+      "path": "/sprites/mad-dummy/maddummy_head.png",
+      "frames": [
+        "/sprites/mad-dummy/maddummy_head.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "base",
+      "sprite": "maddummy_base",
+      "origin": {
+        "x": -14,
+        "y": 60
+      },
+      "pivot": null,
+      "transform": {
+        "rotation_deg": "sin(siner / 7.5) * -3"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "leg",
+      "sprite": "maddummy_leg",
+      "origin": {
+        "x": 10,
+        "y": 40
+      },
+      "pivot": null,
+      "transform": {
+        "rotation_deg": "sin(siner / 7.5)"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "torso",
+      "sprite": "maddummy_torso",
+      "origin": {
+        "x": -16,
+        "y": -13
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 7.5) * 0.75",
+        "rotation_deg": "sin(siner / 7.5) * 1.5"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "maddummy_head",
+      "origin": {
+        "x": -4,
+        "y": -56
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 7.5) * -1",
+        "offset_y": "sin(siner / 7.5)",
+        "rotation_deg": "sin(siner / 7.5) * 3"
+      },
+      "draw_order": 3
+    }
+  ]
+}

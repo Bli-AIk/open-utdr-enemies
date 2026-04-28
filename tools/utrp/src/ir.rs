@@ -16,6 +16,7 @@ pub struct RenderProgram {
     pub assets: Vec<SpriteAsset>,
     pub update: Vec<UpdateOp>,
     pub draw: Vec<DrawOp>,
+    #[serde(default, skip_serializing_if = "BTreeMap::is_empty")]
     pub codegen: BTreeMap<String, String>,
 }
 
@@ -184,9 +185,17 @@ pub struct SpriteDraw {
 #[derive(Clone, Debug, Default, Deserialize, Serialize, PartialEq)]
 pub struct TransformExpr {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub position: Option<Vec2>,
-    #[serde(skip_serializing_if = "Option::is_none", rename = "rotation_deg")]
+    pub offset_x: Option<Expr>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub offset_y: Option<Expr>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scale_x: Option<Expr>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub scale_y: Option<Expr>,
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub rotation_deg: Option<Expr>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub scale: Option<Vec2>,
+    pub alpha: Option<Expr>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub frame_index: Option<Expr>,
 }

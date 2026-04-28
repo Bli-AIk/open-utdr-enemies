@@ -1,0 +1,143 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "snowdin/glyde",
+  "name": "Glyde",
+  "fps": 30,
+  "canvas": {
+    "width": 260,
+    "height": 220,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "glyde_wing_r",
+      "path": "/sprites/glyde/wing_r.png",
+      "frames": [
+        "/sprites/glyde/wing_r.png"
+      ]
+    },
+    {
+      "id": "glyde_body",
+      "path": "/sprites/glyde/body.png",
+      "frames": [
+        "/sprites/glyde/body.png"
+      ]
+    },
+    {
+      "id": "glyde_wing_l",
+      "path": "/sprites/glyde/wing_l.png",
+      "frames": [
+        "/sprites/glyde/wing_l.png"
+      ]
+    },
+    {
+      "id": "glyde_antenna",
+      "path": "/sprites/glyde/antenna.png",
+      "frames": [
+        "/sprites/glyde/antenna.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "wing_right",
+      "sprite": "glyde_wing_r",
+      "origin": {
+        "x": -72,
+        "y": 106
+      },
+      "pivot": {
+        "x": 0,
+        "y": 42
+      },
+      "transform": {
+        "offset_y": "sin(siner / 12) * 8 + sin(siner / 6) * 2",
+        "scale_y": "0.85 - sin(siner / 6) * 0.15"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "body",
+      "sprite": "glyde_body",
+      "origin": {
+        "x": -118,
+        "y": -84
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 12) * 8"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "wing_left",
+      "sprite": "glyde_wing_l",
+      "origin": {
+        "x": 122,
+        "y": 96
+      },
+      "pivot": {
+        "x": 79,
+        "y": 82
+      },
+      "transform": {
+        "offset_y": "sin(siner / 12) * 8",
+        "scale_x": "0.975 - sin(siner / 6) * 0.025",
+        "scale_y": "0.9 - sin(siner / 6) * 0.1"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "antenna",
+      "sprite": "glyde_antenna",
+      "origin": {
+        "x": -50,
+        "y": -64
+      },
+      "pivot": {
+        "x": 7,
+        "y": 15
+      },
+      "transform": {
+        "offset_x": "sin(siner / 12) * 2",
+        "offset_y": "sin(siner / 12) * 8",
+        "rotation_deg": "20 - sin(siner / 12) * 20"
+      },
+      "draw_order": 3
+    }
+  ]
+}

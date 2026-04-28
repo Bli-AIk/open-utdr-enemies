@@ -1,0 +1,207 @@
+{
+  "format": "utrp",
+  "version": 1,
+  "slug": "core/madjick",
+  "name": "Madjick",
+  "fps": 30,
+  "canvas": {
+    "width": 184,
+    "height": 238,
+    "scale": 2
+  },
+  "coordinate_space": {
+    "origin": "top_left",
+    "y_axis": "down",
+    "rotation": "counter_clockwise",
+    "angle_unit": "degrees"
+  },
+  "review": {
+    "accuracy": "needs_source_review",
+    "notes": [
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+    ]
+  },
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
+  "assets": [
+    {
+      "id": "madjick_boot",
+      "path": "/sprites/madjick/boot.png",
+      "frames": [
+        "/sprites/madjick/boot.png"
+      ]
+    },
+    {
+      "id": "madjick_dress",
+      "path": "/sprites/madjick/dress.png",
+      "frames": [
+        "/sprites/madjick/dress.png"
+      ]
+    },
+    {
+      "id": "madjick_lapel",
+      "path": "/sprites/madjick/lapel.png",
+      "frames": [
+        "/sprites/madjick/lapel.png"
+      ]
+    },
+    {
+      "id": "madjick_head",
+      "path": "/sprites/madjick/head.png",
+      "frames": [
+        "/sprites/madjick/head.png"
+      ]
+    },
+    {
+      "id": "madjick_hat",
+      "path": "/sprites/madjick/hat.png",
+      "frames": [
+        "/sprites/madjick/hat.png"
+      ]
+    }
+  ],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
+  "draw": [
+    {
+      "kind": "sprite",
+      "id": "boot_left",
+      "sprite": "madjick_boot",
+      "origin": {
+        "x": -43,
+        "y": 48
+      },
+      "pivot": {
+        "x": 0,
+        "y": 12
+      },
+      "transform": {
+        "offset_x": "-sin(siner / 5) * 5",
+        "offset_y": "-sin(siner / 5) * 6",
+        "rotation_deg": "-40 - sin(siner / 5) * 10"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "boot_right",
+      "sprite": "madjick_boot",
+      "origin": {
+        "x": -1,
+        "y": 48
+      },
+      "pivot": {
+        "x": 0,
+        "y": 12
+      },
+      "transform": {
+        "offset_x": "sin(siner / 5) * 5",
+        "offset_y": "-sin(siner / 5) * 6",
+        "scale_x": "-1",
+        "rotation_deg": "40 + sin(siner / 5) * 10"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "lapel_left",
+      "sprite": "madjick_lapel",
+      "origin": {
+        "x": -22,
+        "y": 20
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5)",
+        "rotation_deg": "-sin(siner / 5) * 10"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "lapel_right",
+      "sprite": "madjick_lapel",
+      "origin": {
+        "x": -22,
+        "y": 20
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5)",
+        "scale_x": "-1",
+        "rotation_deg": "sin(siner / 5) * 10"
+      },
+      "draw_order": 3
+    },
+    {
+      "kind": "sprite",
+      "id": "dress",
+      "sprite": "madjick_dress",
+      "origin": {
+        "x": -54,
+        "y": 20
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 5)",
+        "scale_y": "0.9 - sin(siner / 5) * 0.1"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "head",
+      "sprite": "madjick_head",
+      "origin": {
+        "x": -26,
+        "y": -30
+      },
+      "pivot": {
+        "x": 0,
+        "y": 10
+      },
+      "transform": {
+        "offset_x": "sin(siner / 5)",
+        "offset_y": "sin(siner / 5) * 8"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "hat",
+      "sprite": "madjick_hat",
+      "origin": {
+        "x": -18,
+        "y": -28
+      },
+      "pivot": {
+        "x": -2,
+        "y": 19
+      },
+      "transform": {
+        "offset_x": "cos(siner / 5)",
+        "offset_y": "sin(siner / 5) * 10"
+      },
+      "draw_order": 6
+    }
+  ]
+}
