@@ -9,8 +9,7 @@ template = "page.html"
 
 [extra]
   author = "毫无技术的鸽子"
-  utaf_data = "/utaf/core/finalfroggit.json"
-  utaf_lab_url = "/lab/finalfroggit/"
+  utrp_data = "/utrp/core/finalfroggit.json"
 
   toc = true
   top = false

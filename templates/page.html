@@ -42,7 +42,7 @@
 <div class="wrap container" role="document">
   <div class="content">
     <div class="row justify-content-center">
-      {% if page.extra.utaf_data %}
+      {% if page.extra.utrp_data %}
       {# Two-column layout: article + animation sidebar #}
       <div class="col-16 col-lg-8 order-2 order-lg-1">
         <article>
@@ -86,21 +86,22 @@
             </ul>
           </nav>
           {% endif %}
-          <aside class="utaf-sidebar">
-            <div id="utaf-sidebar-preview" class="utaf-lab-embed">
-              <div class="utaf-lab__loading" style="color:#666; padding:2rem; text-align:center; font-family:monospace;">加载中...</div>
+          <aside class="utrp-sidebar">
+            <div id="utrp-sidebar-preview" class="utrp-lab-embed">
+              <div class="utrp-lab__loading" style="color:#666; padding:2rem; text-align:center; font-family:monospace;">加载中...</div>
             </div>
-            <div class="utaf-sidebar__copyright" style="margin-top:0.5rem; font-size:0.65rem; color:#555; font-family:'UT-HUD', monospace; text-align:center;">
+            <div class="utrp-sidebar__copyright" style="margin-top:0.5rem; font-size:0.65rem; color:#555; font-family:'UT-HUD', monospace; text-align:center;">
               Sprites © Toby Fox / UNDERTALE.<br>非商业研究用途。
             </div>
-            <script src="/js/animation-lab/core.js"></script>
+            <script src="/js/animation-lab/ir-core.js"></script>
+            <script src="/js/animation-lab/codegen-panel.js"></script>
             <script src="/js/animation-lab/ui.js"></script>
             <script>
             (function() {
-              var container = document.getElementById('utaf-sidebar-preview');
-              initAnimationLab(container, '{{ page.extra.utaf_data | safe }}', {
+              var container = document.getElementById('utrp-sidebar-preview');
+              initAnimationLab(container, '{{ page.extra.utrp_data | safe }}', {
                 mini: true,
-                labUrl: '{{ page.extra.utaf_lab_url | default(value="") | safe }}'
+                labUrl: ''
               });
             })();
             </script>

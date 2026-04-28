@@ -51,30 +51,32 @@
         {# Render page cards if section has pages #}
         {% if section.pages | length > 0 %}
 
-        {# Check if any page has UTAF data #}
-        {% set_global has_utaf = false %}
+        {# Check if any page has UTRP data #}
+        {% set_global has_utrp = false %}
         {% for page in section.pages %}
-          {% if page.extra.utaf_data %}{% set_global has_utaf = true %}{% endif %}
+          {% if page.extra.utrp_data %}{% set_global has_utrp = true %}{% endif %}
         {% endfor %}
 
-        {% if has_utaf %}
+        {% if has_utrp %}
         <div class="ut-card-grid" style="margin-top: 2rem;">
           {% for page in section.pages %}
-            <a href="{{ page.permalink | safe }}" class="ut-card{% if page.extra.utaf_data %} ut-card--has-utaf{% endif %}"
-               {% if page.extra.utaf_data %} data-utaf="{{ page.extra.utaf_data }}"{% endif %}>
-              {% if page.extra.utaf_data %}
+            <a href="{{ page.permalink | safe }}" class="ut-card{% if page.extra.utrp_data %} ut-card--has-utrp{% endif %}"
+               {% if page.extra.utrp_data %} data-utrp="{{ page.extra.utrp_data }}"{% endif %}>
+              {% if page.extra.utrp_data %}
               <div class="ut-card-preview">
-                <div class="utaf-card-loading">加载中...</div>
+                <div class="utrp-card-loading">加载中...</div>
               </div>
               {% endif %}
               <div class="ut-card-title">{{ page.title | upper }}</div>
             </a>
           {% endfor %}
         </div>
-        <script src="/js/animation-lab/core.js"></script>
+        <script src="/js/animation-lab/ir-core.js"></script>
+        <script src="/js/animation-lab/codegen-panel.js"></script>
+        <script src="/js/animation-lab/ui.js"></script>
         <script>
         (function() {
-          var cards = document.querySelectorAll('.ut-card[data-utaf]');
+          var cards = document.querySelectorAll('.ut-card[data-utrp]');
           if (!cards.length) return;
 
           var observer = new IntersectionObserver(function(entries) {
@@ -82,19 +84,20 @@
               if (!entry.isIntersecting) return;
               var card = entry.target;
               observer.unobserve(card);
-              var url = card.getAttribute('data-utaf');
+              var url = card.getAttribute('data-utrp');
               var preview = card.querySelector('.ut-card-preview');
               fetch(url).then(function(r) { return r.json(); }).then(function(data) {
-                var w = data.canvasWidth || 220;
-                var h = data.canvasHeight || 280;
+                var canvasInfo = data.canvas || {};
+                var w = canvasInfo.width || 220;
+                var h = canvasInfo.height || 280;
                 var canvas = document.createElement('canvas');
                 canvas.width = w;
                 canvas.height = h;
-                canvas.className = 'utaf-card-canvas';
+                canvas.className = 'utrp-card-canvas';
                 preview.innerHTML = '';
                 preview.appendChild(canvas);
-                var engine = new UTAFEngine(canvas, data, {});
-                engine.loadSprites().then(function() {
+                var engine = new UTRPEngine(canvas, data, {});
+                engine.loadAssets().then(function() {
                   engine.start();
                 });
               }).catch(function() {

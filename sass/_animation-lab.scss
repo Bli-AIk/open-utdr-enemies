@@ -1,8 +1,8 @@
 /* ===========================================
-   UTAF Animation Lab Styles
+   UTRP Animation Lab Styles
    =========================================== */
 
-.utaf-lab {
+.utrp-lab {
   border: 4px solid #fff;
   background: #000;
   font-family: 'UT-HUD', "Courier New", monospace;
@@ -229,17 +229,79 @@
     text-align: center;
     color: #f55;
   }
+
+  &__code {
+    border-top: 2px solid #333;
+  }
+}
+
+.utrp-codegen {
+  padding: 0.75rem 1rem 1rem;
+
+  &__title {
+    font-size: 0.9rem;
+    color: #ff0;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+  }
+
+  &__targets {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  &__target {
+    background: #000;
+    color: #fff;
+    border: 2px solid #555;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+
+    &:hover {
+      border-color: #fff;
+    }
+
+    &.active {
+      border-color: #ff0;
+      color: #ff0;
+    }
+  }
+
+  &__status,
+  &__empty {
+    color: #888;
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__pre {
+    max-height: 28rem;
+    overflow: auto;
+    margin: 0;
+    padding: 0.75rem;
+    background: #080808;
+    border: 1px solid #333;
+    color: #ddd;
+    font-family: "Courier New", monospace;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    white-space: pre;
+  }
 }
 
 /* Mini mode overrides */
-.utaf-lab--mini {
+.utrp-lab--mini {
   max-width: 300px;
 
-  .utaf-lab__canvas-wrap {
+  .utrp-lab__canvas-wrap {
     padding: 0.5rem;
   }
 
-  .utaf-lab__controls {
+  .utrp-lab__controls {
     padding: 0.25rem 0.5rem;
 
     button {
@@ -249,27 +311,27 @@
     }
   }
 
-  .utaf-lab__header {
+  .utrp-lab__header {
     padding: 0.5rem 0.75rem;
   }
 
-  .utaf-lab__title {
+  .utrp-lab__title {
     font-size: 0.85rem;
   }
 }
 
 /* Article sidebar */
-.utaf-sidebar {
+.utrp-sidebar {
   position: sticky;
   top: 5rem;
 
-  .utaf-lab {
+  .utrp-lab {
     max-width: 100%;
   }
 }
 
 @media (max-width: 991px) {
-  .utaf-sidebar {
+  .utrp-sidebar {
     position: static;
     margin-bottom: 1.5rem;
   }

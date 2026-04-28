@@ -1,9 +1,10 @@
-<div id="utaf-mini-{{ id }}" class="utaf-lab-embed"></div>
-<script src="/js/animation-lab/core.js"></script>
+<div id="utrp-mini-{{ id }}" class="utrp-lab-embed"></div>
+<script src="/js/animation-lab/ir-core.js"></script>
+<script src="/js/animation-lab/codegen-panel.js"></script>
 <script src="/js/animation-lab/ui.js"></script>
 <script>
 (function() {
-  var container = document.getElementById('utaf-mini-{{ id }}');
+  var container = document.getElementById('utrp-mini-{{ id }}');
   initAnimationLab(container, '{{ data | safe }}', {
     mini: {% if mini is defined and mini == "false" %}false{% else %}true{% endif %},
     labUrl: '{{ lab_url | default(value="") | safe }}'

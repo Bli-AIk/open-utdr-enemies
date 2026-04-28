@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/waterfall/woshua.json"
-  utaf_lab_url = "/lab/woshua/"
+  utrp_data = "/utrp/waterfall/woshua.json"
 +++
 
 

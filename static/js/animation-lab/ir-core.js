@@ -405,6 +405,8 @@ class UTRPEngine {
   }
 
   start() {
+    if (this.raf) return;
+
     const loop = timestamp => {
       this.raf = requestAnimationFrame(loop);
 

@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/core/whimsalot.json"
-  utaf_lab_url = "/lab/whimsalot/"
+  utrp_data = "/utrp/core/whimsalot.json"
 +++
 
 

@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/snowdin/doggo.json"
-  utaf_lab_url = "/animation-lab/"
+  utrp_data = "/utrp/snowdin/doggo.json"
 +++
 
 

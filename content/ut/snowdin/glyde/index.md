@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/snowdin/glyde.json"
-  utaf_lab_url = "/lab/glyde/"
+  utrp_data = "/utrp/snowdin/glyde.json"
 +++
 
 

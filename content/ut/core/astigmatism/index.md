@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/core/astigmatism.json"
-  utaf_lab_url = "/lab/astigmatism/"
+  utrp_data = "/utrp/core/astigmatism.json"
 +++
 
 

@@ -4,5 +4,5 @@ description = "在浏览器中实时预览和调整 Tsunderplane 的动画参数
 template = "lab.html"
 weight = 1
 [extra]
-utaf_data = "/utaf/hotland/tsunderplane.json"
+utrp_data = "/utrp/hotland/tsunderplane.json"
 +++

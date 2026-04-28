@@ -34,6 +34,13 @@ class UTRPLabUI {
     }, 100);
   }
 
+  destroy() {
+    if (this.timer) {
+      window.clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
   buildHeader() {
     const header = document.createElement('div');
     header.className = 'utrp-lab__header';
@@ -129,6 +136,12 @@ function showAnimationLabError(container, message) {
 
 async function initAnimationLab(container, dataUrl, options = {}) {
   try {
+    if (container.__utrpLabInstance) {
+      container.__utrpLabInstance.engine.stop();
+      container.__utrpLabInstance.ui.destroy();
+      container.__utrpLabInstance = null;
+    }
+
     if (!dataUrl) throw new Error('No UTRP data source configured.');
 
     const response = await fetch(dataUrl);
@@ -166,8 +179,14 @@ async function initAnimationLab(container, dataUrl, options = {}) {
     engine.render();
     engine.start();
 
+    container.__utrpLabInstance = { engine, ui };
     return { engine, ui };
   } catch (err) {
+    if (container.__utrpLabInstance) {
+      container.__utrpLabInstance.engine.stop();
+      container.__utrpLabInstance.ui.destroy();
+      container.__utrpLabInstance = null;
+    }
     showAnimationLabError(container, err.message);
     console.error('Animation Lab init error:', err);
     return null;

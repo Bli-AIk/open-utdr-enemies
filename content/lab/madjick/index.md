@@ -4,5 +4,5 @@ description = "在浏览器中实时预览和调整 Madjick 的动画参数"
 template = "lab.html"
 weight = 1
 [extra]
-utaf_data = "/utaf/core/madjick.json"
+utrp_data = "/utrp/core/madjick.json"
 +++

@@ -4,5 +4,5 @@ description = "在浏览器中实时预览和调整 Gyftrot 的动画参数"
 template = "lab.html"
 weight = 1
 [extra]
-utaf_data = "/utaf/snowdin/gyftrot.json"
+utrp_data = "/utrp/snowdin/gyftrot.json"
 +++

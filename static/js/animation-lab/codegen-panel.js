@@ -11,6 +11,7 @@ class UTRPCodegenPanel {
     this.pre = null;
     this.status = null;
     this.currentTarget = null;
+    this.requestId = 0;
   }
 
   mount() {
@@ -62,6 +63,7 @@ class UTRPCodegenPanel {
 
   async select(target, path) {
     this.currentTarget = target;
+    const requestId = ++this.requestId;
 
     for (const [name, button] of this.buttons.entries()) {
       button.classList.toggle('active', name === target);
@@ -74,9 +76,11 @@ class UTRPCodegenPanel {
       const response = await fetch(path);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const text = await response.text();
+      if (requestId !== this.requestId || target !== this.currentTarget) return;
       this.status.textContent = target;
       this.pre.textContent = text.trim() || '(empty snippet)';
     } catch (err) {
+      if (requestId !== this.requestId || target !== this.currentTarget) return;
       this.status.textContent = `Could not load ${target}`;
       this.pre.textContent = err.message;
     }

@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/snowdin/icecap.json"
-  utaf_lab_url = "/lab/icecap/"
+  utrp_data = "/utrp/snowdin/icecap.json"
 +++
 
 

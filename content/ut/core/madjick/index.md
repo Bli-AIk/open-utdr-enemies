@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/core/madjick.json"
-  utaf_lab_url = "/lab/madjick/"
+  utrp_data = "/utrp/core/madjick.json"
 +++
 
 

@@ -12,8 +12,7 @@ template = "page.html"
 
   toc = true
   top = false
-  utaf_data = "/utaf/hotland/tsunderplane.json"
-  utaf_lab_url = "/lab/tsunderplane/"
+  utrp_data = "/utrp/hotland/tsunderplane.json"
 +++
 
 
