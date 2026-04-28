@@ -33,3 +33,11 @@ fetch-opus opus_id:
       --opus-id {{opus_id}} \
       --output content/docs/articles/opus-{{opus_id}}.md \
       --json-output data/bilibili/{{opus_id}}.json
+
+# Generate UTRP fixtures and framework starter snippets
+generate-utrp:
+    cargo run --manifest-path tools/utrp/Cargo.toml -- generate --all
+
+# Test UTRP authoring and generation code
+test-utrp:
+    cargo test --manifest-path tools/utrp/Cargo.toml
