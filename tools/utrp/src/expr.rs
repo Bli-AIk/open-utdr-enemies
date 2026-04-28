@@ -59,6 +59,13 @@ impl Expr {
                 )
             }
             Self::Call { name, args } => {
+                if target == Target::Js && name == "clamp" {
+                    let value = args[0].render(target, 0);
+                    let min = args[1].render(target, 0);
+                    let max = args[2].render(target, 0);
+                    return format!("Math.min(Math.max({value}, {min}), {max})");
+                }
+
                 let function = match target {
                     Target::Gml => name.clone(),
                     Target::Js => js_function_name(name),
@@ -108,7 +115,7 @@ impl<'de> Deserialize<'de> for Expr {
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, PartialEq)]
 enum Target {
     Gml,
     Js,
@@ -118,7 +125,6 @@ fn js_function_name(name: &str) -> String {
     match name {
         "sin" | "cos" | "floor" | "ceil" | "round" | "abs" | "sign" | "min" | "max" | "pow"
         | "sqrt" => format!("Math.{name}"),
-        "clamp" => "clamp".into(),
         _ => name.into(),
     }
 }
@@ -289,7 +295,7 @@ impl<'a> Parser<'a> {
                 if self.current == Token::LParen {
                     self.advance()?;
                     let args = self.parse_args()?;
-                    validate_function(&name)?;
+                    validate_function(&name, args.len())?;
                     Ok(Expr::Call { name, args })
                 } else {
                     Ok(Expr::Variable(name))
@@ -355,10 +361,17 @@ fn binary_precedence(op: char) -> u8 {
     }
 }
 
-fn validate_function(name: &str) -> anyhow::Result<()> {
-    match name {
-        "sin" | "cos" | "floor" | "ceil" | "round" | "abs" | "sign" | "min" | "max" | "pow"
-        | "sqrt" | "clamp" => Ok(()),
+fn validate_function(name: &str, actual: usize) -> anyhow::Result<()> {
+    let expected = match name {
+        "sin" | "cos" | "floor" | "ceil" | "round" | "abs" | "sign" | "sqrt" => 1,
+        "min" | "max" | "pow" => 2,
+        "clamp" => 3,
         _ => bail!("unsupported function `{name}`"),
+    };
+
+    if actual != expected {
+        bail!("function `{name}` expects {expected} args, got {actual}");
     }
+
+    Ok(())
 }

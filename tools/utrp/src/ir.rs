@@ -21,17 +21,23 @@ pub struct RenderProgram {
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
 pub struct ReviewInfo {
-    pub accuracy: String,
+    pub accuracy: ReviewAccuracy,
     pub notes: Vec<String>,
 }
 
 impl ReviewInfo {
     pub fn needs_source_review(note: impl Into<String>) -> Self {
         Self {
-            accuracy: "NeedsSourceReview".into(),
+            accuracy: ReviewAccuracy::NeedsSourceReview,
             notes: vec![note.into()],
         }
     }
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+pub enum ReviewAccuracy {
+    NeedsSourceReview,
+    Reviewed,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
@@ -55,7 +61,7 @@ impl Vec2 {
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
 pub struct CoordinateSpace {
-    pub origin: String,
+    pub origin: CoordinateOrigin,
     pub y_axis: YAxis,
     pub rotation: RotationDirection,
     pub angle_unit: AngleUnit,
@@ -64,12 +70,18 @@ pub struct CoordinateSpace {
 impl CoordinateSpace {
     pub fn gms() -> Self {
         Self {
-            origin: "TopLeft".into(),
+            origin: CoordinateOrigin::TopLeft,
             y_axis: YAxis::Down,
             rotation: RotationDirection::CounterClockwise,
             angle_unit: AngleUnit::Degrees,
         }
     }
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+pub enum CoordinateOrigin {
+    TopLeft,
+    Center,
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]

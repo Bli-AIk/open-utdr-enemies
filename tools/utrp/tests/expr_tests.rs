@@ -14,3 +14,16 @@ fn parses_existing_frame_index_expression_subset() {
 
     assert_eq!(expr.to_gml(), "floor(clamp(siner % 51.0 - 40.0, 0.0, 2.0))");
 }
+
+#[test]
+fn renders_clamp_as_composed_math_in_js() {
+    let expr = Expr::parse("clamp(siner, 0, 2)").unwrap();
+
+    assert_eq!(expr.to_js(), "Math.min(Math.max(vars.siner, 0.0), 2.0)");
+}
+
+#[test]
+fn rejects_invalid_function_arity() {
+    assert!(Expr::parse("sin()").is_err());
+    assert!(Expr::parse("clamp(a, b)").is_err());
+}
