@@ -135,19 +135,36 @@ function showAnimationLabError(container, message) {
 }
 
 async function initAnimationLab(container, dataUrl, options = {}) {
+  const initId = (container.__utrpLabInitId || 0) + 1;
+  container.__utrpLabInitId = initId;
+  let engine = null;
+  let ui = null;
+
+  const isCurrent = () => container.__utrpLabInitId === initId;
+  const destroyInstance = instance => {
+    if (!instance) return;
+    instance.engine.stop();
+    instance.ui.destroy();
+  };
+  const destroyPartial = () => {
+    if (engine) engine.stop();
+    if (ui) ui.destroy();
+  };
+
   try {
     if (container.__utrpLabInstance) {
-      container.__utrpLabInstance.engine.stop();
-      container.__utrpLabInstance.ui.destroy();
+      destroyInstance(container.__utrpLabInstance);
       container.__utrpLabInstance = null;
     }
 
     if (!dataUrl) throw new Error('No UTRP data source configured.');
 
     const response = await fetch(dataUrl);
+    if (!isCurrent()) return null;
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
     const data = await response.json();
+    if (!isCurrent()) return null;
     if (!data || data.format !== 'utrp') {
       throw new Error('Expected format "utrp".');
     }
@@ -171,10 +188,14 @@ async function initAnimationLab(container, dataUrl, options = {}) {
       canvas.dataset.displayScale = String(displayScale);
     }
 
-    const engine = new UTRPEngine(canvas, data, options);
+    engine = new UTRPEngine(canvas, data, options);
     await engine.loadAssets();
+    if (!isCurrent()) {
+      destroyPartial();
+      return null;
+    }
 
-    const ui = new UTRPLabUI(container, engine, data, options);
+    ui = new UTRPLabUI(container, engine, data, options);
     ui.mount();
     engine.render();
     engine.start();
@@ -182,11 +203,10 @@ async function initAnimationLab(container, dataUrl, options = {}) {
     container.__utrpLabInstance = { engine, ui };
     return { engine, ui };
   } catch (err) {
-    if (container.__utrpLabInstance) {
-      container.__utrpLabInstance.engine.stop();
-      container.__utrpLabInstance.ui.destroy();
-      container.__utrpLabInstance = null;
-    }
+    destroyPartial();
+    if (!isCurrent()) return null;
+    destroyInstance(container.__utrpLabInstance);
+    container.__utrpLabInstance = null;
     showAnimationLabError(container, err.message);
     console.error('Animation Lab init error:', err);
     return null;
