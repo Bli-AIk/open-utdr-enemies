@@ -11,6 +11,7 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
+            // TODO: UTRP frame_index `floor(siner / 15.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_wing_right".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
@@ -20,13 +21,14 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/whimsalot/wing_r.png".into()),
+                    visual: Visual("/sprites/whimsalot/wing_r_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(-1.0), static_float(14.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 15.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_wing_left".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
@@ -36,13 +38,14 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/whimsalot/wing_l.png".into()),
+                    visual: Visual("/sprites/whimsalot/wing_r_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(-1.0), static_float(14.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 18.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_body".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
@@ -52,13 +55,14 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/whimsalot/body.png".into()),
+                    visual: Visual("/sprites/whimsalot/body_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(0.0), static_float(0.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 10.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_head".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
@@ -68,7 +72,7 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/whimsalot/head.png".into()),
+                    visual: Visual("/sprites/whimsalot/head_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(-1.0), static_float(-1.0))),
                     ..Default::default()

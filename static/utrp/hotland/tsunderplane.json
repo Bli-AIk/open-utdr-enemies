@@ -5,7 +5,7 @@
   "name": "Tsunderplane",
   "fps": 30,
   "canvas": {
-    "width": 230,
+    "width": 420,
     "height": 194,
     "scale": 2.0
   },
@@ -26,6 +26,41 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "graze",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "exhaust0_angle",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "exhaust0_hspeed",
+      "kind": "counter",
+      "initial": -2.5
+    },
+    {
+      "name": "exhaust1_angle",
+      "kind": "counter",
+      "initial": 120.0
+    },
+    {
+      "name": "exhaust1_hspeed",
+      "kind": "counter",
+      "initial": -2.5
+    },
+    {
+      "name": "exhaust2_angle",
+      "kind": "counter",
+      "initial": 240.0
+    },
+    {
+      "name": "exhaust2_hspeed",
+      "kind": "counter",
+      "initial": -2.5
     }
   ],
   "assets": [
@@ -42,6 +77,24 @@
       "frames": [
         "/sprites/tsunderplane/hat.png"
       ]
+    },
+    {
+      "id": "tsunderplane_exhaust",
+      "path": "/sprites/tsunderplane/exhaust_0.png",
+      "frames": [
+        "/sprites/tsunderplane/exhaust_0.png",
+        "/sprites/tsunderplane/exhaust_1.png"
+      ]
+    },
+    {
+      "id": "tsunderplane_blush",
+      "path": "/sprites/tsunderplane/blush_0.png",
+      "frames": [
+        "/sprites/tsunderplane/blush_0.png",
+        "/sprites/tsunderplane/blush_1.png",
+        "/sprites/tsunderplane/blush_2.png",
+        "/sprites/tsunderplane/blush_3.png"
+      ]
     }
   ],
   "update": [
@@ -49,9 +102,108 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "exhaust0_angle",
+      "value": "ifelse(eq(siner % 30.0, 0.0), random(360.0), exhaust0_angle)"
+    },
+    {
+      "op": "set",
+      "variable": "exhaust0_hspeed",
+      "value": "ifelse(eq(siner % 30.0, 0.0), -2.0 - random(1.0), exhaust0_hspeed)"
+    },
+    {
+      "op": "set",
+      "variable": "exhaust1_angle",
+      "value": "ifelse(eq(siner % 30.0, 10.0), random(360.0), exhaust1_angle)"
+    },
+    {
+      "op": "set",
+      "variable": "exhaust1_hspeed",
+      "value": "ifelse(eq(siner % 30.0, 10.0), -2.0 - random(1.0), exhaust1_hspeed)"
+    },
+    {
+      "op": "set",
+      "variable": "exhaust2_angle",
+      "value": "ifelse(eq(siner % 30.0, 20.0), random(360.0), exhaust2_angle)"
+    },
+    {
+      "op": "set",
+      "variable": "exhaust2_hspeed",
+      "value": "ifelse(eq(siner % 30.0, 20.0), -2.0 - random(1.0), exhaust2_hspeed)"
     }
   ],
   "draw": [
+    {
+      "kind": "sprite",
+      "id": "exhaust_0",
+      "sprite": "tsunderplane_exhaust",
+      "origin": {
+        "x": -48.0,
+        "y": -20.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "exhaust0_hspeed * (siner % 30.0) + sin(siner % 30.0 / 2.0)",
+        "offset_y": "cos(siner % 30.0 / 2.0) + siner % 30.0 * (siner % 30.0) * 0.1",
+        "scale_x": "2.0 + siner % 30.0 * 0.05",
+        "scale_y": "2.0 + siner % 30.0 * 0.05",
+        "rotation_deg": "exhaust0_angle + siner % 30.0",
+        "alpha": "ifelse(lt(siner % 30.0, 29.0), ifelse(gt(siner % 30.0, 7.0), 1.0 - (siner % 30.0 - 7.0) * 0.04, 1.0), 0.0)",
+        "frame_index": "floor(siner % 30.0 / 5.0)"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "exhaust_1",
+      "sprite": "tsunderplane_exhaust",
+      "origin": {
+        "x": -48.0,
+        "y": -20.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "exhaust1_hspeed * ((siner + 20.0) % 30.0) + sin((siner + 20.0) % 30.0 / 2.0)",
+        "offset_y": "cos((siner + 20.0) % 30.0 / 2.0) + (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0) * 0.1",
+        "scale_x": "2.0 + (siner + 20.0) % 30.0 * 0.05",
+        "scale_y": "2.0 + (siner + 20.0) % 30.0 * 0.05",
+        "rotation_deg": "exhaust1_angle + (siner + 20.0) % 30.0",
+        "alpha": "ifelse(lt((siner + 20.0) % 30.0, 29.0), ifelse(gt((siner + 20.0) % 30.0, 7.0), 1.0 - ((siner + 20.0) % 30.0 - 7.0) * 0.04, 1.0), 0.0)",
+        "frame_index": "floor((siner + 20.0) % 30.0 / 5.0)"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "exhaust_2",
+      "sprite": "tsunderplane_exhaust",
+      "origin": {
+        "x": -48.0,
+        "y": -20.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "exhaust2_hspeed * ((siner + 10.0) % 30.0) + sin((siner + 10.0) % 30.0 / 2.0)",
+        "offset_y": "cos((siner + 10.0) % 30.0 / 2.0) + (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0) * 0.1",
+        "scale_x": "2.0 + (siner + 10.0) % 30.0 * 0.05",
+        "scale_y": "2.0 + (siner + 10.0) % 30.0 * 0.05",
+        "rotation_deg": "exhaust2_angle + (siner + 10.0) % 30.0",
+        "alpha": "ifelse(lt((siner + 10.0) % 30.0, 29.0), ifelse(gt((siner + 10.0) % 30.0, 7.0), 1.0 - ((siner + 10.0) % 30.0 - 7.0) * 0.04, 1.0), 0.0)",
+        "frame_index": "floor((siner + 10.0) % 30.0 / 5.0)"
+      },
+      "draw_order": 2
+    },
     {
       "kind": "sprite",
       "id": "body",
@@ -64,7 +216,7 @@
       "transform": {
         "offset_y": "sin(siner / 7.0) * 3.0"
       },
-      "draw_order": 0
+      "draw_order": 10
     },
     {
       "kind": "sprite",
@@ -78,7 +230,24 @@
       "transform": {
         "offset_y": "sin(siner / 7.0) * 3.0"
       },
-      "draw_order": 1
+      "draw_order": 11
+    },
+    {
+      "kind": "sprite",
+      "id": "blush",
+      "sprite": "tsunderplane_blush",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 7.0) * 2.0",
+        "offset_y": "sin(siner / 7.0) * 4.0",
+        "alpha": "ifelse(gt(graze, 0.0), 0.7 + sin(siner / 4.0) * 0.1, 0.0)",
+        "frame_index": "clamp(graze - 1.0, 0.0, 3.0)"
+      },
+      "draw_order": 12
     }
   ],
   "codegen": {

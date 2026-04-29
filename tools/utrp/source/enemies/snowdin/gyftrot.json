@@ -18,7 +18,8 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Head, mouth, gifts, and cloud now follow the UNDERTALE alarm-state structure. Random alarm durations use deterministic midpoints so the preview loops.",
+      "Gift frame selection keeps the source random/duplicate-avoidance setup on reset; exact random seed replay is outside the current UTRP runtime."
     ]
   },
   "variables": [
@@ -26,6 +27,36 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "head_x",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "mouth_frame",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "gift0",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "gift1",
+      "kind": "counter",
+      "initial": 2.0
+    },
+    {
+      "name": "gift2",
+      "kind": "counter",
+      "initial": 4.0
+    },
+    {
+      "name": "gift_set",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -74,6 +105,13 @@
         "/sprites/gyftrot/gift_8.png",
         "/sprites/gyftrot/gift_9.png"
       ]
+    },
+    {
+      "id": "gyftrot_cloud",
+      "path": "/sprites/gyftrot/cloud.png",
+      "frames": [
+        "/sprites/gyftrot/cloud.png"
+      ]
     }
   ],
   "update": [
@@ -81,6 +119,56 @@
       "op": "increment",
       "variable": "siner",
       "by": "1"
+    },
+    {
+      "op": "set",
+      "variable": "head_x",
+      "value": "ifelse(lt(siner % 227, 45), 0, ifelse(lt(siner % 227, 53), (siner % 227) - 45, ifelse(lt(siner % 227, 103), 8, ifelse(lt(siner % 227, 119), 8 - ((siner % 227) - 103), ifelse(lt(siner % 227, 169), -8, ifelse(lt(siner % 227, 177), -8 + ((siner % 227) - 169), 0))))))"
+    },
+    {
+      "op": "set",
+      "variable": "mouth_frame",
+      "value": "ifelse(lt(siner % 160, 20), 0, ifelse(lt(siner % 160, 23), 1, ifelse(lt(siner % 160, 26), 2, ifelse(lt(siner % 160, 29), 3, ifelse(lt(siner % 160, 79), 4, ifelse(lt(siner % 160, 82), 3, ifelse(lt(siner % 160, 85), 2, ifelse(lt(siner % 160, 88), 1, 0))))))))"
+    },
+    {
+      "op": "set",
+      "variable": "gift0",
+      "value": "ifelse(eq(gift_set, 0), floor(random(7)), gift0)"
+    },
+    {
+      "op": "set",
+      "variable": "gift1",
+      "value": "ifelse(eq(gift_set, 0), floor(random(7)), gift1)"
+    },
+    {
+      "op": "set",
+      "variable": "gift2",
+      "value": "ifelse(eq(gift_set, 0), floor(random(7)), gift2)"
+    },
+    {
+      "op": "set",
+      "variable": "gift1",
+      "value": "ifelse(eq(gift_set, 0) * eq(gift1, gift0), gift1 + 1, gift1)"
+    },
+    {
+      "op": "set",
+      "variable": "gift2",
+      "value": "ifelse(eq(gift_set, 0) * eq(gift2, gift0), gift2 + 1, gift2)"
+    },
+    {
+      "op": "set",
+      "variable": "gift2",
+      "value": "ifelse(eq(gift_set, 0) * eq(gift2, gift1), 0, gift2)"
+    },
+    {
+      "op": "set",
+      "variable": "gift2",
+      "value": "ifelse(eq(gift_set, 0) * eq(gift2, gift0), gift2 + 1, gift2)"
+    },
+    {
+      "op": "set",
+      "variable": "gift_set",
+      "value": "1"
     }
   ],
   "draw": [
@@ -101,7 +189,7 @@
     },
     {
       "kind": "sprite",
-      "id": "gift",
+      "id": "gift_0",
       "sprite": "gyftrot_gift",
       "origin": {
         "x": -100,
@@ -112,10 +200,46 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "sin(siner / 15) * 8",
-        "frame_index": "floor(siner * 0.02) % 10"
+        "offset_x": "ifelse(eq(gift0, 1) + eq(gift0, 7) + eq(gift0, 9), 0, head_x)",
+        "frame_index": "gift0"
       },
       "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "gift_1",
+      "sprite": "gyftrot_gift",
+      "origin": {
+        "x": -100,
+        "y": -103
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "ifelse(eq(gift1, 1) + eq(gift1, 7) + eq(gift1, 9), 0, head_x)",
+        "frame_index": "gift1"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "gift_2",
+      "sprite": "gyftrot_gift",
+      "origin": {
+        "x": -100,
+        "y": -103
+      },
+      "pivot": {
+        "x": 1,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "ifelse(eq(gift2, 1) + eq(gift2, 7) + eq(gift2, 9), 0, head_x)",
+        "frame_index": "gift2"
+      },
+      "draw_order": 3
     },
     {
       "kind": "sprite",
@@ -130,10 +254,10 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "sin(siner / 15) * 8",
-        "frame_index": "clamp(sign(sin(siner / 40) - 0.9), 0, 1)"
+        "offset_x": "head_x",
+        "frame_index": "ifelse(gte(siner % 120, 100) * lt(siner % 120, 108), 1, 0)"
       },
-      "draw_order": 2
+      "draw_order": 4
     },
     {
       "kind": "sprite",
@@ -148,10 +272,32 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "sin(siner / 15) * 8",
-        "frame_index": "floor(clamp(5 - abs(siner % 100 - 15) / 3, 0, 4))"
+        "offset_x": "head_x",
+        "frame_index": "mouth_frame"
       },
-      "draw_order": 3
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "cloud",
+      "sprite": "gyftrot_cloud",
+      "origin": {
+        "x": -10,
+        "y": 39
+      },
+      "pivot": {
+        "x": 0,
+        "y": 0
+      },
+      "transform": {
+        "offset_x": "head_x + ifelse(gte(siner % 160, 54) * lt(siner % 160, 110), ((siner % 160) - 54) * 0.1, 0)",
+        "offset_y": "ifelse(gte(siner % 160, 54) * lt(siner % 160, 110), ((siner % 160) - 54) * 1.2, 0)",
+        "scale_x": "0.1 + ifelse(gte(siner % 160, 54) * lt(siner % 160, 110), ((siner % 160) - 54) * 0.15, 0)",
+        "scale_y": "0.1 + ifelse(gte(siner % 160, 54) * lt(siner % 160, 110), ((siner % 160) - 54) * 0.15, 0)",
+        "rotation_deg": "ifelse(gte(siner % 160, 54) * lt(siner % 160, 110), ((siner % 160) - 54) + 45, 0)",
+        "alpha": "ifelse(gte(siner % 160, 54) * lt(siner % 160, 110), 0.7 - ((siner % 160) - 54) * 0.012, 0)"
+      },
+      "draw_order": 6
     }
   ]
 }

@@ -27,6 +27,41 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "init",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "alarm",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "active",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "active_timer",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "trigger",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "stop",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "image_index",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -44,6 +79,66 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "alarm",
+      "value": "ifelse(eq(init, 0.0), 20.0 + random(40.0), alarm)"
+    },
+    {
+      "op": "set",
+      "variable": "init",
+      "value": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "alarm",
+      "by": "ifelse(eq(active, 0.0), -1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "trigger",
+      "value": "eq(active, 0.0) * lte(alarm, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "active",
+      "value": "ifelse(trigger, 1.0, active)"
+    },
+    {
+      "op": "set",
+      "variable": "active_timer",
+      "value": "ifelse(trigger, 0.0, active_timer)"
+    },
+    {
+      "op": "increment",
+      "variable": "image_index",
+      "by": "ifelse(eq(active, 1.0), 0.5, 0.0)"
+    },
+    {
+      "op": "increment",
+      "variable": "active_timer",
+      "by": "ifelse(eq(active, 1.0), 1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "stop",
+      "value": "eq(active, 1.0) * gte(active_timer, 10.0)"
+    },
+    {
+      "op": "set",
+      "variable": "active",
+      "value": "ifelse(stop, 0.0, active)"
+    },
+    {
+      "op": "set",
+      "variable": "alarm",
+      "value": "ifelse(stop, 30.0 + random(40.0), alarm)"
+    },
+    {
+      "op": "set",
+      "variable": "active_timer",
+      "value": "ifelse(stop, 0.0, active_timer)"
     }
   ],
   "draw": [
@@ -57,7 +152,7 @@
       },
       "pivot": null,
       "transform": {
-        "frame_index": "floor(clamp(siner % 40.0 - 30.0, 0.0, 10.0) * 0.5)"
+        "frame_index": "floor(image_index)"
       },
       "draw_order": 0
     }

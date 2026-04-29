@@ -26,6 +26,66 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "cloud0_rot",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "cloud0_siner",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "cloud0_hspeed",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "cloud1_rot",
+      "kind": "counter",
+      "initial": 90.0
+    },
+    {
+      "name": "cloud1_siner",
+      "kind": "counter",
+      "initial": 25.0
+    },
+    {
+      "name": "cloud1_hspeed",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "cloud2_rot",
+      "kind": "counter",
+      "initial": 180.0
+    },
+    {
+      "name": "cloud2_siner",
+      "kind": "counter",
+      "initial": 50.0
+    },
+    {
+      "name": "cloud2_hspeed",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "cloud3_rot",
+      "kind": "counter",
+      "initial": 270.0
+    },
+    {
+      "name": "cloud3_siner",
+      "kind": "counter",
+      "initial": 75.0
+    },
+    {
+      "name": "cloud3_hspeed",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -47,14 +107,25 @@
       "id": "vulkin_lava",
       "path": "/sprites/vulkin/lava.png",
       "frames": [
-        "/sprites/vulkin/lava.png"
+        "/sprites/vulkin/lava.png",
+        "/sprites/vulkin/lava_1.png",
+        "/sprites/vulkin/lava_2.png",
+        "/sprites/vulkin/lava_3.png"
+      ]
+    },
+    {
+      "id": "vulkin_cloud",
+      "path": "/sprites/vulkin/cloud.png",
+      "frames": [
+        "/sprites/vulkin/cloud.png"
       ]
     },
     {
       "id": "vulkin_face",
       "path": "/sprites/vulkin/face.png",
       "frames": [
-        "/sprites/vulkin/face.png"
+        "/sprites/vulkin/face.png",
+        "/sprites/vulkin/face_1.png"
       ]
     },
     {
@@ -70,6 +141,66 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "cloud0_rot",
+      "value": "ifelse(eq(siner % 60.0, 0.0), random(360.0), cloud0_rot)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud0_siner",
+      "value": "ifelse(eq(siner % 60.0, 0.0), random(100.0), cloud0_siner)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud0_hspeed",
+      "value": "ifelse(eq(siner % 60.0, 0.0), 2.0 - random(4.0), cloud0_hspeed)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud1_rot",
+      "value": "ifelse(eq(siner % 60.0, 15.0), random(360.0), cloud1_rot)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud1_siner",
+      "value": "ifelse(eq(siner % 60.0, 15.0), random(100.0), cloud1_siner)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud1_hspeed",
+      "value": "ifelse(eq(siner % 60.0, 15.0), 2.0 - random(4.0), cloud1_hspeed)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud2_rot",
+      "value": "ifelse(eq(siner % 60.0, 30.0), random(360.0), cloud2_rot)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud2_siner",
+      "value": "ifelse(eq(siner % 60.0, 30.0), random(100.0), cloud2_siner)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud2_hspeed",
+      "value": "ifelse(eq(siner % 60.0, 30.0), 2.0 - random(4.0), cloud2_hspeed)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud3_rot",
+      "value": "ifelse(eq(siner % 60.0, 45.0), random(360.0), cloud3_rot)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud3_siner",
+      "value": "ifelse(eq(siner % 60.0, 45.0), random(100.0), cloud3_siner)"
+    },
+    {
+      "op": "set",
+      "variable": "cloud3_hspeed",
+      "value": "ifelse(eq(siner % 60.0, 45.0), 2.0 - random(4.0), cloud3_hspeed)"
     }
   ],
   "draw": [
@@ -109,7 +240,9 @@
         "y": -71.0
       },
       "pivot": null,
-      "transform": {},
+      "transform": {
+        "frame_index": "floor(siner / 8.0)"
+      },
       "draw_order": 2
     },
     {
@@ -122,9 +255,99 @@
       },
       "pivot": null,
       "transform": {
-        "offset_x": "sin(siner / 12.0) * 7.0"
+        "offset_x": "sin(siner / 12.0) * 7.0",
+        "scale_x": "1.0 - abs(sin(siner / 12.0)) * 0.1",
+        "frame_index": "floor(siner / 15.0)"
       },
-      "draw_order": 3
+      "draw_order": 10
+    },
+    {
+      "kind": "sprite",
+      "id": "cloud_0",
+      "sprite": "vulkin_cloud",
+      "origin": {
+        "x": 29.0,
+        "y": -53.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "cloud0_hspeed * (siner % 60.0) + sin((cloud0_siner + siner % 60.0) / 5.0) * 2.0",
+        "offset_y": "-(siner % 60.0) - siner % 60.0 * (siner % 60.0) * 0.08",
+        "scale_x": "0.25 + siner % 60.0 * 0.04",
+        "scale_y": "0.25 + siner % 60.0 * 0.04",
+        "rotation_deg": "cloud0_rot + siner % 60.0 * 2.0",
+        "alpha": "ifelse(lt(siner % 60.0, 48.0), 1.0 - siner % 60.0 * 0.02, 0.0)"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "cloud_1",
+      "sprite": "vulkin_cloud",
+      "origin": {
+        "x": 29.0,
+        "y": -53.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "cloud1_hspeed * ((siner + 45.0) % 60.0) + sin((cloud1_siner + (siner + 45.0) % 60.0) / 5.0) * 2.0",
+        "offset_y": "-((siner + 45.0) % 60.0) - (siner + 45.0) % 60.0 * ((siner + 45.0) % 60.0) * 0.08",
+        "scale_x": "0.25 + (siner + 45.0) % 60.0 * 0.04",
+        "scale_y": "0.25 + (siner + 45.0) % 60.0 * 0.04",
+        "rotation_deg": "cloud1_rot + (siner + 45.0) % 60.0 * 2.0",
+        "alpha": "ifelse(lt((siner + 45.0) % 60.0, 48.0), 1.0 - (siner + 45.0) % 60.0 * 0.02, 0.0)"
+      },
+      "draw_order": 5
+    },
+    {
+      "kind": "sprite",
+      "id": "cloud_2",
+      "sprite": "vulkin_cloud",
+      "origin": {
+        "x": 29.0,
+        "y": -53.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "cloud2_hspeed * ((siner + 30.0) % 60.0) + sin((cloud2_siner + (siner + 30.0) % 60.0) / 5.0) * 2.0",
+        "offset_y": "-((siner + 30.0) % 60.0) - (siner + 30.0) % 60.0 * ((siner + 30.0) % 60.0) * 0.08",
+        "scale_x": "0.25 + (siner + 30.0) % 60.0 * 0.04",
+        "scale_y": "0.25 + (siner + 30.0) % 60.0 * 0.04",
+        "rotation_deg": "cloud2_rot + (siner + 30.0) % 60.0 * 2.0",
+        "alpha": "ifelse(lt((siner + 30.0) % 60.0, 48.0), 1.0 - (siner + 30.0) % 60.0 * 0.02, 0.0)"
+      },
+      "draw_order": 6
+    },
+    {
+      "kind": "sprite",
+      "id": "cloud_3",
+      "sprite": "vulkin_cloud",
+      "origin": {
+        "x": 29.0,
+        "y": -53.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "cloud3_hspeed * ((siner + 15.0) % 60.0) + sin((cloud3_siner + (siner + 15.0) % 60.0) / 5.0) * 2.0",
+        "offset_y": "-((siner + 15.0) % 60.0) - (siner + 15.0) % 60.0 * ((siner + 15.0) % 60.0) * 0.08",
+        "scale_x": "0.25 + (siner + 15.0) % 60.0 * 0.04",
+        "scale_y": "0.25 + (siner + 15.0) % 60.0 * 0.04",
+        "rotation_deg": "cloud3_rot + (siner + 15.0) % 60.0 * 2.0",
+        "alpha": "ifelse(lt((siner + 15.0) % 60.0, 48.0), 1.0 - (siner + 15.0) % 60.0 * 0.02, 0.0)"
+      },
+      "draw_order": 7
     },
     {
       "kind": "sprite",
@@ -139,7 +362,7 @@
         "offset_x": "sin(siner / 6.0) * 2.0",
         "offset_y": "cos(siner / 6.0) * 2.0"
       },
-      "draw_order": 4
+      "draw_order": 11
     }
   ],
   "codegen": {

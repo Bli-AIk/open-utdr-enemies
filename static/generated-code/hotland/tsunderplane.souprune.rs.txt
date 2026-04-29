@@ -11,11 +11,62 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
+            // TODO: UTRP frame_index `floor(siner % 30.0 / 5.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "tsunderplane_exhaust_0".into(),
+                tags: vec!["utrp".into(), "hotland/tsunderplane".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("-48.0 + (exhaust0_hspeed * (siner % 30.0) + sin(siner % 30.0 / 2.0))"), expression("-20.0 + (cos(siner % 30.0 / 2.0) + siner % 30.0 * (siner % 30.0) * 0.1)"), static_float(0.0))),
+                    rotation: Some(expression("exhaust0_angle + siner % 30.0")),
+                    scale: Some(vector3(expression("2.0 * (2.0 + siner % 30.0 * 0.05)"), expression("2.0 * (2.0 + siner % 30.0 * 0.05)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/tsunderplane/exhaust_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt(siner % 30.0, 29.0), ifelse(gt(siner % 30.0, 7.0), 1.0 - (siner % 30.0 - 7.0) * 0.04, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor((siner + 20.0) % 30.0 / 5.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "tsunderplane_exhaust_1".into(),
+                tags: vec!["utrp".into(), "hotland/tsunderplane".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("-48.0 + (exhaust1_hspeed * ((siner + 20.0) % 30.0) + sin((siner + 20.0) % 30.0 / 2.0))"), expression("-20.0 + (cos((siner + 20.0) % 30.0 / 2.0) + (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0) * 0.1)"), static_float(1.0))),
+                    rotation: Some(expression("exhaust1_angle + (siner + 20.0) % 30.0")),
+                    scale: Some(vector3(expression("2.0 * (2.0 + (siner + 20.0) % 30.0 * 0.05)"), expression("2.0 * (2.0 + (siner + 20.0) % 30.0 * 0.05)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/tsunderplane/exhaust_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 20.0) % 30.0, 29.0), ifelse(gt((siner + 20.0) % 30.0, 7.0), 1.0 - ((siner + 20.0) % 30.0 - 7.0) * 0.04, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor((siner + 10.0) % 30.0 / 5.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "tsunderplane_exhaust_2".into(),
+                tags: vec!["utrp".into(), "hotland/tsunderplane".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("-48.0 + (exhaust2_hspeed * ((siner + 10.0) % 30.0) + sin((siner + 10.0) % 30.0 / 2.0))"), expression("-20.0 + (cos((siner + 10.0) % 30.0 / 2.0) + (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0) * 0.1)"), static_float(2.0))),
+                    rotation: Some(expression("exhaust2_angle + (siner + 10.0) % 30.0")),
+                    scale: Some(vector3(expression("2.0 * (2.0 + (siner + 10.0) % 30.0 * 0.05)"), expression("2.0 * (2.0 + (siner + 10.0) % 30.0 * 0.05)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/tsunderplane/exhaust_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 10.0) % 30.0, 29.0), ifelse(gt((siner + 10.0) % 30.0, 7.0), 1.0 - ((siner + 10.0) % 30.0 - 7.0) * 0.04, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
             ViewNodeDef {
                 name: "tsunderplane_body".into(),
                 tags: vec!["utrp".into(), "hotland/tsunderplane".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), expression("0.0 + (sin(siner / 7.0) * 3.0)"), static_float(0.0))),
+                    translation: Some(vector3(static_float(0.0), expression("0.0 + (sin(siner / 7.0) * 3.0)"), static_float(10.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
@@ -31,13 +82,30 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "tsunderplane_hat".into(),
                 tags: vec!["utrp".into(), "hotland/tsunderplane".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(57.0), expression("-15.0 + (sin(siner / 7.0) * 3.0)"), static_float(1.0))),
+                    translation: Some(vector3(static_float(57.0), expression("-15.0 + (sin(siner / 7.0) * 3.0)"), static_float(11.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/tsunderplane/hat.png".into()),
                     color: None,
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `clamp(graze - 1.0, 0.0, 3.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "tsunderplane_blush".into(),
+                tags: vec!["utrp".into(), "hotland/tsunderplane".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (sin(siner / 7.0) * 2.0)"), expression("0.0 + (sin(siner / 7.0) * 4.0)"), static_float(12.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/tsunderplane/blush_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(gt(graze, 0.0), 0.7 + sin(siner / 4.0) * 0.1, 0.0)"))),
                     pivot: None,
                     ..Default::default()
                 }),
@@ -52,7 +120,7 @@ pub fn asset() -> ViewLayoutAsset {
             axis_origin: vector2(static_float(0.0), static_float(0.0)),
             y_axis: YAxisDirectionDef::Down,
             rotation: RotationDirectionDef::CounterClockwise,
-            extent: CoordinateExtentDef::Explicit((230.0, 194.0)),
+            extent: CoordinateExtentDef::Explicit((420.0, 194.0)),
         }),
     }
 }

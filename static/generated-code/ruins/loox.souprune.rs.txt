@@ -11,7 +11,7 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
-            // TODO: UTRP frame_index `floor(clamp(siner % 30.0 - 20.0, 0.0, 10.0) * 0.5)` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `ifelse(lt(siner, 30.0), 0.0, floor((siner - 30.0) * 0.5) % 5.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "loox_body".into(),
                 tags: vec!["utrp".into(), "ruins/loox".into()],

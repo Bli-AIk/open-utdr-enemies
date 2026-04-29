@@ -7,11 +7,30 @@
 
 /// Migosp Create Event
 siner = 1.0;
+init = 0.0;
+alarm = 0.0;
+active = 0.0;
+active_timer = 0.0;
+trigger = 0.0;
+stop = 0.0;
+image_index = 0.0;
 
 /// Migosp Step Event
 siner += 1.0;
+alarm = ifelse(eq(init, 0.0), 20.0 + random(40.0), alarm);
+init = 1.0;
+alarm += ifelse(eq(active, 0.0), -1.0, 0.0);
+trigger = eq(active, 0.0) * lte(alarm, 0.0);
+active = ifelse(trigger, 1.0, active);
+active_timer = ifelse(trigger, 0.0, active_timer);
+image_index += ifelse(eq(active, 1.0), 0.5, 0.0);
+active_timer += ifelse(eq(active, 1.0), 1.0, 0.0);
+stop = eq(active, 1.0) * gte(active_timer, 10.0);
+active = ifelse(stop, 0.0, active);
+alarm = ifelse(stop, 30.0 + random(40.0), alarm);
+active_timer = ifelse(stop, 0.0, active_timer);
 
 /// Migosp Draw Event
 var __utrp_scale = 2.0;
 // draw_order 0: body
-draw_sprite_ext(spr_migosp_body, floor(clamp(siner % 40.0 - 30.0, 0.0, 10.0) * 0.5), 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_migosp_body, floor(image_index), 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

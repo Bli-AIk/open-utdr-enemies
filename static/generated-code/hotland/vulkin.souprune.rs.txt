@@ -43,6 +43,7 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 8.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "vulkin_lava".into(),
                 tags: vec!["utrp".into(), "hotland/vulkin".into()],
@@ -60,12 +61,77 @@ pub fn asset() -> ViewLayoutAsset {
                 ..Default::default()
             },
             ViewNodeDef {
+                name: "vulkin_cloud_0".into(),
+                tags: vec!["utrp".into(), "hotland/vulkin".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("29.0 + (cloud0_hspeed * (siner % 60.0) + sin((cloud0_siner + siner % 60.0) / 5.0) * 2.0)"), expression("-53.0 + (-(siner % 60.0) - siner % 60.0 * (siner % 60.0) * 0.08)"), static_float(4.0))),
+                    rotation: Some(expression("cloud0_rot + siner % 60.0 * 2.0")),
+                    scale: Some(vector3(expression("2.0 * (0.25 + siner % 60.0 * 0.04)"), expression("2.0 * (0.25 + siner % 60.0 * 0.04)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/vulkin/cloud.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt(siner % 60.0, 48.0), 1.0 - siner % 60.0 * 0.02, 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "vulkin_cloud_1".into(),
+                tags: vec!["utrp".into(), "hotland/vulkin".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("29.0 + (cloud1_hspeed * ((siner + 45.0) % 60.0) + sin((cloud1_siner + (siner + 45.0) % 60.0) / 5.0) * 2.0)"), expression("-53.0 + (-((siner + 45.0) % 60.0) - (siner + 45.0) % 60.0 * ((siner + 45.0) % 60.0) * 0.08)"), static_float(5.0))),
+                    rotation: Some(expression("cloud1_rot + (siner + 45.0) % 60.0 * 2.0")),
+                    scale: Some(vector3(expression("2.0 * (0.25 + (siner + 45.0) % 60.0 * 0.04)"), expression("2.0 * (0.25 + (siner + 45.0) % 60.0 * 0.04)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/vulkin/cloud.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 45.0) % 60.0, 48.0), 1.0 - (siner + 45.0) % 60.0 * 0.02, 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "vulkin_cloud_2".into(),
+                tags: vec!["utrp".into(), "hotland/vulkin".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("29.0 + (cloud2_hspeed * ((siner + 30.0) % 60.0) + sin((cloud2_siner + (siner + 30.0) % 60.0) / 5.0) * 2.0)"), expression("-53.0 + (-((siner + 30.0) % 60.0) - (siner + 30.0) % 60.0 * ((siner + 30.0) % 60.0) * 0.08)"), static_float(6.0))),
+                    rotation: Some(expression("cloud2_rot + (siner + 30.0) % 60.0 * 2.0")),
+                    scale: Some(vector3(expression("2.0 * (0.25 + (siner + 30.0) % 60.0 * 0.04)"), expression("2.0 * (0.25 + (siner + 30.0) % 60.0 * 0.04)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/vulkin/cloud.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 30.0) % 60.0, 48.0), 1.0 - (siner + 30.0) % 60.0 * 0.02, 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "vulkin_cloud_3".into(),
+                tags: vec!["utrp".into(), "hotland/vulkin".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("29.0 + (cloud3_hspeed * ((siner + 15.0) % 60.0) + sin((cloud3_siner + (siner + 15.0) % 60.0) / 5.0) * 2.0)"), expression("-53.0 + (-((siner + 15.0) % 60.0) - (siner + 15.0) % 60.0 * ((siner + 15.0) % 60.0) * 0.08)"), static_float(7.0))),
+                    rotation: Some(expression("cloud3_rot + (siner + 15.0) % 60.0 * 2.0")),
+                    scale: Some(vector3(expression("2.0 * (0.25 + (siner + 15.0) % 60.0 * 0.04)"), expression("2.0 * (0.25 + (siner + 15.0) % 60.0 * 0.04)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/vulkin/cloud.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 15.0) % 60.0, 48.0), 1.0 - (siner + 15.0) % 60.0 * 0.02, 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner / 15.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
                 name: "vulkin_face".into(),
                 tags: vec!["utrp".into(), "hotland/vulkin".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("44.0 + (sin(siner / 12.0) * 7.0)"), static_float(7.0), static_float(3.0))),
+                    translation: Some(vector3(expression("44.0 + (sin(siner / 12.0) * 7.0)"), static_float(7.0), static_float(10.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("2.0 * (1.0 - abs(sin(siner / 12.0)) * 0.1)"), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/vulkin/face.png".into()),
@@ -79,7 +145,7 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "vulkin_feet_front".into(),
                 tags: vec!["utrp".into(), "hotland/vulkin".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("-37.0 + (sin(siner / 6.0) * 2.0)"), expression("102.0 + (cos(siner / 6.0) * 2.0)"), static_float(4.0))),
+                    translation: Some(vector3(expression("-37.0 + (sin(siner / 6.0) * 2.0)"), expression("102.0 + (cos(siner / 6.0) * 2.0)"), static_float(11.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),

@@ -19,9 +19,27 @@
 
 /// Migospel Create Event
 siner = 1.0;
+timer = 0.0;
+timer_e = 0.0;
+mouth_index = 0.0;
+mouth_draw = 0.0;
+eyey = 0.0;
+eyey_draw = 0.0;
+bodyy = 0.0;
 
 /// Migospel Step Event
 siner += 1.0;
+timer += 1.0;
+timer_e += 1.0;
+bodyy = floor(sin(siner / 6.0) * 2.0);
+mouth_draw = mouth_index;
+eyey_draw = eyey;
+mouth_index += ifelse(gte(timer, 40.0) * lte(timer, 50.0), 0.5, 0.0);
+mouth_index = ifelse(eq(timer, 51.0), 0.0, mouth_index);
+timer = ifelse(eq(timer, 51.0), 0.0, timer);
+eyey += ifelse(gt(timer_e, 90.0) * lte(timer_e, 110.0), -0.8, 0.0);
+eyey += ifelse(gt(timer_e, 150.0) * lte(timer_e, 170.0), 0.8, 0.0);
+timer_e = ifelse(eq(timer_e, 180.0), 0.0, timer_e);
 
 /// Migospel Draw Event
 var __utrp_scale = 2.0;
@@ -38,8 +56,8 @@ draw_sprite_ext(spr_migospel_leg, 0.0, -26.0, 42.0, __utrp_scale, __utrp_scale, 
 // draw_order 5: leg_right
 draw_sprite_ext(spr_migospel_leg, 0.0, 24.0, 42.0, __utrp_scale * (-1.0), __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 6: body
-draw_sprite_ext(spr_migospel_body, 0.0, -26.0, -58.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_migospel_body, 0.0, -26.0, -58.0 + (bodyy), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 7: eyes
-draw_sprite_ext(spr_migospel_eye, 0.0, -20.0, -8.0 + (sin(siner / 6.0) * 2.0 + -clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0)), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_migospel_eye, eyey_draw, -20.0, -8.0 + (floor(bodyy + eyey_draw)), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 8: mouth
-draw_sprite_ext(spr_migospel_mouthA, floor(clamp(siner % 51.0 - 40.0, 0.0, 2.0)), -18.0, 8.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_migospel_mouthA, floor(mouth_draw), -18.0, 8.0 + (bodyy), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

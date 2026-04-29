@@ -25,7 +25,12 @@
     {
       "name": "siner",
       "kind": "counter",
-      "initial": 1.0
+      "initial": 0.0
+    },
+    {
+      "name": "dsiner",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -61,8 +66,13 @@
   "update": [
     {
       "op": "increment",
-      "variable": "siner",
+      "variable": "dsiner",
       "by": "1"
+    },
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "cos(dsiner / 24) * 2"
     }
   ],
   "draw": [

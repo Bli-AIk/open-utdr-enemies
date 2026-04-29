@@ -7,12 +7,71 @@
 /// - madjick_lapel => /sprites/madjick/lapel.png (placeholder sprite: spr_madjick_lapel)
 /// - madjick_head => /sprites/madjick/head.png (placeholder sprite: spr_madjick_head)
 /// - madjick_hat => /sprites/madjick/hat.png (placeholder sprite: spr_madjick_hat)
+/// - madjick_orb => /sprites/madjick/orb_0.png (placeholder sprite: spr_madjick_orb)
+///   frame: /sprites/madjick/orb_1.png
+///   frame: /sprites/madjick/orb_2.png
+///   frame: /sprites/madjick/orb_3.png
+///   frame: /sprites/madjick/orb_4.png
+///   frame: /sprites/madjick/orb_5.png
+///   frame: /sprites/madjick/orb_6.png
+///   frame: /sprites/madjick/orb_7.png
+///   frame: /sprites/madjick/orb_8.png
+///   frame: /sprites/madjick/orb_9.png
+/// - madjick_orbsprinkle => /sprites/madjick/orbsprinkle_0.png (placeholder sprite: spr_madjick_orbsprinkle)
 
 /// Madjick Create Event
 siner = 1.0;
+spr_r0_x = 26.0;
+spr_r0_y = -42.0;
+spr_l0_x = -86.0;
+spr_l0_y = -32.0;
+spr_r1_x = 29.0;
+spr_r1_y = -43.0;
+spr_l1_x = -83.0;
+spr_l1_y = -33.0;
+spr_r2_x = 32.0;
+spr_r2_y = -44.0;
+spr_l2_x = -80.0;
+spr_l2_y = -34.0;
+spr_r3_x = 35.0;
+spr_r3_y = -45.0;
+spr_l3_x = -77.0;
+spr_l3_y = -35.0;
+spr_r4_x = 38.0;
+spr_r4_y = -46.0;
+spr_l4_x = -74.0;
+spr_l4_y = -36.0;
+spr_r5_x = 41.0;
+spr_r5_y = -47.0;
+spr_l5_x = -71.0;
+spr_l5_y = -37.0;
 
 /// Madjick Step Event
 siner += 1.0;
+spr_r0_x = ifelse(eq(siner % 30.0, 0.0), 26.0 + random(18.0), spr_r0_x);
+spr_r0_y = ifelse(eq(siner % 30.0, 0.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r0_y);
+spr_l0_x = ifelse(eq(siner % 30.0, 0.0), -86.0 + random(18.0), spr_l0_x);
+spr_l0_y = ifelse(eq(siner % 30.0, 0.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l0_y);
+spr_r1_x = ifelse(eq(siner % 30.0, 5.0), 26.0 + random(18.0), spr_r1_x);
+spr_r1_y = ifelse(eq(siner % 30.0, 5.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r1_y);
+spr_l1_x = ifelse(eq(siner % 30.0, 5.0), -86.0 + random(18.0), spr_l1_x);
+spr_l1_y = ifelse(eq(siner % 30.0, 5.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l1_y);
+spr_r2_x = ifelse(eq(siner % 30.0, 10.0), 26.0 + random(18.0), spr_r2_x);
+spr_r2_y = ifelse(eq(siner % 30.0, 10.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r2_y);
+spr_l2_x = ifelse(eq(siner % 30.0, 10.0), -86.0 + random(18.0), spr_l2_x);
+spr_l2_y = ifelse(eq(siner % 30.0, 10.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l2_y);
+spr_r3_x = ifelse(eq(siner % 30.0, 15.0), 26.0 + random(18.0), spr_r3_x);
+spr_r3_y = ifelse(eq(siner % 30.0, 15.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r3_y);
+spr_l3_x = ifelse(eq(siner % 30.0, 15.0), -86.0 + random(18.0), spr_l3_x);
+spr_l3_y = ifelse(eq(siner % 30.0, 15.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l3_y);
+spr_r4_x = ifelse(eq(siner % 30.0, 20.0), 26.0 + random(18.0), spr_r4_x);
+spr_r4_y = ifelse(eq(siner % 30.0, 20.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r4_y);
+spr_l4_x = ifelse(eq(siner % 30.0, 20.0), -86.0 + random(18.0), spr_l4_x);
+spr_l4_y = ifelse(eq(siner % 30.0, 20.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l4_y);
+spr_r5_x = ifelse(eq(siner % 30.0, 25.0), 26.0 + random(18.0), spr_r5_x);
+spr_r5_y = ifelse(eq(siner % 30.0, 25.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r5_y);
+spr_l5_x = ifelse(eq(siner % 30.0, 25.0), -86.0 + random(18.0), spr_l5_x);
+spr_l5_y = ifelse(eq(siner % 30.0, 25.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l5_y);
 
 /// Madjick Draw Event
 var __utrp_scale = 2.0;
@@ -30,3 +89,31 @@ draw_sprite_ext(spr_madjick_dress, 0.0, -54.0, 20.0 + (sin(siner / 5.0)), __utrp
 draw_sprite_ext(spr_madjick_head, 0.0, -26.0 + (sin(siner / 5.0)), -30.0 + (sin(siner / 5.0) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 6: hat
 draw_sprite_ext(spr_madjick_hat, 0.0, -18.0 + (cos(siner / 5.0)), -28.0 + (sin(siner / 5.0) * 10.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 7: orb_left
+draw_sprite_ext(spr_madjick_orb, floor(siner / 3.0), -64.0, -16.0 + (sin(siner / 2.5) * 2.0), __utrp_scale * (-1.0), __utrp_scale * (-1.0), 0.0, c_white, 1.0);
+// draw_order 8: orb_right
+draw_sprite_ext(spr_madjick_orb, floor(siner / 3.0), 50.0, -26.0 + (sin(siner / 2.5) * 5.0), __utrp_scale * (-1.0), __utrp_scale * (-1.0), 0.0, c_white, 1.0);
+// draw_order 20: sprinkle_r0
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_r0_x), 0.0 + (spr_r0_y - siner % 30.0 - siner % 30.0 * (siner % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt(siner % 30.0, 27.0), ifelse(gt(siner % 30.0, 14.0), 1.0 - (siner % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq(siner % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 21: sprinkle_l0
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_l0_x), 0.0 + (spr_l0_y - siner % 30.0 - siner % 30.0 * (siner % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt(siner % 30.0, 27.0), ifelse(gt(siner % 30.0, 14.0), 1.0 - (siner % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq(siner % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 22: sprinkle_r1
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_r1_x), 0.0 + (spr_r1_y - (siner + 25.0) % 30.0 - (siner + 25.0) % 30.0 * ((siner + 25.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 25.0) % 30.0, 27.0), ifelse(gt((siner + 25.0) % 30.0, 14.0), 1.0 - ((siner + 25.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 25.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 23: sprinkle_l1
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_l1_x), 0.0 + (spr_l1_y - (siner + 25.0) % 30.0 - (siner + 25.0) % 30.0 * ((siner + 25.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 25.0) % 30.0, 27.0), ifelse(gt((siner + 25.0) % 30.0, 14.0), 1.0 - ((siner + 25.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 25.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 24: sprinkle_r2
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_r2_x), 0.0 + (spr_r2_y - (siner + 20.0) % 30.0 - (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 20.0) % 30.0, 27.0), ifelse(gt((siner + 20.0) % 30.0, 14.0), 1.0 - ((siner + 20.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 20.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 25: sprinkle_l2
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_l2_x), 0.0 + (spr_l2_y - (siner + 20.0) % 30.0 - (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 20.0) % 30.0, 27.0), ifelse(gt((siner + 20.0) % 30.0, 14.0), 1.0 - ((siner + 20.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 20.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 26: sprinkle_r3
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_r3_x), 0.0 + (spr_r3_y - (siner + 15.0) % 30.0 - (siner + 15.0) % 30.0 * ((siner + 15.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 15.0) % 30.0, 27.0), ifelse(gt((siner + 15.0) % 30.0, 14.0), 1.0 - ((siner + 15.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 15.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 27: sprinkle_l3
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_l3_x), 0.0 + (spr_l3_y - (siner + 15.0) % 30.0 - (siner + 15.0) % 30.0 * ((siner + 15.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 15.0) % 30.0, 27.0), ifelse(gt((siner + 15.0) % 30.0, 14.0), 1.0 - ((siner + 15.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 15.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 28: sprinkle_r4
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_r4_x), 0.0 + (spr_r4_y - (siner + 10.0) % 30.0 - (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 10.0) % 30.0, 27.0), ifelse(gt((siner + 10.0) % 30.0, 14.0), 1.0 - ((siner + 10.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 10.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 29: sprinkle_l4
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_l4_x), 0.0 + (spr_l4_y - (siner + 10.0) % 30.0 - (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 10.0) % 30.0, 27.0), ifelse(gt((siner + 10.0) % 30.0, 14.0), 1.0 - ((siner + 10.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 10.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 30: sprinkle_r5
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_r5_x), 0.0 + (spr_r5_y - (siner + 5.0) % 30.0 - (siner + 5.0) % 30.0 * ((siner + 5.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 5.0) % 30.0, 27.0), ifelse(gt((siner + 5.0) % 30.0, 14.0), 1.0 - ((siner + 5.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 5.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));
+// draw_order 31: sprinkle_l5
+draw_sprite_ext(spr_madjick_orbsprinkle, 0.0, 0.0 + (spr_l5_x), 0.0 + (spr_l5_y - (siner + 5.0) % 30.0 - (siner + 5.0) % 30.0 * ((siner + 5.0) % 30.0 - 1.0) * 0.1), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(lt((siner + 5.0) % 30.0, 27.0), ifelse(gt((siner + 5.0) % 30.0, 14.0), 1.0 - ((siner + 5.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 5.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0));

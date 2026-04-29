@@ -26,6 +26,11 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "emotion",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -37,10 +42,30 @@
       ]
     },
     {
-      "id": "shyren_body",
-      "path": "/sprites/shyren/body.png",
+      "id": "shyren_hide",
+      "path": "/sprites/shyren/hide.png",
       "frames": [
-        "/sprites/shyren/body.png"
+        "/sprites/shyren/hide.png"
+      ]
+    },
+    {
+      "id": "shyren_swim",
+      "path": "/sprites/shyren/swim_0.png",
+      "frames": [
+        "/sprites/shyren/swim_0.png",
+        "/sprites/shyren/swim_1.png",
+        "/sprites/shyren/swim_2.png",
+        "/sprites/shyren/swim_3.png"
+      ]
+    },
+    {
+      "id": "shyren_sing",
+      "path": "/sprites/shyren/sing_0.png",
+      "frames": [
+        "/sprites/shyren/sing_0.png",
+        "/sprites/shyren/sing_1.png",
+        "/sprites/shyren/sing_2.png",
+        "/sprites/shyren/sing_3.png"
       ]
     }
   ],
@@ -61,22 +86,55 @@
         "y": -90
       },
       "pivot": null,
-      "transform": {
-        "offset_y": "sin(siner / 5) * 3"
-      },
+      "transform": {},
       "draw_order": 0
     },
     {
       "kind": "sprite",
-      "id": "body",
-      "sprite": "shyren_body",
+      "id": "body_hide",
+      "sprite": "shyren_hide",
       "origin": {
-        "x": 0,
-        "y": 30
+        "x": -10,
+        "y": -135
       },
       "pivot": null,
-      "transform": {},
+      "transform": {
+        "offset_y": "sin(siner / 30) * 4",
+        "alpha": "eq(emotion, 0)"
+      },
       "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "body_swim",
+      "sprite": "shyren_swim",
+      "origin": {
+        "x": -10,
+        "y": -135
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 30) * 4",
+        "alpha": "eq(emotion, 1)",
+        "frame_index": "floor(siner * 0.2)"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "body_sing",
+      "sprite": "shyren_sing",
+      "origin": {
+        "x": -10,
+        "y": -135
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "sin(siner / 30) * 4",
+        "alpha": "eq(emotion, 2)",
+        "frame_index": "floor(siner * 0.2)"
+      },
+      "draw_order": 3
     }
   ]
 }

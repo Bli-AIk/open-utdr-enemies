@@ -59,7 +59,7 @@
       },
       "pivot": null,
       "transform": {
-        "frame_index": "floor(clamp(siner % 30.0 - 20.0, 0.0, 10.0) * 0.5)"
+        "frame_index": "ifelse(lt(siner, 30.0), 0.0, floor((siner - 30.0) * 0.5) % 5.0)"
       },
       "draw_order": 0
     }

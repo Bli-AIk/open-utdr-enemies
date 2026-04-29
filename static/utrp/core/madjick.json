@@ -26,6 +26,126 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "spr_r0_x",
+      "kind": "counter",
+      "initial": 26.0
+    },
+    {
+      "name": "spr_r0_y",
+      "kind": "counter",
+      "initial": -42.0
+    },
+    {
+      "name": "spr_l0_x",
+      "kind": "counter",
+      "initial": -86.0
+    },
+    {
+      "name": "spr_l0_y",
+      "kind": "counter",
+      "initial": -32.0
+    },
+    {
+      "name": "spr_r1_x",
+      "kind": "counter",
+      "initial": 29.0
+    },
+    {
+      "name": "spr_r1_y",
+      "kind": "counter",
+      "initial": -43.0
+    },
+    {
+      "name": "spr_l1_x",
+      "kind": "counter",
+      "initial": -83.0
+    },
+    {
+      "name": "spr_l1_y",
+      "kind": "counter",
+      "initial": -33.0
+    },
+    {
+      "name": "spr_r2_x",
+      "kind": "counter",
+      "initial": 32.0
+    },
+    {
+      "name": "spr_r2_y",
+      "kind": "counter",
+      "initial": -44.0
+    },
+    {
+      "name": "spr_l2_x",
+      "kind": "counter",
+      "initial": -80.0
+    },
+    {
+      "name": "spr_l2_y",
+      "kind": "counter",
+      "initial": -34.0
+    },
+    {
+      "name": "spr_r3_x",
+      "kind": "counter",
+      "initial": 35.0
+    },
+    {
+      "name": "spr_r3_y",
+      "kind": "counter",
+      "initial": -45.0
+    },
+    {
+      "name": "spr_l3_x",
+      "kind": "counter",
+      "initial": -77.0
+    },
+    {
+      "name": "spr_l3_y",
+      "kind": "counter",
+      "initial": -35.0
+    },
+    {
+      "name": "spr_r4_x",
+      "kind": "counter",
+      "initial": 38.0
+    },
+    {
+      "name": "spr_r4_y",
+      "kind": "counter",
+      "initial": -46.0
+    },
+    {
+      "name": "spr_l4_x",
+      "kind": "counter",
+      "initial": -74.0
+    },
+    {
+      "name": "spr_l4_y",
+      "kind": "counter",
+      "initial": -36.0
+    },
+    {
+      "name": "spr_r5_x",
+      "kind": "counter",
+      "initial": 41.0
+    },
+    {
+      "name": "spr_r5_y",
+      "kind": "counter",
+      "initial": -47.0
+    },
+    {
+      "name": "spr_l5_x",
+      "kind": "counter",
+      "initial": -71.0
+    },
+    {
+      "name": "spr_l5_y",
+      "kind": "counter",
+      "initial": -37.0
     }
   ],
   "assets": [
@@ -63,6 +183,29 @@
       "frames": [
         "/sprites/madjick/hat.png"
       ]
+    },
+    {
+      "id": "madjick_orb",
+      "path": "/sprites/madjick/orb_0.png",
+      "frames": [
+        "/sprites/madjick/orb_0.png",
+        "/sprites/madjick/orb_1.png",
+        "/sprites/madjick/orb_2.png",
+        "/sprites/madjick/orb_3.png",
+        "/sprites/madjick/orb_4.png",
+        "/sprites/madjick/orb_5.png",
+        "/sprites/madjick/orb_6.png",
+        "/sprites/madjick/orb_7.png",
+        "/sprites/madjick/orb_8.png",
+        "/sprites/madjick/orb_9.png"
+      ]
+    },
+    {
+      "id": "madjick_orbsprinkle",
+      "path": "/sprites/madjick/orbsprinkle_0.png",
+      "frames": [
+        "/sprites/madjick/orbsprinkle_0.png"
+      ]
     }
   ],
   "update": [
@@ -70,6 +213,126 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r0_x",
+      "value": "ifelse(eq(siner % 30.0, 0.0), 26.0 + random(18.0), spr_r0_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r0_y",
+      "value": "ifelse(eq(siner % 30.0, 0.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r0_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l0_x",
+      "value": "ifelse(eq(siner % 30.0, 0.0), -86.0 + random(18.0), spr_l0_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l0_y",
+      "value": "ifelse(eq(siner % 30.0, 0.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l0_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r1_x",
+      "value": "ifelse(eq(siner % 30.0, 5.0), 26.0 + random(18.0), spr_r1_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r1_y",
+      "value": "ifelse(eq(siner % 30.0, 5.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r1_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l1_x",
+      "value": "ifelse(eq(siner % 30.0, 5.0), -86.0 + random(18.0), spr_l1_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l1_y",
+      "value": "ifelse(eq(siner % 30.0, 5.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l1_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r2_x",
+      "value": "ifelse(eq(siner % 30.0, 10.0), 26.0 + random(18.0), spr_r2_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r2_y",
+      "value": "ifelse(eq(siner % 30.0, 10.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r2_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l2_x",
+      "value": "ifelse(eq(siner % 30.0, 10.0), -86.0 + random(18.0), spr_l2_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l2_y",
+      "value": "ifelse(eq(siner % 30.0, 10.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l2_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r3_x",
+      "value": "ifelse(eq(siner % 30.0, 15.0), 26.0 + random(18.0), spr_r3_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r3_y",
+      "value": "ifelse(eq(siner % 30.0, 15.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r3_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l3_x",
+      "value": "ifelse(eq(siner % 30.0, 15.0), -86.0 + random(18.0), spr_l3_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l3_y",
+      "value": "ifelse(eq(siner % 30.0, 15.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l3_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r4_x",
+      "value": "ifelse(eq(siner % 30.0, 20.0), 26.0 + random(18.0), spr_r4_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r4_y",
+      "value": "ifelse(eq(siner % 30.0, 20.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r4_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l4_x",
+      "value": "ifelse(eq(siner % 30.0, 20.0), -86.0 + random(18.0), spr_l4_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l4_y",
+      "value": "ifelse(eq(siner % 30.0, 20.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l4_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r5_x",
+      "value": "ifelse(eq(siner % 30.0, 25.0), 26.0 + random(18.0), spr_r5_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_r5_y",
+      "value": "ifelse(eq(siner % 30.0, 25.0), -42.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_r5_y)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l5_x",
+      "value": "ifelse(eq(siner % 30.0, 25.0), -86.0 + random(18.0), spr_l5_x)"
+    },
+    {
+      "op": "set",
+      "variable": "spr_l5_y",
+      "value": "ifelse(eq(siner % 30.0, 25.0), -32.0 + sin(siner / 2.5) * 4.0 - random(6.0), spr_l5_y)"
     }
   ],
   "draw": [
@@ -202,6 +465,274 @@
         "offset_y": "sin(siner / 5.0) * 10.0"
       },
       "draw_order": 6
+    },
+    {
+      "kind": "sprite",
+      "id": "orb_left",
+      "sprite": "madjick_orb",
+      "origin": {
+        "x": -64.0,
+        "y": -16.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 2.5) * 2.0",
+        "scale_x": "-1.0",
+        "scale_y": "-1.0",
+        "frame_index": "floor(siner / 3.0)"
+      },
+      "draw_order": 7
+    },
+    {
+      "kind": "sprite",
+      "id": "orb_right",
+      "sprite": "madjick_orb",
+      "origin": {
+        "x": 50.0,
+        "y": -26.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_y": "sin(siner / 2.5) * 5.0",
+        "scale_x": "-1.0",
+        "scale_y": "-1.0",
+        "frame_index": "floor(siner / 3.0)"
+      },
+      "draw_order": 8
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_r0",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_r0_x",
+        "offset_y": "spr_r0_y - siner % 30.0 - siner % 30.0 * (siner % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt(siner % 30.0, 27.0), ifelse(gt(siner % 30.0, 14.0), 1.0 - (siner % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq(siner % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 20
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_l0",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_l0_x",
+        "offset_y": "spr_l0_y - siner % 30.0 - siner % 30.0 * (siner % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt(siner % 30.0, 27.0), ifelse(gt(siner % 30.0, 14.0), 1.0 - (siner % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq(siner % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 21
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_r1",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_r1_x",
+        "offset_y": "spr_r1_y - (siner + 25.0) % 30.0 - (siner + 25.0) % 30.0 * ((siner + 25.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 25.0) % 30.0, 27.0), ifelse(gt((siner + 25.0) % 30.0, 14.0), 1.0 - ((siner + 25.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 25.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 22
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_l1",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_l1_x",
+        "offset_y": "spr_l1_y - (siner + 25.0) % 30.0 - (siner + 25.0) % 30.0 * ((siner + 25.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 25.0) % 30.0, 27.0), ifelse(gt((siner + 25.0) % 30.0, 14.0), 1.0 - ((siner + 25.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 25.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 23
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_r2",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_r2_x",
+        "offset_y": "spr_r2_y - (siner + 20.0) % 30.0 - (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 20.0) % 30.0, 27.0), ifelse(gt((siner + 20.0) % 30.0, 14.0), 1.0 - ((siner + 20.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 20.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 24
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_l2",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_l2_x",
+        "offset_y": "spr_l2_y - (siner + 20.0) % 30.0 - (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 20.0) % 30.0, 27.0), ifelse(gt((siner + 20.0) % 30.0, 14.0), 1.0 - ((siner + 20.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 20.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 25
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_r3",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_r3_x",
+        "offset_y": "spr_r3_y - (siner + 15.0) % 30.0 - (siner + 15.0) % 30.0 * ((siner + 15.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 15.0) % 30.0, 27.0), ifelse(gt((siner + 15.0) % 30.0, 14.0), 1.0 - ((siner + 15.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 15.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 26
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_l3",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_l3_x",
+        "offset_y": "spr_l3_y - (siner + 15.0) % 30.0 - (siner + 15.0) % 30.0 * ((siner + 15.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 15.0) % 30.0, 27.0), ifelse(gt((siner + 15.0) % 30.0, 14.0), 1.0 - ((siner + 15.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 15.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 27
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_r4",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_r4_x",
+        "offset_y": "spr_r4_y - (siner + 10.0) % 30.0 - (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 10.0) % 30.0, 27.0), ifelse(gt((siner + 10.0) % 30.0, 14.0), 1.0 - ((siner + 10.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 10.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 28
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_l4",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_l4_x",
+        "offset_y": "spr_l4_y - (siner + 10.0) % 30.0 - (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 10.0) % 30.0, 27.0), ifelse(gt((siner + 10.0) % 30.0, 14.0), 1.0 - ((siner + 10.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 10.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 29
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_r5",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_r5_x",
+        "offset_y": "spr_r5_y - (siner + 5.0) % 30.0 - (siner + 5.0) % 30.0 * ((siner + 5.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 5.0) % 30.0, 27.0), ifelse(gt((siner + 5.0) % 30.0, 14.0), 1.0 - ((siner + 5.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 5.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 30
+    },
+    {
+      "kind": "sprite",
+      "id": "sprinkle_l5",
+      "sprite": "madjick_orbsprinkle",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "spr_l5_x",
+        "offset_y": "spr_l5_y - (siner + 5.0) % 30.0 - (siner + 5.0) % 30.0 * ((siner + 5.0) % 30.0 - 1.0) * 0.1",
+        "alpha": "ifelse(lt((siner + 5.0) % 30.0, 27.0), ifelse(gt((siner + 5.0) % 30.0, 14.0), 1.0 - ((siner + 5.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 5.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"
+      },
+      "draw_order": 31
     }
   ],
   "codegen": {

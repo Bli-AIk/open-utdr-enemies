@@ -23,9 +23,19 @@
   },
   "variables": [
     {
-      "name": "siner",
+      "name": "scalevalue",
+      "kind": "counter",
+      "initial": -0.01
+    },
+    {
+      "name": "image_yscale",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "body_y",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -40,9 +50,19 @@
   ],
   "update": [
     {
+      "op": "set",
+      "variable": "scalevalue",
+      "value": "ifelse(lt(image_yscale, 0.9), 0.01, ifelse(gt(image_yscale, 1.1), -0.01, scalevalue))"
+    },
+    {
       "op": "increment",
-      "variable": "siner",
-      "by": "1"
+      "variable": "image_yscale",
+      "by": "scalevalue"
+    },
+    {
+      "op": "increment",
+      "variable": "body_y",
+      "by": "-102 * scalevalue"
     }
   ],
   "draw": [
@@ -51,16 +71,16 @@
       "id": "body",
       "sprite": "moldsmal_body",
       "origin": {
-        "x": 0,
-        "y": 84
+        "x": -102,
+        "y": -84
       },
       "pivot": {
-        "x": 51,
-        "y": 84
+        "x": 0,
+        "y": 0
       },
       "transform": {
-        "scale_y": "1.0 - sin(siner / 4) * 0.05",
-        "frame_index": "floor(siner / 6) % 2"
+        "offset_y": "body_y",
+        "scale_y": "image_yscale"
       },
       "draw_order": 0
     }

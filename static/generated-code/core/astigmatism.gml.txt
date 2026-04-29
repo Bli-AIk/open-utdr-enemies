@@ -4,23 +4,48 @@
 /// Asset map:
 /// - astigmatism_handl => /sprites/astigmatism/handl.png (placeholder sprite: spr_astigmatism_handl)
 /// - astigmatism_legl => /sprites/astigmatism/legl.png (placeholder sprite: spr_astigmatism_legl)
-/// - astigmatism_body => /sprites/astigmatism/body.png (placeholder sprite: spr_astigmatism_body)
+/// - astigmatism_body => /sprites/astigmatism/anim2_0.png (placeholder sprite: spr_astigmatism_body)
+///   frame: /sprites/astigmatism/anim2_1.png
+///   frame: /sprites/astigmatism/anim2_2.png
+///   frame: /sprites/astigmatism/anim2_3.png
+///   frame: /sprites/astigmatism/anim2_4.png
+///   frame: /sprites/astigmatism/anim2_5.png
+///   frame: /sprites/astigmatism/anim2_6.png
+///   frame: /sprites/astigmatism/anim2_7.png
+///   frame: /sprites/astigmatism/anim2_8.png
+///   frame: /sprites/astigmatism/anim2_9.png
+///   frame: /sprites/astigmatism/anim2_10.png
+///   frame: /sprites/astigmatism/anim2_11.png
 
 /// Astigmatism Create Event
-siner = 1.0;
+siner = 0.0;
+anim = 0.0;
+anim2 = 0.0;
+sfactor = 0.0;
 
 /// Astigmatism Step Event
-siner += 1.0;
+anim += 1.0;
+sfactor = ifelse(gt(anim, 250.0), min(1.0, sfactor + 0.05), sfactor);
+siner += ifelse(gt(anim, 250.0), 1.0, 0.0);
+anim2 += ifelse(gt(anim, 140.0) * lt(anim, 180.0), 1.0, 0.0);
+anim = ifelse(gt(anim, 140.0) * lt(anim, 180.0) * gt(anim2, 18.0), 200.0, anim);
+anim2 += ifelse(gt(anim, 220.0) * lt(anim, 280.0), 1.0, 0.0);
+anim = ifelse(gt(anim, 220.0) * lt(anim, 280.0) * gte(anim2, 33.0), 300.0, anim);
+sfactor = ifelse(gt(anim, 480.0) * gt(sfactor, 0.0), sfactor - 0.07, sfactor);
+anim2 += ifelse(gt(anim, 480.0), -1.0, 0.0);
+sfactor = ifelse(gt(anim, 480.0) * lte(anim2, 0.0), 0.0, sfactor);
+anim2 = ifelse(gt(anim, 480.0) * lte(anim2, 0.0), 0.0, anim2);
+anim = ifelse(gt(anim, 480.0) * lte(anim2, 0.0), 0.0, anim);
 
 /// Astigmatism Draw Event
 var __utrp_scale = 2.0;
 // draw_order 0: hand_left
-draw_sprite_ext(spr_astigmatism_handl, 0.0, -40.0 + (sin(siner / 6.0) * 2.0), 6.0 + (cos(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale * (0.9 + cos(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_handl, floor(anim2 / 3.0), -40.0 + (sin(siner / 6.0) * 2.0 * sfactor), 6.0 + (cos(siner / 6.0) * 2.0 * sfactor), __utrp_scale, __utrp_scale * (0.9 + cos(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 1: leg_left
-draw_sprite_ext(spr_astigmatism_legl, 0.0, -18.0 + (cos(siner / 6.0) * 2.0), 26.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale * (0.9 + sin(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_legl, floor(anim2 / 3.0), -18.0 + (cos(siner / 6.0) * 2.0 * sfactor), 26.0 + (sin(siner / 6.0) * 2.0 * sfactor), __utrp_scale, __utrp_scale * (0.9 + sin(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 2: hand_right
-draw_sprite_ext(spr_astigmatism_handl, 0.0, 44.0 + (-sin(siner / 6.0) * 2.0), 6.0 + (-cos(siner / 6.0) * 2.0), __utrp_scale * (-1.0), __utrp_scale * (0.95 - cos(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_handl, floor(anim2 / 3.0), 44.0 + (-sin(siner / 6.0) * 2.0 * sfactor), 6.0 + (-cos(siner / 6.0) * 2.0 * sfactor), __utrp_scale * (-1.0), __utrp_scale * (0.95 - cos(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 3: leg_right
-draw_sprite_ext(spr_astigmatism_legl, 0.0, 22.0 + (-cos(siner / 6.0) * 2.0), 26.0 + (-sin(siner / 6.0) * 2.0), __utrp_scale * (-1.0), __utrp_scale * (0.9 - sin(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_legl, floor(anim2 / 3.0), 22.0 + (-cos(siner / 6.0) * 2.0 * sfactor), 26.0 + (-sin(siner / 6.0) * 2.0 * sfactor), __utrp_scale * (-1.0), __utrp_scale * (0.9 - sin(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 4: body
-draw_sprite_ext(spr_astigmatism_body, 0.0, -48.0, -58.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_body, floor(anim2 / 3.0), -48.0, -58.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

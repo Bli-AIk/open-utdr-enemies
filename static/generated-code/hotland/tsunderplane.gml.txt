@@ -1,19 +1,46 @@
 /// Tsunderplane UTRP GameMaker starter
 /// Source slug: hotland/tsunderplane
-/// Canvas: 230x194 at 2.0x draw scale
+/// Canvas: 420x194 at 2.0x draw scale
 /// Asset map:
 /// - tsunderplane_body => /sprites/tsunderplane/body.png (placeholder sprite: spr_tsunderplane_body)
 /// - tsunderplane_hat => /sprites/tsunderplane/hat.png (placeholder sprite: spr_tsunderplane_hat)
+/// - tsunderplane_exhaust => /sprites/tsunderplane/exhaust_0.png (placeholder sprite: spr_tsunderplane_exhaust)
+///   frame: /sprites/tsunderplane/exhaust_1.png
+/// - tsunderplane_blush => /sprites/tsunderplane/blush_0.png (placeholder sprite: spr_tsunderplane_blush)
+///   frame: /sprites/tsunderplane/blush_1.png
+///   frame: /sprites/tsunderplane/blush_2.png
+///   frame: /sprites/tsunderplane/blush_3.png
 
 /// Tsunderplane Create Event
 siner = 1.0;
+graze = 0.0;
+exhaust0_angle = 0.0;
+exhaust0_hspeed = -2.5;
+exhaust1_angle = 120.0;
+exhaust1_hspeed = -2.5;
+exhaust2_angle = 240.0;
+exhaust2_hspeed = -2.5;
 
 /// Tsunderplane Step Event
 siner += 1.0;
+exhaust0_angle = ifelse(eq(siner % 30.0, 0.0), random(360.0), exhaust0_angle);
+exhaust0_hspeed = ifelse(eq(siner % 30.0, 0.0), -2.0 - random(1.0), exhaust0_hspeed);
+exhaust1_angle = ifelse(eq(siner % 30.0, 10.0), random(360.0), exhaust1_angle);
+exhaust1_hspeed = ifelse(eq(siner % 30.0, 10.0), -2.0 - random(1.0), exhaust1_hspeed);
+exhaust2_angle = ifelse(eq(siner % 30.0, 20.0), random(360.0), exhaust2_angle);
+exhaust2_hspeed = ifelse(eq(siner % 30.0, 20.0), -2.0 - random(1.0), exhaust2_hspeed);
 
 /// Tsunderplane Draw Event
 var __utrp_scale = 2.0;
-// draw_order 0: body
+// draw_order 0: exhaust_0
+draw_sprite_ext(spr_tsunderplane_exhaust, floor(siner % 30.0 / 5.0), -48.0 + (exhaust0_hspeed * (siner % 30.0) + sin(siner % 30.0 / 2.0)), -20.0 + (cos(siner % 30.0 / 2.0) + siner % 30.0 * (siner % 30.0) * 0.1), __utrp_scale * (2.0 + siner % 30.0 * 0.05), __utrp_scale * (2.0 + siner % 30.0 * 0.05), exhaust0_angle + siner % 30.0, c_white, ifelse(lt(siner % 30.0, 29.0), ifelse(gt(siner % 30.0, 7.0), 1.0 - (siner % 30.0 - 7.0) * 0.04, 1.0), 0.0));
+// draw_order 1: exhaust_1
+draw_sprite_ext(spr_tsunderplane_exhaust, floor((siner + 20.0) % 30.0 / 5.0), -48.0 + (exhaust1_hspeed * ((siner + 20.0) % 30.0) + sin((siner + 20.0) % 30.0 / 2.0)), -20.0 + (cos((siner + 20.0) % 30.0 / 2.0) + (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0) * 0.1), __utrp_scale * (2.0 + (siner + 20.0) % 30.0 * 0.05), __utrp_scale * (2.0 + (siner + 20.0) % 30.0 * 0.05), exhaust1_angle + (siner + 20.0) % 30.0, c_white, ifelse(lt((siner + 20.0) % 30.0, 29.0), ifelse(gt((siner + 20.0) % 30.0, 7.0), 1.0 - ((siner + 20.0) % 30.0 - 7.0) * 0.04, 1.0), 0.0));
+// draw_order 2: exhaust_2
+draw_sprite_ext(spr_tsunderplane_exhaust, floor((siner + 10.0) % 30.0 / 5.0), -48.0 + (exhaust2_hspeed * ((siner + 10.0) % 30.0) + sin((siner + 10.0) % 30.0 / 2.0)), -20.0 + (cos((siner + 10.0) % 30.0 / 2.0) + (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0) * 0.1), __utrp_scale * (2.0 + (siner + 10.0) % 30.0 * 0.05), __utrp_scale * (2.0 + (siner + 10.0) % 30.0 * 0.05), exhaust2_angle + (siner + 10.0) % 30.0, c_white, ifelse(lt((siner + 10.0) % 30.0, 29.0), ifelse(gt((siner + 10.0) % 30.0, 7.0), 1.0 - ((siner + 10.0) % 30.0 - 7.0) * 0.04, 1.0), 0.0));
+// draw_order 10: body
 draw_sprite_ext(spr_tsunderplane_body, 0.0, 0.0, 0.0 + (sin(siner / 7.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
-// draw_order 1: hat
+// draw_order 11: hat
 draw_sprite_ext(spr_tsunderplane_hat, 0.0, 57.0, -15.0 + (sin(siner / 7.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 12: blush
+draw_sprite_ext(spr_tsunderplane_blush, clamp(graze - 1.0, 0.0, 3.0), 0.0 + (sin(siner / 7.0) * 2.0), 0.0 + (sin(siner / 7.0) * 4.0), __utrp_scale, __utrp_scale, 0.0, c_white, ifelse(gt(graze, 0.0), 0.7 + sin(siner / 4.0) * 0.1, 0.0));

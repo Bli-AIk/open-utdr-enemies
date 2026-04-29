@@ -24,20 +24,43 @@
 ///   frame: /sprites/gyftrot/gift_7.png
 ///   frame: /sprites/gyftrot/gift_8.png
 ///   frame: /sprites/gyftrot/gift_9.png
+/// - gyftrot_cloud => /sprites/gyftrot/cloud.png (placeholder sprite: spr_gyftrot_cloud)
 
 /// Gyftrot Create Event
 siner = 1.0;
+head_x = 0.0;
+mouth_frame = 0.0;
+gift0 = 0.0;
+gift1 = 2.0;
+gift2 = 4.0;
+gift_set = 0.0;
 
 /// Gyftrot Step Event
 siner += 1.0;
+head_x = ifelse(lt(siner % 227.0, 45.0), 0.0, ifelse(lt(siner % 227.0, 53.0), siner % 227.0 - 45.0, ifelse(lt(siner % 227.0, 103.0), 8.0, ifelse(lt(siner % 227.0, 119.0), 8.0 - (siner % 227.0 - 103.0), ifelse(lt(siner % 227.0, 169.0), -8.0, ifelse(lt(siner % 227.0, 177.0), -8.0 + siner % 227.0 - 169.0, 0.0))))));
+mouth_frame = ifelse(lt(siner % 160.0, 20.0), 0.0, ifelse(lt(siner % 160.0, 23.0), 1.0, ifelse(lt(siner % 160.0, 26.0), 2.0, ifelse(lt(siner % 160.0, 29.0), 3.0, ifelse(lt(siner % 160.0, 79.0), 4.0, ifelse(lt(siner % 160.0, 82.0), 3.0, ifelse(lt(siner % 160.0, 85.0), 2.0, ifelse(lt(siner % 160.0, 88.0), 1.0, 0.0))))))));
+gift0 = ifelse(eq(gift_set, 0.0), floor(random(7.0)), gift0);
+gift1 = ifelse(eq(gift_set, 0.0), floor(random(7.0)), gift1);
+gift2 = ifelse(eq(gift_set, 0.0), floor(random(7.0)), gift2);
+gift1 = ifelse(eq(gift_set, 0.0) * eq(gift1, gift0), gift1 + 1.0, gift1);
+gift2 = ifelse(eq(gift_set, 0.0) * eq(gift2, gift0), gift2 + 1.0, gift2);
+gift2 = ifelse(eq(gift_set, 0.0) * eq(gift2, gift1), 0.0, gift2);
+gift2 = ifelse(eq(gift_set, 0.0) * eq(gift2, gift0), gift2 + 1.0, gift2);
+gift_set = 1.0;
 
 /// Gyftrot Draw Event
 var __utrp_scale = 2.0;
 // draw_order 0: body
 draw_sprite_ext(spr_gyftrot_body, 0.0, -100.0, -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
-// draw_order 1: gift
-draw_sprite_ext(spr_gyftrot_gift, floor(siner * 0.02) % 10.0, -100.0 + (sin(siner / 15.0) * 8.0), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
-// draw_order 2: head
-draw_sprite_ext(spr_gyftrot_head, clamp(sign(sin(siner / 40.0) - 0.9), 0.0, 1.0), -100.0 + (sin(siner / 15.0) * 8.0), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
-// draw_order 3: mouth
-draw_sprite_ext(spr_gyftrot_mouth, floor(clamp(5.0 - abs(siner % 100.0 - 15.0) / 3.0, 0.0, 4.0)), -50.0 + (sin(siner / 15.0) * 8.0), -7.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: gift_0
+draw_sprite_ext(spr_gyftrot_gift, gift0, -100.0 + (ifelse(eq(gift0, 1.0) + eq(gift0, 7.0) + eq(gift0, 9.0), 0.0, head_x)), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: gift_1
+draw_sprite_ext(spr_gyftrot_gift, gift1, -100.0 + (ifelse(eq(gift1, 1.0) + eq(gift1, 7.0) + eq(gift1, 9.0), 0.0, head_x)), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 3: gift_2
+draw_sprite_ext(spr_gyftrot_gift, gift2, -100.0 + (ifelse(eq(gift2, 1.0) + eq(gift2, 7.0) + eq(gift2, 9.0), 0.0, head_x)), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 4: head
+draw_sprite_ext(spr_gyftrot_head, ifelse(gte(siner % 120.0, 100.0) * lt(siner % 120.0, 108.0), 1.0, 0.0), -100.0 + (head_x), -103.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 5: mouth
+draw_sprite_ext(spr_gyftrot_mouth, mouth_frame, -50.0 + (head_x), -7.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 6: cloud
+draw_sprite_ext(spr_gyftrot_cloud, 0.0, -10.0 + (head_x + ifelse(gte(siner % 160.0, 54.0) * lt(siner % 160.0, 110.0), (siner % 160.0 - 54.0) * 0.1, 0.0)), 39.0 + (ifelse(gte(siner % 160.0, 54.0) * lt(siner % 160.0, 110.0), (siner % 160.0 - 54.0) * 1.2, 0.0)), __utrp_scale * (0.1 + ifelse(gte(siner % 160.0, 54.0) * lt(siner % 160.0, 110.0), (siner % 160.0 - 54.0) * 0.15, 0.0)), __utrp_scale * (0.1 + ifelse(gte(siner % 160.0, 54.0) * lt(siner % 160.0, 110.0), (siner % 160.0 - 54.0) * 0.15, 0.0)), ifelse(gte(siner % 160.0, 54.0) * lt(siner % 160.0, 110.0), siner % 160.0 - 54.0 + 45.0, 0.0), c_white, ifelse(gte(siner % 160.0, 54.0) * lt(siner % 160.0, 110.0), 0.7 - (siner % 160.0 - 54.0) * 0.012, 0.0));

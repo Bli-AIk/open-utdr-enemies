@@ -26,6 +26,31 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "f_siner",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "face_set",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "face0",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "face1",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "face2",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -71,6 +96,31 @@
       "op": "increment",
       "variable": "siner",
       "by": "1"
+    },
+    {
+      "op": "increment",
+      "variable": "f_siner",
+      "by": "1"
+    },
+    {
+      "op": "set",
+      "variable": "face0",
+      "value": "ifelse(eq(face_set, 0), floor(random(9)), face0)"
+    },
+    {
+      "op": "set",
+      "variable": "face1",
+      "value": "ifelse(eq(face_set, 0), floor(random(9)), face1)"
+    },
+    {
+      "op": "set",
+      "variable": "face2",
+      "value": "ifelse(eq(face_set, 0), floor(random(9)), face2)"
+    },
+    {
+      "op": "set",
+      "variable": "face_set",
+      "value": "1"
     }
   ],
   "draw": [
@@ -105,10 +155,10 @@
         "y": 7
       },
       "transform": {
-        "offset_x": "sin(siner / 16) * 13 + sin(siner / 6)",
-        "offset_y": "cos(siner / 16) * 18 + cos(siner / 6)",
-        "rotation_deg": "siner * 3 + sin(siner / 6) * 4",
-        "frame_index": "0"
+        "offset_x": "sin(f_siner / 16) * 13 + sin(siner / 6)",
+        "offset_y": "cos(f_siner / 16) * 18 + cos(siner / 6)",
+        "rotation_deg": "f_siner * 3 + sin(siner / 6) * 4",
+        "frame_index": "face0"
       },
       "draw_order": 1
     },
@@ -125,10 +175,10 @@
         "y": 7
       },
       "transform": {
-        "offset_x": "sin((siner + 36) / 16) * 13 + sin(siner / 6)",
-        "offset_y": "cos((siner + 36) / 16) * 18 + cos(siner / 6)",
-        "rotation_deg": "siner * 3 + 180 + sin(siner / 6) * 4",
-        "frame_index": "4"
+        "offset_x": "sin((f_siner + 36) / 16) * 13 + sin(siner / 6)",
+        "offset_y": "cos((f_siner + 36) / 16) * 18 + cos(siner / 6)",
+        "rotation_deg": "f_siner * 3 + 180 + sin(siner / 6) * 4",
+        "frame_index": "face1"
       },
       "draw_order": 2
     },
@@ -145,10 +195,10 @@
         "y": 7
       },
       "transform": {
-        "offset_x": "sin((siner + 65) / 16) * 13 + sin(siner / 6)",
-        "offset_y": "cos((siner + 65) / 16) * 18 + cos(siner / 6)",
-        "rotation_deg": "siner * 3 + 180 + sin(siner / 6) * 4",
-        "frame_index": "7"
+        "offset_x": "sin((f_siner + 65) / 16) * 13 + sin(siner / 6)",
+        "offset_y": "cos((f_siner + 65) / 16) * 18 + cos(siner / 6)",
+        "rotation_deg": "f_siner * 3 + 180 + sin(siner / 6) * 4",
+        "frame_index": "face2"
       },
       "draw_order": 3
     },

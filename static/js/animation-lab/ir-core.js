@@ -24,6 +24,8 @@ const UTRPExpression = (() => {
     max: Math.max,
     pow: Math.pow,
     sqrt: Math.sqrt,
+    random: max => Math.random() * max,
+    choose: (...values) => values[Math.floor(Math.random() * values.length)] || 0,
     clamp: (value, min, max) => Math.min(Math.max(value, min), max),
     ifelse: (condition, yes, no) => condition ? yes : no,
     gt: (left, right) => left > right ? 1 : 0,

@@ -26,6 +26,16 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "hat",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "hat_set",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -80,9 +90,18 @@
     },
     {
       "id": "sosorry_face",
-      "path": "/sprites/so-sorry/sosorry_face.png",
+      "path": "/sprites/so-sorry/sosorry_face_0.png",
       "frames": [
-        "/sprites/so-sorry/sosorry_face.png"
+        "/sprites/so-sorry/sosorry_face_0.png",
+        "/sprites/so-sorry/sosorry_face_1.png",
+        "/sprites/so-sorry/sosorry_face_2.png",
+        "/sprites/so-sorry/sosorry_face_3.png",
+        "/sprites/so-sorry/sosorry_face_4.png",
+        "/sprites/so-sorry/sosorry_face_5.png",
+        "/sprites/so-sorry/sosorry_face_6.png",
+        "/sprites/so-sorry/sosorry_face_7.png",
+        "/sprites/so-sorry/sosorry_face_8.png",
+        "/sprites/so-sorry/sosorry_face_9.png"
       ]
     },
     {
@@ -101,9 +120,13 @@
     },
     {
       "id": "sosorry_hat",
-      "path": "/sprites/so-sorry/sosorry_hat.png",
+      "path": "/sprites/so-sorry/sosorry_hat_0.png",
       "frames": [
-        "/sprites/so-sorry/sosorry_hat.png"
+        "/sprites/so-sorry/sosorry_hat_0.png",
+        "/sprites/so-sorry/sosorry_hat_1.png",
+        "/sprites/so-sorry/sosorry_hat_2.png",
+        "/sprites/so-sorry/sosorry_hat_3.png",
+        "/sprites/so-sorry/sosorry_hat_4.png"
       ]
     }
   ],
@@ -112,6 +135,16 @@
       "op": "increment",
       "variable": "siner",
       "by": "1"
+    },
+    {
+      "op": "set",
+      "variable": "hat",
+      "value": "ifelse(eq(hat_set, 0), floor(random(60)), hat)"
+    },
+    {
+      "op": "set",
+      "variable": "hat_set",
+      "value": "1"
     }
   ],
   "draw": [
@@ -121,11 +154,12 @@
       "sprite": "sosorry_tail",
       "origin": {
         "x": 1,
-        "y": 68
+        "y": 48
       },
       "pivot": null,
       "transform": {
-        "offset_x": "sin(siner / 12) * 46"
+        "offset_x": "sin(siner / 12) * 46",
+        "scale_x": "sin(siner / 12)"
       },
       "draw_order": 0
     },
@@ -135,13 +169,14 @@
       "sprite": "sosorry_leg",
       "origin": {
         "x": -12,
-        "y": 150
+        "y": 88
       },
       "pivot": null,
       "transform": {
-        "offset_x": "sin(siner / 6) * -2"
+        "offset_x": "sin(siner / 6) * -2",
+        "scale_y": "1 + cos(siner / 3) * 0.05"
       },
-      "draw_order": 1
+      "draw_order": 2
     },
     {
       "kind": "sprite",
@@ -149,14 +184,15 @@
       "sprite": "sosorry_leg_r",
       "origin": {
         "x": -4,
-        "y": 150
+        "y": 88
       },
       "pivot": null,
       "transform": {
         "offset_x": "sin(siner / 6) * 2",
-        "scale_x": "-1"
+        "scale_x": "-1",
+        "scale_y": "1 + cos(siner / 3) * 0.05"
       },
-      "draw_order": 2
+      "draw_order": 3
     },
     {
       "kind": "sprite",
@@ -164,13 +200,13 @@
       "sprite": "sosorry_body",
       "origin": {
         "x": 15,
-        "y": 36
+        "y": 24
       },
       "pivot": null,
       "transform": {
         "offset_y": "sin(siner / 6) * 2"
       },
-      "draw_order": 3
+      "draw_order": 1
     },
     {
       "kind": "sprite",
@@ -178,7 +214,7 @@
       "sprite": "sosorry_arm",
       "origin": {
         "x": -90,
-        "y": -18
+        "y": -8
       },
       "pivot": null,
       "transform": {
@@ -192,7 +228,7 @@
       "sprite": "sosorry_arm_r",
       "origin": {
         "x": 90,
-        "y": -18
+        "y": -8
       },
       "pivot": null,
       "transform": {
@@ -207,7 +243,7 @@
       "sprite": "sosorry_head",
       "origin": {
         "x": 10,
-        "y": -100
+        "y": -40
       },
       "pivot": null,
       "transform": {
@@ -221,11 +257,12 @@
       "sprite": "sosorry_face",
       "origin": {
         "x": -16,
-        "y": -90
+        "y": -28
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 6) * 4"
+        "offset_y": "sin(siner / 6) * 4",
+        "frame_index": "0"
       },
       "draw_order": 7
     },
@@ -235,7 +272,7 @@
       "sprite": "sosorry_ear",
       "origin": {
         "x": -75,
-        "y": -168
+        "y": -62
       },
       "pivot": null,
       "transform": {
@@ -249,7 +286,7 @@
       "sprite": "sosorry_ear_r",
       "origin": {
         "x": 53,
-        "y": -168
+        "y": -62
       },
       "pivot": null,
       "transform": {
@@ -264,11 +301,12 @@
       "sprite": "sosorry_hat",
       "origin": {
         "x": -19,
-        "y": -149
+        "y": -60
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 6) * 5"
+        "offset_y": "sin(siner / 6) * 5",
+        "frame_index": "floor(hat)"
       },
       "draw_order": 10
     }

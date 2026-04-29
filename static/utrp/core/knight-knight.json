@@ -25,7 +25,52 @@
     {
       "name": "siner",
       "kind": "counter",
-      "initial": 1.0
+      "initial": 0.0
+    },
+    {
+      "name": "anim_e",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_e2",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_l",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_l2",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_l3",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_h",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_h2",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_m",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim_m2",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -38,9 +83,12 @@
     },
     {
       "id": "knightknight_fur",
-      "path": "/sprites/knight-knight/knightknight_fur.png",
+      "path": "/sprites/knight-knight/knightknight_fur_0.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_fur.png"
+        "/sprites/knight-knight/knightknight_fur_0.png",
+        "/sprites/knight-knight/knightknight_fur_1.png",
+        "/sprites/knight-knight/knightknight_fur_2.png",
+        "/sprites/knight-knight/knightknight_fur_3.png"
       ]
     },
     {
@@ -52,23 +100,44 @@
     },
     {
       "id": "knightknight_eyes",
-      "path": "/sprites/knight-knight/knightknight_eyes.png",
+      "path": "/sprites/knight-knight/knightknight_eyes_0.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_eyes.png"
+        "/sprites/knight-knight/knightknight_eyes_0.png",
+        "/sprites/knight-knight/knightknight_eyes_1.png",
+        "/sprites/knight-knight/knightknight_eyes_2.png",
+        "/sprites/knight-knight/knightknight_eyes_3.png",
+        "/sprites/knight-knight/knightknight_eyes_4.png",
+        "/sprites/knight-knight/knightknight_eyes_5.png",
+        "/sprites/knight-knight/knightknight_eyes_6.png",
+        "/sprites/knight-knight/knightknight_eyes_7.png",
+        "/sprites/knight-knight/knightknight_eyes_8.png",
+        "/sprites/knight-knight/knightknight_eyes_9.png"
       ]
     },
     {
       "id": "knightknight_helmet",
-      "path": "/sprites/knight-knight/knightknight_helmet.png",
+      "path": "/sprites/knight-knight/knightknight_helmet_0.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_helmet.png"
+        "/sprites/knight-knight/knightknight_helmet_0.png",
+        "/sprites/knight-knight/knightknight_helmet_1.png",
+        "/sprites/knight-knight/knightknight_helmet_2.png",
+        "/sprites/knight-knight/knightknight_helmet_3.png"
       ]
     },
     {
       "id": "knightknight_mouth",
-      "path": "/sprites/knight-knight/knightknight_mouth.png",
+      "path": "/sprites/knight-knight/knightknight_mouth_0.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_mouth.png"
+        "/sprites/knight-knight/knightknight_mouth_0.png",
+        "/sprites/knight-knight/knightknight_mouth_1.png",
+        "/sprites/knight-knight/knightknight_mouth_2.png",
+        "/sprites/knight-knight/knightknight_mouth_3.png",
+        "/sprites/knight-knight/knightknight_mouth_4.png",
+        "/sprites/knight-knight/knightknight_mouth_5.png",
+        "/sprites/knight-knight/knightknight_mouth_6.png",
+        "/sprites/knight-knight/knightknight_mouth_7.png",
+        "/sprites/knight-knight/knightknight_mouth_8.png",
+        "/sprites/knight-knight/knightknight_mouth_9.png"
       ]
     }
   ],
@@ -77,6 +146,116 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_e",
+      "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_e2",
+      "by": "ifelse(gt(anim_e, 30.0) * lt(anim_e, 60.0), 1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_e2",
+      "value": "ifelse(gt(anim_e, 180.0), 0.0, anim_e2)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_e",
+      "value": "ifelse(gt(anim_e, 180.0), 0.0, anim_e)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_l",
+      "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_l2",
+      "by": "ifelse(gte(anim_l, 60.0) * lt(anim_l, 120.0), -0.5, 0.0)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_l2",
+      "by": "ifelse(gte(anim_l, 150.0) * lt(anim_l, 300.0), 6.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_l2",
+      "value": "ifelse(gte(anim_l, 150.0) * lt(anim_l, 300.0) * gte(anim_l2, 0.0), 0.0, anim_l2)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_l",
+      "value": "ifelse(gte(anim_l, 150.0) * lt(anim_l, 300.0) * gte(anim_l2, 0.0), 300.0, anim_l)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_l3",
+      "value": "ifelse(gte(anim_l, 300.0), ifelse(eq(anim_l2, 0.0), 0.0, ifelse(eq(anim_l3, 0.0), choose(-1.0, 1.0), anim_l3)), anim_l3)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_l2",
+      "value": "ifelse(gte(anim_l, 300.0), ifelse(eq(anim_l2, 0.0), -3.0, 0.0), anim_l2)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_l3",
+      "value": "ifelse(gt(anim_l, 310.0), 0.0, anim_l3)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_l2",
+      "value": "ifelse(gt(anim_l, 310.0), 0.0, anim_l2)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_l",
+      "value": "ifelse(gt(anim_l, 310.0), 0.0, anim_l)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_h",
+      "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_h2",
+      "by": "ifelse(gt(anim_h, 50.0) * lt(anim_h, 75.0), 1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_h",
+      "value": "ifelse(gt(anim_h, 100.0), 0.0, anim_h)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_m",
+      "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_m2",
+      "by": "ifelse(gt(anim_m, 150.0) * lt(anim_m, 180.0), 1.0, 0.0)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim_m2",
+      "by": "ifelse(gt(anim_m, 240.0) * lt(anim_m, 270.0), 1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_m2",
+      "value": "ifelse(gt(anim_m, 300.0), 0.0, anim_m2)"
+    },
+    {
+      "op": "set",
+      "variable": "anim_m",
+      "value": "ifelse(gt(anim_m, 300.0), 0.0, anim_m)"
     }
   ],
   "draw": [
@@ -93,7 +272,8 @@
         "y": 0.0
       },
       "transform": {
-        "offset_x": "sin(siner / 10.0) * 6.0"
+        "offset_x": "sin(siner / 10.0) * 6.0",
+        "frame_index": "floor(anim_e2 / 3.0)"
       },
       "draw_order": 0
     },
@@ -124,7 +304,9 @@
         "x": -1.0,
         "y": -2.0
       },
-      "transform": {},
+      "transform": {
+        "frame_index": "floor(anim_h2 / 4.0)"
+      },
       "draw_order": 2
     },
     {
@@ -139,7 +321,9 @@
         "x": 0.0,
         "y": -3.0
       },
-      "transform": {},
+      "transform": {
+        "frame_index": "floor(anim_m2 / 6.0)"
+      },
       "draw_order": 3
     },
     {
@@ -154,7 +338,9 @@
         "x": 1.0,
         "y": 0.0
       },
-      "transform": {},
+      "transform": {
+        "frame_index": "floor(siner / 5.0)"
+      },
       "draw_order": 4
     },
     {
@@ -169,7 +355,10 @@
         "x": 1.0,
         "y": -1.0
       },
-      "transform": {},
+      "transform": {
+        "offset_x": "anim_l3",
+        "offset_y": "anim_l2"
+      },
       "draw_order": 5
     }
   ],

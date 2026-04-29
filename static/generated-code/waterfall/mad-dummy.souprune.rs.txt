@@ -15,30 +15,14 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "mad_dummy_base".into(),
                 tags: vec!["utrp".into(), "waterfall/mad-dummy".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-14.0), static_float(60.0), static_float(0.0))),
+                    translation: Some(vector3(static_float(-24.5), static_float(53.5), static_float(0.0))),
                     rotation: Some(expression("sin(siner / 7.5) * -3.0")),
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/mad-dummy/maddummy_base.png".into()),
                     color: None,
-                    pivot: None,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-            ViewNodeDef {
-                name: "mad_dummy_leg".into(),
-                tags: vec!["utrp".into(), "waterfall/mad-dummy".into()],
-                transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(10.0), static_float(40.0), static_float(1.0))),
-                    rotation: Some(expression("sin(siner / 7.5)")),
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
-                }),
-                sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/mad-dummy/maddummy_leg.png".into()),
-                    color: None,
-                    pivot: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
@@ -47,14 +31,30 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "mad_dummy_torso".into(),
                 tags: vec!["utrp".into(), "waterfall/mad-dummy".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-16.0), expression("-13.0 + (sin(siner / 7.5) * 0.75)"), static_float(2.0))),
+                    translation: Some(vector3(static_float(-25.5), expression("-23.0 + (sin(siner / 7.5) * 0.75)"), static_float(1.0))),
                     rotation: Some(expression("sin(siner / 7.5) * 1.5")),
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/mad-dummy/maddummy_torso.png".into()),
                     color: None,
-                    pivot: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "mad_dummy_leg".into(),
+                tags: vec!["utrp".into(), "waterfall/mad-dummy".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-2.5), static_float(33.5), static_float(2.0))),
+                    rotation: Some(expression("sin(siner / 7.5)")),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/mad-dummy/maddummy_leg.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
@@ -63,14 +63,14 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "mad_dummy_head".into(),
                 tags: vec!["utrp".into(), "waterfall/mad-dummy".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("-4.0 + (sin(siner / 7.5) * -1.0)"), expression("-56.0 + (sin(siner / 7.5))"), static_float(3.0))),
+                    translation: Some(vector3(expression("-19.5 + (sin(siner / 7.5) * -1.0)"), expression("-64.5 + (sin(siner / 7.5))"), static_float(3.0))),
                     rotation: Some(expression("sin(siner / 7.5) * 3.0")),
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/mad-dummy/maddummy_head.png".into()),
                     color: None,
-                    pivot: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
                     ..Default::default()
                 }),
                 ..Default::default()

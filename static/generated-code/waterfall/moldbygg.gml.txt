@@ -1,16 +1,26 @@
 /// Moldbygg UTRP GameMaker starter
 /// Source slug: waterfall/moldbygg
-/// Canvas: 130x122 at 2.0x draw scale
+/// Canvas: 130x280 at 2.0x draw scale
 /// Asset map:
-/// - moldbygg_body => /sprites/moldbygg/body.png (placeholder sprite: spr_moldbygg_body)
+/// - moldbygg_body => /sprites/moldbygg/body_0.png (placeholder sprite: spr_moldbygg_body)
+///   frame: /sprites/moldbygg/body_1.png
+/// - moldbygg_part => /sprites/moldbygg/part.png (placeholder sprite: spr_moldbygg_part)
 
 /// Moldbygg Create Event
-// No UTRP variables are defined for this program.
+siner = 1.0;
 
 /// Moldbygg Step Event
-// No UTRP update operations are defined for this program.
+siner += 1.0;
 
 /// Moldbygg Draw Event
 var __utrp_scale = 2.0;
-// draw_order 0: body
-draw_sprite_ext(spr_moldbygg_body, 0.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 0: part_back_low
+draw_sprite_ext(spr_moldbygg_part, 0.0, 0.0 + (cos(siner / 10.0) * 8.0), 125.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 1: part_mid_low
+draw_sprite_ext(spr_moldbygg_part, 0.0, 0.0 + (sin(siner / 10.0) * 8.0), 95.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 2: part_mid_high
+draw_sprite_ext(spr_moldbygg_part, 0.0, 0.0 + (cos(siner / 10.0) * 8.0), 65.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 3: part_high
+draw_sprite_ext(spr_moldbygg_part, 0.0, 0.0 + (sin(siner / 10.0) * 8.0), 35.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+// draw_order 4: body
+draw_sprite_ext(spr_moldbygg_body, floor(siner * 0.1), 0.0 + (cos(siner / 10.0) * 4.0), -20.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

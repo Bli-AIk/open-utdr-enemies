@@ -27,13 +27,13 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `0.0` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `face0` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "moldessa_face1".into(),
                 tags: vec!["utrp".into(), "ruins/moldessa".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("0.0 + (sin(siner / 16.0) * 13.0 + sin(siner / 6.0))"), expression("-1.0 + (cos(siner / 16.0) * 18.0 + cos(siner / 6.0))"), static_float(1.0))),
-                    rotation: Some(expression("siner * 3.0 + sin(siner / 6.0) * 4.0")),
+                    translation: Some(vector3(expression("0.0 + (sin(f_siner / 16.0) * 13.0 + sin(siner / 6.0))"), expression("-1.0 + (cos(f_siner / 16.0) * 18.0 + cos(siner / 6.0))"), static_float(1.0))),
+                    rotation: Some(expression("f_siner * 3.0 + sin(siner / 6.0) * 4.0")),
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
@@ -44,13 +44,13 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `4.0` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `face1` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "moldessa_face2".into(),
                 tags: vec!["utrp".into(), "ruins/moldessa".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("0.0 + (sin((siner + 36.0) / 16.0) * 13.0 + sin(siner / 6.0))"), expression("-1.0 + (cos((siner + 36.0) / 16.0) * 18.0 + cos(siner / 6.0))"), static_float(2.0))),
-                    rotation: Some(expression("siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0")),
+                    translation: Some(vector3(expression("0.0 + (sin((f_siner + 36.0) / 16.0) * 13.0 + sin(siner / 6.0))"), expression("-1.0 + (cos((f_siner + 36.0) / 16.0) * 18.0 + cos(siner / 6.0))"), static_float(2.0))),
+                    rotation: Some(expression("f_siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0")),
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
@@ -61,13 +61,13 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `7.0` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `face2` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "moldessa_face3".into(),
                 tags: vec!["utrp".into(), "ruins/moldessa".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("0.0 + (sin((siner + 65.0) / 16.0) * 13.0 + sin(siner / 6.0))"), expression("-1.0 + (cos((siner + 65.0) / 16.0) * 18.0 + cos(siner / 6.0))"), static_float(3.0))),
-                    rotation: Some(expression("siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0")),
+                    translation: Some(vector3(expression("0.0 + (sin((f_siner + 65.0) / 16.0) * 13.0 + sin(siner / 6.0))"), expression("-1.0 + (cos((f_siner + 65.0) / 16.0) * 18.0 + cos(siner / 6.0))"), static_float(3.0))),
+                    rotation: Some(expression("f_siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0")),
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {

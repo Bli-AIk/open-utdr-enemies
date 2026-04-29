@@ -26,6 +26,16 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "arm_tick",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "arm_y",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -75,6 +85,16 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "arm_tick",
+      "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "arm_y",
+      "by": "ifelse(gt(sin(arm_tick / 4.5), 0.0), 0.8, -0.8)"
     }
   ],
   "draw": [
@@ -121,7 +141,7 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 4.5) * 8.0"
+        "offset_y": "arm_y"
       },
       "draw_order": 2
     },

@@ -31,30 +31,46 @@
   "assets": [
     {
       "id": "whimsalot_wing_r",
-      "path": "/sprites/whimsalot/wing_r.png",
+      "path": "/sprites/whimsalot/wing_r_0.png",
       "frames": [
-        "/sprites/whimsalot/wing_r.png"
+        "/sprites/whimsalot/wing_r_0.png",
+        "/sprites/whimsalot/wing_r_1.png",
+        "/sprites/whimsalot/wing_r_2.png",
+        "/sprites/whimsalot/wing_r_3.png",
+        "/sprites/whimsalot/wing_r_4.png",
+        "/sprites/whimsalot/wing_r_5.png",
+        "/sprites/whimsalot/wing_r_6.png"
       ]
     },
     {
       "id": "whimsalot_wing_l",
-      "path": "/sprites/whimsalot/wing_l.png",
+      "path": "/sprites/whimsalot/wing_r_0.png",
       "frames": [
-        "/sprites/whimsalot/wing_l.png"
+        "/sprites/whimsalot/wing_r_0.png",
+        "/sprites/whimsalot/wing_r_1.png",
+        "/sprites/whimsalot/wing_r_2.png",
+        "/sprites/whimsalot/wing_r_3.png",
+        "/sprites/whimsalot/wing_r_4.png",
+        "/sprites/whimsalot/wing_r_5.png",
+        "/sprites/whimsalot/wing_r_6.png"
       ]
     },
     {
       "id": "whimsalot_body",
-      "path": "/sprites/whimsalot/body.png",
+      "path": "/sprites/whimsalot/body_0.png",
       "frames": [
-        "/sprites/whimsalot/body.png"
+        "/sprites/whimsalot/body_0.png",
+        "/sprites/whimsalot/body_1.png"
       ]
     },
     {
       "id": "whimsalot_head",
-      "path": "/sprites/whimsalot/head.png",
+      "path": "/sprites/whimsalot/head_0.png",
       "frames": [
-        "/sprites/whimsalot/head.png"
+        "/sprites/whimsalot/head_0.png",
+        "/sprites/whimsalot/head_1.png",
+        "/sprites/whimsalot/head_2.png",
+        "/sprites/whimsalot/head_3.png"
       ]
     }
   ],
@@ -80,7 +96,8 @@
       },
       "transform": {
         "offset_y": "sin(siner / 5) * -2",
-        "rotation_deg": "-15 + sin(siner / 2.5) * 30"
+        "rotation_deg": "-15 + sin(siner / 2.5) * 30",
+        "frame_index": "floor(siner / 15)"
       },
       "draw_order": 0
     },
@@ -99,7 +116,8 @@
       "transform": {
         "offset_y": "sin(siner / 5) * -2",
         "scale_x": "-1",
-        "rotation_deg": "15 + sin(siner / 2.5) * -30"
+        "rotation_deg": "15 + sin(siner / 2.5) * -30",
+        "frame_index": "floor(siner / 15)"
       },
       "draw_order": 1
     },
@@ -116,7 +134,8 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 5) * 6"
+        "offset_y": "sin(siner / 5) * 6",
+        "frame_index": "floor(siner / 18)"
       },
       "draw_order": 2
     },
@@ -133,7 +152,8 @@
         "y": -1
       },
       "transform": {
-        "offset_y": "sin(siner / 5) * 8"
+        "offset_y": "sin(siner / 5) * 8",
+        "frame_index": "floor(siner / 10)"
       },
       "draw_order": 3
     }

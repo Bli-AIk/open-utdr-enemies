@@ -17,20 +17,30 @@
 
 /// Moldessa Create Event
 siner = 1.0;
+f_siner = 0.0;
+face_set = 0.0;
+face0 = 0.0;
+face1 = 0.0;
+face2 = 0.0;
 
 /// Moldessa Step Event
 siner += 1.0;
+f_siner += 1.0;
+face0 = ifelse(eq(face_set, 0.0), floor(random(9.0)), face0);
+face1 = ifelse(eq(face_set, 0.0), floor(random(9.0)), face1);
+face2 = ifelse(eq(face_set, 0.0), floor(random(9.0)), face2);
+face_set = 1.0;
 
 /// Moldessa Draw Event
 var __utrp_scale = 2.0;
 // draw_order 0: stem
 draw_sprite_ext(spr_moldessa_stem, 0.0, 0.0, 57.0, __utrp_scale * (1.0 + sin(siner / 7.0) * 0.05), __utrp_scale * (1.0 - sin(siner / 7.0) * 0.05), 0.0, c_white, 1.0);
 // draw_order 1: face1
-draw_sprite_ext(spr_moldessa_face, 0.0, 0.0 + (sin(siner / 16.0) * 13.0 + sin(siner / 6.0)), -1.0 + (cos(siner / 16.0) * 18.0 + cos(siner / 6.0)), __utrp_scale, __utrp_scale, siner * 3.0 + sin(siner / 6.0) * 4.0, c_white, 1.0);
+draw_sprite_ext(spr_moldessa_face, face0, 0.0 + (sin(f_siner / 16.0) * 13.0 + sin(siner / 6.0)), -1.0 + (cos(f_siner / 16.0) * 18.0 + cos(siner / 6.0)), __utrp_scale, __utrp_scale, f_siner * 3.0 + sin(siner / 6.0) * 4.0, c_white, 1.0);
 // draw_order 2: face2
-draw_sprite_ext(spr_moldessa_face, 4.0, 0.0 + (sin((siner + 36.0) / 16.0) * 13.0 + sin(siner / 6.0)), -1.0 + (cos((siner + 36.0) / 16.0) * 18.0 + cos(siner / 6.0)), __utrp_scale, __utrp_scale, siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0, c_white, 1.0);
+draw_sprite_ext(spr_moldessa_face, face1, 0.0 + (sin((f_siner + 36.0) / 16.0) * 13.0 + sin(siner / 6.0)), -1.0 + (cos((f_siner + 36.0) / 16.0) * 18.0 + cos(siner / 6.0)), __utrp_scale, __utrp_scale, f_siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0, c_white, 1.0);
 // draw_order 3: face3
-draw_sprite_ext(spr_moldessa_face, 7.0, 0.0 + (sin((siner + 65.0) / 16.0) * 13.0 + sin(siner / 6.0)), -1.0 + (cos((siner + 65.0) / 16.0) * 18.0 + cos(siner / 6.0)), __utrp_scale, __utrp_scale, siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0, c_white, 1.0);
+draw_sprite_ext(spr_moldessa_face, face2, 0.0 + (sin((f_siner + 65.0) / 16.0) * 13.0 + sin(siner / 6.0)), -1.0 + (cos((f_siner + 65.0) / 16.0) * 18.0 + cos(siner / 6.0)), __utrp_scale, __utrp_scale, f_siner * 3.0 + 180.0 + sin(siner / 6.0) * 4.0, c_white, 1.0);
 // draw_order 4: headthing
 draw_sprite_ext(spr_moldessa_headthing, 0.0, 0.0, -61.0 + (sin(siner / 7.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 5: arm_left

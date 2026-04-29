@@ -11,6 +11,7 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
+            // TODO: UTRP frame_index `floor(anim_e2 / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "knight_knight_eyes".into(),
                 tags: vec!["utrp".into(), "core/knight-knight".into()],
@@ -20,7 +21,7 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/knight-knight/knightknight_eyes.png".into()),
+                    visual: Visual("/sprites/knight-knight/knightknight_eyes_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(1.0), static_float(0.0))),
                     ..Default::default()
@@ -43,6 +44,7 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(anim_h2 / 4.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "knight_knight_helmet".into(),
                 tags: vec!["utrp".into(), "core/knight-knight".into()],
@@ -52,13 +54,14 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/knight-knight/knightknight_helmet.png".into()),
+                    visual: Visual("/sprites/knight-knight/knightknight_helmet_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(-1.0), static_float(-2.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(anim_m2 / 6.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "knight_knight_mouth".into(),
                 tags: vec!["utrp".into(), "core/knight-knight".into()],
@@ -68,13 +71,14 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/knight-knight/knightknight_mouth.png".into()),
+                    visual: Visual("/sprites/knight-knight/knightknight_mouth_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(0.0), static_float(-3.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 5.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "knight_knight_fur".into(),
                 tags: vec!["utrp".into(), "core/knight-knight".into()],
@@ -84,7 +88,7 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/knight-knight/knightknight_fur.png".into()),
+                    visual: Visual("/sprites/knight-knight/knightknight_fur_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(1.0), static_float(0.0))),
                     ..Default::default()
@@ -95,7 +99,7 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "knight_knight_leftarm".into(),
                 tags: vec!["utrp".into(), "core/knight-knight".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-105.0), static_float(-101.0), static_float(5.0))),
+                    translation: Some(vector3(expression("-105.0 + (anim_l3)"), expression("-101.0 + (anim_l2)"), static_float(5.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),

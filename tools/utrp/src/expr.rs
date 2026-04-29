@@ -392,9 +392,11 @@ fn binary_precedence(op: char) -> u8 {
 
 fn validate_function(name: &str, actual: usize) -> anyhow::Result<()> {
     let expected = match name {
-        "sin" | "cos" | "floor" | "ceil" | "round" | "abs" | "sign" | "sqrt" => 1,
+        "sin" | "cos" | "floor" | "ceil" | "round" | "abs" | "sign" | "sqrt"
+        | "random" => 1,
         "min" | "max" | "pow" | "gt" | "gte" | "lt" | "lte" | "eq" | "neq" => 2,
         "clamp" | "ifelse" => 3,
+        "choose" if actual >= 1 => return Ok(()),
         _ => bail!("unsupported function `{name}`"),
     };
 

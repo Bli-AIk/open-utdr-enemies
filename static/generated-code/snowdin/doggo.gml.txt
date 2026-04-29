@@ -21,9 +21,13 @@
 
 /// Doggo Create Event
 siner = 1.0;
+arm_tick = 0.0;
+arm_y = 0.0;
 
 /// Doggo Step Event
 siner += 1.0;
+arm_tick += 1.0;
+arm_y += ifelse(gt(sin(arm_tick / 4.5), 0.0), 0.8, -0.8);
 
 /// Doggo Draw Event
 var __utrp_scale = 2.0;
@@ -32,6 +36,6 @@ draw_sprite_ext(spr_doggo_tail, 0.0, -66.0, -125.0, __utrp_scale, __utrp_scale, 
 // draw_order 1: body
 draw_sprite_ext(spr_doggo_body, 0.0, -66.0, -125.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 2: arms
-draw_sprite_ext(spr_doggo_arms, 0.0, -66.0, -133.0 + (sin(siner / 4.5) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_doggo_arms, 0.0, -66.0, -133.0 + (arm_y), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 3: head
 draw_sprite_ext(spr_doggo_head, floor(siner * 0.33334) % 13.0, -66.0, -125.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

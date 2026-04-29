@@ -11,13 +11,14 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
+            // TODO: UTRP frame_index `floor(anim2 / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "astigmatism_hand_left".into(),
                 tags: vec!["utrp".into(), "core/astigmatism".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("-40.0 + (sin(siner / 6.0) * 2.0)"), expression("6.0 + (cos(siner / 6.0) * 2.0)"), static_float(0.0))),
+                    translation: Some(vector3(expression("-40.0 + (sin(siner / 6.0) * 2.0 * sfactor)"), expression("6.0 + (cos(siner / 6.0) * 2.0 * sfactor)"), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), expression("2.0 * (0.9 + cos(siner / 6.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(static_float(2.0), expression("2.0 * (0.9 + cos(siner / 6.0) * 0.1 * sfactor)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/astigmatism/handl.png".into()),
@@ -27,13 +28,14 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(anim2 / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "astigmatism_leg_left".into(),
                 tags: vec!["utrp".into(), "core/astigmatism".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("-18.0 + (cos(siner / 6.0) * 2.0)"), expression("26.0 + (sin(siner / 6.0) * 2.0)"), static_float(1.0))),
+                    translation: Some(vector3(expression("-18.0 + (cos(siner / 6.0) * 2.0 * sfactor)"), expression("26.0 + (sin(siner / 6.0) * 2.0 * sfactor)"), static_float(1.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), expression("2.0 * (0.9 + sin(siner / 6.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(static_float(2.0), expression("2.0 * (0.9 + sin(siner / 6.0) * 0.1 * sfactor)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/astigmatism/legl.png".into()),
@@ -43,13 +45,14 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(anim2 / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "astigmatism_hand_right".into(),
                 tags: vec!["utrp".into(), "core/astigmatism".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("44.0 + (-sin(siner / 6.0) * 2.0)"), expression("6.0 + (-cos(siner / 6.0) * 2.0)"), static_float(2.0))),
+                    translation: Some(vector3(expression("44.0 + (-sin(siner / 6.0) * 2.0 * sfactor)"), expression("6.0 + (-cos(siner / 6.0) * 2.0 * sfactor)"), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), expression("2.0 * (0.95 - cos(siner / 6.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(expression("2.0 * (-1.0)"), expression("2.0 * (0.95 - cos(siner / 6.0) * 0.1 * sfactor)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/astigmatism/handl.png".into()),
@@ -59,13 +62,14 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(anim2 / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "astigmatism_leg_right".into(),
                 tags: vec!["utrp".into(), "core/astigmatism".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("22.0 + (-cos(siner / 6.0) * 2.0)"), expression("26.0 + (-sin(siner / 6.0) * 2.0)"), static_float(3.0))),
+                    translation: Some(vector3(expression("22.0 + (-cos(siner / 6.0) * 2.0 * sfactor)"), expression("26.0 + (-sin(siner / 6.0) * 2.0 * sfactor)"), static_float(3.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), expression("2.0 * (0.9 - sin(siner / 6.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(expression("2.0 * (-1.0)"), expression("2.0 * (0.9 - sin(siner / 6.0) * 0.1 * sfactor)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/astigmatism/legl.png".into()),
@@ -75,6 +79,7 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(anim2 / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "astigmatism_body".into(),
                 tags: vec!["utrp".into(), "core/astigmatism".into()],
@@ -84,7 +89,7 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/astigmatism/body.png".into()),
+                    visual: Visual("/sprites/astigmatism/anim2_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(1.0), static_float(0.0))),
                     ..Default::default()

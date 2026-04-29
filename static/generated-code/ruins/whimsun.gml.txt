@@ -7,11 +7,13 @@
 
 /// Whimsun Create Event
 siner = 1.0;
+path_t = 0.0;
 
 /// Whimsun Step Event
 siner += 1.0;
+path_t += 0.5;
 
 /// Whimsun Draw Event
 var __utrp_scale = 2.0;
 // draw_order 0: body
-draw_sprite_ext(spr_whimsun_body, floor(siner * 0.1), 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_whimsun_body, floor(siner * 0.1), 0.0, 0.0 + (ifelse(lt(path_t % 32.0, 8.0), -(path_t % 32.0), ifelse(lt(path_t % 32.0, 24.0), path_t % 32.0 - 16.0, 32.0 - path_t % 32.0))), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

@@ -25,7 +25,22 @@
     {
       "name": "siner",
       "kind": "counter",
-      "initial": 1.0
+      "initial": 0.0
+    },
+    {
+      "name": "anim",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim2",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "sfactor",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -45,17 +60,83 @@
     },
     {
       "id": "astigmatism_body",
-      "path": "/sprites/astigmatism/body.png",
+      "path": "/sprites/astigmatism/anim2_0.png",
       "frames": [
-        "/sprites/astigmatism/body.png"
+        "/sprites/astigmatism/anim2_0.png",
+        "/sprites/astigmatism/anim2_1.png",
+        "/sprites/astigmatism/anim2_2.png",
+        "/sprites/astigmatism/anim2_3.png",
+        "/sprites/astigmatism/anim2_4.png",
+        "/sprites/astigmatism/anim2_5.png",
+        "/sprites/astigmatism/anim2_6.png",
+        "/sprites/astigmatism/anim2_7.png",
+        "/sprites/astigmatism/anim2_8.png",
+        "/sprites/astigmatism/anim2_9.png",
+        "/sprites/astigmatism/anim2_10.png",
+        "/sprites/astigmatism/anim2_11.png"
       ]
     }
   ],
   "update": [
     {
       "op": "increment",
-      "variable": "siner",
+      "variable": "anim",
       "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "sfactor",
+      "value": "ifelse(gt(anim, 250.0), min(1.0, sfactor + 0.05), sfactor)"
+    },
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "ifelse(gt(anim, 250.0), 1.0, 0.0)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim2",
+      "by": "ifelse(gt(anim, 140.0) * lt(anim, 180.0), 1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "anim",
+      "value": "ifelse(gt(anim, 140.0) * lt(anim, 180.0) * gt(anim2, 18.0), 200.0, anim)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim2",
+      "by": "ifelse(gt(anim, 220.0) * lt(anim, 280.0), 1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "anim",
+      "value": "ifelse(gt(anim, 220.0) * lt(anim, 280.0) * gte(anim2, 33.0), 300.0, anim)"
+    },
+    {
+      "op": "set",
+      "variable": "sfactor",
+      "value": "ifelse(gt(anim, 480.0) * gt(sfactor, 0.0), sfactor - 0.07, sfactor)"
+    },
+    {
+      "op": "increment",
+      "variable": "anim2",
+      "by": "ifelse(gt(anim, 480.0), -1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "sfactor",
+      "value": "ifelse(gt(anim, 480.0) * lte(anim2, 0.0), 0.0, sfactor)"
+    },
+    {
+      "op": "set",
+      "variable": "anim2",
+      "value": "ifelse(gt(anim, 480.0) * lte(anim2, 0.0), 0.0, anim2)"
+    },
+    {
+      "op": "set",
+      "variable": "anim",
+      "value": "ifelse(gt(anim, 480.0) * lte(anim2, 0.0), 0.0, anim)"
     }
   ],
   "draw": [
@@ -72,9 +153,10 @@
         "y": 0.0
       },
       "transform": {
-        "offset_x": "sin(siner / 6.0) * 2.0",
-        "offset_y": "cos(siner / 6.0) * 2.0",
-        "scale_y": "0.9 + cos(siner / 6.0) * 0.1"
+        "offset_x": "sin(siner / 6.0) * 2.0 * sfactor",
+        "offset_y": "cos(siner / 6.0) * 2.0 * sfactor",
+        "scale_y": "0.9 + cos(siner / 6.0) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3.0)"
       },
       "draw_order": 0
     },
@@ -91,9 +173,10 @@
         "y": 0.0
       },
       "transform": {
-        "offset_x": "cos(siner / 6.0) * 2.0",
-        "offset_y": "sin(siner / 6.0) * 2.0",
-        "scale_y": "0.9 + sin(siner / 6.0) * 0.1"
+        "offset_x": "cos(siner / 6.0) * 2.0 * sfactor",
+        "offset_y": "sin(siner / 6.0) * 2.0 * sfactor",
+        "scale_y": "0.9 + sin(siner / 6.0) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3.0)"
       },
       "draw_order": 1
     },
@@ -110,10 +193,11 @@
         "y": 0.0
       },
       "transform": {
-        "offset_x": "-sin(siner / 6.0) * 2.0",
-        "offset_y": "-cos(siner / 6.0) * 2.0",
+        "offset_x": "-sin(siner / 6.0) * 2.0 * sfactor",
+        "offset_y": "-cos(siner / 6.0) * 2.0 * sfactor",
         "scale_x": "-1.0",
-        "scale_y": "0.95 - cos(siner / 6.0) * 0.1"
+        "scale_y": "0.95 - cos(siner / 6.0) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3.0)"
       },
       "draw_order": 2
     },
@@ -130,10 +214,11 @@
         "y": 0.0
       },
       "transform": {
-        "offset_x": "-cos(siner / 6.0) * 2.0",
-        "offset_y": "-sin(siner / 6.0) * 2.0",
+        "offset_x": "-cos(siner / 6.0) * 2.0 * sfactor",
+        "offset_y": "-sin(siner / 6.0) * 2.0 * sfactor",
         "scale_x": "-1.0",
-        "scale_y": "0.9 - sin(siner / 6.0) * 0.1"
+        "scale_y": "0.9 - sin(siner / 6.0) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3.0)"
       },
       "draw_order": 3
     },
@@ -149,7 +234,9 @@
         "x": 1.0,
         "y": 0.0
       },
-      "transform": {},
+      "transform": {
+        "frame_index": "floor(anim2 / 3.0)"
+      },
       "draw_order": 4
     }
   ],

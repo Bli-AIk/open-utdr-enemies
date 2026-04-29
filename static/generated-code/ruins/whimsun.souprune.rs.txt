@@ -16,7 +16,7 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "whimsun_body".into(),
                 tags: vec!["utrp".into(), "ruins/whimsun".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), static_float(0.0), static_float(0.0))),
+                    translation: Some(vector3(static_float(0.0), expression("0.0 + (ifelse(lt(path_t % 32.0, 8.0), -(path_t % 32.0), ifelse(lt(path_t % 32.0, 24.0), path_t % 32.0 - 16.0, 32.0 - path_t % 32.0)))"), static_float(0.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),

@@ -26,6 +26,21 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "head_y",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "a",
+      "kind": "counter",
+      "initial": 0.4
+    },
+    {
+      "name": "down",
+      "kind": "counter",
+      "initial": 1.0
     }
   ],
   "assets": [
@@ -82,6 +97,36 @@
       "op": "increment",
       "variable": "siner",
       "by": "1"
+    },
+    {
+      "op": "increment",
+      "variable": "head_y",
+      "by": "ifelse(eq(down, 1), a / 2, 0)"
+    },
+    {
+      "op": "increment",
+      "variable": "a",
+      "by": "ifelse(eq(down, 1), 0.05, 0)"
+    },
+    {
+      "op": "set",
+      "variable": "down",
+      "value": "ifelse(eq(down, 1) * gte(a, 1), 0, down)"
+    },
+    {
+      "op": "increment",
+      "variable": "head_y",
+      "by": "ifelse(eq(down, 0), a / 2, 0)"
+    },
+    {
+      "op": "increment",
+      "variable": "a",
+      "by": "ifelse(eq(down, 0), -0.05, 0)"
+    },
+    {
+      "op": "set",
+      "variable": "down",
+      "value": "ifelse(eq(down, 0) * lte(a, -1), 1, down)"
     }
   ],
   "draw": [
@@ -113,7 +158,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 13) * 3.3"
+        "offset_y": "head_y / 3"
       },
       "draw_order": 1
     },
@@ -130,7 +175,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 13) * 10",
+        "offset_y": "head_y",
         "frame_index": "floor(siner * 0.1) % 20"
       },
       "draw_order": 2
@@ -148,7 +193,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 13) * 10"
+        "offset_y": "head_y"
       },
       "draw_order": 3
     }

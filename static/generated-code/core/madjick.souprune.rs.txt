@@ -123,6 +123,232 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "madjick_orb_left".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-64.0), expression("-16.0 + (sin(siner / 2.5) * 2.0)"), static_float(7.0))),
+                    rotation: None,
+                    scale: Some(vector3(expression("2.0 * (-1.0)"), expression("2.0 * (-1.0)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orb_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "madjick_orb_right".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(50.0), expression("-26.0 + (sin(siner / 2.5) * 5.0)"), static_float(8.0))),
+                    rotation: None,
+                    scale: Some(vector3(expression("2.0 * (-1.0)"), expression("2.0 * (-1.0)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orb_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_r0".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_r0_x)"), expression("0.0 + (spr_r0_y - siner % 30.0 - siner % 30.0 * (siner % 30.0 - 1.0) * 0.1)"), static_float(20.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt(siner % 30.0, 27.0), ifelse(gt(siner % 30.0, 14.0), 1.0 - (siner % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq(siner % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_l0".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_l0_x)"), expression("0.0 + (spr_l0_y - siner % 30.0 - siner % 30.0 * (siner % 30.0 - 1.0) * 0.1)"), static_float(21.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt(siner % 30.0, 27.0), ifelse(gt(siner % 30.0, 14.0), 1.0 - (siner % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq(siner % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_r1".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_r1_x)"), expression("0.0 + (spr_r1_y - (siner + 25.0) % 30.0 - (siner + 25.0) % 30.0 * ((siner + 25.0) % 30.0 - 1.0) * 0.1)"), static_float(22.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 25.0) % 30.0, 27.0), ifelse(gt((siner + 25.0) % 30.0, 14.0), 1.0 - ((siner + 25.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 25.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_l1".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_l1_x)"), expression("0.0 + (spr_l1_y - (siner + 25.0) % 30.0 - (siner + 25.0) % 30.0 * ((siner + 25.0) % 30.0 - 1.0) * 0.1)"), static_float(23.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 25.0) % 30.0, 27.0), ifelse(gt((siner + 25.0) % 30.0, 14.0), 1.0 - ((siner + 25.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 25.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_r2".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_r2_x)"), expression("0.0 + (spr_r2_y - (siner + 20.0) % 30.0 - (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0 - 1.0) * 0.1)"), static_float(24.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 20.0) % 30.0, 27.0), ifelse(gt((siner + 20.0) % 30.0, 14.0), 1.0 - ((siner + 20.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 20.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_l2".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_l2_x)"), expression("0.0 + (spr_l2_y - (siner + 20.0) % 30.0 - (siner + 20.0) % 30.0 * ((siner + 20.0) % 30.0 - 1.0) * 0.1)"), static_float(25.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 20.0) % 30.0, 27.0), ifelse(gt((siner + 20.0) % 30.0, 14.0), 1.0 - ((siner + 20.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 20.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_r3".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_r3_x)"), expression("0.0 + (spr_r3_y - (siner + 15.0) % 30.0 - (siner + 15.0) % 30.0 * ((siner + 15.0) % 30.0 - 1.0) * 0.1)"), static_float(26.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 15.0) % 30.0, 27.0), ifelse(gt((siner + 15.0) % 30.0, 14.0), 1.0 - ((siner + 15.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 15.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_l3".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_l3_x)"), expression("0.0 + (spr_l3_y - (siner + 15.0) % 30.0 - (siner + 15.0) % 30.0 * ((siner + 15.0) % 30.0 - 1.0) * 0.1)"), static_float(27.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 15.0) % 30.0, 27.0), ifelse(gt((siner + 15.0) % 30.0, 14.0), 1.0 - ((siner + 15.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 15.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_r4".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_r4_x)"), expression("0.0 + (spr_r4_y - (siner + 10.0) % 30.0 - (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0 - 1.0) * 0.1)"), static_float(28.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 10.0) % 30.0, 27.0), ifelse(gt((siner + 10.0) % 30.0, 14.0), 1.0 - ((siner + 10.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 10.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_l4".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_l4_x)"), expression("0.0 + (spr_l4_y - (siner + 10.0) % 30.0 - (siner + 10.0) % 30.0 * ((siner + 10.0) % 30.0 - 1.0) * 0.1)"), static_float(29.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 10.0) % 30.0, 27.0), ifelse(gt((siner + 10.0) % 30.0, 14.0), 1.0 - ((siner + 10.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 10.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_r5".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_r5_x)"), expression("0.0 + (spr_r5_y - (siner + 5.0) % 30.0 - (siner + 5.0) % 30.0 * ((siner + 5.0) % 30.0 - 1.0) * 0.1)"), static_float(30.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 5.0) % 30.0, 27.0), ifelse(gt((siner + 5.0) % 30.0, 14.0), 1.0 - ((siner + 5.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 5.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "madjick_sprinkle_l5".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("0.0 + (spr_l5_x)"), expression("0.0 + (spr_l5_y - (siner + 5.0) % 30.0 - (siner + 5.0) % 30.0 * ((siner + 5.0) % 30.0 - 1.0) * 0.1)"), static_float(31.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orbsprinkle_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 5.0) % 30.0, 27.0), ifelse(gt((siner + 5.0) % 30.0, 14.0), 1.0 - ((siner + 5.0) % 30.0 - 14.0) * 0.08, 1.0) * ifelse(eq((siner + 5.0) % 30.0 % 2.0, 0.0), 0.8, 1.0), 0.0)"))),
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
         ],
         requires: Vec::new(),
         facts: None,

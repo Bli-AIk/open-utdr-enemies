@@ -6,7 +6,7 @@
   "fps": 30,
   "canvas": {
     "width": 130,
-    "height": 122,
+    "height": 280,
     "scale": 2
   },
   "coordinate_space": {
@@ -21,29 +21,108 @@
       "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
-  "variables": [],
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    }
+  ],
   "assets": [
     {
       "id": "moldbygg_body",
-      "path": "/sprites/moldbygg/body.png",
+      "path": "/sprites/moldbygg/body_0.png",
       "frames": [
-        "/sprites/moldbygg/body.png"
+        "/sprites/moldbygg/body_0.png",
+        "/sprites/moldbygg/body_1.png"
+      ]
+    },
+    {
+      "id": "moldbygg_part",
+      "path": "/sprites/moldbygg/part.png",
+      "frames": [
+        "/sprites/moldbygg/part.png"
       ]
     }
   ],
-  "update": [],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1"
+    }
+  ],
   "draw": [
+    {
+      "kind": "sprite",
+      "id": "part_back_low",
+      "sprite": "moldbygg_part",
+      "origin": {
+        "x": 0,
+        "y": 125
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "cos(siner / 10) * 8"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "part_mid_low",
+      "sprite": "moldbygg_part",
+      "origin": {
+        "x": 0,
+        "y": 95
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 10) * 8"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "part_mid_high",
+      "sprite": "moldbygg_part",
+      "origin": {
+        "x": 0,
+        "y": 65
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "cos(siner / 10) * 8"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "part_high",
+      "sprite": "moldbygg_part",
+      "origin": {
+        "x": 0,
+        "y": 35
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(siner / 10) * 8"
+      },
+      "draw_order": 3
+    },
     {
       "kind": "sprite",
       "id": "body",
       "sprite": "moldbygg_body",
       "origin": {
         "x": 0,
-        "y": 0
+        "y": -20
       },
       "pivot": null,
-      "transform": {},
-      "draw_order": 0
+      "transform": {
+        "offset_x": "cos(siner / 10) * 4",
+        "frame_index": "floor(siner * 0.1)"
+      },
+      "draw_order": 4
     }
   ]
 }

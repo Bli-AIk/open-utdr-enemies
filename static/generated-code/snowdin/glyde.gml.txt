@@ -8,10 +8,12 @@
 /// - glyde_antenna => /sprites/glyde/antenna.png (placeholder sprite: spr_glyde_antenna)
 
 /// Glyde Create Event
-siner = 1.0;
+siner = 0.0;
+dsiner = 0.0;
 
 /// Glyde Step Event
-siner += 1.0;
+dsiner += 1.0;
+siner += cos(dsiner / 24.0) * 2.0;
 
 /// Glyde Draw Event
 var __utrp_scale = 2.0;

@@ -27,6 +27,41 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "timer",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "timer_e",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "mouth_index",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "mouth_draw",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "eyey",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "eyey_draw",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "bodyy",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -104,6 +139,61 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "timer",
+      "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "timer_e",
+      "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "bodyy",
+      "value": "floor(sin(siner / 6.0) * 2.0)"
+    },
+    {
+      "op": "set",
+      "variable": "mouth_draw",
+      "value": "mouth_index"
+    },
+    {
+      "op": "set",
+      "variable": "eyey_draw",
+      "value": "eyey"
+    },
+    {
+      "op": "increment",
+      "variable": "mouth_index",
+      "by": "ifelse(gte(timer, 40.0) * lte(timer, 50.0), 0.5, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "mouth_index",
+      "value": "ifelse(eq(timer, 51.0), 0.0, mouth_index)"
+    },
+    {
+      "op": "set",
+      "variable": "timer",
+      "value": "ifelse(eq(timer, 51.0), 0.0, timer)"
+    },
+    {
+      "op": "increment",
+      "variable": "eyey",
+      "by": "ifelse(gt(timer_e, 90.0) * lte(timer_e, 110.0), -0.8, 0.0)"
+    },
+    {
+      "op": "increment",
+      "variable": "eyey",
+      "by": "ifelse(gt(timer_e, 150.0) * lte(timer_e, 170.0), 0.8, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "timer_e",
+      "value": "ifelse(eq(timer_e, 180.0), 0.0, timer_e)"
     }
   ],
   "draw": [
@@ -226,7 +316,7 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 2.0"
+        "offset_y": "bodyy"
       },
       "draw_order": 6
     },
@@ -243,8 +333,8 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 2.0 + -clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0)",
-        "frame_index": "0.0"
+        "offset_y": "floor(bodyy + eyey_draw)",
+        "frame_index": "eyey_draw"
       },
       "draw_order": 7
     },
@@ -261,8 +351,8 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 2.0",
-        "frame_index": "floor(clamp(siner % 51.0 - 40.0, 0.0, 2.0))"
+        "offset_y": "bodyy",
+        "frame_index": "floor(mouth_draw)"
       },
       "draw_order": 8
     }

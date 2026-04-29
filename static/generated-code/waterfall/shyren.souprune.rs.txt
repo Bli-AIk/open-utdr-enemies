@@ -15,7 +15,7 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "shyren_agent".into(),
                 tags: vec!["utrp".into(), "waterfall/shyren".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-15.0), expression("-90.0 + (sin(siner / 5.0) * 3.0)"), static_float(0.0))),
+                    translation: Some(vector3(static_float(-15.0), static_float(-90.0), static_float(0.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
@@ -28,16 +28,50 @@ pub fn asset() -> ViewLayoutAsset {
                 ..Default::default()
             },
             ViewNodeDef {
-                name: "shyren_body".into(),
+                name: "shyren_body_hide".into(),
                 tags: vec!["utrp".into(), "waterfall/shyren".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), static_float(30.0), static_float(1.0))),
+                    translation: Some(vector3(static_float(-10.0), expression("-135.0 + (sin(siner / 30.0) * 4.0)"), static_float(1.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/shyren/body.png".into()),
-                    color: None,
+                    visual: Visual("/sprites/shyren/hide.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("eq(emotion, 0.0)"))),
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner * 0.2)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "shyren_body_swim".into(),
+                tags: vec!["utrp".into(), "waterfall/shyren".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-10.0), expression("-135.0 + (sin(siner / 30.0) * 4.0)"), static_float(2.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/shyren/swim_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("eq(emotion, 1.0)"))),
+                    pivot: None,
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner * 0.2)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "shyren_body_sing".into(),
+                tags: vec!["utrp".into(), "waterfall/shyren".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-10.0), expression("-135.0 + (sin(siner / 30.0) * 4.0)"), static_float(3.0))),
+                    rotation: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/shyren/sing_0.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("eq(emotion, 2.0)"))),
                     pivot: None,
                     ..Default::default()
                 }),

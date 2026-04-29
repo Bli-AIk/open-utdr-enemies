@@ -26,6 +26,16 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "hurt",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "rotto",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -89,15 +99,38 @@
       "id": "pyrope_head",
       "path": "/sprites/pyrope/head.png",
       "frames": [
-        "/sprites/pyrope/head.png"
+        "/sprites/pyrope/head.png",
+        "/sprites/pyrope/head_1.png"
+      ]
+    },
+    {
+      "id": "pyrope_head_hurt",
+      "path": "/sprites/pyrope/head2.png",
+      "frames": [
+        "/sprites/pyrope/head2.png"
       ]
     }
   ],
   "update": [
     {
+      "op": "set",
+      "variable": "rotto",
+      "value": "ifelse(eq(hurt, 0.0), 0.0, rotto)"
+    },
+    {
+      "op": "increment",
+      "variable": "rotto",
+      "by": "ifelse(eq(hurt, 1.0), 1.0, 0.0)"
+    },
+    {
       "op": "increment",
       "variable": "siner",
-      "by": "1.0"
+      "by": "ifelse(eq(hurt, 0.0), 1.0, 0.0)"
+    },
+    {
+      "op": "set",
+      "variable": "siner",
+      "value": "ifelse(eq(hurt, 1.0), 28.0, siner)"
     }
   ],
   "draw": [
@@ -106,13 +139,16 @@
       "id": "foot_left",
       "sprite": "pyrope_footl",
       "origin": {
-        "x": -5.0,
-        "y": 156.0
+        "x": 12.5,
+        "y": 150.0
       },
-      "pivot": null,
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
       "transform": {
-        "offset_y": "sin(siner / 14.0) * -10.0",
-        "rotation_deg": "sin(siner / 14.0) * 20.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0)",
+        "rotation_deg": "abs(sin(siner / 14.0) * 40.0)"
       },
       "draw_order": 0
     },
@@ -121,13 +157,16 @@
       "id": "foot_right",
       "sprite": "pyrope_footr",
       "origin": {
-        "x": 39.0,
-        "y": 156.0
+        "x": 56.5,
+        "y": 150.0
       },
-      "pivot": null,
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
       "transform": {
-        "offset_y": "sin(siner / 14.0) * -10.0",
-        "rotation_deg": "sin(siner / 14.0) * -20.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0)",
+        "rotation_deg": "-abs(sin(siner / 14.0) * 40.0)"
       },
       "draw_order": 1
     },
@@ -136,12 +175,12 @@
       "id": "body5",
       "sprite": "pyrope_body5",
       "origin": {
-        "x": -92.0,
+        "x": 50.0,
         "y": 108.0
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 14.0) * 3.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0)"
       },
       "draw_order": 2
     },
@@ -150,12 +189,12 @@
       "id": "body4",
       "sprite": "pyrope_body4",
       "origin": {
-        "x": -89.0,
+        "x": 50.0,
         "y": 64.0
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 14.0) * 3.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) + abs(sin(-5.0 / 14.0) * 6.0)"
       },
       "draw_order": 3
     },
@@ -164,12 +203,12 @@
       "id": "body3",
       "sprite": "pyrope_body3",
       "origin": {
-        "x": -85.0,
+        "x": 50.0,
         "y": 22.0
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 14.0) * 3.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) + abs(sin(-5.0 / 14.0) * 6.0) + abs(sin(-4.0 / 14.0) * 6.0)"
       },
       "draw_order": 4
     },
@@ -178,12 +217,12 @@
       "id": "body2",
       "sprite": "pyrope_body2",
       "origin": {
-        "x": -79.0,
+        "x": 50.0,
         "y": -20.0
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 14.0) * 3.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) + abs(sin(-5.0 / 14.0) * 6.0) + abs(sin(-4.0 / 14.0) * 6.0) + abs(sin(-3.0 / 14.0) * 6.0)"
       },
       "draw_order": 5
     },
@@ -192,12 +231,12 @@
       "id": "body1",
       "sprite": "pyrope_body1",
       "origin": {
-        "x": -68.0,
+        "x": 50.0,
         "y": -60.0
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 14.0) * 3.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) - abs(sin((siner - 2.0) / 14.0) * 6.0) + abs(sin(-5.0 / 14.0) * 6.0) + abs(sin(-4.0 / 14.0) * 6.0) + abs(sin(-3.0 / 14.0) * 6.0) + abs(sin(-2.0 / 14.0) * 6.0)"
       },
       "draw_order": 6
     },
@@ -206,12 +245,12 @@
       "id": "body0",
       "sprite": "pyrope_body0",
       "origin": {
-        "x": -57.0,
+        "x": 50.0,
         "y": -100.0
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 14.0) * 3.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) - abs(sin((siner - 2.0) / 14.0) * 6.0) - abs(sin((siner - 1.0) / 14.0) * 6.0) + abs(sin(-5.0 / 14.0) * 6.0) + abs(sin(-4.0 / 14.0) * 6.0) + abs(sin(-3.0 / 14.0) * 6.0) + abs(sin(-2.0 / 14.0) * 6.0) + abs(sin(-1.0 / 14.0) * 6.0)"
       },
       "draw_order": 7
     },
@@ -220,14 +259,40 @@
       "id": "head",
       "sprite": "pyrope_head",
       "origin": {
-        "x": 50.0,
-        "y": -118.0
+        "x": 22.0,
+        "y": -143.0
       },
-      "pivot": null,
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
       "transform": {
-        "rotation_deg": "sin(siner / 6.0) * 4.0"
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) - abs(sin((siner - 2.0) / 14.0) * 6.0) - abs(sin((siner - 1.0) / 14.0) * 6.0) - abs(sin(siner / 14.0) * 6.0) + abs(sin(-5.0 / 14.0) * 6.0) + abs(sin(-4.0 / 14.0) * 6.0) + abs(sin(-3.0 / 14.0) * 6.0) + abs(sin(-2.0 / 14.0) * 6.0) + abs(sin(-1.0 / 14.0) * 6.0)",
+        "rotation_deg": "sin(siner / 6.0) * 4.0 + sin(rotto) * 12.0",
+        "alpha": "eq(hurt, 0.0)",
+        "frame_index": "floor(siner / 10.0)"
       },
       "draw_order": 8
+    },
+    {
+      "kind": "sprite",
+      "id": "head_hurt",
+      "sprite": "pyrope_head_hurt",
+      "origin": {
+        "x": 22.0,
+        "y": -143.0
+      },
+      "pivot": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "transform": {
+        "offset_x": "8.0",
+        "offset_y": "-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) - abs(sin((siner - 2.0) / 14.0) * 6.0) - abs(sin((siner - 1.0) / 14.0) * 6.0) - abs(sin(siner / 14.0) * 6.0) + abs(sin(-5.0 / 14.0) * 6.0) + abs(sin(-4.0 / 14.0) * 6.0) + abs(sin(-3.0 / 14.0) * 6.0) + abs(sin(-2.0 / 14.0) * 6.0) + abs(sin(-1.0 / 14.0) * 6.0)",
+        "rotation_deg": "sin(rotto) * 12.0",
+        "alpha": "eq(hurt, 1.0)"
+      },
+      "draw_order": 9
     }
   ],
   "codegen": {

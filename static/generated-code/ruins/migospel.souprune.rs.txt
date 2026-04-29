@@ -111,7 +111,7 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "migospel_body".into(),
                 tags: vec!["utrp".into(), "ruins/migospel".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-26.0), expression("-58.0 + (sin(siner / 6.0) * 2.0)"), static_float(6.0))),
+                    translation: Some(vector3(static_float(-26.0), expression("-58.0 + (bodyy)"), static_float(6.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
@@ -123,12 +123,12 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `0.0` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `eyey_draw` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "migospel_eyes".into(),
                 tags: vec!["utrp".into(), "ruins/migospel".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-20.0), expression("-8.0 + (sin(siner / 6.0) * 2.0 + -clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0))"), static_float(7.0))),
+                    translation: Some(vector3(static_float(-20.0), expression("-8.0 + (floor(bodyy + eyey_draw))"), static_float(7.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
@@ -140,12 +140,12 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `floor(clamp(siner % 51.0 - 40.0, 0.0, 2.0))` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `floor(mouth_draw)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "migospel_mouth".into(),
                 tags: vec!["utrp".into(), "ruins/migospel".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-18.0), expression("8.0 + (sin(siner / 6.0) * 2.0)"), static_float(8.0))),
+                    translation: Some(vector3(static_float(-18.0), expression("8.0 + (bodyy)"), static_float(8.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),

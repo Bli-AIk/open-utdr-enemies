@@ -33,9 +33,22 @@ fn renders_conditional_helpers_for_js_runtime() {
 }
 
 #[test]
+fn accepts_gml_random_helpers_used_by_source_timers() {
+    assert_eq!(
+        Expr::parse("30 + random(40)").unwrap().to_gml(),
+        "30.0 + random(40.0)"
+    );
+    assert_eq!(
+        Expr::parse("choose(-1, 1)").unwrap().to_js(),
+        "choose(-1.0, 1.0)"
+    );
+}
+
+#[test]
 fn rejects_invalid_function_arity() {
     assert!(Expr::parse("sin()").is_err());
     assert!(Expr::parse("clamp(a, b)").is_err());
+    assert!(Expr::parse("choose()").is_err());
 }
 
 #[test]
