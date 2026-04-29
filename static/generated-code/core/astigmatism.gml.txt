@@ -1,26 +1,57 @@
 /// Astigmatism UTRP GameMaker starter
 /// Source slug: core/astigmatism
-/// Canvas: 222x268 at 2.0x draw scale
+/// Canvas: 222x268 at 1.0x draw scale
 /// Asset map:
 /// - astigmatism_handl => /sprites/astigmatism/handl.png (placeholder sprite: spr_astigmatism_handl)
 /// - astigmatism_legl => /sprites/astigmatism/legl.png (placeholder sprite: spr_astigmatism_legl)
-/// - astigmatism_body => /sprites/astigmatism/body.png (placeholder sprite: spr_astigmatism_body)
+/// - astigmatism_anim => /sprites/astigmatism/anim_0.png (placeholder sprite: spr_astigmatism_anim)
+///   frame: /sprites/astigmatism/anim_1.png
+///   frame: /sprites/astigmatism/anim_2.png
+///   frame: /sprites/astigmatism/anim_3.png
+///   frame: /sprites/astigmatism/anim_4.png
+///   frame: /sprites/astigmatism/anim_5.png
+///   frame: /sprites/astigmatism/anim_6.png
+///   frame: /sprites/astigmatism/anim_7.png
+///   frame: /sprites/astigmatism/anim_8.png
+///   frame: /sprites/astigmatism/anim_9.png
+///   frame: /sprites/astigmatism/anim_10.png
+///   frame: /sprites/astigmatism/anim_11.png
+/// - astigmatism_anim2 => /sprites/astigmatism/anim2_0.png (placeholder sprite: spr_astigmatism_anim2)
+///   frame: /sprites/astigmatism/anim2_1.png
+///   frame: /sprites/astigmatism/anim2_2.png
+///   frame: /sprites/astigmatism/anim2_3.png
+///   frame: /sprites/astigmatism/anim2_4.png
+///   frame: /sprites/astigmatism/anim2_5.png
+///   frame: /sprites/astigmatism/anim2_6.png
+///   frame: /sprites/astigmatism/anim2_7.png
+///   frame: /sprites/astigmatism/anim2_8.png
+///   frame: /sprites/astigmatism/anim2_9.png
+///   frame: /sprites/astigmatism/anim2_10.png
+///   frame: /sprites/astigmatism/anim2_11.png
 
 /// Astigmatism Create Event
-siner = 1.0;
+tick = 0.0;
+siner = 0.0;
+anim = 0.0;
+anim2 = 0.0;
+sfactor = 0.0;
 
 /// Astigmatism Step Event
-siner += 1.0;
+tick += 1.0;
+anim = tick % 513.0;
+siner = floor(tick / 513.0) * 262.0 + clamp(anim - 250.0, 0.0, 262.0);
+anim2 = ifelse(lt(anim, 141.0), 0.0, ifelse(lt(anim, 160.0), anim - 140.0, ifelse(lt(anim, 221.0), 19.0, ifelse(lt(anim, 235.0), anim - 201.0, ifelse(lt(anim, 481.0), 33.0, max(0.0, 33.0 - (anim - 480.0)))))));
+sfactor = ifelse(lte(anim, 250.0), 0.0, ifelse(lte(anim, 270.0), (anim - 250.0) * 0.05, ifelse(lte(anim, 480.0), 1.0, max(0.0, 1.0 - (anim - 480.0) * 0.07))));
 
 /// Astigmatism Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: hand_left
-draw_sprite_ext(spr_astigmatism_handl, 0.0, -40.0 + (sin(siner / 6.0) * 2.0), 6.0 + (cos(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale * (0.9 + cos(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_handl, floor(anim2 / 3.0), -40.0 + (sin(siner / 6.0) * 2.0 * sfactor), 6.0 + (cos(siner / 6.0) * 2.0 * sfactor), __utrp_scale, __utrp_scale * (0.9 + cos(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 1: leg_left
-draw_sprite_ext(spr_astigmatism_legl, 0.0, -18.0 + (cos(siner / 6.0) * 2.0), 26.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale * (0.9 + sin(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_legl, floor(anim2 / 3.0), -18.0 + (cos(siner / 6.0) * 2.0 * sfactor), 26.0 + (sin(siner / 6.0) * 2.0 * sfactor), __utrp_scale, __utrp_scale * (0.9 + sin(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 2: hand_right
-draw_sprite_ext(spr_astigmatism_handl, 0.0, 44.0 + (-sin(siner / 6.0) * 2.0), 6.0 + (-cos(siner / 6.0) * 2.0), __utrp_scale * (-1.0), __utrp_scale * (0.95 - cos(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_handl, floor(anim2 / 3.0), 44.0 + (-sin(siner / 6.0) * 2.0 * sfactor), 6.0 + (-cos(siner / 6.0) * 2.0 * sfactor), __utrp_scale * (-1.0), __utrp_scale * (0.95 - cos(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 3: leg_right
-draw_sprite_ext(spr_astigmatism_legl, 0.0, 22.0 + (-cos(siner / 6.0) * 2.0), 26.0 + (-sin(siner / 6.0) * 2.0), __utrp_scale * (-1.0), __utrp_scale * (0.9 - sin(siner / 6.0) * 0.1), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_legl, floor(anim2 / 3.0), 22.0 + (-cos(siner / 6.0) * 2.0 * sfactor), 26.0 + (-sin(siner / 6.0) * 2.0 * sfactor), __utrp_scale * (-1.0), __utrp_scale * (0.9 - sin(siner / 6.0) * 0.1 * sfactor), 0.0, c_white, 1.0);
 // draw_order 4: body
-draw_sprite_ext(spr_astigmatism_body, 0.0, -48.0, -58.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_astigmatism_anim2, floor(anim2 / 3.0), -48.0, -58.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

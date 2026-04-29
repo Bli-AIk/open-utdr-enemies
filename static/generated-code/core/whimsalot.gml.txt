@@ -1,11 +1,24 @@
 /// Whimsalot UTRP GameMaker starter
 /// Source slug: core/whimsalot
-/// Canvas: 188x196 at 2.0x draw scale
+/// Canvas: 188x196 at 1.0x draw scale
 /// Asset map:
 /// - whimsalot_wing_r => /sprites/whimsalot/wing_r.png (placeholder sprite: spr_whimsalot_wing_r)
-/// - whimsalot_wing_l => /sprites/whimsalot/wing_l.png (placeholder sprite: spr_whimsalot_wing_l)
+///   frame: /sprites/whimsalot/wing_r_0.png
+///   frame: /sprites/whimsalot/wing_r_1.png
+///   frame: /sprites/whimsalot/wing_r_2.png
+///   frame: /sprites/whimsalot/wing_r_3.png
+///   frame: /sprites/whimsalot/wing_r_4.png
+///   frame: /sprites/whimsalot/wing_r_5.png
+///   frame: /sprites/whimsalot/wing_r_6.png
 /// - whimsalot_body => /sprites/whimsalot/body.png (placeholder sprite: spr_whimsalot_body)
+///   frame: /sprites/whimsalot/body_0.png
+///   frame: /sprites/whimsalot/body_1.png
 /// - whimsalot_head => /sprites/whimsalot/head.png (placeholder sprite: spr_whimsalot_head)
+///   frame: /sprites/whimsalot/head_0.png
+///   frame: /sprites/whimsalot/head_1.png
+///   frame: /sprites/whimsalot/head_2.png
+///   frame: /sprites/whimsalot/head_3.png
+/// - whimsalot_head_hurt => /sprites/whimsalot/head_hurt_0.png (placeholder sprite: spr_whimsalot_head_hurt)
 
 /// Whimsalot Create Event
 siner = 1.0;
@@ -14,12 +27,12 @@ siner = 1.0;
 siner += 1.0;
 
 /// Whimsalot Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: wing_right
-draw_sprite_ext(spr_whimsalot_wing_r, 0.0, 23.0, -13.0 + (sin(siner / 5.0) * -2.0), __utrp_scale, __utrp_scale, -15.0 + sin(siner / 2.5) * 30.0, c_white, 1.0);
+draw_sprite_ext(spr_whimsalot_wing_r, floor(siner / 15.0), 23.0, -13.0 + (sin(siner / 5.0) * -2.0), __utrp_scale, __utrp_scale, -15.0 + sin(siner / 2.5) * 30.0, c_white, 1.0);
 // draw_order 1: wing_left
-draw_sprite_ext(spr_whimsalot_wing_l, 0.0, -23.0, -13.0 + (sin(siner / 5.0) * -2.0), __utrp_scale * (-1.0), __utrp_scale, 15.0 + sin(siner / 2.5) * -30.0, c_white, 1.0);
+draw_sprite_ext(spr_whimsalot_wing_r, floor(siner / 15.0), -23.0, -13.0 + (sin(siner / 5.0) * -2.0), __utrp_scale * (-1.0), __utrp_scale, 15.0 + sin(siner / 2.5) * -30.0, c_white, 1.0);
 // draw_order 2: body
-draw_sprite_ext(spr_whimsalot_body, 0.0, -37.0, -3.0 + (sin(siner / 5.0) * 6.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_whimsalot_body, floor(siner / 18.0), -37.0, -3.0 + (sin(siner / 5.0) * 6.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 3: head
-draw_sprite_ext(spr_whimsalot_head, 0.0, -31.0, -53.0 + (sin(siner / 5.0) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_whimsalot_head, floor(siner / 10.0), -31.0, -53.0 + (sin(siner / 5.0) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

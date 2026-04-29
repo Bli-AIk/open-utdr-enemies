@@ -7,7 +7,7 @@
   "canvas": {
     "width": 182,
     "height": 262,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,10 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Reviewed against obj_vulkinbody_Draw_0/Create_0 and obj_vulkin_Create_0. Idle now uses the GM lava frame rate, face frame rate, horizontal cheek wobble, foot orbit, and 2x draw scale.",
+      "Criticized/hurt face variants are event state and not part of the default idle renderer."
     ]
   },
   "variables": [
@@ -47,14 +48,18 @@
       "id": "vulkin_lava",
       "path": "/sprites/vulkin/lava.png",
       "frames": [
-        "/sprites/vulkin/lava.png"
+        "/sprites/vulkin/lava.png",
+        "/sprites/vulkin/lava_1.png",
+        "/sprites/vulkin/lava_2.png",
+        "/sprites/vulkin/lava_3.png"
       ]
     },
     {
       "id": "vulkin_face",
       "path": "/sprites/vulkin/face.png",
       "frames": [
-        "/sprites/vulkin/face.png"
+        "/sprites/vulkin/face.png",
+        "/sprites/vulkin/face_1.png"
       ]
     },
     {
@@ -84,7 +89,9 @@
       "pivot": null,
       "transform": {
         "offset_x": "cos(siner / 6.0) * 2.0",
-        "offset_y": "sin(siner / 6.0) * 2.0"
+        "offset_y": "sin(siner / 6.0) * 2.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 0
     },
@@ -97,7 +104,10 @@
         "y": -57.0
       },
       "pivot": null,
-      "transform": {},
+      "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
       "draw_order": 1
     },
     {
@@ -109,7 +119,11 @@
         "y": -71.0
       },
       "pivot": null,
-      "transform": {},
+      "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0",
+        "frame_index": "floor(siner / 8.0)"
+      },
       "draw_order": 2
     },
     {
@@ -122,7 +136,10 @@
       },
       "pivot": null,
       "transform": {
-        "offset_x": "sin(siner / 12.0) * 7.0"
+        "offset_x": "sin(siner / 12.0) * 7.0",
+        "scale_x": "2.0 - abs(sin(siner / 12.0)) * 0.2",
+        "scale_y": "2.0",
+        "frame_index": "floor(siner / 15.0)"
       },
       "draw_order": 3
     },
@@ -137,7 +154,9 @@
       "pivot": null,
       "transform": {
         "offset_x": "sin(siner / 6.0) * 2.0",
-        "offset_y": "cos(siner / 6.0) * 2.0"
+        "offset_y": "cos(siner / 6.0) * 2.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 4
     }

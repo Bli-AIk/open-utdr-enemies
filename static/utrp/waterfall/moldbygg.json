@@ -7,7 +7,7 @@
   "canvas": {
     "width": 130,
     "height": 122,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,22 +16,36 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Reviewed against obj_moldsmalx_body_Draw_0/Create_0 and obj_moldsmalx_Create_0. Default stage 0 idle now uses spr_moldsmalx_up frames at GM image_speed 0.1 and 2x scale.",
+      "Post-unhug vertical extension and spawned segment parts are conditional stage 1-3 states, not the default idle renderer."
     ]
   },
-  "variables": [],
+  "variables": [
+    {
+      "name": "siner",
+      "kind": "counter",
+      "initial": 0.0
+    }
+  ],
   "assets": [
     {
       "id": "moldbygg_body",
-      "path": "/sprites/moldbygg/body.png",
+      "path": "/sprites/moldbygg/body_0.png",
       "frames": [
-        "/sprites/moldbygg/body.png"
+        "/sprites/moldbygg/body_0.png",
+        "/sprites/moldbygg/body_1.png"
       ]
     }
   ],
-  "update": [],
+  "update": [
+    {
+      "op": "increment",
+      "variable": "siner",
+      "by": "1.0"
+    }
+  ],
   "draw": [
     {
       "kind": "sprite",
@@ -42,7 +56,11 @@
         "y": 0.0
       },
       "pivot": null,
-      "transform": {},
+      "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0",
+        "frame_index": "floor(siner * 0.1)"
+      },
       "draw_order": 0
     }
   ],

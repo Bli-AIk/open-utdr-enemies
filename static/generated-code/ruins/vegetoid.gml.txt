@@ -1,6 +1,6 @@
 /// Vegetoid UTRP GameMaker starter
 /// Source slug: ruins/vegetoid
-/// Canvas: 184x248 at 2.0x draw scale
+/// Canvas: 184x248 at 1.0x draw scale
 /// Asset map:
 /// - vegetoid_body => /sprites/vegetoid/body_0.png (placeholder sprite: spr_vegetoid_body)
 ///   frame: /sprites/vegetoid/body_1.png
@@ -14,6 +14,6 @@ siner = 1.0;
 siner += 1.0;
 
 /// Vegetoid Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: body
 draw_sprite_ext(spr_vegetoid_body, floor(siner * 0.1) % 4.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

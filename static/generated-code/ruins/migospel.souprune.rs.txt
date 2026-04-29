@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-26.0 + (sin(siner / 4.0) * 2.0)"), expression("0.0 + (sin(siner / 4.0) * 2.0)"), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/wingA.png".into()),
@@ -33,7 +33,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("26.0 + (-sin(siner / 4.0) * 2.0)"), expression("0.0 + (sin(siner / 4.0) * 2.0)"), static_float(1.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), static_float(1.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/wingA.png".into()),
@@ -49,7 +49,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-26.0 + (sin(siner / 4.0) * 2.0)"), expression("14.0 + (-sin(siner / 4.0) * 2.0)"), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/wingB.png".into()),
@@ -65,7 +65,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("26.0 + (-sin(siner / 4.0) * 2.0)"), expression("14.0 + (-sin(siner / 4.0) * 2.0)"), static_float(3.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), static_float(1.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/wingB.png".into()),
@@ -81,7 +81,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-26.0), static_float(42.0), static_float(4.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/leg.png".into()),
@@ -97,7 +97,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(24.0), static_float(42.0), static_float(5.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), static_float(1.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/leg.png".into()),
@@ -111,9 +111,9 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "migospel_body".into(),
                 tags: vec!["utrp".into(), "ruins/migospel".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-26.0), expression("-58.0 + (sin(siner / 6.0) * 2.0)"), static_float(6.0))),
+                    translation: Some(vector3(static_float(-26.0), expression("-58.0 + (body_y)"), static_float(6.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/body.png".into()),
@@ -128,9 +128,9 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "migospel_eyes".into(),
                 tags: vec!["utrp".into(), "ruins/migospel".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-20.0), expression("-8.0 + (sin(siner / 6.0) * 2.0 + -clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0))"), static_float(7.0))),
+                    translation: Some(vector3(static_float(-20.0), expression("-8.0 + (floor(body_y - clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0)))"), static_float(7.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/eye_0.png".into()),
@@ -145,9 +145,9 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "migospel_mouth".into(),
                 tags: vec!["utrp".into(), "ruins/migospel".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-18.0), expression("8.0 + (sin(siner / 6.0) * 2.0)"), static_float(8.0))),
+                    translation: Some(vector3(static_float(-18.0), expression("8.0 + (body_y)"), static_float(8.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migospel/mouthA_0.png".into()),

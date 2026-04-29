@@ -7,7 +7,7 @@
   "canvas": {
     "width": 172,
     "height": 196,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,10 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
-      "Previous animation data included states (normal, pause, sad); state switching awaits the UTRP runtime state model."
+      "Normal happy-state idle follows obj_migospel_body_Draw with floor(sin(siner / 6) * 2) body motion and floored eye y. sad/pause/hurt states remain intentionally omitted."
     ]
   },
   "variables": [
@@ -27,6 +26,11 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "body_y",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -104,6 +108,11 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "body_y",
+      "value": "floor(sin(siner / 6.0) * 2.0)"
     }
   ],
   "draw": [
@@ -226,7 +235,7 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 2.0"
+        "offset_y": "body_y"
       },
       "draw_order": 6
     },
@@ -243,7 +252,7 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 2.0 + -clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0)",
+        "offset_y": "floor(body_y - clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0))",
         "frame_index": "0.0"
       },
       "draw_order": 7
@@ -261,7 +270,7 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 2.0",
+        "offset_y": "body_y",
         "frame_index": "floor(clamp(siner % 51.0 - 40.0, 0.0, 2.0))"
       },
       "draw_order": 8

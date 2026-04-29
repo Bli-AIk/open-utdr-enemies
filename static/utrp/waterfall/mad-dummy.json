@@ -7,7 +7,7 @@
   "canvas": {
     "width": 110,
     "height": 186,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,10 +16,10 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
-      "Mad Dummy uses source-inspired sway expressions pending source review."
+      "Reviewed against obj_maddummy_Draw_0/Create_0 and the Waterfall spr_maddum_* source sprites. The base/leg/torso/head assembly keeps the existing part layout while adding GM 2x scale and animated head frames.",
+      "UNDERTALE's obj_maddummy top-level draw calls draw_self_border_e; the segmented part sway remains an approximation because that helper's internals are not present in the exported GML."
     ]
   },
   "variables": [
@@ -55,7 +55,10 @@
       "id": "maddummy_head",
       "path": "/sprites/mad-dummy/maddummy_head.png",
       "frames": [
-        "/sprites/mad-dummy/maddummy_head.png"
+        "/sprites/mad-dummy/maddummy_head.png",
+        "/sprites/mad-dummy/maddummy_head_1.png",
+        "/sprites/mad-dummy/maddummy_head_2.png",
+        "/sprites/mad-dummy/maddummy_head_3.png"
       ]
     }
   ],
@@ -77,6 +80,8 @@
       },
       "pivot": null,
       "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0",
         "rotation_deg": "sin(siner / 7.5) * -3.0"
       },
       "draw_order": 0
@@ -91,6 +96,8 @@
       },
       "pivot": null,
       "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0",
         "rotation_deg": "sin(siner / 7.5)"
       },
       "draw_order": 1
@@ -106,6 +113,8 @@
       "pivot": null,
       "transform": {
         "offset_y": "sin(siner / 7.5) * 0.75",
+        "scale_x": "2.0",
+        "scale_y": "2.0",
         "rotation_deg": "sin(siner / 7.5) * 1.5"
       },
       "draw_order": 2
@@ -122,7 +131,10 @@
       "transform": {
         "offset_x": "sin(siner / 7.5) * -1.0",
         "offset_y": "sin(siner / 7.5)",
-        "rotation_deg": "sin(siner / 7.5) * 3.0"
+        "scale_x": "2.0",
+        "scale_y": "2.0",
+        "rotation_deg": "sin(siner / 7.5) * 3.0",
+        "frame_index": "floor(siner * 0.1)"
       },
       "draw_order": 3
     }

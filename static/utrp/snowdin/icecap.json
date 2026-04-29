@@ -7,7 +7,7 @@
   "canvas": {
     "width": 252,
     "height": 382,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Idle reviewed against obj_icecap Create: GM image_speed is 0.1; canvas scale remains 1 after renderer-scale correction."
     ]
   },
   "variables": [

@@ -7,7 +7,7 @@
   "canvas": {
     "width": 222,
     "height": 268,
-    "scale": 2
+    "scale": 1
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,14 +18,35 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Reworked against obj_astigmatism_body_Draw_0/Create_0. The idle now models GM anim/anim2/sfactor staging and uses spr_astigmatism_anim2 body frames; spr_astigmatism_anim frames are included for source parity.",
+      "The GM reset is a small state machine; UTRP approximates it as a deterministic 513-frame expression cycle, preserving the visible staged mouth/body and delayed limb bob."
     ]
   },
   "variables": [
     {
+      "name": "tick",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
       "name": "siner",
       "kind": "counter",
-      "initial": 1.0
+      "initial": 0.0
+    },
+    {
+      "name": "anim",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "anim2",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "sfactor",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -44,18 +65,67 @@
       ]
     },
     {
-      "id": "astigmatism_body",
-      "path": "/sprites/astigmatism/body.png",
+      "id": "astigmatism_anim",
+      "path": "/sprites/astigmatism/anim_0.png",
       "frames": [
-        "/sprites/astigmatism/body.png"
+        "/sprites/astigmatism/anim_0.png",
+        "/sprites/astigmatism/anim_1.png",
+        "/sprites/astigmatism/anim_2.png",
+        "/sprites/astigmatism/anim_3.png",
+        "/sprites/astigmatism/anim_4.png",
+        "/sprites/astigmatism/anim_5.png",
+        "/sprites/astigmatism/anim_6.png",
+        "/sprites/astigmatism/anim_7.png",
+        "/sprites/astigmatism/anim_8.png",
+        "/sprites/astigmatism/anim_9.png",
+        "/sprites/astigmatism/anim_10.png",
+        "/sprites/astigmatism/anim_11.png"
+      ]
+    },
+    {
+      "id": "astigmatism_anim2",
+      "path": "/sprites/astigmatism/anim2_0.png",
+      "frames": [
+        "/sprites/astigmatism/anim2_0.png",
+        "/sprites/astigmatism/anim2_1.png",
+        "/sprites/astigmatism/anim2_2.png",
+        "/sprites/astigmatism/anim2_3.png",
+        "/sprites/astigmatism/anim2_4.png",
+        "/sprites/astigmatism/anim2_5.png",
+        "/sprites/astigmatism/anim2_6.png",
+        "/sprites/astigmatism/anim2_7.png",
+        "/sprites/astigmatism/anim2_8.png",
+        "/sprites/astigmatism/anim2_9.png",
+        "/sprites/astigmatism/anim2_10.png",
+        "/sprites/astigmatism/anim2_11.png"
       ]
     }
   ],
   "update": [
     {
       "op": "increment",
-      "variable": "siner",
+      "variable": "tick",
       "by": "1"
+    },
+    {
+      "op": "set",
+      "variable": "anim",
+      "value": "tick % 513"
+    },
+    {
+      "op": "set",
+      "variable": "siner",
+      "value": "floor(tick / 513) * 262 + clamp(anim - 250, 0, 262)"
+    },
+    {
+      "op": "set",
+      "variable": "anim2",
+      "value": "ifelse(lt(anim, 141), 0, ifelse(lt(anim, 160), anim - 140, ifelse(lt(anim, 221), 19, ifelse(lt(anim, 235), anim - 201, ifelse(lt(anim, 481), 33, max(0, 33 - (anim - 480)))))))"
+    },
+    {
+      "op": "set",
+      "variable": "sfactor",
+      "value": "ifelse(lte(anim, 250), 0, ifelse(lte(anim, 270), (anim - 250) * 0.05, ifelse(lte(anim, 480), 1, max(0, 1 - (anim - 480) * 0.07))))"
     }
   ],
   "draw": [
@@ -72,9 +142,10 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "sin(siner / 6) * 2",
-        "offset_y": "cos(siner / 6) * 2",
-        "scale_y": "0.9 + cos(siner / 6) * 0.1"
+        "offset_x": "sin(siner / 6) * 2 * sfactor",
+        "offset_y": "cos(siner / 6) * 2 * sfactor",
+        "scale_y": "0.9 + cos(siner / 6) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3)"
       },
       "draw_order": 0
     },
@@ -91,9 +162,10 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "cos(siner / 6) * 2",
-        "offset_y": "sin(siner / 6) * 2",
-        "scale_y": "0.9 + sin(siner / 6) * 0.1"
+        "offset_x": "cos(siner / 6) * 2 * sfactor",
+        "offset_y": "sin(siner / 6) * 2 * sfactor",
+        "scale_y": "0.9 + sin(siner / 6) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3)"
       },
       "draw_order": 1
     },
@@ -110,10 +182,11 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "-sin(siner / 6) * 2",
-        "offset_y": "-cos(siner / 6) * 2",
+        "offset_x": "-sin(siner / 6) * 2 * sfactor",
+        "offset_y": "-cos(siner / 6) * 2 * sfactor",
         "scale_x": "-1",
-        "scale_y": "0.95 - cos(siner / 6) * 0.1"
+        "scale_y": "0.95 - cos(siner / 6) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3)"
       },
       "draw_order": 2
     },
@@ -130,17 +203,18 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "-cos(siner / 6) * 2",
-        "offset_y": "-sin(siner / 6) * 2",
+        "offset_x": "-cos(siner / 6) * 2 * sfactor",
+        "offset_y": "-sin(siner / 6) * 2 * sfactor",
         "scale_x": "-1",
-        "scale_y": "0.9 - sin(siner / 6) * 0.1"
+        "scale_y": "0.9 - sin(siner / 6) * 0.1 * sfactor",
+        "frame_index": "floor(anim2 / 3)"
       },
       "draw_order": 3
     },
     {
       "kind": "sprite",
       "id": "body",
-      "sprite": "astigmatism_body",
+      "sprite": "astigmatism_anim2",
       "origin": {
         "x": -48,
         "y": -58
@@ -149,7 +223,9 @@
         "x": 1,
         "y": 0
       },
-      "transform": {},
+      "transform": {
+        "frame_index": "floor(anim2 / 3)"
+      },
       "draw_order": 4
     }
   ]

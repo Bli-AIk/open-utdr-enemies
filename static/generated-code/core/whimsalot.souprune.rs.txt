@@ -11,13 +11,14 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
+            // TODO: UTRP frame_index `floor(siner / 15.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_wing_right".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(23.0), expression("-13.0 + (sin(siner / 5.0) * -2.0)"), static_float(0.0))),
                     rotation: Some(expression("-15.0 + sin(siner / 2.5) * 30.0")),
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/whimsalot/wing_r.png".into()),
@@ -27,29 +28,31 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 15.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_wing_left".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-23.0), expression("-13.0 + (sin(siner / 5.0) * -2.0)"), static_float(1.0))),
                     rotation: Some(expression("15.0 + sin(siner / 2.5) * -30.0")),
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), static_float(1.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/whimsalot/wing_l.png".into()),
+                    visual: Visual("/sprites/whimsalot/wing_r.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(-1.0), static_float(14.0))),
                     ..Default::default()
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 18.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_body".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-37.0), expression("-3.0 + (sin(siner / 5.0) * 6.0)"), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/whimsalot/body.png".into()),
@@ -59,13 +62,14 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
+            // TODO: UTRP frame_index `floor(siner / 10.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "whimsalot_head".into(),
                 tags: vec!["utrp".into(), "core/whimsalot".into()],
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-31.0), expression("-53.0 + (sin(siner / 5.0) * 8.0)"), static_float(3.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/whimsalot/head.png".into()),

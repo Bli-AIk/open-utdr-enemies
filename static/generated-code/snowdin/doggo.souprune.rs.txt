@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-66.0), static_float(-125.0), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/doggo/tail.png".into()),
@@ -33,7 +33,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-66.0), static_float(-125.0), static_float(1.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/doggo/body.png".into()),
@@ -47,9 +47,9 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "doggo_arms".into(),
                 tags: vec!["utrp".into(), "snowdin/doggo".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-66.0), expression("-133.0 + (sin(siner / 4.5) * 8.0)"), static_float(2.0))),
+                    translation: Some(vector3(static_float(-66.0), expression("-133.0 + (doggo_arm_y)"), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/doggo/arms.png".into()),
@@ -66,7 +66,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-66.0), static_float(-125.0), static_float(3.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/doggo/head_0.png".into()),

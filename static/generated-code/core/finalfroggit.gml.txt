@@ -1,19 +1,19 @@
 /// Final Froggit UTRP GameMaker starter
 /// Source slug: core/finalfroggit
-/// Canvas: 180x170 at 2.0x draw scale
+/// Canvas: 180x170 at 1.0x draw scale
 /// Asset map:
 /// - finalfroggit_body => /sprites/finalfroggit/body.png (placeholder sprite: spr_finalfroggit_body)
 /// - finalfroggit_head => /sprites/finalfroggit/head.png (placeholder sprite: spr_finalfroggit_head)
 /// - finalfroggit_head_hurt => /sprites/finalfroggit/head_hurt.png (placeholder sprite: spr_finalfroggit_head_hurt)
 
 /// Final Froggit Create Event
-siner = 1.0;
+siner = 0.0;
 
 /// Final Froggit Step Event
 siner += 1.0;
 
 /// Final Froggit Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: body
 draw_sprite_ext(spr_finalfroggit_body, 0.0, 0.0, 63.0, __utrp_scale, __utrp_scale * (1.0 + sin(siner / 3.0) * -0.075), 0.0, c_white, 1.0);
 // draw_order 1: head

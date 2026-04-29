@@ -7,7 +7,7 @@
   "canvas": {
     "width": 240,
     "height": 272,
-    "scale": 2
+    "scale": 1
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Normal idle follows GM Create/Alarm_7: image_speed=0.5 with image_index reset every 30 steps; mercymod<0 faster timing is not represented in this default state."
     ]
   },
   "variables": [
@@ -59,7 +59,7 @@
       },
       "pivot": null,
       "transform": {
-        "frame_index": "floor(clamp(siner % 30 - 20, 0, 10) * 0.5)"
+        "frame_index": "floor((siner % 30) * 0.5) % 5"
       },
       "draw_order": 0
     }

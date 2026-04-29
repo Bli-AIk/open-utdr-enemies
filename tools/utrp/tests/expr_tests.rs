@@ -23,6 +23,16 @@ fn renders_clamp_as_composed_math_in_js() {
 }
 
 #[test]
+fn renders_conditional_helpers_for_js_runtime() {
+    let expr = Expr::parse("ifelse(gt(siner, 10), 1, -1)").unwrap();
+
+    assert_eq!(
+        expr.to_js(),
+        "((((vars.siner) > (10.0) ? 1.0 : 0.0)) ? (1.0) : (-1.0))"
+    );
+}
+
+#[test]
 fn rejects_invalid_function_arity() {
     assert!(Expr::parse("sin()").is_err());
     assert!(Expr::parse("clamp(a, b)").is_err());

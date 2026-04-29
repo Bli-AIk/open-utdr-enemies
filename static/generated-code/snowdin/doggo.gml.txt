@@ -1,6 +1,6 @@
 /// Doggo UTRP GameMaker starter
 /// Source slug: snowdin/doggo
-/// Canvas: 150x270 at 2.0x draw scale
+/// Canvas: 150x270 at 1.0x draw scale
 /// Asset map:
 /// - doggo_tail => /sprites/doggo/tail.png (placeholder sprite: spr_doggo_tail)
 /// - doggo_body => /sprites/doggo/body.png (placeholder sprite: spr_doggo_body)
@@ -21,17 +21,21 @@
 
 /// Doggo Create Event
 siner = 1.0;
+doggo_arm_phase = 0.0;
+doggo_arm_y = 0.0;
 
 /// Doggo Step Event
 siner += 1.0;
+doggo_arm_phase += 1.0;
+doggo_arm_y = doggo_arm_y + ifelse(gt(sin(doggo_arm_phase / 4.5), 0.0), 0.8, -0.8);
 
 /// Doggo Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: tail
 draw_sprite_ext(spr_doggo_tail, 0.0, -66.0, -125.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 1: body
 draw_sprite_ext(spr_doggo_body, 0.0, -66.0, -125.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 2: arms
-draw_sprite_ext(spr_doggo_arms, 0.0, -66.0, -133.0 + (sin(siner / 4.5) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_doggo_arms, 0.0, -66.0, -133.0 + (doggo_arm_y), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 3: head
 draw_sprite_ext(spr_doggo_head, floor(siner * 0.33334) % 13.0, -66.0, -125.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

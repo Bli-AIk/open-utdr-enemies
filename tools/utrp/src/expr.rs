@@ -72,6 +72,28 @@ impl Expr {
                     let max = args[2].render(target, 0);
                     return format!("Math.min(Math.max({value}, {min}), {max})");
                 }
+                if target == Target::Js && name == "ifelse" {
+                    let condition = args[0].render(target, 0);
+                    let yes = args[1].render(target, 0);
+                    let no = args[2].render(target, 0);
+                    return format!("(({condition}) ? ({yes}) : ({no}))");
+                }
+                if target == Target::Js
+                    && matches!(name.as_str(), "gt" | "gte" | "lt" | "lte" | "eq" | "neq")
+                {
+                    let left = args[0].render(target, 0);
+                    let right = args[1].render(target, 0);
+                    let op = match name.as_str() {
+                        "gt" => ">",
+                        "gte" => ">=",
+                        "lt" => "<",
+                        "lte" => "<=",
+                        "eq" => "===",
+                        "neq" => "!==",
+                        _ => unreachable!(),
+                    };
+                    return format!("(({left}) {op} ({right}) ? 1.0 : 0.0)");
+                }
 
                 let function = match target {
                     Target::Gml => name.clone(),
@@ -371,8 +393,8 @@ fn binary_precedence(op: char) -> u8 {
 fn validate_function(name: &str, actual: usize) -> anyhow::Result<()> {
     let expected = match name {
         "sin" | "cos" | "floor" | "ceil" | "round" | "abs" | "sign" | "sqrt" => 1,
-        "min" | "max" | "pow" => 2,
-        "clamp" => 3,
+        "min" | "max" | "pow" | "gt" | "gte" | "lt" | "lte" | "eq" | "neq" => 2,
+        "clamp" | "ifelse" => 3,
         _ => bail!("unsupported function `{name}`"),
     };
 

@@ -7,7 +7,7 @@
   "canvas": {
     "width": 230,
     "height": 194,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,10 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Reviewed against obj_tsunderplane_body_Draw_0/Create_0 and obj_tsunderplane_Create_0. Default idle preserves the GM body/hat 2x scale and shared siner / 7 vertical bob.",
+      "Graze blush, falling, and explosion states are conditional event states and are not part of this default idle renderer."
     ]
   },
   "variables": [
@@ -62,7 +63,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 7.0) * 3.0"
+        "offset_y": "sin(siner / 7.0) * 3.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 0
     },
@@ -76,7 +79,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 7.0) * 3.0"
+        "offset_y": "sin(siner / 7.0) * 3.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 1
     }

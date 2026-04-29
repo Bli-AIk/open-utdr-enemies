@@ -7,7 +7,7 @@
   "canvas": {
     "width": 184,
     "height": 236,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,8 +18,8 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
-      "Previous animation data included states (happy, normal); state switching awaits the UTRP runtime state model."
+      "Normal state models GM Alarm_7/Alarm_8 as a deterministic 50-step equivalent: 10 steps of image_speed=0.5, then stopped until the next start. GM uses 30+random(40) for the next start, so exact random cadence is not represented.",
+      "GM switches to spr_migosphappy when mercymod > 0. happy_state is exposed as a data variable for future runtime state control; default remains normal."
     ]
   },
   "variables": [
@@ -27,6 +27,11 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "happy_state",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
@@ -36,6 +41,14 @@
       "frames": [
         "/sprites/migosp/body_0.png",
         "/sprites/migosp/body_1.png"
+      ]
+    },
+    {
+      "id": "migosp_happy",
+      "path": "/sprites/migosp/happy_0.png",
+      "frames": [
+        "/sprites/migosp/happy_0.png",
+        "/sprites/migosp/happy_1.png"
       ]
     }
   ],
@@ -57,9 +70,25 @@
       },
       "pivot": null,
       "transform": {
-        "frame_index": "floor(clamp(siner % 40.0 - 30.0, 0.0, 10.0) * 0.5)"
+        "alpha": "1.0 - happy_state",
+        "frame_index": "floor((floor(siner / 50.0) * 10.0 + min(siner % 50.0, 10.0)) * 0.5) % 2.0"
       },
       "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "happy_body",
+      "sprite": "migosp_happy",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": null,
+      "transform": {
+        "alpha": "happy_state",
+        "frame_index": "floor(siner * 0.1) % 2.0"
+      },
+      "draw_order": 1
     }
   ],
   "codegen": {

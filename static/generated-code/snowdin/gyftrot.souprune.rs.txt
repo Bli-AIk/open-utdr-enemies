@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-100.0), static_float(-103.0), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/gyftrot/body.png".into()),
@@ -27,14 +27,14 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `floor(siner * 0.02) % 10.0` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `1.0` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
-                name: "gyftrot_gift".into(),
+                name: "gyftrot_gift_body_back".into(),
                 tags: vec!["utrp".into(), "snowdin/gyftrot".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("-100.0 + (sin(siner / 15.0) * 8.0)"), static_float(-103.0), static_float(1.0))),
+                    translation: Some(vector3(static_float(-100.0), static_float(-103.0), static_float(1.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/gyftrot/gift_0.png".into()),
@@ -44,14 +44,14 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `clamp(sign(sin(siner / 40.0) - 0.9), 0.0, 1.0)` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `ifelse(gte(siner % 118.0, 110.0), 1.0, 0.0)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "gyftrot_head".into(),
                 tags: vec!["utrp".into(), "snowdin/gyftrot".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("-100.0 + (sin(siner / 15.0) * 8.0)"), static_float(-103.0), static_float(2.0))),
+                    translation: Some(vector3(expression("-100.0 + (ifelse(lt(siner % 114.0, 45.0), 0.0, ifelse(lt(siner % 114.0, 57.0), siner % 114.0 - 45.0, ifelse(lt(siner % 114.0, 102.0), 12.0, 114.0 - siner % 114.0))))"), static_float(-103.0), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/gyftrot/head_0.png".into()),
@@ -61,19 +61,69 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `floor(clamp(5.0 - abs(siner % 100.0 - 15.0) / 3.0, 0.0, 4.0))` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `0.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "gyftrot_gift_head_0".into(),
+                tags: vec!["utrp".into(), "snowdin/gyftrot".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("-100.0 + (ifelse(lt(siner % 114.0, 45.0), 0.0, ifelse(lt(siner % 114.0, 57.0), siner % 114.0 - 45.0, ifelse(lt(siner % 114.0, 102.0), 12.0, 114.0 - siner % 114.0))))"), static_float(-103.0), static_float(3.0))),
+                    rotation: None,
+                    scale: None,
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/gyftrot/gift_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `3.0` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "gyftrot_gift_head_3".into(),
+                tags: vec!["utrp".into(), "snowdin/gyftrot".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("-100.0 + (ifelse(lt(siner % 114.0, 45.0), 0.0, ifelse(lt(siner % 114.0, 57.0), siner % 114.0 - 45.0, ifelse(lt(siner % 114.0, 102.0), 12.0, 114.0 - siner % 114.0))))"), static_float(-103.0), static_float(4.0))),
+                    rotation: None,
+                    scale: None,
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/gyftrot/gift_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `ifelse(lt(siner % 170.0, 20.0), 0.0, ifelse(lt(siner % 170.0, 32.0), clamp(floor((siner % 170.0 - 17.0) / 3.0), 1.0, 4.0), ifelse(lt(siner % 170.0, 82.0), 4.0, ifelse(lt(siner % 170.0, 94.0), clamp(4.0 - floor((siner % 170.0 - 79.0) / 3.0), 0.0, 3.0), 0.0))))` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "gyftrot_mouth".into(),
                 tags: vec!["utrp".into(), "snowdin/gyftrot".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("-50.0 + (sin(siner / 15.0) * 8.0)"), static_float(-7.0), static_float(3.0))),
+                    translation: Some(vector3(expression("-50.0 + (ifelse(lt(siner % 114.0, 45.0), 0.0, ifelse(lt(siner % 114.0, 57.0), siner % 114.0 - 45.0, ifelse(lt(siner % 114.0, 102.0), 12.0, 114.0 - siner % 114.0))))"), static_float(-7.0), static_float(5.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/gyftrot/mouth_0.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(1.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            ViewNodeDef {
+                name: "gyftrot_cloud".into(),
+                tags: vec!["utrp".into(), "snowdin/gyftrot".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(expression("-10.0 + (ifelse(lt(siner % 114.0, 45.0), 0.0, ifelse(lt(siner % 114.0, 57.0), siner % 114.0 - 45.0, ifelse(lt(siner % 114.0, 102.0), 12.0, 114.0 - siner % 114.0))) + sin((siner + 113.0) % 170.0 / 5.0) * 2.0)"), expression("39.0 + (ifelse(lt((siner + 113.0) % 170.0, 22.0), (siner + 113.0) % 170.0 * 3.25 - (siner + 113.0) % 170.0 * ((siner + 113.0) % 170.0 + 1.0) * 0.075, 35.0))"), static_float(6.0))),
+                    rotation: Some(expression("(siner + 113.0) % 170.0 * 3.0")),
+                    scale: Some(vector3(expression("1.0 * (0.1 + sqrt(min((siner + 113.0) % 170.0, 45.0)) * 0.3 + min((siner + 113.0) % 170.0, 45.0) * 0.018)"), expression("1.0 * (0.1 + sqrt(min((siner + 113.0) % 170.0, 45.0)) * 0.3 + min((siner + 113.0) % 170.0, 45.0) * 0.018)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/gyftrot/cloud.png".into()),
+                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("ifelse(lt((siner + 113.0) % 170.0, 45.0), ifelse(lt((siner + 113.0) % 170.0, 18.0), 0.7, clamp(0.7 - ((siner + 113.0) % 170.0 - 18.0) * 0.03, 0.0, 0.7)), 0.0)"))),
+                    pivot: Some(vector2(static_float(8.0), static_float(7.0))),
                     ..Default::default()
                 }),
                 ..Default::default()

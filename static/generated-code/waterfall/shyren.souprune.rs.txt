@@ -15,7 +15,7 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "shyren_agent".into(),
                 tags: vec!["utrp".into(), "waterfall/shyren".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-15.0), expression("-90.0 + (sin(siner / 5.0) * 3.0)"), static_float(0.0))),
+                    translation: Some(vector3(static_float(-15.0), static_float(-90.0), static_float(0.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
@@ -31,12 +31,12 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "shyren_body".into(),
                 tags: vec!["utrp".into(), "waterfall/shyren".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), static_float(30.0), static_float(1.0))),
+                    translation: Some(vector3(static_float(0.0), expression("30.0 + (sin(siner / 30.0) * 4.0)"), static_float(1.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/shyren/body.png".into()),
+                    visual: Visual("/sprites/shyren/hide.png".into()),
                     color: None,
                     pivot: None,
                     ..Default::default()

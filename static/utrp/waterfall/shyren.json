@@ -7,7 +7,7 @@
   "canvas": {
     "width": 240,
     "height": 328,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,10 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Reviewed against obj_shyrenbody_Create_0/Step_0, obj_agentbody_Create_0, and obj_shyren_Create_0. Default idle now uses Shyren's hidden body sprite with the GM siny / 30 bob and 2x scale.",
+      "Swim/sing and alternate agent frames are included as source assets but default emotion 0 keeps spr_shyren_hide."
     ]
   },
   "variables": [
@@ -33,14 +34,35 @@
       "id": "shyren_agent",
       "path": "/sprites/shyren/agent.png",
       "frames": [
-        "/sprites/shyren/agent.png"
+        "/sprites/shyren/agent.png",
+        "/sprites/shyren/agent_1.png"
       ]
     },
     {
       "id": "shyren_body",
-      "path": "/sprites/shyren/body.png",
+      "path": "/sprites/shyren/hide.png",
       "frames": [
-        "/sprites/shyren/body.png"
+        "/sprites/shyren/hide.png"
+      ]
+    },
+    {
+      "id": "shyren_swim",
+      "path": "/sprites/shyren/swim_0.png",
+      "frames": [
+        "/sprites/shyren/swim_0.png",
+        "/sprites/shyren/swim_1.png",
+        "/sprites/shyren/swim_2.png",
+        "/sprites/shyren/swim_3.png"
+      ]
+    },
+    {
+      "id": "shyren_sing",
+      "path": "/sprites/shyren/sing_0.png",
+      "frames": [
+        "/sprites/shyren/sing_0.png",
+        "/sprites/shyren/sing_1.png",
+        "/sprites/shyren/sing_2.png",
+        "/sprites/shyren/sing_3.png"
       ]
     }
   ],
@@ -62,7 +84,8 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 5.0) * 3.0"
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 0
     },
@@ -75,7 +98,11 @@
         "y": 30.0
       },
       "pivot": null,
-      "transform": {},
+      "transform": {
+        "offset_y": "sin(siner / 30.0) * 4.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
       "draw_order": 1
     }
   ],

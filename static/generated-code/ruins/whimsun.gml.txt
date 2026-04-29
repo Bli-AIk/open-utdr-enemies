@@ -1,6 +1,6 @@
 /// Whimsun UTRP GameMaker starter
 /// Source slug: ruins/whimsun
-/// Canvas: 232x224 at 2.0x draw scale
+/// Canvas: 232x224 at 1.0x draw scale
 /// Asset map:
 /// - whimsun_body => /sprites/whimsun/body_0.png (placeholder sprite: spr_whimsun_body)
 ///   frame: /sprites/whimsun/body_1.png
@@ -12,6 +12,6 @@ siner = 1.0;
 siner += 1.0;
 
 /// Whimsun Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: body
-draw_sprite_ext(spr_whimsun_body, floor(siner * 0.1), 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_whimsun_body, floor(siner * 0.1) % 2.0, 0.0 + (sin(siner / 30.0) * 8.0), 0.0 + (sin(siner / 15.0) * 14.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

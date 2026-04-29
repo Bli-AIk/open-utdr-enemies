@@ -7,7 +7,7 @@
   "canvas": {
     "width": 232,
     "height": 224,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,8 +18,7 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact.",
-      "Previous animation data included path motion; path motion awaits source/runtime modeling."
+      "GM starts path_whimsun at speed 0.5. Source path points are not present in the exported GML, so this uses a deterministic oval x/y offset to preserve the visible upper/lower flight path instead of fixed-position frame swapping."
     ]
   },
   "variables": [
@@ -57,7 +56,9 @@
       },
       "pivot": null,
       "transform": {
-        "frame_index": "floor(siner * 0.1)"
+        "offset_x": "sin(siner / 30.0) * 8.0",
+        "offset_y": "sin(siner / 15.0) * 14.0",
+        "frame_index": "floor(siner * 0.1) % 2.0"
       },
       "draw_order": 0
     }

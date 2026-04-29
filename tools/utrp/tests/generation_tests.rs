@@ -51,7 +51,10 @@ fn serializes_minimal_render_program() {
         review: ReviewInfo::needs_source_review("smoke fixture"),
         variables: vec![VariableDef::counter("siner", 1.0)],
         assets: vec![SpriteAsset::single("head", "/sprites/demo/head.png")],
-        update: vec![UpdateOp::increment("siner", Expr::number(1.0))],
+        update: vec![
+            UpdateOp::increment("siner", Expr::number(1.0)),
+            UpdateOp::set("phase", Expr::parse("floor(siner / 10)").unwrap()),
+        ],
         draw: vec![DrawOp::Sprite(SpriteDraw {
             id: "head".into(),
             sprite: "head".into(),
@@ -110,6 +113,31 @@ fn source_enemies_contains_exactly_expected_lab_entry_slugs() {
         .collect::<Vec<_>>();
 
     assert_eq!(actual, EXPECTED_SOURCE_SLUGS);
+}
+
+#[test]
+fn source_enemy_assets_exist_in_static_sprites() {
+    let manifest_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR"));
+    let repo_root = manifest_dir.parent().unwrap().parent().unwrap();
+    let source_root = manifest_dir.join("source/enemies");
+    let programs = utrp::source::load_programs(&source_root).unwrap();
+
+    let mut missing = Vec::new();
+    for program in programs {
+        for asset in program.assets {
+            for path in std::iter::once(&asset.path).chain(asset.frames.iter()) {
+                let Some(relative) = path.strip_prefix('/') else {
+                    missing.push(format!("{}:{}", program.slug, path));
+                    continue;
+                };
+                if !repo_root.join("static").join(relative).is_file() {
+                    missing.push(format!("{}:{}", program.slug, path));
+                }
+            }
+        }
+    }
+
+    assert!(missing.is_empty(), "missing source assets:\n{}", missing.join("\n"));
 }
 
 #[test]

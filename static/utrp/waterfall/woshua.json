@@ -7,7 +7,7 @@
   "canvas": {
     "width": 108,
     "height": 154,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,10 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Reviewed against obj_woshbody_Draw_0/Create_0 and obj_woshua_Create_0. Idle now includes the GM hanger, duck, water streams, body, tail, head, and face layering with 2x scale.",
+      "Water uses the full spr_woshwater frame because UTRP has no draw_sprite_part_ext crop primitive; head/face alarm bob is approximated with a periodic expression."
     ]
   },
   "variables": [
@@ -26,9 +27,36 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "anim",
+      "kind": "counter",
+      "initial": 0.0
     }
   ],
   "assets": [
+    {
+      "id": "woshua_hanger",
+      "path": "/sprites/woshua/hanger.png",
+      "frames": [
+        "/sprites/woshua/hanger.png"
+      ]
+    },
+    {
+      "id": "woshua_duck",
+      "path": "/sprites/woshua/duck_0.png",
+      "frames": [
+        "/sprites/woshua/duck_0.png",
+        "/sprites/woshua/duck_1.png"
+      ]
+    },
+    {
+      "id": "woshua_water",
+      "path": "/sprites/woshua/water.png",
+      "frames": [
+        "/sprites/woshua/water.png"
+      ]
+    },
     {
       "id": "woshua_body",
       "path": "/sprites/woshua/body.png",
@@ -49,6 +77,22 @@
       "frames": [
         "/sprites/woshua/face.png"
       ]
+    },
+    {
+      "id": "woshua_tail",
+      "path": "/sprites/woshua/tail_0.png",
+      "frames": [
+        "/sprites/woshua/tail_0.png",
+        "/sprites/woshua/tail_1.png",
+        "/sprites/woshua/tail_2.png",
+        "/sprites/woshua/tail_3.png",
+        "/sprites/woshua/tail_4.png",
+        "/sprites/woshua/tail_5.png",
+        "/sprites/woshua/tail_6.png",
+        "/sprites/woshua/tail_7.png",
+        "/sprites/woshua/tail_8.png",
+        "/sprites/woshua/tail_9.png"
+      ]
     }
   ],
   "update": [
@@ -56,9 +100,78 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "increment",
+      "variable": "anim",
+      "by": "0.2"
     }
   ],
   "draw": [
+    {
+      "kind": "sprite",
+      "id": "hanger",
+      "sprite": "woshua_hanger",
+      "origin": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "pivot": null,
+      "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
+      "draw_order": 0
+    },
+    {
+      "kind": "sprite",
+      "id": "duck",
+      "sprite": "woshua_duck",
+      "origin": {
+        "x": 46.0,
+        "y": 18.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_y": "-sin(siner / 5.0) * 2.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0",
+        "frame_index": "floor(anim)"
+      },
+      "draw_order": 1
+    },
+    {
+      "kind": "sprite",
+      "id": "water_left",
+      "sprite": "woshua_water",
+      "origin": {
+        "x": 40.0,
+        "y": 34.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "-sin(anim / 2.0) * 4.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
+      "draw_order": 2
+    },
+    {
+      "kind": "sprite",
+      "id": "water_right",
+      "sprite": "woshua_water",
+      "origin": {
+        "x": 40.0,
+        "y": 34.0
+      },
+      "pivot": null,
+      "transform": {
+        "offset_x": "sin(anim / 2.0) * 4.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
+      "draw_order": 3
+    },
     {
       "kind": "sprite",
       "id": "body",
@@ -68,8 +181,27 @@
         "y": 20.0
       },
       "pivot": null,
-      "transform": {},
-      "draw_order": 0
+      "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
+      "draw_order": 4
+    },
+    {
+      "kind": "sprite",
+      "id": "tail",
+      "sprite": "woshua_tail",
+      "origin": {
+        "x": 88.0,
+        "y": 50.0
+      },
+      "pivot": null,
+      "transform": {
+        "scale_x": "2.0",
+        "scale_y": "2.0",
+        "frame_index": "floor(anim)"
+      },
+      "draw_order": 5
     },
     {
       "kind": "sprite",
@@ -80,8 +212,12 @@
         "y": -35.0
       },
       "pivot": null,
-      "transform": {},
-      "draw_order": 1
+      "transform": {
+        "offset_y": "sin(siner / 10.0) * 4.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
+      "draw_order": 6
     },
     {
       "kind": "sprite",
@@ -92,8 +228,12 @@
         "y": -28.0
       },
       "pivot": null,
-      "transform": {},
-      "draw_order": 2
+      "transform": {
+        "offset_y": "sin(siner / 10.0) * 2.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
+      },
+      "draw_order": 7
     }
   ],
   "codegen": {

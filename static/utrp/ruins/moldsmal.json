@@ -7,7 +7,7 @@
   "canvas": {
     "width": 244,
     "height": 208,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,14 +16,19 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Idle follows GM scalevalue/image_yscale triangle wave: scalevalue flips only after passing 0.9/1.1, includes the one-frame 0.89/1.11 overshoot, image_speed remains 0, and y is compensated by 102 * (1 - image_yscale)."
     ]
   },
   "variables": [
     {
       "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    },
+    {
+      "name": "moldsmal_scale",
       "kind": "counter",
       "initial": 1.0
     }
@@ -43,6 +48,11 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
+    },
+    {
+      "op": "set",
+      "variable": "moldsmal_scale",
+      "value": "ifelse(lte((siner - 1.0) % 44.0, 11.0), 1.0 - (siner - 1.0) % 44.0 * 0.01, ifelse(lte((siner - 1.0) % 44.0, 33.0), 0.89 + ((siner - 1.0) % 44.0 - 11.0) * 0.01, 1.11 - ((siner - 1.0) % 44.0 - 33.0) * 0.01))"
     }
   ],
   "draw": [
@@ -52,15 +62,16 @@
       "sprite": "moldsmal_body",
       "origin": {
         "x": 0.0,
-        "y": 84.0
+        "y": 0.0
       },
       "pivot": {
-        "x": 51.0,
-        "y": 84.0
+        "x": 0.0,
+        "y": 0.0
       },
       "transform": {
-        "scale_y": "1.0 - sin(siner / 4.0) * 0.05",
-        "frame_index": "floor(siner / 6.0) % 2.0"
+        "offset_y": "102.0 * (1.0 - moldsmal_scale)",
+        "scale_y": "moldsmal_scale",
+        "frame_index": "0.0"
       },
       "draw_order": 0
     }

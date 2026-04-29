@@ -1,6 +1,6 @@
 /// Parsnik UTRP GameMaker starter
 /// Source slug: ruins/parsnik
-/// Canvas: 164x174 at 2.0x draw scale
+/// Canvas: 164x174 at 1.0x draw scale
 /// Asset map:
 /// - parsnik_headwrap => /sprites/parsnik/headwrap.png (placeholder sprite: spr_parsnik_headwrap)
 /// - parsnik_snake1 => /sprites/parsnik/snake1_0.png (placeholder sprite: spr_parsnik_snake1)
@@ -35,7 +35,7 @@ siner = 1.0;
 siner += 1.0;
 
 /// Parsnik Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: headwrap
 draw_sprite_ext(spr_parsnik_headwrap, 0.0, -38.0, -38.0 + (sin(1.5 + siner / 5.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 1: snake1

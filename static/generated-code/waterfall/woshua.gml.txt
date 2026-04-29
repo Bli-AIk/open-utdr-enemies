@@ -1,22 +1,48 @@
 /// Woshua UTRP GameMaker starter
 /// Source slug: waterfall/woshua
-/// Canvas: 108x154 at 2.0x draw scale
+/// Canvas: 108x154 at 1.0x draw scale
 /// Asset map:
+/// - woshua_hanger => /sprites/woshua/hanger.png (placeholder sprite: spr_woshua_hanger)
+/// - woshua_duck => /sprites/woshua/duck_0.png (placeholder sprite: spr_woshua_duck)
+///   frame: /sprites/woshua/duck_1.png
+/// - woshua_water => /sprites/woshua/water.png (placeholder sprite: spr_woshua_water)
 /// - woshua_body => /sprites/woshua/body.png (placeholder sprite: spr_woshua_body)
 /// - woshua_head => /sprites/woshua/head.png (placeholder sprite: spr_woshua_head)
 /// - woshua_face => /sprites/woshua/face.png (placeholder sprite: spr_woshua_face)
+/// - woshua_tail => /sprites/woshua/tail_0.png (placeholder sprite: spr_woshua_tail)
+///   frame: /sprites/woshua/tail_1.png
+///   frame: /sprites/woshua/tail_2.png
+///   frame: /sprites/woshua/tail_3.png
+///   frame: /sprites/woshua/tail_4.png
+///   frame: /sprites/woshua/tail_5.png
+///   frame: /sprites/woshua/tail_6.png
+///   frame: /sprites/woshua/tail_7.png
+///   frame: /sprites/woshua/tail_8.png
+///   frame: /sprites/woshua/tail_9.png
 
 /// Woshua Create Event
 siner = 1.0;
+anim = 0.0;
 
 /// Woshua Step Event
 siner += 1.0;
+anim += 0.2;
 
 /// Woshua Draw Event
-var __utrp_scale = 2.0;
-// draw_order 0: body
-draw_sprite_ext(spr_woshua_body, 0.0, 0.0, 20.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
-// draw_order 1: head
-draw_sprite_ext(spr_woshua_head, 0.0, -12.0, -35.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
-// draw_order 2: face
-draw_sprite_ext(spr_woshua_face, 0.0, -2.0, -28.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+var __utrp_scale = 1.0;
+// draw_order 0: hanger
+draw_sprite_ext(spr_woshua_hanger, 0.0, 0.0, 0.0, __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+// draw_order 1: duck
+draw_sprite_ext(spr_woshua_duck, floor(anim), 46.0, 18.0 + (-sin(siner / 5.0) * 2.0), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+// draw_order 2: water_left
+draw_sprite_ext(spr_woshua_water, 0.0, 40.0 + (-sin(anim / 2.0) * 4.0), 34.0, __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+// draw_order 3: water_right
+draw_sprite_ext(spr_woshua_water, 0.0, 40.0 + (sin(anim / 2.0) * 4.0), 34.0, __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+// draw_order 4: body
+draw_sprite_ext(spr_woshua_body, 0.0, 0.0, 20.0, __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+// draw_order 5: tail
+draw_sprite_ext(spr_woshua_tail, floor(anim), 88.0, 50.0, __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+// draw_order 6: head
+draw_sprite_ext(spr_woshua_head, 0.0, -12.0, -35.0 + (sin(siner / 10.0) * 4.0), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+// draw_order 7: face
+draw_sprite_ext(spr_woshua_face, 0.0, -2.0, -28.0 + (sin(siner / 10.0) * 2.0), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);

@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-86.0), static_float(-100.0), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/snowdrake/legs.png".into()),
@@ -31,9 +31,9 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "snowdrake_body".into(),
                 tags: vec!["utrp".into(), "snowdin/snowdrake".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-86.0), expression("-100.0 + (sin(siner / 13.0) * 3.3)"), static_float(1.0))),
+                    translation: Some(vector3(static_float(-86.0), expression("-100.0 + (drake_head_y / 3.0)"), static_float(1.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/snowdrake/body.png".into()),
@@ -48,9 +48,9 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "snowdrake_head".into(),
                 tags: vec!["utrp".into(), "snowdin/snowdrake".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-86.0), expression("-100.0 + (sin(siner / 13.0) * 10.0)"), static_float(2.0))),
+                    translation: Some(vector3(static_float(-86.0), expression("-100.0 + (drake_head_y)"), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/snowdrake/head_0.png".into()),

@@ -7,7 +7,7 @@
   "canvas": {
     "width": 290,
     "height": 400,
-    "scale": 2.0
+    "scale": 1.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,10 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Reviewed against obj_sorrybody_Draw_0/Create_0 and obj_sosorry_Create_0. Default front-facing idle preserves the GM tail scale wobble, body/head/hat bob, arm sway, leg stretch, and 2x draw scale.",
+      "Hat randomization, faceemotion changes, back-facing tail attacks, and drawing-arm states are conditional battle states; this renderer keeps the default hat/face/arms."
     ]
   },
   "variables": [
@@ -125,7 +126,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_x": "sin(siner / 12.0) * 46.0"
+        "offset_x": "sin(siner / 12.0) * 46.0",
+        "scale_x": "sin(siner / 12.0) * 2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 0
     },
@@ -139,7 +142,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_x": "sin(siner / 6.0) * -2.0"
+        "offset_x": "sin(siner / 6.0) * -2.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0 + cos(siner / 3.0) * 0.1"
       },
       "draw_order": 1
     },
@@ -154,7 +159,8 @@
       "pivot": null,
       "transform": {
         "offset_x": "sin(siner / 6.0) * 2.0",
-        "scale_x": "-1.0"
+        "scale_x": "-2.0",
+        "scale_y": "2.0 + cos(siner / 3.0) * 0.1"
       },
       "draw_order": 2
     },
@@ -168,7 +174,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 2.0"
+        "offset_y": "sin(siner / 6.0) * 2.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 3
     },
@@ -182,7 +190,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_x": "sin(siner / 3.0) * 2.0"
+        "offset_x": "sin(siner / 3.0) * 2.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 4
     },
@@ -197,7 +207,8 @@
       "pivot": null,
       "transform": {
         "offset_x": "sin(siner / 3.0) * -2.0",
-        "scale_x": "-1.0"
+        "scale_x": "-2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 5
     },
@@ -211,7 +222,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 3.0"
+        "offset_y": "sin(siner / 6.0) * 3.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 6
     },
@@ -225,7 +238,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 4.0"
+        "offset_y": "sin(siner / 6.0) * 4.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 7
     },
@@ -239,7 +254,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 1.0"
+        "offset_y": "sin(siner / 6.0) * 1.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 8
     },
@@ -254,7 +271,8 @@
       "pivot": null,
       "transform": {
         "offset_y": "sin(siner / 6.0) * 1.0",
-        "scale_x": "-1.0"
+        "scale_x": "-2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 9
     },
@@ -268,7 +286,9 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "sin(siner / 6.0) * 5.0"
+        "offset_y": "sin(siner / 6.0) * 5.0",
+        "scale_x": "2.0",
+        "scale_y": "2.0"
       },
       "draw_order": 10
     }

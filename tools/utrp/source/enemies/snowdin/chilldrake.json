@@ -7,7 +7,7 @@
   "canvas": {
     "width": 172,
     "height": 210,
-    "scale": 2
+    "scale": 1
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,14 +16,29 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "needs_source_review",
+    "accuracy": "reviewed",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Idle reviewed against obj_drakehead: head y is the accumulated a/down state-machine motion, body follows the head y deviation divided by 3, and Chilldrake glasses follow the head."
     ]
   },
   "variables": [
     {
       "name": "siner",
+      "kind": "counter",
+      "initial": 1.0
+    },
+    {
+      "name": "drake_head_y",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "drake_a",
+      "kind": "counter",
+      "initial": 0.4
+    },
+    {
+      "name": "drake_down",
       "kind": "counter",
       "initial": 1.0
     }
@@ -82,6 +97,36 @@
       "op": "increment",
       "variable": "siner",
       "by": "1"
+    },
+    {
+      "op": "set",
+      "variable": "drake_head_y",
+      "value": "drake_head_y + ifelse(eq(drake_down, 1), drake_a / 2, 0)"
+    },
+    {
+      "op": "set",
+      "variable": "drake_a",
+      "value": "drake_a + ifelse(eq(drake_down, 1), 0.05, 0)"
+    },
+    {
+      "op": "set",
+      "variable": "drake_down",
+      "value": "ifelse(gte(drake_a, 1), 0, drake_down)"
+    },
+    {
+      "op": "set",
+      "variable": "drake_head_y",
+      "value": "drake_head_y + ifelse(eq(drake_down, 0), drake_a / 2, 0)"
+    },
+    {
+      "op": "set",
+      "variable": "drake_a",
+      "value": "drake_a + ifelse(eq(drake_down, 0), -0.05, 0)"
+    },
+    {
+      "op": "set",
+      "variable": "drake_down",
+      "value": "ifelse(lte(drake_a, -1), 1, drake_down)"
     }
   ],
   "draw": [
@@ -113,7 +158,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 13) * 3.3"
+        "offset_y": "drake_head_y / 3"
       },
       "draw_order": 1
     },
@@ -130,7 +175,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 13) * 10",
+        "offset_y": "drake_head_y",
         "frame_index": "floor(siner * 0.1) % 20"
       },
       "draw_order": 2
@@ -148,7 +193,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 13) * 10"
+        "offset_y": "drake_head_y"
       },
       "draw_order": 3
     }

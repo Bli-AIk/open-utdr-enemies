@@ -1,31 +1,104 @@
 /// Knight Knight UTRP GameMaker starter
 /// Source slug: core/knight-knight
-/// Canvas: 224x332 at 2.0x draw scale
+/// Canvas: 224x332 at 1.0x draw scale
 /// Asset map:
 /// - knightknight_leftarm => /sprites/knight-knight/knightknight_leftarm.png (placeholder sprite: spr_knightknight_leftarm)
 /// - knightknight_fur => /sprites/knight-knight/knightknight_fur.png (placeholder sprite: spr_knightknight_fur)
+///   frame: /sprites/knight-knight/knightknight_fur_0.png
+///   frame: /sprites/knight-knight/knightknight_fur_1.png
+///   frame: /sprites/knight-knight/knightknight_fur_2.png
+///   frame: /sprites/knight-knight/knightknight_fur_3.png
 /// - knightknight_body => /sprites/knight-knight/knightknight_body.png (placeholder sprite: spr_knightknight_body)
 /// - knightknight_eyes => /sprites/knight-knight/knightknight_eyes.png (placeholder sprite: spr_knightknight_eyes)
+///   frame: /sprites/knight-knight/knightknight_eyes_0.png
+///   frame: /sprites/knight-knight/knightknight_eyes_1.png
+///   frame: /sprites/knight-knight/knightknight_eyes_2.png
+///   frame: /sprites/knight-knight/knightknight_eyes_3.png
+///   frame: /sprites/knight-knight/knightknight_eyes_4.png
+///   frame: /sprites/knight-knight/knightknight_eyes_5.png
+///   frame: /sprites/knight-knight/knightknight_eyes_6.png
+///   frame: /sprites/knight-knight/knightknight_eyes_7.png
+///   frame: /sprites/knight-knight/knightknight_eyes_8.png
+///   frame: /sprites/knight-knight/knightknight_eyes_9.png
 /// - knightknight_helmet => /sprites/knight-knight/knightknight_helmet.png (placeholder sprite: spr_knightknight_helmet)
+///   frame: /sprites/knight-knight/knightknight_helmet_0.png
+///   frame: /sprites/knight-knight/knightknight_helmet_1.png
+///   frame: /sprites/knight-knight/knightknight_helmet_2.png
+///   frame: /sprites/knight-knight/knightknight_helmet_3.png
 /// - knightknight_mouth => /sprites/knight-knight/knightknight_mouth.png (placeholder sprite: spr_knightknight_mouth)
+///   frame: /sprites/knight-knight/knightknight_mouth_0.png
+///   frame: /sprites/knight-knight/knightknight_mouth_1.png
+///   frame: /sprites/knight-knight/knightknight_mouth_2.png
+///   frame: /sprites/knight-knight/knightknight_mouth_3.png
+///   frame: /sprites/knight-knight/knightknight_mouth_4.png
+///   frame: /sprites/knight-knight/knightknight_mouth_5.png
+///   frame: /sprites/knight-knight/knightknight_mouth_6.png
+///   frame: /sprites/knight-knight/knightknight_mouth_7.png
+///   frame: /sprites/knight-knight/knightknight_mouth_8.png
+///   frame: /sprites/knight-knight/knightknight_mouth_9.png
+/// - knightknight_eyes_tired => /sprites/knight-knight/knightknight_eyes_tired_0.png (placeholder sprite: spr_knightknight_eyes_tired)
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_1.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_2.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_3.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_4.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_5.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_6.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_7.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_8.png
+///   frame: /sprites/knight-knight/knightknight_eyes_tired_9.png
+/// - knightknight_eyes_asleep => /sprites/knight-knight/knightknight_eyes_asleep_0.png (placeholder sprite: spr_knightknight_eyes_asleep)
+/// - knightknight_helmet_hurt => /sprites/knight-knight/knightknight_helmet_hurt_0.png (placeholder sprite: spr_knightknight_helmet_hurt)
+/// - knightknight_mouth_tired => /sprites/knight-knight/knightknight_mouth_tired_0.png (placeholder sprite: spr_knightknight_mouth_tired)
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_1.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_2.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_3.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_4.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_5.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_6.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_7.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_8.png
+///   frame: /sprites/knight-knight/knightknight_mouth_tired_9.png
+/// - knightknight_mouth_asleep => /sprites/knight-knight/knightknight_mouth_asleep_0.png (placeholder sprite: spr_knightknight_mouth_asleep)
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_1.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_2.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_3.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_4.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_5.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_6.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_7.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_8.png
+///   frame: /sprites/knight-knight/knightknight_mouth_asleep_9.png
+/// - knightknight_mouth_hurt => /sprites/knight-knight/knightknight_mouth_hurt_0.png (placeholder sprite: spr_knightknight_mouth_hurt)
 
 /// Knight Knight Create Event
 siner = 1.0;
+tick = 0.0;
+anim_e2 = 0.0;
+anim_h2 = 0.0;
+anim_m2 = 0.0;
+anim_l2 = 0.0;
+anim_l3 = 0.0;
 
 /// Knight Knight Step Event
 siner += 1.0;
+tick += 1.0;
+anim_e2 = ifelse(lt(tick % 181.0, 31.0), 0.0, ifelse(lt(tick % 181.0, 60.0), tick % 181.0 - 30.0, 29.0));
+anim_h2 = floor(tick / 101.0) * 24.0 + clamp(tick % 101.0 - 50.0, 0.0, 24.0);
+anim_m2 = ifelse(lt(tick % 301.0, 151.0), 0.0, ifelse(lt(tick % 301.0, 180.0), tick % 301.0 - 150.0, ifelse(lt(tick % 301.0, 241.0), 29.0, ifelse(lt(tick % 301.0, 270.0), 29.0 + tick % 301.0 - 240.0, 58.0))));
+anim_l2 = ifelse(lt(tick % 165.0, 60.0), 0.0, ifelse(lt(tick % 165.0, 120.0), -(tick % 165.0 - 59.0) * 0.5, ifelse(lt(tick % 165.0, 150.0), -30.0, ifelse(lt(tick % 165.0, 155.0), min(0.0, -30.0 + (tick % 165.0 - 149.0) * 6.0), ifelse(eq(tick % 165.0 % 2.0, 0.0), 0.0, -3.0)))));
+anim_l3 = ifelse(gte(tick % 165.0, 155.0), ifelse(eq(tick % 4.0, 0.0), -1.0, 1.0), 0.0);
 
 /// Knight Knight Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: eyes
-draw_sprite_ext(spr_knightknight_eyes, 0.0, -11.0 + (sin(siner / 10.0) * 6.0), -31.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_knightknight_eyes, floor(anim_e2 / 3.0) % 10.0, -11.0 + (sin(siner / 10.0) * 6.0), -31.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 1: body
 draw_sprite_ext(spr_knightknight_body, 0.0, -105.0, -101.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 2: helmet
-draw_sprite_ext(spr_knightknight_helmet, 0.0, -35.0, -99.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_knightknight_helmet, floor(anim_h2 / 4.0) % 4.0, -35.0, -99.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 3: mouth
-draw_sprite_ext(spr_knightknight_mouth, 0.0, -7.0, -17.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_knightknight_mouth, floor(anim_m2 / 6.0) % 10.0, -7.0, -17.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 4: fur
-draw_sprite_ext(spr_knightknight_fur, 0.0, -41.0, -5.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_knightknight_fur, floor(siner / 5.0) % 4.0, -41.0, -5.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 5: leftarm
-draw_sprite_ext(spr_knightknight_leftarm, 0.0, -105.0, -101.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_knightknight_leftarm, 0.0, -105.0 + (anim_l3), -101.0 + (anim_l2), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

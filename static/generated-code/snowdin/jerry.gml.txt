@@ -1,6 +1,6 @@
 /// Jerry UTRP GameMaker starter
 /// Source slug: snowdin/jerry
-/// Canvas: 416x220 at 2.0x draw scale
+/// Canvas: 416x220 at 1.0x draw scale
 /// Asset map:
 /// - jerry_body => /sprites/jerry/body_0.png (placeholder sprite: spr_jerry_body)
 ///   frame: /sprites/jerry/body_1.png
@@ -20,6 +20,6 @@ siner = 1.0;
 siner += 1.0;
 
 /// Jerry Draw Event
-var __utrp_scale = 2.0;
+var __utrp_scale = 1.0;
 // draw_order 0: body
 draw_sprite_ext(spr_jerry_body, floor(siner * 0.1) % 10.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

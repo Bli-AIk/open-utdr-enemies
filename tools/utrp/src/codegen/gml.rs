@@ -61,6 +61,15 @@ pub fn generate(program: &RenderProgram) -> String {
             UpdateOp::Increment { variable, by } => {
                 writeln!(output, "{} += {};", gml_identifier(variable), by.to_gml()).unwrap();
             }
+            UpdateOp::Set { variable, value } => {
+                writeln!(
+                    output,
+                    "{} = {};",
+                    gml_identifier(variable),
+                    value.to_gml()
+                )
+                .unwrap();
+            }
         }
     }
 

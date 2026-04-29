@@ -24,7 +24,14 @@ const UTRPExpression = (() => {
     max: Math.max,
     pow: Math.pow,
     sqrt: Math.sqrt,
-    clamp: (value, min, max) => Math.min(Math.max(value, min), max)
+    clamp: (value, min, max) => Math.min(Math.max(value, min), max),
+    ifelse: (condition, yes, no) => condition ? yes : no,
+    gt: (left, right) => left > right ? 1 : 0,
+    gte: (left, right) => left >= right ? 1 : 0,
+    lt: (left, right) => left < right ? 1 : 0,
+    lte: (left, right) => left <= right ? 1 : 0,
+    eq: (left, right) => left === right ? 1 : 0,
+    neq: (left, right) => left !== right ? 1 : 0
   };
 
   function isDigit(ch) {

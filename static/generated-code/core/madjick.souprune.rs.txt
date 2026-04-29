@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-43.0 + (-sin(siner / 5.0) * 5.0)"), expression("48.0 + (-sin(siner / 5.0) * 6.0)"), static_float(0.0))),
                     rotation: Some(expression("-40.0 - sin(siner / 5.0) * 10.0")),
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/madjick/boot.png".into()),
@@ -33,7 +33,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-1.0 + (sin(siner / 5.0) * 5.0)"), expression("48.0 + (-sin(siner / 5.0) * 6.0)"), static_float(1.0))),
                     rotation: Some(expression("40.0 + sin(siner / 5.0) * 10.0")),
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), static_float(1.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/madjick/boot.png".into()),
@@ -49,7 +49,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-22.0), expression("20.0 + (sin(siner / 5.0))"), static_float(2.0))),
                     rotation: Some(expression("-sin(siner / 5.0) * 10.0")),
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/madjick/lapel.png".into()),
@@ -65,7 +65,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-22.0), expression("20.0 + (sin(siner / 5.0))"), static_float(3.0))),
                     rotation: Some(expression("sin(siner / 5.0) * 10.0")),
-                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), static_float(1.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/madjick/lapel.png".into()),
@@ -81,7 +81,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-54.0), expression("20.0 + (sin(siner / 5.0))"), static_float(4.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), expression("2.0 * (0.9 - sin(siner / 5.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(static_float(1.0), expression("1.0 * (0.9 - sin(siner / 5.0) * 0.1)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/madjick/dress.png".into()),
@@ -97,7 +97,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-26.0 + (sin(siner / 5.0))"), expression("-30.0 + (sin(siner / 5.0) * 8.0)"), static_float(5.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/madjick/head.png".into()),
@@ -113,12 +113,46 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-18.0 + (cos(siner / 5.0))"), expression("-28.0 + (sin(siner / 5.0) * 10.0)"), static_float(6.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
+                    scale: None,
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/madjick/hat.png".into()),
                     color: None,
                     pivot: Some(vector2(static_float(-2.0), static_float(19.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "madjick_orb_left".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(-64.0), expression("-16.0 + (sin(siner / 2.5) * 2.0)"), static_float(7.0))),
+                    rotation: None,
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), expression("1.0 * (-1.0)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orb_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    ..Default::default()
+                }),
+                ..Default::default()
+            },
+            // TODO: UTRP frame_index `floor(siner / 3.0)` is not fully modeled by this basic ViewNodeDef starter.
+            ViewNodeDef {
+                name: "madjick_orb_right".into(),
+                tags: vec!["utrp".into(), "core/madjick".into()],
+                transform: Some(SerializableTransform {
+                    translation: Some(vector3(static_float(50.0), expression("-26.0 + (sin(siner / 2.5) * 5.0)"), static_float(8.0))),
+                    rotation: None,
+                    scale: Some(vector3(expression("1.0 * (-1.0)"), expression("1.0 * (-1.0)"), static_float(1.0))),
+                }),
+                sprite: Some(SpriteDef {
+                    visual: Visual("/sprites/madjick/orb_0.png".into()),
+                    color: None,
+                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
                     ..Default::default()
                 }),
                 ..Default::default()

@@ -154,6 +154,7 @@ impl SpriteAsset {
 #[serde(rename_all = "snake_case")]
 pub enum UpdateOp {
     Increment { variable: String, by: Expr },
+    Set { variable: String, value: Expr },
 }
 
 impl UpdateOp {
@@ -161,6 +162,13 @@ impl UpdateOp {
         Self::Increment {
             variable: variable.into(),
             by,
+        }
+    }
+
+    pub fn set(variable: impl Into<String>, value: Expr) -> Self {
+        Self::Set {
+            variable: variable.into(),
+            value,
         }
     }
 }

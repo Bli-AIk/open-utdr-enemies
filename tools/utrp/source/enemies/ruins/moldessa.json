@@ -7,7 +7,7 @@
   "canvas": {
     "width": 210,
     "height": 198,
-    "scale": 2
+    "scale": 1
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,7 +18,7 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
+      "Motion follows obj_moldessa_body_Draw normal state. GM chooses face[0..2] with floor(random(9)) on create; UTRP exposes deterministic face slots seeded to the previous article capture constants 0/4/7."
     ]
   },
   "variables": [
@@ -26,6 +26,21 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
+    },
+    {
+      "name": "face_slot_0",
+      "kind": "counter",
+      "initial": 0.0
+    },
+    {
+      "name": "face_slot_1",
+      "kind": "counter",
+      "initial": 4.0
+    },
+    {
+      "name": "face_slot_2",
+      "kind": "counter",
+      "initial": 7.0
     }
   ],
   "assets": [
@@ -108,7 +123,7 @@
         "offset_x": "sin(siner / 16) * 13 + sin(siner / 6)",
         "offset_y": "cos(siner / 16) * 18 + cos(siner / 6)",
         "rotation_deg": "siner * 3 + sin(siner / 6) * 4",
-        "frame_index": "0"
+        "frame_index": "face_slot_0"
       },
       "draw_order": 1
     },
@@ -128,7 +143,7 @@
         "offset_x": "sin((siner + 36) / 16) * 13 + sin(siner / 6)",
         "offset_y": "cos((siner + 36) / 16) * 18 + cos(siner / 6)",
         "rotation_deg": "siner * 3 + 180 + sin(siner / 6) * 4",
-        "frame_index": "4"
+        "frame_index": "face_slot_1"
       },
       "draw_order": 2
     },
@@ -148,7 +163,7 @@
         "offset_x": "sin((siner + 65) / 16) * 13 + sin(siner / 6)",
         "offset_y": "cos((siner + 65) / 16) * 18 + cos(siner / 6)",
         "rotation_deg": "siner * 3 + 180 + sin(siner / 6) * 4",
-        "frame_index": "7"
+        "frame_index": "face_slot_2"
       },
       "draw_order": 3
     },
