@@ -1,19 +1,17 @@
 /// Moldsmal UTRP GameMaker starter
 /// Source slug: ruins/moldsmal
-/// Canvas: 244x208 at 1.0x draw scale
+/// Canvas: 244x208 at 2.0x draw scale
 /// Asset map:
 /// - moldsmal_body => /sprites/moldsmal/body_0.png (placeholder sprite: spr_moldsmal_body)
 ///   frame: /sprites/moldsmal/body_1.png
 
 /// Moldsmal Create Event
 siner = 1.0;
-moldsmal_scale = 1.0;
 
 /// Moldsmal Step Event
 siner += 1.0;
-moldsmal_scale = ifelse(lte((siner - 1.0) % 44.0, 11.0), 1.0 - (siner - 1.0) % 44.0 * 0.01, ifelse(lte((siner - 1.0) % 44.0, 33.0), 0.89 + ((siner - 1.0) % 44.0 - 11.0) * 0.01, 1.11 - ((siner - 1.0) % 44.0 - 33.0) * 0.01));
 
 /// Moldsmal Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: body
-draw_sprite_ext(spr_moldsmal_body, 0.0, 0.0, 0.0 + (102.0 * (1.0 - moldsmal_scale)), __utrp_scale, __utrp_scale * (moldsmal_scale), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_moldsmal_body, floor(siner / 6.0) % 2.0, 0.0, 84.0, __utrp_scale, __utrp_scale * (1.0 - sin(siner / 4.0) * 0.05), 0.0, c_white, 1.0);

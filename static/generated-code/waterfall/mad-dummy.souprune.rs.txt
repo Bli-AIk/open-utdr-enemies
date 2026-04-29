@@ -59,7 +59,6 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `floor(siner * 0.1)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "mad_dummy_head".into(),
                 tags: vec!["utrp".into(), "waterfall/mad-dummy".into()],

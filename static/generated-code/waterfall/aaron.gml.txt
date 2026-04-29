@@ -1,6 +1,6 @@
 /// Aaron UTRP GameMaker starter
 /// Source slug: waterfall/aaron
-/// Canvas: 160x240 at 1.0x draw scale
+/// Canvas: 160x240 at 2.0x draw scale
 /// Asset map:
 /// - aaron_body => /sprites/aaron/aaronbody.png (placeholder sprite: spr_aaron_body)
 
@@ -11,6 +11,6 @@ siner = 1.0;
 siner += 1.0;
 
 /// Aaron Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: body
-draw_sprite_ext(spr_aaron_body, 0.0, -57.0, -100.0 + (sin(siner / 30.0) * 9.0), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_aaron_body, 0.0, -57.0, -100.0 + (sin(siner / 30.0) * 9.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

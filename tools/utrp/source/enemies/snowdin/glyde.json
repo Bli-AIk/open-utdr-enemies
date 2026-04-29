@@ -7,7 +7,7 @@
   "canvas": {
     "width": 260,
     "height": 220,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,21 +16,16 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "reviewed",
+    "accuracy": "needs_source_review",
     "notes": [
-      "Idle reviewed against obj_glyde_body Draw: dsiner increments each frame and siner accumulates cos(dsiner / 24) * 2 before the body, wing, and antenna offsets are evaluated."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
     {
       "name": "siner",
       "kind": "counter",
-      "initial": 0.0
-    },
-    {
-      "name": "dsiner",
-      "kind": "counter",
-      "initial": 0.0
+      "initial": 1.0
     }
   ],
   "assets": [
@@ -66,13 +61,8 @@
   "update": [
     {
       "op": "increment",
-      "variable": "dsiner",
-      "by": "1"
-    },
-    {
-      "op": "set",
       "variable": "siner",
-      "value": "siner + cos(dsiner / 24) * 2"
+      "by": "1"
     }
   ],
   "draw": [

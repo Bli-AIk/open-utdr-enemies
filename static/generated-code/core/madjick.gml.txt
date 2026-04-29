@@ -1,23 +1,12 @@
 /// Madjick UTRP GameMaker starter
 /// Source slug: core/madjick
-/// Canvas: 184x238 at 1.0x draw scale
+/// Canvas: 184x238 at 2.0x draw scale
 /// Asset map:
 /// - madjick_boot => /sprites/madjick/boot.png (placeholder sprite: spr_madjick_boot)
 /// - madjick_dress => /sprites/madjick/dress.png (placeholder sprite: spr_madjick_dress)
 /// - madjick_lapel => /sprites/madjick/lapel.png (placeholder sprite: spr_madjick_lapel)
 /// - madjick_head => /sprites/madjick/head.png (placeholder sprite: spr_madjick_head)
 /// - madjick_hat => /sprites/madjick/hat.png (placeholder sprite: spr_madjick_hat)
-/// - madjick_orb => /sprites/madjick/orb_0.png (placeholder sprite: spr_madjick_orb)
-///   frame: /sprites/madjick/orb_1.png
-///   frame: /sprites/madjick/orb_2.png
-///   frame: /sprites/madjick/orb_3.png
-///   frame: /sprites/madjick/orb_4.png
-///   frame: /sprites/madjick/orb_5.png
-///   frame: /sprites/madjick/orb_6.png
-///   frame: /sprites/madjick/orb_7.png
-///   frame: /sprites/madjick/orb_8.png
-///   frame: /sprites/madjick/orb_9.png
-/// - madjick_orb_hurt => /sprites/madjick/orb_hurt_0.png (placeholder sprite: spr_madjick_orb_hurt)
 
 /// Madjick Create Event
 siner = 1.0;
@@ -26,7 +15,7 @@ siner = 1.0;
 siner += 1.0;
 
 /// Madjick Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: boot_left
 draw_sprite_ext(spr_madjick_boot, 0.0, -43.0 + (-sin(siner / 5.0) * 5.0), 48.0 + (-sin(siner / 5.0) * 6.0), __utrp_scale, __utrp_scale, -40.0 - sin(siner / 5.0) * 10.0, c_white, 1.0);
 // draw_order 1: boot_right
@@ -41,7 +30,3 @@ draw_sprite_ext(spr_madjick_dress, 0.0, -54.0, 20.0 + (sin(siner / 5.0)), __utrp
 draw_sprite_ext(spr_madjick_head, 0.0, -26.0 + (sin(siner / 5.0)), -30.0 + (sin(siner / 5.0) * 8.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 6: hat
 draw_sprite_ext(spr_madjick_hat, 0.0, -18.0 + (cos(siner / 5.0)), -28.0 + (sin(siner / 5.0) * 10.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
-// draw_order 7: orb_left
-draw_sprite_ext(spr_madjick_orb, floor(siner / 3.0), -64.0, -16.0 + (sin(siner / 2.5) * 2.0), __utrp_scale * (-1.0), __utrp_scale * (-1.0), 0.0, c_white, 1.0);
-// draw_order 8: orb_right
-draw_sprite_ext(spr_madjick_orb, floor(siner / 3.0), 50.0, -26.0 + (sin(siner / 2.5) * 5.0), __utrp_scale * (-1.0), __utrp_scale * (-1.0), 0.0, c_white, 1.0);

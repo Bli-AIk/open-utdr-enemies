@@ -7,7 +7,7 @@
   "canvas": {
     "width": 164,
     "height": 174,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "reviewed",
+    "accuracy": "needs_source_review",
     "notes": [
-      "Normal idle reviewed against obj_parsnik_body_Draw after canvas scale=1; pause/hurt state remains omitted."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [

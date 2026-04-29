@@ -1,6 +1,6 @@
 /// Dummy UTRP GameMaker starter
 /// Source slug: ruins/dummy
-/// Canvas: 236x252 at 1.0x draw scale
+/// Canvas: 236x252 at 2.0x draw scale
 /// Asset map:
 /// - dummy_body => /sprites/dummy/body.png (placeholder sprite: spr_dummy_body)
 
@@ -11,6 +11,6 @@
 // No UTRP update operations are defined for this program.
 
 /// Dummy Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: body
 draw_sprite_ext(spr_dummy_body, 0.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

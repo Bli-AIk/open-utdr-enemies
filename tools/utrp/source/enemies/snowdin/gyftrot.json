@@ -7,7 +7,7 @@
   "canvas": {
     "width": 230,
     "height": 220,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,7 +18,7 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Reviewed against obj_gyftrot, obj_gyftrothead, obj_gyftrotmouth, obj_gyftrotgift, and obj_gyfcloud. UTRP lacks random alarms, hspeed objects, and spawned child lifetime state, so this uses deterministic periodic approximations: fixed gift frames 0/1/3, a 114-frame head movement cycle, a 170-frame mouth/cloud cycle, and one periodic cloud puff with averaged obj_gyfcloud velocity/friction/fade."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
@@ -74,13 +74,6 @@
         "/sprites/gyftrot/gift_8.png",
         "/sprites/gyftrot/gift_9.png"
       ]
-    },
-    {
-      "id": "gyftrot_cloud",
-      "path": "/sprites/gyftrot/cloud.png",
-      "frames": [
-        "/sprites/gyftrot/cloud.png"
-      ]
     }
   ],
   "update": [
@@ -108,7 +101,7 @@
     },
     {
       "kind": "sprite",
-      "id": "gift_body_back",
+      "id": "gift",
       "sprite": "gyftrot_gift",
       "origin": {
         "x": -100,
@@ -119,7 +112,8 @@
         "y": 0
       },
       "transform": {
-        "frame_index": "1"
+        "offset_x": "sin(siner / 15) * 8",
+        "frame_index": "floor(siner * 0.02) % 10"
       },
       "draw_order": 1
     },
@@ -136,46 +130,10 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "ifelse(lt(siner % 114, 45), 0, ifelse(lt(siner % 114, 57), (siner % 114) - 45, ifelse(lt(siner % 114, 102), 12, 114 - (siner % 114))))",
-        "frame_index": "ifelse(gte(siner % 118, 110), 1, 0)"
+        "offset_x": "sin(siner / 15) * 8",
+        "frame_index": "clamp(sign(sin(siner / 40) - 0.9), 0, 1)"
       },
       "draw_order": 2
-    },
-    {
-      "kind": "sprite",
-      "id": "gift_head_0",
-      "sprite": "gyftrot_gift",
-      "origin": {
-        "x": -100,
-        "y": -103
-      },
-      "pivot": {
-        "x": 1,
-        "y": 0
-      },
-      "transform": {
-        "offset_x": "ifelse(lt(siner % 114, 45), 0, ifelse(lt(siner % 114, 57), (siner % 114) - 45, ifelse(lt(siner % 114, 102), 12, 114 - (siner % 114))))",
-        "frame_index": "0"
-      },
-      "draw_order": 3
-    },
-    {
-      "kind": "sprite",
-      "id": "gift_head_3",
-      "sprite": "gyftrot_gift",
-      "origin": {
-        "x": -100,
-        "y": -103
-      },
-      "pivot": {
-        "x": 1,
-        "y": 0
-      },
-      "transform": {
-        "offset_x": "ifelse(lt(siner % 114, 45), 0, ifelse(lt(siner % 114, 57), (siner % 114) - 45, ifelse(lt(siner % 114, 102), 12, 114 - (siner % 114))))",
-        "frame_index": "3"
-      },
-      "draw_order": 4
     },
     {
       "kind": "sprite",
@@ -190,32 +148,10 @@
         "y": 0
       },
       "transform": {
-        "offset_x": "ifelse(lt(siner % 114, 45), 0, ifelse(lt(siner % 114, 57), (siner % 114) - 45, ifelse(lt(siner % 114, 102), 12, 114 - (siner % 114))))",
-        "frame_index": "ifelse(lt(siner % 170, 20), 0, ifelse(lt(siner % 170, 32), clamp(floor(((siner % 170) - 17) / 3), 1, 4), ifelse(lt(siner % 170, 82), 4, ifelse(lt(siner % 170, 94), clamp(4 - floor(((siner % 170) - 79) / 3), 0, 3), 0))))"
+        "offset_x": "sin(siner / 15) * 8",
+        "frame_index": "floor(clamp(5 - abs(siner % 100 - 15) / 3, 0, 4))"
       },
-      "draw_order": 5
-    },
-    {
-      "kind": "sprite",
-      "id": "cloud",
-      "sprite": "gyftrot_cloud",
-      "origin": {
-        "x": -10,
-        "y": 39
-      },
-      "pivot": {
-        "x": 8,
-        "y": 7
-      },
-      "transform": {
-        "offset_x": "ifelse(lt(siner % 114, 45), 0, ifelse(lt(siner % 114, 57), (siner % 114) - 45, ifelse(lt(siner % 114, 102), 12, 114 - (siner % 114)))) + sin(((siner + 113) % 170) / 5) * 2",
-        "offset_y": "ifelse(lt((siner + 113) % 170, 22), ((siner + 113) % 170) * 3.25 - ((siner + 113) % 170) * (((siner + 113) % 170) + 1) * 0.075, 35)",
-        "scale_x": "0.1 + sqrt(min((siner + 113) % 170, 45)) * 0.3 + min((siner + 113) % 170, 45) * 0.018",
-        "scale_y": "0.1 + sqrt(min((siner + 113) % 170, 45)) * 0.3 + min((siner + 113) % 170, 45) * 0.018",
-        "rotation_deg": "((siner + 113) % 170) * 3",
-        "alpha": "ifelse(lt((siner + 113) % 170, 45), ifelse(lt((siner + 113) % 170, 18), 0.7, clamp(0.7 - (((siner + 113) % 170) - 18) * 0.03, 0, 0.7)), 0)"
-      },
-      "draw_order": 6
+      "draw_order": 3
     }
   ]
 }

@@ -1,6 +1,6 @@
 /// Migospel UTRP GameMaker starter
 /// Source slug: ruins/migospel
-/// Canvas: 172x196 at 1.0x draw scale
+/// Canvas: 172x196 at 2.0x draw scale
 /// Asset map:
 /// - migospel_wingA => /sprites/migospel/wingA.png (placeholder sprite: spr_migospel_wingA)
 /// - migospel_wingB => /sprites/migospel/wingB.png (placeholder sprite: spr_migospel_wingB)
@@ -19,14 +19,12 @@
 
 /// Migospel Create Event
 siner = 1.0;
-body_y = 0.0;
 
 /// Migospel Step Event
 siner += 1.0;
-body_y = floor(sin(siner / 6.0) * 2.0);
 
 /// Migospel Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: wing_a_left
 draw_sprite_ext(spr_migospel_wingA, 0.0, -26.0 + (sin(siner / 4.0) * 2.0), 0.0 + (sin(siner / 4.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 1: wing_a_right
@@ -40,8 +38,8 @@ draw_sprite_ext(spr_migospel_leg, 0.0, -26.0, 42.0, __utrp_scale, __utrp_scale, 
 // draw_order 5: leg_right
 draw_sprite_ext(spr_migospel_leg, 0.0, 24.0, 42.0, __utrp_scale * (-1.0), __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 6: body
-draw_sprite_ext(spr_migospel_body, 0.0, -26.0, -58.0 + (body_y), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_migospel_body, 0.0, -26.0, -58.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 7: eyes
-draw_sprite_ext(spr_migospel_eye, 0.0, -20.0, -8.0 + (floor(body_y - clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0))), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_migospel_eye, 0.0, -20.0, -8.0 + (sin(siner / 6.0) * 2.0 + -clamp((siner % 180.0 - 90.0) * 0.8, 0.0, 16.0) + clamp((siner % 180.0 - 150.0) * 0.8, 0.0, 16.0)), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 8: mouth
-draw_sprite_ext(spr_migospel_mouthA, floor(clamp(siner % 51.0 - 40.0, 0.0, 2.0)), -18.0, 8.0 + (body_y), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
+draw_sprite_ext(spr_migospel_mouthA, floor(clamp(siner % 51.0 - 40.0, 0.0, 2.0)), -18.0, 8.0 + (sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

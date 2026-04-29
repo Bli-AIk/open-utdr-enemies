@@ -1,6 +1,6 @@
 /// Pyrope UTRP GameMaker starter
 /// Source slug: hotland/pyrope
-/// Canvas: 252x376 at 1.0x draw scale
+/// Canvas: 252x376 at 2.0x draw scale
 /// Asset map:
 /// - pyrope_footl => /sprites/pyrope/footl.png (placeholder sprite: spr_pyrope_footl)
 /// - pyrope_footr => /sprites/pyrope/footr.png (placeholder sprite: spr_pyrope_footr)
@@ -11,7 +11,6 @@
 /// - pyrope_body1 => /sprites/pyrope/body1.png (placeholder sprite: spr_pyrope_body1)
 /// - pyrope_body0 => /sprites/pyrope/body0.png (placeholder sprite: spr_pyrope_body0)
 /// - pyrope_head => /sprites/pyrope/head.png (placeholder sprite: spr_pyrope_head)
-///   frame: /sprites/pyrope/head_1.png
 
 /// Pyrope Create Event
 siner = 1.0;
@@ -20,22 +19,22 @@ siner = 1.0;
 siner += 1.0;
 
 /// Pyrope Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: foot_left
-draw_sprite_ext(spr_pyrope_footl, 0.0, -5.0, 156.0 + (-abs(sin(siner / 14.0) * 20.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), abs(sin(siner / 14.0) * 40.0), c_white, 1.0);
+draw_sprite_ext(spr_pyrope_footl, 0.0, -5.0, 156.0 + (sin(siner / 14.0) * -10.0), __utrp_scale, __utrp_scale, sin(siner / 14.0) * 20.0, c_white, 1.0);
 // draw_order 1: foot_right
-draw_sprite_ext(spr_pyrope_footr, 0.0, 39.0, 156.0 + (-abs(sin(siner / 14.0) * 20.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), -abs(sin(siner / 14.0) * 40.0), c_white, 1.0);
+draw_sprite_ext(spr_pyrope_footr, 0.0, 39.0, 156.0 + (sin(siner / 14.0) * -10.0), __utrp_scale, __utrp_scale, sin(siner / 14.0) * -20.0, c_white, 1.0);
 // draw_order 2: body5
-draw_sprite_ext(spr_pyrope_body5, 0.0, -92.0, 108.0 + (-abs(sin(siner / 14.0) * 20.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_pyrope_body5, 0.0, -92.0, 108.0 + (sin(siner / 14.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 3: body4
-draw_sprite_ext(spr_pyrope_body4, 0.0, -89.0, 64.0 + (-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_pyrope_body4, 0.0, -89.0, 64.0 + (sin(siner / 14.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 4: body3
-draw_sprite_ext(spr_pyrope_body3, 0.0, -85.0, 22.0 + (-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_pyrope_body3, 0.0, -85.0, 22.0 + (sin(siner / 14.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 5: body2
-draw_sprite_ext(spr_pyrope_body2, 0.0, -79.0, -20.0 + (-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_pyrope_body2, 0.0, -79.0, -20.0 + (sin(siner / 14.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 6: body1
-draw_sprite_ext(spr_pyrope_body1, 0.0, -68.0, -60.0 + (-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) - abs(sin((siner - 2.0) / 14.0) * 6.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_pyrope_body1, 0.0, -68.0, -60.0 + (sin(siner / 14.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 7: body0
-draw_sprite_ext(spr_pyrope_body0, 0.0, -57.0, -100.0 + (-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) - abs(sin((siner - 2.0) / 14.0) * 6.0) - abs(sin((siner - 1.0) / 14.0) * 6.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_pyrope_body0, 0.0, -57.0, -100.0 + (sin(siner / 14.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 8: head
-draw_sprite_ext(spr_pyrope_head, floor(siner / 10.0), 50.0, -118.0 + (-abs(sin(siner / 14.0) * 20.0) - abs(sin((siner - 5.0) / 14.0) * 6.0) - abs(sin((siner - 4.0) / 14.0) * 6.0) - abs(sin((siner - 3.0) / 14.0) * 6.0) - abs(sin((siner - 2.0) / 14.0) * 6.0) - abs(sin((siner - 1.0) / 14.0) * 6.0) - abs(sin(siner / 14.0) * 6.0)), __utrp_scale * (2.0), __utrp_scale * (2.0), sin(siner / 6.0) * 4.0, c_white, 1.0);
+draw_sprite_ext(spr_pyrope_head, 0.0, 50.0, -118.0, __utrp_scale, __utrp_scale, sin(siner / 6.0) * 4.0, c_white, 1.0);

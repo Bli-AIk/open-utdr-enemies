@@ -1,22 +1,17 @@
 /// Migosp UTRP GameMaker starter
 /// Source slug: ruins/migosp
-/// Canvas: 184x236 at 1.0x draw scale
+/// Canvas: 184x236 at 2.0x draw scale
 /// Asset map:
 /// - migosp_body => /sprites/migosp/body_0.png (placeholder sprite: spr_migosp_body)
 ///   frame: /sprites/migosp/body_1.png
-/// - migosp_happy => /sprites/migosp/happy_0.png (placeholder sprite: spr_migosp_happy)
-///   frame: /sprites/migosp/happy_1.png
 
 /// Migosp Create Event
 siner = 1.0;
-happy_state = 0.0;
 
 /// Migosp Step Event
 siner += 1.0;
 
 /// Migosp Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: body
-draw_sprite_ext(spr_migosp_body, floor((floor(siner / 50.0) * 10.0 + min(siner % 50.0, 10.0)) * 0.5) % 2.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0 - happy_state);
-// draw_order 1: happy_body
-draw_sprite_ext(spr_migosp_happy, floor(siner * 0.1) % 2.0, 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, happy_state);
+draw_sprite_ext(spr_migosp_body, floor(clamp(siner % 40.0 - 30.0, 0.0, 10.0) * 0.5), 0.0, 0.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

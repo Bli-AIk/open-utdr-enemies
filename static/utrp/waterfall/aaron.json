@@ -7,7 +7,7 @@
   "canvas": {
     "width": 160,
     "height": 240,
-    "scale": 1.0
+    "scale": 2.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,10 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "reviewed",
+    "accuracy": "needs_source_review",
     "notes": [
-      "Reviewed against obj_aaronbody_Create_0/Step_0 and obj_aaron_Create_0. Idle uses spr_aaronbody with GM image_xscale=image_yscale=2 and the siny / 30 vertical bob.",
-      "Bull/wink state from the Woshua interaction uses spr_aaronbody_bull and is outside this default idle renderer."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
@@ -59,9 +58,7 @@
         "y": 0.0
       },
       "transform": {
-        "offset_y": "sin(siner / 30.0) * 9.0",
-        "scale_x": "2.0",
-        "scale_y": "2.0"
+        "offset_y": "sin(siner / 30.0) * 9.0"
       },
       "draw_order": 0
     }

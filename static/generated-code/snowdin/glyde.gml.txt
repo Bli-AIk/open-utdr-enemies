@@ -1,6 +1,6 @@
 /// Glyde UTRP GameMaker starter
 /// Source slug: snowdin/glyde
-/// Canvas: 260x220 at 1.0x draw scale
+/// Canvas: 260x220 at 2.0x draw scale
 /// Asset map:
 /// - glyde_wing_r => /sprites/glyde/wing_r.png (placeholder sprite: spr_glyde_wing_r)
 /// - glyde_body => /sprites/glyde/body.png (placeholder sprite: spr_glyde_body)
@@ -8,15 +8,13 @@
 /// - glyde_antenna => /sprites/glyde/antenna.png (placeholder sprite: spr_glyde_antenna)
 
 /// Glyde Create Event
-siner = 0.0;
-dsiner = 0.0;
+siner = 1.0;
 
 /// Glyde Step Event
-dsiner += 1.0;
-siner = siner + cos(dsiner / 24.0) * 2.0;
+siner += 1.0;
 
 /// Glyde Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: wing_right
 draw_sprite_ext(spr_glyde_wing_r, 0.0, -72.0, 106.0 + (sin(siner / 12.0) * 8.0 + sin(siner / 6.0) * 2.0), __utrp_scale, __utrp_scale * (0.85 - sin(siner / 6.0) * 0.15), 0.0, c_white, 1.0);
 // draw_order 1: body

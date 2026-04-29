@@ -7,7 +7,7 @@
   "canvas": {
     "width": 224,
     "height": 332,
-    "scale": 1.0
+    "scale": 2.0
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,8 +18,7 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Checked against obj_finalknight_body_Create_0/Draw_0. Normal awake idle now uses spr_finalknight_* frame timings for eyes, helmet, mouth, fur, and the GM draw coordinates.",
-      "GM has tired/asleep and hurt branches plus a small choose(-1, 1) arm jitter; this UTRP file represents the normal awake state and uses a deterministic arm wobble approximation."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
@@ -27,36 +26,6 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
-    },
-    {
-      "name": "tick",
-      "kind": "counter",
-      "initial": 0.0
-    },
-    {
-      "name": "anim_e2",
-      "kind": "counter",
-      "initial": 0.0
-    },
-    {
-      "name": "anim_h2",
-      "kind": "counter",
-      "initial": 0.0
-    },
-    {
-      "name": "anim_m2",
-      "kind": "counter",
-      "initial": 0.0
-    },
-    {
-      "name": "anim_l2",
-      "kind": "counter",
-      "initial": 0.0
-    },
-    {
-      "name": "anim_l3",
-      "kind": "counter",
-      "initial": 0.0
     }
   ],
   "assets": [
@@ -71,10 +40,7 @@
       "id": "knightknight_fur",
       "path": "/sprites/knight-knight/knightknight_fur.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_fur_0.png",
-        "/sprites/knight-knight/knightknight_fur_1.png",
-        "/sprites/knight-knight/knightknight_fur_2.png",
-        "/sprites/knight-knight/knightknight_fur_3.png"
+        "/sprites/knight-knight/knightknight_fur.png"
       ]
     },
     {
@@ -88,111 +54,21 @@
       "id": "knightknight_eyes",
       "path": "/sprites/knight-knight/knightknight_eyes.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_eyes_0.png",
-        "/sprites/knight-knight/knightknight_eyes_1.png",
-        "/sprites/knight-knight/knightknight_eyes_2.png",
-        "/sprites/knight-knight/knightknight_eyes_3.png",
-        "/sprites/knight-knight/knightknight_eyes_4.png",
-        "/sprites/knight-knight/knightknight_eyes_5.png",
-        "/sprites/knight-knight/knightknight_eyes_6.png",
-        "/sprites/knight-knight/knightknight_eyes_7.png",
-        "/sprites/knight-knight/knightknight_eyes_8.png",
-        "/sprites/knight-knight/knightknight_eyes_9.png"
+        "/sprites/knight-knight/knightknight_eyes.png"
       ]
     },
     {
       "id": "knightknight_helmet",
       "path": "/sprites/knight-knight/knightknight_helmet.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_helmet_0.png",
-        "/sprites/knight-knight/knightknight_helmet_1.png",
-        "/sprites/knight-knight/knightknight_helmet_2.png",
-        "/sprites/knight-knight/knightknight_helmet_3.png"
+        "/sprites/knight-knight/knightknight_helmet.png"
       ]
     },
     {
       "id": "knightknight_mouth",
       "path": "/sprites/knight-knight/knightknight_mouth.png",
       "frames": [
-        "/sprites/knight-knight/knightknight_mouth_0.png",
-        "/sprites/knight-knight/knightknight_mouth_1.png",
-        "/sprites/knight-knight/knightknight_mouth_2.png",
-        "/sprites/knight-knight/knightknight_mouth_3.png",
-        "/sprites/knight-knight/knightknight_mouth_4.png",
-        "/sprites/knight-knight/knightknight_mouth_5.png",
-        "/sprites/knight-knight/knightknight_mouth_6.png",
-        "/sprites/knight-knight/knightknight_mouth_7.png",
-        "/sprites/knight-knight/knightknight_mouth_8.png",
-        "/sprites/knight-knight/knightknight_mouth_9.png"
-      ]
-    },
-    {
-      "id": "knightknight_eyes_tired",
-      "path": "/sprites/knight-knight/knightknight_eyes_tired_0.png",
-      "frames": [
-        "/sprites/knight-knight/knightknight_eyes_tired_0.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_1.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_2.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_3.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_4.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_5.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_6.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_7.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_8.png",
-        "/sprites/knight-knight/knightknight_eyes_tired_9.png"
-      ]
-    },
-    {
-      "id": "knightknight_eyes_asleep",
-      "path": "/sprites/knight-knight/knightknight_eyes_asleep_0.png",
-      "frames": [
-        "/sprites/knight-knight/knightknight_eyes_asleep_0.png"
-      ]
-    },
-    {
-      "id": "knightknight_helmet_hurt",
-      "path": "/sprites/knight-knight/knightknight_helmet_hurt_0.png",
-      "frames": [
-        "/sprites/knight-knight/knightknight_helmet_hurt_0.png"
-      ]
-    },
-    {
-      "id": "knightknight_mouth_tired",
-      "path": "/sprites/knight-knight/knightknight_mouth_tired_0.png",
-      "frames": [
-        "/sprites/knight-knight/knightknight_mouth_tired_0.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_1.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_2.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_3.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_4.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_5.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_6.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_7.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_8.png",
-        "/sprites/knight-knight/knightknight_mouth_tired_9.png"
-      ]
-    },
-    {
-      "id": "knightknight_mouth_asleep",
-      "path": "/sprites/knight-knight/knightknight_mouth_asleep_0.png",
-      "frames": [
-        "/sprites/knight-knight/knightknight_mouth_asleep_0.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_1.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_2.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_3.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_4.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_5.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_6.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_7.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_8.png",
-        "/sprites/knight-knight/knightknight_mouth_asleep_9.png"
-      ]
-    },
-    {
-      "id": "knightknight_mouth_hurt",
-      "path": "/sprites/knight-knight/knightknight_mouth_hurt_0.png",
-      "frames": [
-        "/sprites/knight-knight/knightknight_mouth_hurt_0.png"
+        "/sprites/knight-knight/knightknight_mouth.png"
       ]
     }
   ],
@@ -201,36 +77,6 @@
       "op": "increment",
       "variable": "siner",
       "by": "1.0"
-    },
-    {
-      "op": "increment",
-      "variable": "tick",
-      "by": "1.0"
-    },
-    {
-      "op": "set",
-      "variable": "anim_e2",
-      "value": "ifelse(lt(tick % 181.0, 31.0), 0.0, ifelse(lt(tick % 181.0, 60.0), tick % 181.0 - 30.0, 29.0))"
-    },
-    {
-      "op": "set",
-      "variable": "anim_h2",
-      "value": "floor(tick / 101.0) * 24.0 + clamp(tick % 101.0 - 50.0, 0.0, 24.0)"
-    },
-    {
-      "op": "set",
-      "variable": "anim_m2",
-      "value": "ifelse(lt(tick % 301.0, 151.0), 0.0, ifelse(lt(tick % 301.0, 180.0), tick % 301.0 - 150.0, ifelse(lt(tick % 301.0, 241.0), 29.0, ifelse(lt(tick % 301.0, 270.0), 29.0 + tick % 301.0 - 240.0, 58.0))))"
-    },
-    {
-      "op": "set",
-      "variable": "anim_l2",
-      "value": "ifelse(lt(tick % 165.0, 60.0), 0.0, ifelse(lt(tick % 165.0, 120.0), -(tick % 165.0 - 59.0) * 0.5, ifelse(lt(tick % 165.0, 150.0), -30.0, ifelse(lt(tick % 165.0, 155.0), min(0.0, -30.0 + (tick % 165.0 - 149.0) * 6.0), ifelse(eq(tick % 165.0 % 2.0, 0.0), 0.0, -3.0)))))"
-    },
-    {
-      "op": "set",
-      "variable": "anim_l3",
-      "value": "ifelse(gte(tick % 165.0, 155.0), ifelse(eq(tick % 4.0, 0.0), -1.0, 1.0), 0.0)"
     }
   ],
   "draw": [
@@ -247,8 +93,7 @@
         "y": 0.0
       },
       "transform": {
-        "offset_x": "sin(siner / 10.0) * 6.0",
-        "frame_index": "floor(anim_e2 / 3.0) % 10.0"
+        "offset_x": "sin(siner / 10.0) * 6.0"
       },
       "draw_order": 0
     },
@@ -279,9 +124,7 @@
         "x": -1.0,
         "y": -2.0
       },
-      "transform": {
-        "frame_index": "floor(anim_h2 / 4.0) % 4.0"
-      },
+      "transform": {},
       "draw_order": 2
     },
     {
@@ -296,9 +139,7 @@
         "x": 0.0,
         "y": -3.0
       },
-      "transform": {
-        "frame_index": "floor(anim_m2 / 6.0) % 10.0"
-      },
+      "transform": {},
       "draw_order": 3
     },
     {
@@ -313,9 +154,7 @@
         "x": 1.0,
         "y": 0.0
       },
-      "transform": {
-        "frame_index": "floor(siner / 5.0) % 4.0"
-      },
+      "transform": {},
       "draw_order": 4
     },
     {
@@ -330,10 +169,7 @@
         "x": 1.0,
         "y": -1.0
       },
-      "transform": {
-        "offset_x": "anim_l3",
-        "offset_y": "anim_l2"
-      },
+      "transform": {},
       "draw_order": 5
     }
   ],

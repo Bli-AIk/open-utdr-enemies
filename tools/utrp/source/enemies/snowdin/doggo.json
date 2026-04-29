@@ -7,7 +7,7 @@
   "canvas": {
     "width": 150,
     "height": 270,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "reviewed",
+    "accuracy": "needs_source_review",
     "notes": [
-      "Idle reviewed against obj_movedogearms: arms use GM's accumulated step motion, y +=/-= 0.8 by sign(sin(a / 4.5)); head keeps GM image_speed 0.33334."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
@@ -26,16 +26,6 @@
       "name": "siner",
       "kind": "counter",
       "initial": 1.0
-    },
-    {
-      "name": "doggo_arm_phase",
-      "kind": "counter",
-      "initial": 0.0
-    },
-    {
-      "name": "doggo_arm_y",
-      "kind": "counter",
-      "initial": 0.0
     }
   ],
   "assets": [
@@ -85,16 +75,6 @@
       "op": "increment",
       "variable": "siner",
       "by": "1"
-    },
-    {
-      "op": "increment",
-      "variable": "doggo_arm_phase",
-      "by": "1"
-    },
-    {
-      "op": "set",
-      "variable": "doggo_arm_y",
-      "value": "doggo_arm_y + ifelse(gt(sin(doggo_arm_phase / 4.5), 0), 0.8, -0.8)"
     }
   ],
   "draw": [
@@ -141,7 +121,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "doggo_arm_y"
+        "offset_y": "sin(siner / 4.5) * 8"
       },
       "draw_order": 2
     },

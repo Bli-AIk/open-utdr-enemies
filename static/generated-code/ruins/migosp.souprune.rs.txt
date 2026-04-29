@@ -11,35 +11,18 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
-            // TODO: UTRP frame_index `floor((floor(siner / 50.0) * 10.0 + min(siner % 50.0, 10.0)) * 0.5) % 2.0` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `floor(clamp(siner % 40.0 - 30.0, 0.0, 10.0) * 0.5)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "migosp_body".into(),
                 tags: vec!["utrp".into(), "ruins/migosp".into()],
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(0.0), static_float(0.0), static_float(0.0))),
                     rotation: None,
-                    scale: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/migosp/body_0.png".into()),
-                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("1.0 - happy_state"))),
-                    pivot: None,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-            // TODO: UTRP frame_index `floor(siner * 0.1) % 2.0` is not fully modeled by this basic ViewNodeDef starter.
-            ViewNodeDef {
-                name: "migosp_happy_body".into(),
-                tags: vec!["utrp".into(), "ruins/migosp".into()],
-                transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), static_float(0.0), static_float(1.0))),
-                    rotation: None,
-                    scale: None,
-                }),
-                sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/migosp/happy_0.png".into()),
-                    color: Some(color(static_float(1.0), static_float(1.0), static_float(1.0), expression("happy_state"))),
+                    color: None,
                     pivot: None,
                     ..Default::default()
                 }),

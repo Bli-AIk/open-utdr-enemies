@@ -1,18 +1,9 @@
 /// Shyren UTRP GameMaker starter
 /// Source slug: waterfall/shyren
-/// Canvas: 240x328 at 1.0x draw scale
+/// Canvas: 240x328 at 2.0x draw scale
 /// Asset map:
 /// - shyren_agent => /sprites/shyren/agent.png (placeholder sprite: spr_shyren_agent)
-///   frame: /sprites/shyren/agent_1.png
-/// - shyren_body => /sprites/shyren/hide.png (placeholder sprite: spr_shyren_body)
-/// - shyren_swim => /sprites/shyren/swim_0.png (placeholder sprite: spr_shyren_swim)
-///   frame: /sprites/shyren/swim_1.png
-///   frame: /sprites/shyren/swim_2.png
-///   frame: /sprites/shyren/swim_3.png
-/// - shyren_sing => /sprites/shyren/sing_0.png (placeholder sprite: spr_shyren_sing)
-///   frame: /sprites/shyren/sing_1.png
-///   frame: /sprites/shyren/sing_2.png
-///   frame: /sprites/shyren/sing_3.png
+/// - shyren_body => /sprites/shyren/body.png (placeholder sprite: spr_shyren_body)
 
 /// Shyren Create Event
 siner = 1.0;
@@ -21,8 +12,8 @@ siner = 1.0;
 siner += 1.0;
 
 /// Shyren Draw Event
-var __utrp_scale = 1.0;
+var __utrp_scale = 2.0;
 // draw_order 0: agent
-draw_sprite_ext(spr_shyren_agent, 0.0, -15.0, -90.0, __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_shyren_agent, 0.0, -15.0, -90.0 + (sin(siner / 5.0) * 3.0), __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);
 // draw_order 1: body
-draw_sprite_ext(spr_shyren_body, 0.0, 0.0, 30.0 + (sin(siner / 30.0) * 4.0), __utrp_scale * (2.0), __utrp_scale * (2.0), 0.0, c_white, 1.0);
+draw_sprite_ext(spr_shyren_body, 0.0, 0.0, 30.0, __utrp_scale, __utrp_scale, 0.0, c_white, 1.0);

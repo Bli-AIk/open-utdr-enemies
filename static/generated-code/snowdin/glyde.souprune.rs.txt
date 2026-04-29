@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-72.0), expression("106.0 + (sin(siner / 12.0) * 8.0 + sin(siner / 6.0) * 2.0)"), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(1.0), expression("1.0 * (0.85 - sin(siner / 6.0) * 0.15)"), static_float(1.0))),
+                    scale: Some(vector3(static_float(2.0), expression("2.0 * (0.85 - sin(siner / 6.0) * 0.15)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/glyde/wing_r.png".into()),
@@ -33,7 +33,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(-118.0), expression("-84.0 + (sin(siner / 12.0) * 8.0)"), static_float(1.0))),
                     rotation: None,
-                    scale: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/glyde/body.png".into()),
@@ -49,7 +49,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(122.0), expression("96.0 + (sin(siner / 12.0) * 8.0)"), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("1.0 * (0.975 - sin(siner / 6.0) * 0.025)"), expression("1.0 * (0.9 - sin(siner / 6.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(expression("2.0 * (0.975 - sin(siner / 6.0) * 0.025)"), expression("2.0 * (0.9 - sin(siner / 6.0) * 0.1)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/glyde/wing_l.png".into()),
@@ -65,7 +65,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-50.0 + (sin(siner / 12.0) * 2.0)"), expression("-64.0 + (sin(siner / 12.0) * 8.0)"), static_float(3.0))),
                     rotation: Some(expression("20.0 - sin(siner / 12.0) * 20.0")),
-                    scale: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/glyde/antenna.png".into()),

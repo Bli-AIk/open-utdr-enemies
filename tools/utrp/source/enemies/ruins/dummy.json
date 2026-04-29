@@ -7,7 +7,7 @@
   "canvas": {
     "width": 236,
     "height": 252,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,9 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "reviewed",
+    "accuracy": "needs_source_review",
     "notes": [
-      "GM idle is static. static/sprites/dummy/body.png matches Monsters/Ruins/spr_dummybattle_0.png at 98x106; no crop or replacement needed after canvas scale=1."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [],

@@ -11,7 +11,6 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
-            // TODO: UTRP frame_index `floor(siner * 0.1)` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "moldbygg_body".into(),
                 tags: vec!["utrp".into(), "waterfall/moldbygg".into()],
@@ -21,7 +20,7 @@ pub fn asset() -> ViewLayoutAsset {
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/moldbygg/body_0.png".into()),
+                    visual: Visual("/sprites/moldbygg/body.png".into()),
                     color: None,
                     pivot: None,
                     ..Default::default()

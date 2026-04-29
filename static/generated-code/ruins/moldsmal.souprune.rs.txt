@@ -11,19 +11,19 @@ pub fn emit(reg: &mut Registry) -> Result<()> {
 pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
-            // TODO: UTRP frame_index `0.0` is not fully modeled by this basic ViewNodeDef starter.
+            // TODO: UTRP frame_index `floor(siner / 6.0) % 2.0` is not fully modeled by this basic ViewNodeDef starter.
             ViewNodeDef {
                 name: "moldsmal_body".into(),
                 tags: vec!["utrp".into(), "ruins/moldsmal".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), expression("0.0 + (102.0 * (1.0 - moldsmal_scale))"), static_float(0.0))),
+                    translation: Some(vector3(static_float(0.0), static_float(84.0), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(1.0), expression("1.0 * (moldsmal_scale)"), static_float(1.0))),
+                    scale: Some(vector3(static_float(2.0), expression("2.0 * (1.0 - sin(siner / 4.0) * 0.05)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/moldsmal/body_0.png".into()),
                     color: None,
-                    pivot: Some(vector2(static_float(0.0), static_float(0.0))),
+                    pivot: Some(vector2(static_float(51.0), static_float(84.0))),
                     ..Default::default()
                 }),
                 ..Default::default()

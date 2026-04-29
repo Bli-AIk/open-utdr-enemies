@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("1.0 + (sin(siner / 12.0) * 46.0)"), static_float(68.0), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("1.0 * (sin(siner / 12.0) * 2.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/so-sorry/sosorry_tail.png".into()),
@@ -33,7 +33,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-12.0 + (sin(siner / 6.0) * -2.0)"), static_float(150.0), static_float(1.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(2.0), expression("1.0 * (2.0 + cos(siner / 3.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/so-sorry/sosorry_leg.png".into()),
@@ -49,7 +49,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("-4.0 + (sin(siner / 6.0) * 2.0)"), static_float(150.0), static_float(2.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("1.0 * (-2.0)"), expression("1.0 * (2.0 + cos(siner / 3.0) * 0.1)"), static_float(1.0))),
+                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/so-sorry/sosorry_leg_r.png".into()),
@@ -97,7 +97,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("90.0 + (sin(siner / 3.0) * -2.0)"), static_float(-18.0), static_float(5.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("1.0 * (-2.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/so-sorry/sosorry_arm_r.png".into()),
@@ -161,7 +161,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(53.0), expression("-168.0 + (sin(siner / 6.0) * 1.0)"), static_float(9.0))),
                     rotation: None,
-                    scale: Some(vector3(expression("1.0 * (-2.0)"), static_float(2.0), static_float(1.0))),
+                    scale: Some(vector3(expression("2.0 * (-1.0)"), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/so-sorry/sosorry_ear_r.png".into()),

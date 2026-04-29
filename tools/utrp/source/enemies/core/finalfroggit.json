@@ -7,7 +7,7 @@
   "canvas": {
     "width": 180,
     "height": 170,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,15 +18,14 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Normal idle checked against obj_finalfroggit_body_Draw_0. Body/head formulas match GM and siner now starts at 0 for the GM phase convention.",
-      "The hurt head asset is present, but UTRP still has no battle-state switch for pause/hurt, so only normal idle is represented."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
     {
       "name": "siner",
       "kind": "counter",
-      "initial": 0.0
+      "initial": 1.0
     }
   ],
   "assets": [

@@ -7,7 +7,7 @@
   "canvas": {
     "width": 252,
     "height": 376,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -16,10 +16,9 @@
     "angle_unit": "degrees"
   },
   "review": {
-    "accuracy": "reviewed",
+    "accuracy": "needs_source_review",
     "notes": [
-      "Reviewed against obj_pyropebody_Draw_0/Create_0 and obj_pyrope_Create_0. Idle preserves the GM siner-driven feet, stacked body segment spacing, and animated head rotation.",
-      "Hurt state uses spr_pyropehead2/spr_pyropehurt in GM and is outside this idle renderer."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
@@ -90,8 +89,7 @@
       "id": "pyrope_head",
       "path": "/sprites/pyrope/head.png",
       "frames": [
-        "/sprites/pyrope/head.png",
-        "/sprites/pyrope/head_1.png"
+        "/sprites/pyrope/head.png"
       ]
     }
   ],
@@ -113,10 +111,8 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20)",
-        "scale_x": "2",
-        "scale_y": "2",
-        "rotation_deg": "abs(sin(siner / 14) * 40)"
+        "offset_y": "sin(siner / 14) * -10",
+        "rotation_deg": "sin(siner / 14) * 20"
       },
       "draw_order": 0
     },
@@ -130,10 +126,8 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20)",
-        "scale_x": "2",
-        "scale_y": "2",
-        "rotation_deg": "-abs(sin(siner / 14) * 40)"
+        "offset_y": "sin(siner / 14) * -10",
+        "rotation_deg": "sin(siner / 14) * -20"
       },
       "draw_order": 1
     },
@@ -147,9 +141,7 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20)",
-        "scale_x": "2",
-        "scale_y": "2"
+        "offset_y": "sin(siner / 14) * 3"
       },
       "draw_order": 2
     },
@@ -163,9 +155,7 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20) - abs(sin((siner - 5) / 14) * 6)",
-        "scale_x": "2",
-        "scale_y": "2"
+        "offset_y": "sin(siner / 14) * 3"
       },
       "draw_order": 3
     },
@@ -179,9 +169,7 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20) - abs(sin((siner - 5) / 14) * 6) - abs(sin((siner - 4) / 14) * 6)",
-        "scale_x": "2",
-        "scale_y": "2"
+        "offset_y": "sin(siner / 14) * 3"
       },
       "draw_order": 4
     },
@@ -195,9 +183,7 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20) - abs(sin((siner - 5) / 14) * 6) - abs(sin((siner - 4) / 14) * 6) - abs(sin((siner - 3) / 14) * 6)",
-        "scale_x": "2",
-        "scale_y": "2"
+        "offset_y": "sin(siner / 14) * 3"
       },
       "draw_order": 5
     },
@@ -211,9 +197,7 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20) - abs(sin((siner - 5) / 14) * 6) - abs(sin((siner - 4) / 14) * 6) - abs(sin((siner - 3) / 14) * 6) - abs(sin((siner - 2) / 14) * 6)",
-        "scale_x": "2",
-        "scale_y": "2"
+        "offset_y": "sin(siner / 14) * 3"
       },
       "draw_order": 6
     },
@@ -227,9 +211,7 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20) - abs(sin((siner - 5) / 14) * 6) - abs(sin((siner - 4) / 14) * 6) - abs(sin((siner - 3) / 14) * 6) - abs(sin((siner - 2) / 14) * 6) - abs(sin((siner - 1) / 14) * 6)",
-        "scale_x": "2",
-        "scale_y": "2"
+        "offset_y": "sin(siner / 14) * 3"
       },
       "draw_order": 7
     },
@@ -243,11 +225,7 @@
       },
       "pivot": null,
       "transform": {
-        "offset_y": "-abs(sin(siner / 14) * 20) - abs(sin((siner - 5) / 14) * 6) - abs(sin((siner - 4) / 14) * 6) - abs(sin((siner - 3) / 14) * 6) - abs(sin((siner - 2) / 14) * 6) - abs(sin((siner - 1) / 14) * 6) - abs(sin(siner / 14) * 6)",
-        "scale_x": "2",
-        "scale_y": "2",
-        "rotation_deg": "sin(siner / 6) * 4",
-        "frame_index": "floor(siner / 10)"
+        "rotation_deg": "sin(siner / 6) * 4"
       },
       "draw_order": 8
     }

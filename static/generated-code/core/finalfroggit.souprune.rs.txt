@@ -17,7 +17,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(0.0), static_float(63.0), static_float(0.0))),
                     rotation: None,
-                    scale: Some(vector3(static_float(1.0), expression("1.0 * (1.0 + sin(siner / 3.0) * -0.075)"), static_float(1.0))),
+                    scale: Some(vector3(static_float(2.0), expression("2.0 * (1.0 + sin(siner / 3.0) * -0.075)"), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/finalfroggit/body.png".into()),
@@ -33,7 +33,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(expression("0.0 + (sin(siner / 6.0) * 10.0)"), expression("-27.0 + (sin(siner / 3.0) * 4.0)"), static_float(1.0))),
                     rotation: Some(expression("sin(siner / 6.0) * -2.0")),
-                    scale: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/finalfroggit/head.png".into()),

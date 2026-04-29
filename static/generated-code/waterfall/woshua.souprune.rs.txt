@@ -12,75 +12,10 @@ pub fn asset() -> ViewLayoutAsset {
     ViewLayoutAsset {
         roots: vec![
             ViewNodeDef {
-                name: "woshua_hanger".into(),
-                tags: vec!["utrp".into(), "waterfall/woshua".into()],
-                transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), static_float(0.0), static_float(0.0))),
-                    rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
-                }),
-                sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/woshua/hanger.png".into()),
-                    color: None,
-                    pivot: None,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-            // TODO: UTRP frame_index `floor(anim)` is not fully modeled by this basic ViewNodeDef starter.
-            ViewNodeDef {
-                name: "woshua_duck".into(),
-                tags: vec!["utrp".into(), "waterfall/woshua".into()],
-                transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(46.0), expression("18.0 + (-sin(siner / 5.0) * 2.0)"), static_float(1.0))),
-                    rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
-                }),
-                sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/woshua/duck_0.png".into()),
-                    color: None,
-                    pivot: None,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-            ViewNodeDef {
-                name: "woshua_water_left".into(),
-                tags: vec!["utrp".into(), "waterfall/woshua".into()],
-                transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("40.0 + (-sin(anim / 2.0) * 4.0)"), static_float(34.0), static_float(2.0))),
-                    rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
-                }),
-                sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/woshua/water.png".into()),
-                    color: None,
-                    pivot: None,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-            ViewNodeDef {
-                name: "woshua_water_right".into(),
-                tags: vec!["utrp".into(), "waterfall/woshua".into()],
-                transform: Some(SerializableTransform {
-                    translation: Some(vector3(expression("40.0 + (sin(anim / 2.0) * 4.0)"), static_float(34.0), static_float(3.0))),
-                    rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
-                }),
-                sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/woshua/water.png".into()),
-                    color: None,
-                    pivot: None,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
-            ViewNodeDef {
                 name: "woshua_body".into(),
                 tags: vec!["utrp".into(), "waterfall/woshua".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(0.0), static_float(20.0), static_float(4.0))),
+                    translation: Some(vector3(static_float(0.0), static_float(20.0), static_float(0.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
@@ -92,28 +27,11 @@ pub fn asset() -> ViewLayoutAsset {
                 }),
                 ..Default::default()
             },
-            // TODO: UTRP frame_index `floor(anim)` is not fully modeled by this basic ViewNodeDef starter.
-            ViewNodeDef {
-                name: "woshua_tail".into(),
-                tags: vec!["utrp".into(), "waterfall/woshua".into()],
-                transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(88.0), static_float(50.0), static_float(5.0))),
-                    rotation: None,
-                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
-                }),
-                sprite: Some(SpriteDef {
-                    visual: Visual("/sprites/woshua/tail_0.png".into()),
-                    color: None,
-                    pivot: None,
-                    ..Default::default()
-                }),
-                ..Default::default()
-            },
             ViewNodeDef {
                 name: "woshua_head".into(),
                 tags: vec!["utrp".into(), "waterfall/woshua".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-12.0), expression("-35.0 + (sin(siner / 10.0) * 4.0)"), static_float(6.0))),
+                    translation: Some(vector3(static_float(-12.0), static_float(-35.0), static_float(1.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
@@ -129,7 +47,7 @@ pub fn asset() -> ViewLayoutAsset {
                 name: "woshua_face".into(),
                 tags: vec!["utrp".into(), "waterfall/woshua".into()],
                 transform: Some(SerializableTransform {
-                    translation: Some(vector3(static_float(-2.0), expression("-28.0 + (sin(siner / 10.0) * 2.0)"), static_float(7.0))),
+                    translation: Some(vector3(static_float(-2.0), static_float(-28.0), static_float(2.0))),
                     rotation: None,
                     scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),

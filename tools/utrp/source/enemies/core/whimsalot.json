@@ -7,7 +7,7 @@
   "canvas": {
     "width": 188,
     "height": 196,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,8 +18,7 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Checked against obj_whimsalot_body_Create_0/Draw_0. Normal idle uses the GM spr_whimsalot_wing_r/body/head frame timings and draw formulas.",
-      "GM draws the right wing sprite twice, mirroring it for the left wing; UTRP does the same. The hurt head asset is present but not state-switched because UTRP has no battle pause/hurt input here."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
@@ -34,38 +33,28 @@
       "id": "whimsalot_wing_r",
       "path": "/sprites/whimsalot/wing_r.png",
       "frames": [
-        "/sprites/whimsalot/wing_r_0.png",
-        "/sprites/whimsalot/wing_r_1.png",
-        "/sprites/whimsalot/wing_r_2.png",
-        "/sprites/whimsalot/wing_r_3.png",
-        "/sprites/whimsalot/wing_r_4.png",
-        "/sprites/whimsalot/wing_r_5.png",
-        "/sprites/whimsalot/wing_r_6.png"
+        "/sprites/whimsalot/wing_r.png"
+      ]
+    },
+    {
+      "id": "whimsalot_wing_l",
+      "path": "/sprites/whimsalot/wing_l.png",
+      "frames": [
+        "/sprites/whimsalot/wing_l.png"
       ]
     },
     {
       "id": "whimsalot_body",
       "path": "/sprites/whimsalot/body.png",
       "frames": [
-        "/sprites/whimsalot/body_0.png",
-        "/sprites/whimsalot/body_1.png"
+        "/sprites/whimsalot/body.png"
       ]
     },
     {
       "id": "whimsalot_head",
       "path": "/sprites/whimsalot/head.png",
       "frames": [
-        "/sprites/whimsalot/head_0.png",
-        "/sprites/whimsalot/head_1.png",
-        "/sprites/whimsalot/head_2.png",
-        "/sprites/whimsalot/head_3.png"
-      ]
-    },
-    {
-      "id": "whimsalot_head_hurt",
-      "path": "/sprites/whimsalot/head_hurt_0.png",
-      "frames": [
-        "/sprites/whimsalot/head_hurt_0.png"
+        "/sprites/whimsalot/head.png"
       ]
     }
   ],
@@ -91,15 +80,14 @@
       },
       "transform": {
         "offset_y": "sin(siner / 5) * -2",
-        "rotation_deg": "-15 + sin(siner / 2.5) * 30",
-        "frame_index": "floor(siner / 15)"
+        "rotation_deg": "-15 + sin(siner / 2.5) * 30"
       },
       "draw_order": 0
     },
     {
       "kind": "sprite",
       "id": "wing_left",
-      "sprite": "whimsalot_wing_r",
+      "sprite": "whimsalot_wing_l",
       "origin": {
         "x": -23,
         "y": -13
@@ -111,8 +99,7 @@
       "transform": {
         "offset_y": "sin(siner / 5) * -2",
         "scale_x": "-1",
-        "rotation_deg": "15 + sin(siner / 2.5) * -30",
-        "frame_index": "floor(siner / 15)"
+        "rotation_deg": "15 + sin(siner / 2.5) * -30"
       },
       "draw_order": 1
     },
@@ -129,8 +116,7 @@
         "y": 0
       },
       "transform": {
-        "offset_y": "sin(siner / 5) * 6",
-        "frame_index": "floor(siner / 18)"
+        "offset_y": "sin(siner / 5) * 6"
       },
       "draw_order": 2
     },
@@ -147,8 +133,7 @@
         "y": -1
       },
       "transform": {
-        "offset_y": "sin(siner / 5) * 8",
-        "frame_index": "floor(siner / 10)"
+        "offset_y": "sin(siner / 5) * 8"
       },
       "draw_order": 3
     }

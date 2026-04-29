@@ -7,7 +7,7 @@
   "canvas": {
     "width": 184,
     "height": 238,
-    "scale": 1
+    "scale": 2
   },
   "coordinate_space": {
     "origin": "top_left",
@@ -18,8 +18,7 @@
   "review": {
     "accuracy": "needs_source_review",
     "notes": [
-      "Checked against obj_wizardbody_Create_0/Draw_0. Body parts and the two default orbs now follow the GM spr_wizard_* formulas.",
-      "GM can slow an orb after the matching stare flag is set and swaps to hurt sprites while paused; this UTRP file represents the normal idle/stare1=0/stare2=0 state."
+      "Converted to UTRP from the site's previous animation data. Needs comparison against UNDERTALE source before being marked exact."
     ]
   },
   "variables": [
@@ -64,29 +63,6 @@
       "frames": [
         "/sprites/madjick/hat.png"
       ]
-    },
-    {
-      "id": "madjick_orb",
-      "path": "/sprites/madjick/orb_0.png",
-      "frames": [
-        "/sprites/madjick/orb_0.png",
-        "/sprites/madjick/orb_1.png",
-        "/sprites/madjick/orb_2.png",
-        "/sprites/madjick/orb_3.png",
-        "/sprites/madjick/orb_4.png",
-        "/sprites/madjick/orb_5.png",
-        "/sprites/madjick/orb_6.png",
-        "/sprites/madjick/orb_7.png",
-        "/sprites/madjick/orb_8.png",
-        "/sprites/madjick/orb_9.png"
-      ]
-    },
-    {
-      "id": "madjick_orb_hurt",
-      "path": "/sprites/madjick/orb_hurt_0.png",
-      "frames": [
-        "/sprites/madjick/orb_hurt_0.png"
-      ]
     }
   ],
   "update": [
@@ -97,46 +73,6 @@
     }
   ],
   "draw": [
-    {
-      "kind": "sprite",
-      "id": "orb_left",
-      "sprite": "madjick_orb",
-      "origin": {
-        "x": -64,
-        "y": -16
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "transform": {
-        "offset_y": "sin(siner / 2.5) * 2",
-        "scale_x": "-1",
-        "scale_y": "-1",
-        "frame_index": "floor(siner / 3)"
-      },
-      "draw_order": 7
-    },
-    {
-      "kind": "sprite",
-      "id": "orb_right",
-      "sprite": "madjick_orb",
-      "origin": {
-        "x": 50,
-        "y": -26
-      },
-      "pivot": {
-        "x": 0,
-        "y": 0
-      },
-      "transform": {
-        "offset_y": "sin(siner / 2.5) * 5",
-        "scale_x": "-1",
-        "scale_y": "-1",
-        "frame_index": "floor(siner / 3)"
-      },
-      "draw_order": 8
-    },
     {
       "kind": "sprite",
       "id": "boot_left",

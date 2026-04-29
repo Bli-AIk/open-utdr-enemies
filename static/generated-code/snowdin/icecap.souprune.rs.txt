@@ -18,7 +18,7 @@ pub fn asset() -> ViewLayoutAsset {
                 transform: Some(SerializableTransform {
                     translation: Some(vector3(static_float(0.0), static_float(0.0), static_float(0.0))),
                     rotation: None,
-                    scale: None,
+                    scale: Some(vector3(static_float(2.0), static_float(2.0), static_float(1.0))),
                 }),
                 sprite: Some(SpriteDef {
                     visual: Visual("/sprites/icecap/body_0.png".into()),
